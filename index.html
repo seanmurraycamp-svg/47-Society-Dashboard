@@ -190,7 +190,11 @@
   </div>
 </div>
 
-<!-- MONTH SELECTOR -->
+<!-- YEAR + MONTH SELECTOR -->
+<div style="display:flex;gap:8px;margin-bottom:10px;">
+  <button class="month-btn active" id="btn-2026" onclick="switchYear(2026)">2026</button>
+  <button class="month-btn" id="btn-2025" onclick="switchYear(2025)">2025</button>
+</div>
 <div class="month-selector" id="monthSelector"></div>
 
 <!-- REVENUE -->
@@ -310,10 +314,6 @@
 
 <!-- YEARLY OVERVIEW -->
 <div class="section-label">Yearly Overview</div>
-<div style="display:flex;gap:8px;margin-bottom:16px;">
-  <button class="month-btn active" id="btn-2026" onclick="switchYear(2026)">2026</button>
-  <button class="month-btn" id="btn-2025" onclick="switchYear(2025)">2025</button>
-</div>
 <div class="grid-2">
   <div class="card">
     <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Monthly Revenue</div>
@@ -644,7 +644,11 @@ function updateYearly(currentRevOverride) {
 function renderClients() {
   const tbody = document.getElementById('client-tbody');
   tbody.innerHTML = '';
-  const monthClients = getMonthClients();
+  const monthClients = getMonthClients().slice().sort((a, b) => {
+    const aVal = a.paidTotal !== undefined ? a.paidTotal : (TIER_PRICES[a.tier] || 0);
+    const bVal = b.paidTotal !== undefined ? b.paidTotal : (TIER_PRICES[b.tier] || 0);
+    return bVal - aVal;
+  });
 
   if (monthClients.length === 0) {
     // Show add-from-roster option if roster has people
