@@ -661,7 +661,7 @@ function renderClients() {
   }
 
   monthClients.forEach(c => {
-    const price = TIER_PRICES[c.tier] || 0;
+    const price = c.paidTotal !== undefined ? c.paidTotal : (TIER_PRICES[c.tier] || 0);
     const yearly = price * 12;
     const cls = TIER_CLASSES[c.tier] || 'tier-online';
     const tr = document.createElement('tr');
