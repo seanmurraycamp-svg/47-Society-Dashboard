@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>47 Society — Command Centre</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #1C1C1C;
+    --surface: #242424;
+    --surface2: #2C2C2C;
+    --surface3: #323232;
+    --border: rgba(255,255,255,0.07);
+    --border2: rgba(255,255,255,0.12);
+    --text: #FFFFFF;
+    --muted: rgba(255,255,255,0.38);
+    --muted2: rgba(255,255,255,0.6);
+    --accent: #E85D8A;
+    --accent2: #F4A261;
+    --accent3: #9B3FBF;
+    --green: #4CAF84;
+    --red: #E85D5D;
+    --gold: #F4A261;
+    --silver: #9BA8C9;
+    --bronze: #CD7C4A;
+  }
+  html { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; }
+  body { min-height: 100vh; padding: 32px 24px 80px; max-width: 1100px; margin: 0 auto; }
+
+  /* HEADER */
+  .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 0.5px solid var(--border); }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .logo-mark { width: 44px; height: 44px; border-radius: 10px; background: linear-gradient(135deg, #F4A261, #E85D8A, #9B3FBF); display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 14px; color: #fff; letter-spacing: 1px; flex-shrink: 0; }
+  .header-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 20px; letter-spacing: 1px; text-transform: uppercase; }
+  .header-sub { font-size: 11px; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; margin-top: 2px; }
+  .header-date { font-size: 12px; color: var(--muted); letter-spacing: 1px; text-align: right; }
+  .header-date span { display: block; font-size: 11px; color: var(--accent); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 2px; }
+
+  /* SECTION LABELS */
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; margin-top: 32px; display: flex; align-items: center; gap: 10px; }
+  .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--border); }
+
+  /* GRIDS */
+  .grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; }
+  .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+  .grid-hero { display: grid; grid-template-columns: 1fr 280px; gap: 16px; align-items: start; }
+
+  /* CARDS */
+  .card { background: var(--surface); border: 0.5px solid var(--border); border-radius: 12px; padding: 16px 20px; }
+  .card-sm { background: var(--surface); border: 0.5px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+
+  /* METRICS */
+  .metric-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .metric-value { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 26px; color: var(--text); line-height: 1; }
+  .metric-value.accent { color: var(--accent); }
+  .metric-value.green { color: var(--green); }
+  .metric-value.amber { color: var(--accent2); }
+  .metric-sub { font-size: 11px; color: var(--muted); margin-top: 6px; }
+
+  /* REVENUE ROWS */
+  .rev-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-bottom: 0.5px solid var(--border); }
+  .rev-row:last-child { border-bottom: none; }
+  .rev-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .rev-label { font-size: 13px; color: var(--muted2); flex: 1; margin-left: 10px; }
+  .rev-value { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: var(--text); }
+  .rev-total-row { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; margin-top: 4px; border-top: 0.5px solid var(--border2); }
+  .rev-total-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .rev-total-value { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 22px; color: var(--accent); }
+  .rev-input { background: transparent; border: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 15px; color: var(--text); width: 100px; text-align: right; outline: none; cursor: pointer; border-bottom: 1px dashed rgba(255,255,255,0.15); padding-bottom: 1px; }
+  .rev-input:focus { border-bottom-color: var(--accent); color: var(--accent); }
+  .rev-input::placeholder { color: var(--muted); font-weight: 400; }
+
+  /* RING */
+  .progress-ring-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 24px; }
+  .ring-container { position: relative; width: 200px; height: 200px; }
+  .ring-svg { transform: rotate(-90deg); }
+  .ring-track { fill: none; stroke: var(--surface2); stroke-width: 14; }
+  .ring-fill { fill: none; stroke-width: 14; stroke-linecap: round; stroke-dasharray: 565.49; stroke-dashoffset: 565.49; transition: stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1); }
+  .ring-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); text-align: center; }
+  .ring-pct { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 32px; line-height: 1; }
+  .ring-pct-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+  .ring-target { font-size: 11px; color: var(--muted); margin-top: 12px; letter-spacing: 1px; text-align: center; }
+  .ring-target strong { color: var(--accent); }
+
+  /* EXPENSES */
+  .exp-row { display: flex; align-items: center; justify-content: space-between; padding: 9px 0; border-bottom: 0.5px solid var(--border); }
+  .exp-row:last-child { border-bottom: none; }
+  .exp-name { font-size: 13px; color: var(--muted2); }
+  .exp-amount { font-size: 13px; color: var(--text); font-weight: 500; }
+  .exp-cat { font-size: 9px; letter-spacing: 1px; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; background: rgba(255,255,255,0.06); color: var(--muted); margin-left: 8px; }
+
+  /* CLIENT TABLE */
+  .client-table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+  .client-table th { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); font-weight: 600; padding: 0 12px 10px; text-align: left; border-bottom: 0.5px solid var(--border); }
+  .client-table td { padding: 11px 12px; border-bottom: 0.5px solid var(--border); vertical-align: middle; color: var(--muted2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .client-table tr:last-child td { border-bottom: none; }
+  .client-table tbody tr:hover td { background: rgba(255,255,255,0.02); }
+  .client-name { color: var(--text) !important; font-weight: 500; }
+  .tier-badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 20px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; }
+  .tier-gold { background: rgba(244,162,97,0.15); color: var(--gold); }
+  .tier-silver { background: rgba(155,168,201,0.15); color: var(--silver); }
+  .tier-bronze { background: rgba(205,124,74,0.15); color: var(--bronze); }
+  .tier-online { background: rgba(76,175,132,0.15); color: var(--green); }
+  .tier-online-zoom { background: rgba(155,63,191,0.15); color: #C07FE8; }
+  .status-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .remove-btn { background: transparent; border: none; color: rgba(255,255,255,0.2); cursor: pointer; font-size: 16px; padding: 2px 6px; border-radius: 4px; transition: all 0.2s; line-height: 1; }
+  .remove-btn:hover { color: var(--red); background: rgba(232,93,93,0.1); }
+
+  /* PROFIT CARD */
+  .profit-card { background: linear-gradient(135deg, rgba(76,175,132,0.1), rgba(76,175,132,0.04)); border: 0.5px solid rgba(76,175,132,0.2); border-radius: 12px; padding: 20px; }
+  .profit-card.loss { background: linear-gradient(135deg, rgba(232,93,93,0.1), rgba(232,93,93,0.04)); border-color: rgba(232,93,93,0.2); }
+
+  /* YEARLY */
+  .year-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 0.5px solid var(--border); }
+  .year-row:last-child { border-bottom: none; }
+  .year-month { font-size: 11px; color: var(--muted); width: 32px; flex-shrink: 0; }
+  .year-bar-wrap { flex: 1; background: var(--surface2); border-radius: 3px; height: 6px; overflow: hidden; }
+  .year-bar { height: 6px; border-radius: 3px; background: linear-gradient(90deg, #F4A261, #E85D8A); transition: width 0.6s ease; }
+  .year-amount { font-size: 12px; font-weight: 600; color: var(--text); width: 80px; text-align: right; flex-shrink: 0; font-family: 'Montserrat', sans-serif; }
+  .year-amount.current { color: var(--accent); }
+
+  /* CHECKLIST */
+  .check-item { display: flex; align-items: center; gap: 12px; padding: 11px 0; border-bottom: 0.5px solid var(--border); cursor: pointer; user-select: none; }
+  .check-item:last-child { border-bottom: none; }
+  .check-box { width: 18px; height: 18px; border-radius: 5px; border: 1.5px solid var(--border2); flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .check-box.done { background: var(--accent); border-color: var(--accent); }
+  .check-box.done::after { content: '✓'; font-size: 11px; color: #fff; font-weight: 700; }
+  .check-text { font-size: 13px; color: var(--muted2); transition: color 0.2s; }
+  .check-item.done .check-text { color: var(--muted); text-decoration: line-through; }
+
+  /* MONTH SELECTOR */
+  .month-selector { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
+  .month-btn { background: var(--surface2); border: 0.5px solid var(--border); border-radius: 6px; color: var(--muted); font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; padding: 5px 10px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+  .month-btn:hover { border-color: var(--border2); color: var(--muted2); }
+  .month-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+  /* ADD CLIENT MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); z-index: 100; display: flex; align-items: center; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.2s; }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal { background: var(--surface); border: 0.5px solid var(--border2); border-radius: 16px; padding: 28px; width: 100%; max-width: 440px; transform: translateY(12px); transition: transform 0.25s; }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-title { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 16px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .modal-sub { font-size: 12px; color: var(--muted); margin-bottom: 24px; }
+  .form-field { margin-bottom: 16px; }
+  .form-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: 7px; }
+  .form-input { width: 100%; background: var(--surface2); border: 0.5px solid var(--border2); border-radius: 8px; padding: 11px 14px; color: var(--text); font-size: 14px; font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s; }
+  .form-input:focus { border-color: var(--accent); }
+  .form-select { width: 100%; background: var(--surface2); border: 0.5px solid var(--border2); border-radius: 8px; padding: 11px 14px; color: var(--text); font-size: 14px; font-family: 'Inter', sans-serif; outline: none; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.4)' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; }
+  .form-select:focus { border-color: var(--accent); }
+  .form-select option { background: #2C2C2C; }
+  .tier-preview { background: var(--surface2); border-radius: 8px; padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; min-height: 46px; }
+  .tier-preview-label { font-size: 12px; color: var(--muted); }
+  .tier-preview-price { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 20px; color: var(--accent); }
+  .btn-row { display: flex; gap: 10px; margin-top: 4px; }
+  .btn-primary { flex: 1; background: linear-gradient(90deg, #E85D8A, #9B3FBF); border: none; border-radius: 8px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; padding: 13px; cursor: pointer; transition: opacity 0.2s; }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-secondary { background: transparent; border: 0.5px solid var(--border2); border-radius: 8px; color: var(--muted); font-family: 'Inter', sans-serif; font-size: 13px; padding: 13px 20px; cursor: pointer; transition: all 0.2s; }
+  .btn-secondary:hover { border-color: var(--border2); color: var(--muted2); }
+  .add-client-btn { display: flex; align-items: center; gap: 8px; background: transparent; border: 0.5px dashed var(--border2); border-radius: 8px; color: var(--muted); font-size: 12px; letter-spacing: 1px; padding: 10px 16px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; margin-top: 0; }
+  .add-client-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* EDIT TIER SELECT inline */
+  .tier-select-inline { background: transparent; border: none; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; cursor: pointer; outline: none; padding: 3px 6px; border-radius: 20px; font-family: 'Inter', sans-serif; }
+
+  @media (max-width: 768px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    .grid-hero { grid-template-columns: 1fr; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo-mark">47</div>
+    <div>
+      <div class="header-title">Command Centre</div>
+      <div class="header-sub">47 Society — Melbourne</div>
+    </div>
+  </div>
+  <div class="header-date">
+    <span>Live Dashboard</span>
+    <span id="current-date"></span>
+  </div>
+</div>
+
+<!-- MONTH SELECTOR -->
+<div class="month-selector" id="monthSelector"></div>
+
+<!-- REVENUE -->
+<div class="section-label">Revenue</div>
+<div class="grid-hero">
+  <div class="card">
+    <div class="rev-row">
+      <div class="rev-dot" style="background:#9B3FBF"></div>
+      <div class="rev-label">Membership MRR <span style="font-size:10px;color:var(--muted)">(auto)</span></div>
+      <div class="rev-value" id="mrr-display">$0</div>
+    </div>
+    <div class="rev-row">
+      <div class="rev-dot" style="background:#F4A261"></div>
+      <div class="rev-label">Casual PT Sessions</div>
+      <input class="rev-input" type="number" id="casual-pt" placeholder="$0" min="0" oninput="recalc()">
+    </div>
+    <div class="rev-row">
+      <div class="rev-dot" style="background:#E85D8A"></div>
+      <div class="rev-label">Massage Sessions</div>
+      <input class="rev-input" type="number" id="massage" placeholder="$0" min="0" oninput="recalc()">
+    </div>
+    <div class="rev-row">
+      <div class="rev-dot" style="background:#4CAF84"></div>
+      <div class="rev-label">Intro Offers</div>
+      <input class="rev-input" type="number" id="intro" placeholder="$0" min="0" oninput="recalc()">
+    </div>
+    <div class="rev-total-row">
+      <div class="rev-total-label">Total Revenue</div>
+      <div class="rev-total-value" id="total-rev">$0</div>
+    </div>
+  </div>
+  <div class="card progress-ring-wrap">
+    <div class="ring-container">
+      <svg class="ring-svg" width="200" height="200" viewBox="0 0 200 200">
+        <defs>
+          <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#F4A261"/>
+            <stop offset="50%" style="stop-color:#E85D8A"/>
+            <stop offset="100%" style="stop-color:#9B3FBF"/>
+          </linearGradient>
+        </defs>
+        <circle class="ring-track" cx="100" cy="100" r="90"/>
+        <circle class="ring-fill" id="ring-fill" cx="100" cy="100" r="90" stroke="url(#ringGrad)"/>
+      </svg>
+      <div class="ring-center">
+        <div class="ring-pct" id="ring-pct">0%</div>
+        <div class="ring-pct-label">of target</div>
+      </div>
+    </div>
+    <div class="ring-target"><strong id="gap-display">$10,000 to go</strong> to hit $10,000</div>
+  </div>
+</div>
+
+<!-- EXPENSES & PROFIT -->
+<div class="section-label">Expenses & Profit</div>
+<div class="grid-2">
+  <div class="card">
+    <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Monthly Recurring</div>
+    <div class="exp-row"><span class="exp-name">Gym Rent</span><span class="exp-amount">$500<span class="exp-cat">Rent</span></span></div>
+    <div class="exp-row"><span class="exp-name">GoHighLevel</span><span class="exp-amount">$250<span class="exp-cat">Software</span></span></div>
+    <div class="exp-row"><span class="exp-name">Trainerize</span><span class="exp-amount">$95<span class="exp-cat">Software</span></span></div>
+    <div class="exp-row"><span class="exp-name">Square</span><span class="exp-amount">$40<span class="exp-cat">Software</span></span></div>
+    <div class="exp-row"><span class="exp-name">Claude AI</span><span class="exp-amount">$30<span class="exp-cat">Software</span></span></div>
+    <div class="exp-row"><span class="exp-name">ChatGPT</span><span class="exp-amount">$30<span class="exp-cat">Software</span></span></div>
+    <div class="exp-row"><span class="exp-name">Capcut</span><span class="exp-amount">$30<span class="exp-cat">Software</span></span></div>
+    <div class="exp-row"><span class="exp-name">Notion</span><span class="exp-amount">$25<span class="exp-cat">Software</span></span></div>
+    <div class="exp-row"><span class="exp-name">Google</span><span class="exp-amount">$25<span class="exp-cat">Software</span></span></div>
+    <div class="exp-row"><span class="exp-name">Canva</span><span class="exp-amount">$20<span class="exp-cat">Software</span></span></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-top:14px;margin-top:4px;border-top:0.5px solid var(--border2);">
+      <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Total Expenses</span>
+      <span style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:20px;color:var(--accent2);">$1,045</span>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div class="profit-card" id="profit-card">
+      <div class="metric-label">Net Profit This Month</div>
+      <div class="metric-value green" id="net-profit" style="font-size:34px;">$0</div>
+      <div class="metric-sub">Revenue minus all expenses</div>
+    </div>
+    <div class="card-sm">
+      <div class="metric-label">Profit Margin</div>
+      <div class="metric-value" id="margin">—</div>
+      <div class="metric-sub">of total revenue</div>
+    </div>
+    <div class="card-sm">
+      <div class="metric-label">Gap to $10k Target</div>
+      <div class="metric-value accent" id="gap-card">$10,000</div>
+      <div class="metric-sub">Revenue still needed</div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVE MEMBERS -->
+<div class="section-label">Active Members</div>
+<div class="card" style="padding:0;overflow:hidden;">
+  <table class="client-table">
+    <thead>
+      <tr>
+        <th style="padding-left:20px;width:26%">Client</th>
+        <th style="width:14%">Delivery</th>
+        <th style="width:22%">Tier</th>
+        <th style="width:14%">Monthly</th>
+        <th style="width:14%">Yearly</th>
+        <th style="width:6%;text-align:center;">On</th>
+        <th style="width:4%;"></th>
+      </tr>
+    </thead>
+    <tbody id="client-tbody"></tbody>
+  </table>
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 20px;border-top:0.5px solid var(--border);background:rgba(255,255,255,0.02);flex-wrap:wrap;gap:10px;">
+    <button class="add-client-btn" onclick="openModal()">
+      <span style="font-size:18px;line-height:1;">+</span> Add Client
+    </button>
+    <span style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:18px;color:var(--accent);" id="mrr-footer">$0 MRR</span>
+  </div>
+</div>
+
+<!-- YEARLY OVERVIEW -->
+<div class="section-label">Yearly Overview</div>
+<div style="display:flex;gap:8px;margin-bottom:16px;">
+  <button class="month-btn active" id="btn-2026" onclick="switchYear(2026)">2026</button>
+  <button class="month-btn" id="btn-2025" onclick="switchYear(2025)">2025</button>
+</div>
+<div class="grid-2">
+  <div class="card">
+    <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Monthly Revenue</div>
+    <div id="yearly-bars"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding-top:14px;margin-top:8px;border-top:0.5px solid var(--border2);">
+      <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);" id="yearly-label">2026 Total</span>
+      <span style="font-family:'Montserrat',sans-serif;font-weight:900;font-size:20px;color:var(--accent);" id="yearly-total">$0</span>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:10px;">
+    <div class="card-sm">
+      <div class="metric-label">Annual Target</div>
+      <div class="metric-value accent">$120,000</div>
+      <div class="metric-sub">$10k × 12 months</div>
+    </div>
+    <div class="card-sm">
+      <div class="metric-label">Annual Gap</div>
+      <div class="metric-value" id="annual-gap">$120,000</div>
+      <div class="metric-sub">Remaining to annual target</div>
+    </div>
+    <div class="card-sm">
+      <div class="metric-label">Avg Monthly Revenue</div>
+      <div class="metric-value" id="avg-monthly">—</div>
+      <div class="metric-sub">Based on months logged</div>
+    </div>
+    <div class="card-sm">
+      <div class="metric-label">Projected Annual</div>
+      <div class="metric-value amber" id="projected">—</div>
+      <div class="metric-sub">At current avg × 12</div>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="section-label">Month-End Checklist</div>
+<div class="grid-2">
+  <div class="card" id="checklist">
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Export Square data for the month</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Confirm membership MRR (any changes?)</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Enter casual PT session total</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Enter massage session total</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Enter intro offers total</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Review net profit figure</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Log month into yearly overview</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-text">Update client list if any changes</div></div>
+  </div>
+  <div class="card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:8px;">
+    <div style="font-size:36px;font-family:'Montserrat',sans-serif;font-weight:900;color:var(--accent);" id="check-count">0/8</div>
+    <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Tasks Complete</div>
+    <div style="width:100%;background:var(--surface2);border-radius:4px;height:6px;margin-top:8px;">
+      <div id="check-bar" style="height:6px;border-radius:4px;background:linear-gradient(90deg,#F4A261,#E85D8A);width:0%;transition:width 0.4s ease;"></div>
+    </div>
+    <button onclick="resetChecklist()" style="margin-top:16px;background:transparent;border:0.5px solid var(--border2);color:var(--muted);font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:9px 18px;border-radius:6px;cursor:pointer;font-family:'Inter',sans-serif;">Reset for New Month</button>
+  </div>
+</div>
+
+<div style="text-align:center;margin-top:48px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">47 Society · Melbourne · Built for Sean Murray-Camp</div>
+
+<!-- ADD CLIENT MODAL -->
+<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
+  <div class="modal">
+    <div class="modal-title">Add Client to <span id="modal-month-label" style="color:var(--accent);"></span></div>
+    <div class="modal-sub">Add from your roster, or create a new client</div>
+
+    <div style="background:var(--surface2);border-radius:10px;padding:16px;margin-bottom:20px;">
+      <div class="form-label" style="margin-bottom:10px;">From Roster</div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <select class="form-select" id="roster-select" style="flex:1;">
+          <option value="">-- Pick from roster --</option>
+        </select>
+        <button class="btn-primary" onclick="addFromRoster()" style="white-space:nowrap;padding:11px 16px;flex-shrink:0;">Add</button>
+      </div>
+    </div>
+
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;">
+      <div style="flex:1;height:0.5px;background:var(--border);"></div>
+      <span style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Or New Client</span>
+      <div style="flex:1;height:0.5px;background:var(--border);"></div>
+    </div>
+
+    <div class="form-field">
+      <label class="form-label">Client Name</label>
+      <input class="form-input" type="text" id="new-name" placeholder="e.g. Jane Smith">
+    </div>
+    <div class="form-field">
+      <label class="form-label">Delivery</label>
+      <select class="form-select" id="new-delivery">
+        <option value="In Person">In Person</option>
+        <option value="Online">Online</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label class="form-label">Membership Tier</label>
+      <select class="form-select" id="new-tier" onchange="updateTierPreview()">
+        <option value="Gold">Gold - $1,000/month</option>
+        <option value="Silver">Silver - $750/month</option>
+        <option value="Bronze">Bronze - $500/month</option>
+        <option value="Online + Zoom">Online + Zoom - $400/month</option>
+        <option value="Online">Online - $200/month</option>
+      </select>
+    </div>
+    <div class="tier-preview">
+      <span class="tier-preview-label">Monthly value</span>
+      <span class="tier-preview-price" id="tier-price-preview">$1,000</span>
+    </div>
+    <div class="btn-row">
+      <button class="btn-secondary" onclick="closeModal()">Cancel</button>
+      <button class="btn-primary" onclick="addClient()">Add New Client</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const FIXED_EXP = 1045;
+const TARGET = 10000;
+const ANNUAL_TARGET = 120000;
+const MONTHS = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+
+const TIER_PRICES = {
+  'Gold': 1000,
+  'Silver': 750,
+  'Bronze': 500,
+  'Online + Zoom': 400,
+  'Online': 200
+};
+
+const TIER_CLASSES = {
+  'Gold': 'tier-gold',
+  'Silver': 'tier-silver',
+  'Bronze': 'tier-bronze',
+  'Online + Zoom': 'tier-online-zoom',
+  'Online': 'tier-online'
+};
+
+const TIER_ICONS = {
+  'Gold': 'GOLD',
+  'Silver': 'SILVER',
+  'Bronze': 'BRONZE',
+  'Online + Zoom': 'ZOOM',
+  'Online': 'ONLINE'
+};
+
+// STATE
+let roster = [];
+let monthlyData = {};   // current year
+let monthlyData2025 = {}; // previous year
+let currentMonth = MONTHS[new Date().getMonth()];
+let currentYear = 2026;
+
+// PRE-LOADED DATA FROM TRAINERIZE
+const TRAINERIZE_ROSTER = [{"id":1,"name":"Alexander Pillai","tier":"Silver","delivery":"In Person"},{"id":2,"name":"Doyle Barrow","tier":"Gold","delivery":"In Person"},{"id":3,"name":"Eliza Riddle","tier":"Bronze","delivery":"In Person"},{"id":4,"name":"Emily Collier","tier":"Bronze","delivery":"In Person"},{"id":5,"name":"Gabby Tubole","tier":"Bronze","delivery":"In Person"},{"id":6,"name":"Jodi Atkinson","tier":"Bronze","delivery":"In Person"},{"id":7,"name":"John Cook","tier":"Silver","delivery":"In Person"},{"id":8,"name":"Lachlan Potter","tier":"Bronze","delivery":"In Person"},{"id":9,"name":"Leigh Henry","tier":"Bronze","delivery":"In Person"},{"id":10,"name":"Leo Ait aoudia","tier":"Bronze","delivery":"In Person"},{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person"},{"id":12,"name":"Maureen Pound","tier":"Gold","delivery":"In Person"},{"id":13,"name":"Michael Murphy","tier":"Bronze","delivery":"In Person"},{"id":14,"name":"Michelle Macky","tier":"Bronze","delivery":"In Person"},{"id":15,"name":"Nikki Onslow","tier":"Bronze","delivery":"In Person"},{"id":16,"name":"Richard Simmie","tier":"Silver","delivery":"In Person"},{"id":17,"name":"Sam Bury","tier":"Online","delivery":"Online"},{"id":18,"name":"Sarah Clayton","tier":"Bronze","delivery":"In Person"},{"id":19,"name":"Serge Huber","tier":"Bronze","delivery":"In Person"},{"id":20,"name":"Shaun Gray","tier":"Silver","delivery":"In Person"},{"id":21,"name":"Simona Casineanu","tier":"Silver","delivery":"In Person"},{"id":22,"name":"Vanessa O\u2019Meara","tier":"Bronze","delivery":"In Person"},{"id":23,"name":"Shaun & Kieran","tier":"Gold","delivery":"In Person"},{"id":24,"name":"Steven Haby","tier":"Silver","delivery":"In Person"}];
+
+const TRAINERIZE_2026 = {"MAY":{"clients":[{"id":20,"name":"Shaun Gray","tier":"Silver","delivery":"In Person","paidTotal":1000},{"id":14,"name":"Michelle Macky","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":15,"name":"Nikki Onslow","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":23,"name":"Shaun & Kieran","tier":"Gold","delivery":"In Person","paidTotal":1000},{"id":24,"name":"Steven Haby","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":1,"name":"Alexander Pillai","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":16,"name":"Richard Simmie","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":6,"name":"Jodi Atkinson","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person","paidTotal":500}],"casual":0,"massage":0,"intro":0},"APR":{"clients":[{"id":19,"name":"Serge Huber","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":16,"name":"Richard Simmie","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":3,"name":"Eliza Riddle","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":1,"name":"Alexander Pillai","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":21,"name":"Simona Casineanu","tier":"Silver","delivery":"In Person","paidTotal":525},{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":6,"name":"Jodi Atkinson","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":2,"name":"Doyle Barrow","tier":"Gold","delivery":"In Person","paidTotal":1050},{"id":15,"name":"Nikki Onslow","tier":"Bronze","delivery":"In Person","paidTotal":500}],"casual":0,"massage":0,"intro":0},"MAR":{"clients":[{"id":21,"name":"Simona Casineanu","tier":"Silver","delivery":"In Person","paidTotal":175},{"id":16,"name":"Richard Simmie","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":3,"name":"Eliza Riddle","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":1,"name":"Alexander Pillai","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":2,"name":"Doyle Barrow","tier":"Gold","delivery":"In Person","paidTotal":1050},{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":10,"name":"Leo Ait aoudia","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":13,"name":"Michael Murphy","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":15,"name":"Nikki Onslow","tier":"Bronze","delivery":"In Person","paidTotal":500}],"casual":0,"massage":0,"intro":0},"FEB":{"clients":[{"id":21,"name":"Simona Casineanu","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":7,"name":"John Cook","tier":"Silver","delivery":"In Person","paidTotal":650},{"id":16,"name":"Richard Simmie","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":3,"name":"Eliza Riddle","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":1,"name":"Alexander Pillai","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":2,"name":"Doyle Barrow","tier":"Gold","delivery":"In Person","paidTotal":1050},{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":10,"name":"Leo Ait aoudia","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":13,"name":"Michael Murphy","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":15,"name":"Nikki Onslow","tier":"Bronze","delivery":"In Person","paidTotal":500}],"casual":0,"massage":0,"intro":0},"JAN":{"clients":[{"id":21,"name":"Simona Casineanu","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":7,"name":"John Cook","tier":"Silver","delivery":"In Person","paidTotal":650},{"id":16,"name":"Richard Simmie","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":3,"name":"Eliza Riddle","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":1,"name":"Alexander Pillai","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":2,"name":"Doyle Barrow","tier":"Silver","delivery":"In Person","paidTotal":875},{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":22,"name":"Vanessa O\u2019Meara","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":13,"name":"Michael Murphy","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":18,"name":"Sarah Clayton","tier":"Bronze","delivery":"In Person","paidTotal":300},{"id":15,"name":"Nikki Onslow","tier":"Bronze","delivery":"In Person","paidTotal":500}],"casual":0,"massage":0,"intro":0}};
+
+const TRAINERIZE_2025 = {"DEC":{"clients":[{"id":7,"name":"John Cook","tier":"Silver","delivery":"In Person","paidTotal":650},{"id":16,"name":"Richard Simmie","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":3,"name":"Eliza Riddle","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":1,"name":"Alexander Pillai","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":15,"name":"Nikki Onslow","tier":"Bronze","delivery":"In Person","paidTotal":500}],"casual":0,"massage":0,"intro":0},"NOV":{"clients":[{"id":16,"name":"Richard Simmie","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":3,"name":"Eliza Riddle","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":1,"name":"Alexander Pillai","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":12,"name":"Maureen Pound","tier":"Bronze","delivery":"In Person","paidTotal":250},{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person","paidTotal":500}],"casual":0,"massage":0,"intro":0},"OCT":{"clients":[{"id":16,"name":"Richard Simmie","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":3,"name":"Eliza Riddle","tier":"Bronze","delivery":"In Person","paidTotal":500},{"id":1,"name":"Alexander Pillai","tier":"Silver","delivery":"In Person","paidTotal":750},{"id":12,"name":"Maureen Pound","tier":"Bronze","delivery":"In Person","paidTotal":250}],"casual":0,"massage":0,"intro":0},"SEP":{"clients":[{"id":12,"name":"Maureen Pound","tier":"Gold","delivery":"In Person","paidTotal":260}],"casual":0,"massage":0,"intro":0},"AUG":{"clients":[{"id":3,"name":"Eliza Riddle","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":5,"name":"Gabby Tubole","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":4,"name":"Emily Collier","tier":"Bronze","delivery":"In Person","paidTotal":425}],"casual":0,"massage":0,"intro":0},"JUL":{"clients":[{"id":3,"name":"Eliza Riddle","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":5,"name":"Gabby Tubole","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":2,"name":"Doyle Barrow","tier":"Gold","delivery":"In Person","paidTotal":950},{"id":17,"name":"Sam Bury","tier":"Online","delivery":"Online","paidTotal":150},{"id":4,"name":"Emily Collier","tier":"Bronze","delivery":"In Person","paidTotal":425}],"casual":0,"massage":0,"intro":0},"JUN":{"clients":[{"id":3,"name":"Eliza Riddle","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":5,"name":"Gabby Tubole","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":2,"name":"Doyle Barrow","tier":"Gold","delivery":"In Person","paidTotal":950},{"id":17,"name":"Sam Bury","tier":"Online","delivery":"Online","paidTotal":150},{"id":8,"name":"Lachlan Potter","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":4,"name":"Emily Collier","tier":"Bronze","delivery":"In Person","paidTotal":425}],"casual":0,"massage":0,"intro":0},"MAY":{"clients":[{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":9,"name":"Leigh Henry","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":5,"name":"Gabby Tubole","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":2,"name":"Doyle Barrow","tier":"Gold","delivery":"In Person","paidTotal":950},{"id":17,"name":"Sam Bury","tier":"Online","delivery":"Online","paidTotal":150},{"id":4,"name":"Emily Collier","tier":"Bronze","delivery":"In Person","paidTotal":425}],"casual":0,"massage":0,"intro":0},"APR":{"clients":[{"id":11,"name":"Mark Stolz","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":5,"name":"Gabby Tubole","tier":"Bronze","delivery":"In Person","paidTotal":425},{"id":2,"name":"Doyle Barrow","tier":"Gold","delivery":"In Person","paidTotal":950}],"casual":0,"massage":0,"intro":0}};
+
+// STORAGE
+function save() {
+  localStorage.setItem('47s_roster', JSON.stringify(roster));
+  localStorage.setItem('47s_monthly', JSON.stringify(monthlyData));
+  localStorage.setItem('47s_monthly_2025', JSON.stringify(monthlyData2025));
+}
+
+function getActiveMonthlyData() {
+  return currentYear === 2026 ? monthlyData : monthlyData2025;
+}
+
+function ensureMonthExists(m) {
+  const data = getActiveMonthlyData();
+  if (!data[m]) data[m] = { clients: [], casual: 0, massage: 0, intro: 0 };
+  if (!data[m].clients) data[m].clients = [];
+}
+
+function load() {
+  const savedRoster = localStorage.getItem('47s_roster');
+  const saved2026 = localStorage.getItem('47s_monthly');
+  const saved2025 = localStorage.getItem('47s_monthly_2025');
+
+  roster = savedRoster ? JSON.parse(savedRoster) : JSON.parse(JSON.stringify(TRAINERIZE_ROSTER));
+  monthlyData = saved2026 ? JSON.parse(saved2026) : JSON.parse(JSON.stringify(TRAINERIZE_2026));
+  monthlyData2025 = saved2025 ? JSON.parse(saved2025) : JSON.parse(JSON.stringify(TRAINERIZE_2025));
+}
+
+// Returns the clients active in the currently viewed month
+function getMonthClients() {
+  ensureMonthExists(currentMonth);
+  return getActiveMonthlyData()[currentMonth].clients;
+}
+
+// MRR = sum of paidTotal if available, otherwise tier price
+function getMRR() {
+  return getMonthClients().reduce((sum, c) => {
+    return sum + (c.paidTotal !== undefined ? c.paidTotal : (TIER_PRICES[c.tier] || 0));
+  }, 0);
+}
+
+// MONTH SELECTOR
+function buildMonthSelector() {
+  const wrap = document.getElementById('monthSelector');
+  wrap.innerHTML = '';
+  MONTHS.forEach(m => {
+    const btn = document.createElement('button');
+    btn.className = 'month-btn' + (m === currentMonth ? ' active' : '');
+    btn.textContent = m;
+    btn.onclick = () => switchMonth(m);
+    wrap.appendChild(btn);
+  });
+}
+
+function switchMonth(m) {
+  saveCurrentInputs();
+  currentMonth = m;
+  document.querySelectorAll('.month-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent === m);
+  });
+  loadMonthInputs();
+  renderClients();
+  recalc();
+}
+
+function saveCurrentInputs() {
+  ensureMonthExists(currentMonth);
+  const casual = parseFloat(document.getElementById('casual-pt').value) || 0;
+  const massage = parseFloat(document.getElementById('massage').value) || 0;
+  const intro = parseFloat(document.getElementById('intro').value) || 0;
+  const d = getActiveMonthlyData()[currentMonth];
+  d.casual = casual;
+  d.massage = massage;
+  d.intro = intro;
+  save();
+}
+
+function loadMonthInputs() {
+  const d = getActiveMonthlyData()[currentMonth];
+  document.getElementById('casual-pt').value = d ? (d.casual || '') : '';
+  document.getElementById('massage').value = d ? (d.massage || '') : '';
+  document.getElementById('intro').value = d ? (d.intro || '') : '';
+}
+
+// RECALC
+function recalc() {
+  const mrr = getMRR();
+  const casual = parseFloat(document.getElementById('casual-pt').value) || 0;
+  const massage = parseFloat(document.getElementById('massage').value) || 0;
+  const intro = parseFloat(document.getElementById('intro').value) || 0;
+
+  const totalRev = mrr + casual + massage + intro;
+  const totalExp = FIXED_EXP;
+  const netProfit = totalRev - totalExp;
+  const margin = totalRev > 0 ? Math.round((netProfit / totalRev) * 100) : null;
+  const gap = Math.max(0, TARGET - totalRev);
+  const pct = Math.min(100, Math.round((totalRev / TARGET) * 100));
+
+  document.getElementById('mrr-display').textContent = '$' + mrr.toLocaleString();
+  document.getElementById('mrr-footer').textContent = '$' + mrr.toLocaleString() + ' MRR';
+  document.getElementById('total-rev').textContent = '$' + totalRev.toLocaleString();
+  document.getElementById('net-profit').textContent = (netProfit >= 0 ? '$' : '-$') + Math.abs(netProfit).toLocaleString();
+  document.getElementById('margin').textContent = margin !== null ? margin + '%' : '—';
+  document.getElementById('gap-card').textContent = '$' + gap.toLocaleString();
+  document.getElementById('gap-display').textContent = gap > 0 ? '$' + gap.toLocaleString() + ' to go' : 'Target Hit!';
+  document.getElementById('ring-pct').textContent = pct + '%';
+
+  const profitCard = document.getElementById('profit-card');
+  const netEl = document.getElementById('net-profit');
+  profitCard.className = netProfit >= 0 ? 'profit-card' : 'profit-card loss';
+  netEl.style.color = netProfit >= 0 ? 'var(--green)' : 'var(--red)';
+
+  const circumference = 565.49;
+  document.getElementById('ring-fill').style.strokeDashoffset = circumference - (pct / 100) * circumference;
+
+  ensureMonthExists(currentMonth);
+  const d2 = getActiveMonthlyData()[currentMonth];
+  d2.casual = casual;
+  d2.massage = massage;
+  d2.intro = intro;
+  save();
+
+  updateYearly(totalRev);
+}
+
+function updateYearly(currentRevOverride) {
+  const data = getActiveMonthlyData();
+  const months = MONTHS.map(m => {
+    const d = data[m];
+    if (!d) return 0;
+    if (m === currentMonth) return currentRevOverride || 0;
+    const monthMRR = (d.clients || []).reduce((sum, c) => {
+      return sum + (c.paidTotal !== undefined ? c.paidTotal : (TIER_PRICES[c.tier] || 0));
+    }, 0);
+    const c = parseFloat(d.casual) || 0;
+    const ms = parseFloat(d.massage) || 0;
+    const i = parseFloat(d.intro) || 0;
+    return monthMRR + c + ms + i;
+  });
+
+  const logged = months.filter(v => v > 0);
+  const yearTotal = logged.reduce((a, v) => a + v, 0);
+  const avg = logged.length > 0 ? Math.round(yearTotal / logged.length) : 0;
+  const projected = avg * 12;
+  const annualGap = Math.max(0, ANNUAL_TARGET - yearTotal);
+  const maxVal = Math.max(...months, 1);
+
+  document.getElementById('yearly-total').textContent = '$' + yearTotal.toLocaleString();
+  document.getElementById('yearly-label').textContent = currentYear + ' Total';
+  document.getElementById('annual-gap').textContent = '$' + annualGap.toLocaleString();
+  document.getElementById('avg-monthly').textContent = avg > 0 ? '$' + avg.toLocaleString() : '—';
+  document.getElementById('projected').textContent = avg > 0 ? '$' + projected.toLocaleString() : '—';
+
+  const barsEl = document.getElementById('yearly-bars');
+  barsEl.innerHTML = '';
+  MONTHS.forEach((m, i) => {
+    const val = months[i];
+    const pct = Math.round((val / maxVal) * 100);
+    const isCurrent = m === currentMonth;
+    const row = document.createElement('div');
+    row.className = 'year-row';
+    row.innerHTML = `
+      <div class="year-month">${m}</div>
+      <div class="year-bar-wrap"><div class="year-bar" style="width:${pct}%;${isCurrent ? 'background:linear-gradient(90deg,#E85D8A,#9B3FBF)' : ''}"></div></div>
+      <div class="year-amount${isCurrent ? ' current' : ''}">${val > 0 ? '$' + val.toLocaleString() : '—'}</div>
+    `;
+    barsEl.appendChild(row);
+  });
+}
+
+// CLIENT TABLE
+// Renders the current month's client snapshot
+function renderClients() {
+  const tbody = document.getElementById('client-tbody');
+  tbody.innerHTML = '';
+  const monthClients = getMonthClients();
+
+  if (monthClients.length === 0) {
+    // Show add-from-roster option if roster has people
+    if (roster.length > 0) {
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--muted);font-size:13px;">No clients in ' + currentMonth + ' — add from roster or add a new client below</td></tr>';
+    } else {
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--muted);font-size:13px;">No clients yet — add your first client below</td></tr>';
+    }
+    return;
+  }
+
+  monthClients.forEach(c => {
+    const price = TIER_PRICES[c.tier] || 0;
+    const yearly = price * 12;
+    const cls = TIER_CLASSES[c.tier] || 'tier-online';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="client-name" style="padding-left:20px;">${c.name}</td>
+      <td><span style="font-size:10px;color:var(--muted2);">${c.delivery}</span></td>
+      <td>
+        <select class="tier-select-inline ${cls}" onchange="changeTier(${c.id}, this.value)" style="background:rgba(255,255,255,0.06);">
+          ${Object.keys(TIER_PRICES).map(t => `<option value="${t}" ${t === c.tier ? 'selected' : ''}>${t}</option>`).join('')}
+        </select>
+      </td>
+      <td style="font-family:'Montserrat',sans-serif;font-weight:700;color:var(--text);">$${price.toLocaleString()}</td>
+      <td style="color:var(--muted);">$${yearly.toLocaleString()}</td>
+      <td style="text-align:center;"><span class="status-dot"></span></td>
+      <td><button class="remove-btn" onclick="removeClientFromMonth(${c.id})" title="Remove from ${currentMonth} only">x</button></td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+// Change tier only within this month's snapshot
+function changeTier(id, newTier) {
+  ensureMonthExists(currentMonth);
+  const data = getActiveMonthlyData();
+  const client = data[currentMonth].clients.find(c => c.id === id);
+  if (client) {
+    client.tier = newTier;
+    client.paidTotal = TIER_PRICES[newTier] || 0;
+    save();
+    renderClients();
+    recalc();
+  }
+}
+
+// Remove from THIS MONTH ONLY - roster and other months untouched
+function removeClientFromMonth(id) {
+  ensureMonthExists(currentMonth);
+  const data = getActiveMonthlyData();
+  const client = data[currentMonth].clients.find(c => c.id === id);
+  if (!client) return;
+  if (confirm('Remove ' + client.name + ' from ' + currentMonth + ' only?\n\nThey stay in the roster and all other months are unchanged.')) {
+    data[currentMonth].clients = data[currentMonth].clients.filter(c => c.id !== id);
+    save();
+    renderClients();
+    recalc();
+  }
+}
+
+// MODAL
+function openModal() {
+  buildRosterDropdown();
+  document.getElementById('modal-month-label').textContent = currentMonth;
+  document.getElementById('modalOverlay').classList.add('open');
+  updateTierPreview();
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('open');
+  document.getElementById('new-name').value = '';
+  document.getElementById('new-tier').selectedIndex = 0;
+  document.getElementById('roster-select').value = '';
+  updateTierPreview();
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modalOverlay')) closeModal();
+}
+
+function updateTierPreview() {
+  const tier = document.getElementById('new-tier').value;
+  const price = TIER_PRICES[tier] || 0;
+  document.getElementById('tier-price-preview').textContent = '$' + price.toLocaleString() + '/month';
+}
+
+// YEAR SWITCHING
+function switchYear(year) {
+  saveCurrentInputs();
+  currentYear = year;
+  currentMonth = MONTHS[new Date().getMonth()];
+  document.getElementById('btn-2026').classList.toggle('active', year === 2026);
+  document.getElementById('btn-2025').classList.toggle('active', year === 2025);
+  buildMonthSelector();
+  loadMonthInputs();
+  renderClients();
+  recalc();
+}
+
+// Build the "add from roster" dropdown - only shows people not already in this month
+function buildRosterDropdown() {
+  const sel = document.getElementById('roster-select');
+  const monthClients = getMonthClients();
+  const monthIds = new Set(monthClients.map(c => c.id));
+  const available = roster.filter(c => !monthIds.has(c.id));
+  sel.innerHTML = '<option value="">-- Pick from roster --</option>';
+  available.forEach(c => {
+    sel.innerHTML += `<option value="${c.id}">${c.name} (${c.tier})</option>`;
+  });
+}
+
+// Add existing roster client to this month
+function addFromRoster() {
+  const sel = document.getElementById('roster-select');
+  const id = parseInt(sel.value);
+  if (!id) return;
+  const rosterClient = roster.find(c => c.id === id);
+  if (!rosterClient) return;
+  ensureMonthExists(currentMonth);
+  const data = getActiveMonthlyData();
+  if (data[currentMonth].clients.find(c => c.id === id)) return;
+  const entry = JSON.parse(JSON.stringify(rosterClient));
+  entry.paidTotal = TIER_PRICES[entry.tier] || 0;
+  data[currentMonth].clients.push(entry);
+  save();
+  renderClients();
+  recalc();
+  closeModal();
+}
+
+// Add brand new client - goes into roster AND current month
+function addClient() {
+  const name = document.getElementById('new-name').value.trim();
+  const delivery = document.getElementById('new-delivery').value;
+  const tier = document.getElementById('new-tier').value;
+  if (!name) {
+    document.getElementById('new-name').focus();
+    document.getElementById('new-name').style.borderColor = 'var(--accent)';
+    return;
+  }
+  const newId = Date.now();
+  const newClient = { id: newId, name, delivery, tier };
+  roster.push(newClient);
+  ensureMonthExists(currentMonth);
+  const entry = JSON.parse(JSON.stringify(newClient));
+  entry.paidTotal = TIER_PRICES[tier] || 0;
+  getActiveMonthlyData()[currentMonth].clients.push(entry);
+  save();
+  renderClients();
+  recalc();
+  closeModal();
+}
+
+// CHECKLIST
+function toggleCheck(item) {
+  item.classList.toggle('done');
+  item.querySelector('.check-box').classList.toggle('done');
+  updateCheckProgress();
+}
+
+function updateCheckProgress() {
+  const items = document.querySelectorAll('.check-item');
+  const done = document.querySelectorAll('.check-item.done').length;
+  document.getElementById('check-count').textContent = done + '/' + items.length;
+  document.getElementById('check-bar').style.width = Math.round((done / items.length) * 100) + '%';
+}
+
+function resetChecklist() {
+  document.querySelectorAll('.check-item').forEach(i => {
+    i.classList.remove('done');
+    i.querySelector('.check-box').classList.remove('done');
+  });
+  updateCheckProgress();
+}
+
+// DATE
+function setDate() {
+  document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-AU', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+  });
+}
+
+// KEYBOARD
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// INPUT SAVE on blur
+['casual-pt','massage','intro'].forEach(id => {
+  document.getElementById(id).addEventListener('blur', () => {
+    saveCurrentInputs();
+    recalc();
+  });
+});
+
+// INIT
+load();
+buildMonthSelector();
+setDate();
+renderClients();
+loadMonthInputs();
+recalc();
+</script>
+</body>
+</html>
