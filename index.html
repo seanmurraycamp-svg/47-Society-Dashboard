@@ -231,11 +231,11 @@ a{color:inherit;text-decoration:none}
   <div class="table-card" style="overflow-x:auto">
     <table class="data-table">
       <thead><tr>
-        <th style="width:22%">Name</th>
-        <th style="width:14%">Tier</th>
-        <th style="width:12%">Monthly</th>
-        <th style="width:13%">Start</th>
-        <th style="width:14%">Lifetime</th>
+        <th style="width:22%;cursor:pointer;user-select:none" onclick="sortClients('name')"><span id="sh-name">Name</span></th>
+        <th style="width:14%;cursor:pointer;user-select:none" onclick="sortClients('tier')"><span id="sh-tier">Tier</span></th>
+        <th style="width:12%;cursor:pointer;user-select:none" onclick="sortClients('monthly')"><span id="sh-monthly">Monthly</span></th>
+        <th style="width:13%;cursor:pointer;user-select:none" onclick="sortClients('startDate')"><span id="sh-startDate">Start</span></th>
+        <th style="width:14%;cursor:pointer;user-select:none" onclick="sortClients('lifetime')"><span id="sh-lifetime">Lifetime</span></th>
         <th style="width:25%">Actions</th>
       </tr></thead>
       <tbody id="client-tbody"></tbody>
@@ -422,6 +422,13 @@ function renderDashboard(){
 }
 
 /* ---- CLIENTS ---- */
+let clientSort={key:'monthly',dir:-1};
+
+function sortClients(key){
+  if(clientSort.key===key){clientSort.dir*=-1;}else{clientSort.key=key;clientSort.dir=key==='name'?1:-1;}
+  renderClients();
+}
+
 function renderClients(){
   const mrr=getMRR(),lt=state.clients.reduce((a,c)=>a+getLifetime(c),0);
   document.getElementById('client-stats').innerHTML=`
@@ -429,9 +436,26 @@ function renderClients(){
     <div class="stat-card"><div class="sl">Total MRR</div><div class="sv">${fmt(mrr)}</div></div>
     <div class="stat-card gold-hl"><div class="sl">Est. lifetime total</div><div class="sv">${fmt(lt)}</div><div class="ss">All clients combined</div></div>
   `;
+  ['name','tier','monthly','startDate','lifetime'].forEach(k=>{
+    const el=document.getElementById('sh-'+k);
+    if(!el)return;
+    const arrow=clientSort.key===k?(clientSort.dir===1?' ↑':' ↓'):'';
+    el.style.color=clientSort.key===k?'#E85D8A':'';
+    el.textContent={name:'Name',tier:'Tier',monthly:'Monthly',startDate:'Start',lifetime:'Lifetime'}[k]+arrow;
+  });
   const tb=document.getElementById('client-tbody');
   if(!state.clients.length){tb.innerHTML='<tr><td colspan="6"><div class="empty"><i class="ti ti-users"></i>No clients yet</div></td></tr>';return;}
-  tb.innerHTML=state.clients.map(c=>`
+  const sorted=[...state.clients].sort((a,b)=>{
+    let av,bv;
+    if(clientSort.key==='lifetime'){av=getLifetime(a);bv=getLifetime(b);}
+    else if(clientSort.key==='name'){av=a.name.toLowerCase();bv=b.name.toLowerCase();}
+    else if(clientSort.key==='startDate'){av=a.startDate||'';bv=b.startDate||'';}
+    else{av=a[clientSort.key];bv=b[clientSort.key];}
+    if(av<bv)return -1*clientSort.dir;
+    if(av>bv)return 1*clientSort.dir;
+    return 0;
+  });
+  tb.innerHTML=sorted.map(c=>`
     <tr>
       <td class="td-strong">${c.name}</td>
       <td>${tierBadge(c.tier)}</td>
