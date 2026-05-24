@@ -19,13 +19,9 @@
 }
 html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:var(--text);overflow:hidden}
 a{color:inherit;text-decoration:none}
-
-/* LAYOUT */
 .shell{display:flex;height:100vh}
 .sidebar{width:210px;flex-shrink:0;background:var(--sidebar);display:flex;flex-direction:column;border-right:0.5px solid var(--border)}
 .main{flex:1;overflow-y:auto;background:var(--bg)}
-
-/* SIDEBAR */
 .sb-logo{padding:22px 18px 18px;border-bottom:0.5px solid var(--border)}
 .sb-logo-mark{font-family:'Montserrat',sans-serif;font-weight:900;font-size:11px;letter-spacing:3px;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .sb-logo-sub{font-size:10px;color:var(--hint);letter-spacing:1px;margin-top:2px}
@@ -39,36 +35,24 @@ a{color:inherit;text-decoration:none}
 .sync-status{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--hint)}
 .sync-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
-
-/* PAGES */
 .page{display:none;padding:28px 28px 40px}
 .page.active{display:block}
 .page-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
 .page-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:20px;letter-spacing:1px;text-transform:uppercase}
-
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:7px;font-family:'Inter',sans-serif;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:none;transition:all 0.15s}
-.btn-primary{background:var(--grad);color:#fff}
-.btn-primary:hover{opacity:0.85}
-.btn-accent{background:rgba(232,93,138,0.15);border:0.5px solid rgba(232,93,138,0.4);color:var(--accent)}
-.btn-accent:hover{background:rgba(232,93,138,0.25)}
-.btn-ghost{background:rgba(255,255,255,0.05);border:0.5px solid var(--border);color:var(--muted)}
-.btn-ghost:hover{background:rgba(255,255,255,0.1);color:#fff}
+.btn-primary{background:var(--grad);color:#fff}.btn-primary:hover{opacity:0.85}
+.btn-accent{background:rgba(232,93,138,0.15);border:0.5px solid rgba(232,93,138,0.4);color:var(--accent)}.btn-accent:hover{background:rgba(232,93,138,0.25)}
+.btn-ghost{background:rgba(255,255,255,0.05);border:0.5px solid var(--border);color:var(--muted)}.btn-ghost:hover{background:rgba(255,255,255,0.1);color:#fff}
 .btn-danger{background:rgba(226,75,74,0.1);border:0.5px solid rgba(226,75,74,0.3);color:#E24B4A}
 .btn i{font-size:14px}
-
-/* STAT CARDS */
 .stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:20px}
 .stat-card{background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:16px}
-.stat-card.hl{border-color:rgba(232,93,138,0.35);background:rgba(232,93,138,0.07)}
-.stat-card.hl .sv{color:var(--accent)}
-.stat-card.gold-hl{border-color:rgba(244,162,97,0.35);background:rgba(244,162,97,0.07)}
-.stat-card.gold-hl .sv{color:var(--gold)}
+.stat-card.hl{border-color:rgba(232,93,138,0.35);background:rgba(232,93,138,0.07)}.stat-card.hl .sv{color:var(--accent)}
+.stat-card.gold-hl{border-color:rgba(244,162,97,0.35);background:rgba(244,162,97,0.07)}.stat-card.gold-hl .sv{color:var(--gold)}
+.stat-card.green-hl{border-color:rgba(93,202,165,0.35);background:rgba(93,202,165,0.07)}.stat-card.green-hl .sv{color:var(--green)}
 .sl{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--hint);margin-bottom:7px}
 .sv{font-family:'Montserrat',sans-serif;font-weight:900;font-size:24px;color:#fff}
 .ss{font-size:11px;color:var(--hint);margin-top:3px}
-
-/* PROGRESS */
 .progress-card{background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:18px;margin-bottom:20px}
 .progress-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .progress-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--hint)}
@@ -76,15 +60,11 @@ a{color:inherit;text-decoration:none}
 .progress-bg{background:rgba(255,255,255,0.08);border-radius:4px;height:8px;overflow:hidden}
 .progress-fill{height:100%;border-radius:4px;background:var(--grad);transition:width 0.6s cubic-bezier(0.4,0,0.2,1)}
 .progress-meta{display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--hint)}
-
-/* CHART CARDS */
 .chart-card{background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:18px;margin-bottom:20px}
 .chart-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--hint);margin-bottom:14px}
 .chart-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
 .legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
 .legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-
-/* TABLE */
 .table-card{background:var(--surface);border:0.5px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px}
 .data-table{width:100%;border-collapse:collapse;table-layout:fixed}
 .data-table th{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.2);padding:10px 14px;border-bottom:0.5px solid var(--border);text-align:left;white-space:nowrap}
@@ -94,54 +74,35 @@ a{color:inherit;text-decoration:none}
 .td-strong{font-weight:600;color:#fff !important}
 .td-money{font-family:'Montserrat',sans-serif;font-weight:700;color:#fff !important}
 .td-accent{font-family:'Montserrat',sans-serif;font-weight:700;color:var(--gold) !important}
-
-/* BADGES */
 .badge{display:inline-block;padding:3px 8px;border-radius:4px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
 .badge-gold{background:rgba(244,162,97,0.15);color:var(--gold);border:0.5px solid rgba(244,162,97,0.3)}
 .badge-silver{background:rgba(180,178,169,0.12);color:var(--silver);border:0.5px solid rgba(180,178,169,0.25)}
 .badge-bronze{background:rgba(201,122,74,0.12);color:var(--bronze);border:0.5px solid rgba(201,122,74,0.25)}
 .badge-online{background:rgba(93,202,165,0.12);color:var(--green);border:0.5px solid rgba(93,202,165,0.25)}
-.badge-auto{background:rgba(93,202,165,0.1);color:var(--green);font-size:9px;padding:2px 6px}
-.badge-manual{background:rgba(255,255,255,0.06);color:var(--hint);font-size:9px;padding:2px 6px}
-
-/* NOTES ROW */
+.badge-churned{background:rgba(226,75,74,0.1);color:#E24B4A;border:0.5px solid rgba(226,75,74,0.25)}
+.badge-pt{background:rgba(55,138,221,0.12);color:#378ADD;border:0.5px solid rgba(55,138,221,0.25)}
+.badge-massage{background:rgba(93,202,165,0.12);color:var(--green);border:0.5px solid rgba(93,202,165,0.25)}
+.badge-intro{background:rgba(155,63,191,0.12);color:var(--purple);border:0.5px solid rgba(155,63,191,0.25)}
+.badge-other{background:rgba(255,255,255,0.06);color:var(--hint);border:0.5px solid var(--border)}
 .notes-row{display:none}
 .notes-content{background:rgba(255,255,255,0.03);border:0.5px solid rgba(255,255,255,0.06);border-radius:6px;padding:10px 12px;font-size:12px;color:var(--muted);line-height:1.6}
 .icon-btn{background:none;border:0.5px solid var(--border);border-radius:5px;color:var(--hint);font-size:11px;padding:3px 8px;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.15s}
 .icon-btn:hover{border-color:rgba(232,93,138,0.4);color:var(--accent)}
-
-/* CASUAL LOG */
-.log-row{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-bottom:0.5px solid rgba(255,255,255,0.04)}
+.log-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:0.5px solid rgba(255,255,255,0.04)}
 .log-row:last-child{border-bottom:none}
+.log-left{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
 .log-desc{font-size:12px;font-weight:500;color:#fff}
-.log-date{font-size:11px;color:var(--hint);margin-top:2px}
-.log-right{display:flex;align-items:center;gap:10px}
-.log-amount{font-family:'Montserrat',sans-serif;font-weight:700;font-size:14px}
-
-/* SYNC BAR */
-.sync-bar{display:flex;align-items:center;gap:10px;background:rgba(93,202,165,0.07);border:0.5px solid rgba(93,202,165,0.2);border-radius:8px;padding:11px 14px;margin-bottom:18px;font-size:12px;color:var(--green)}
-.sync-bar-dot{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
-
-/* EXPENSES */
+.log-sub{font-size:11px;color:var(--hint)}
+.log-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.log-amount{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px}
 .exp-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:0.5px solid rgba(255,255,255,0.04);font-size:12px}
 .exp-row:last-child{border-bottom:none}
 .exp-name{color:rgba(255,255,255,0.65)}
 .exp-amount{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;color:#fff}
 .exp-total{display:flex;justify-content:space-between;padding:12px 0 0;font-size:13px;font-weight:600;color:#fff;border-top:0.5px solid rgba(255,255,255,0.1);margin-top:4px}
-
-/* CHECKLIST */
-.check-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0.5px solid rgba(255,255,255,0.04);font-size:12px;color:rgba(255,255,255,0.65);cursor:pointer;transition:color 0.15s}
-.check-item:last-child{border-bottom:none}
-.check-item.done{color:var(--hint);text-decoration:line-through}
-.check-circle{width:17px;height:17px;border-radius:50%;border:1.5px solid rgba(255,255,255,0.2);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.15s}
-.check-circle.done{background:var(--green);border-color:var(--green)}
-.check-circle.done::after{content:'';width:6px;height:4px;border-left:1.5px solid #fff;border-bottom:1.5px solid #fff;transform:rotate(-45deg) translateY(-1px)}
-.check-progress{font-size:11px;color:var(--hint)}
-
-/* MODAL */
 .modal-back{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:200;align-items:center;justify-content:center}
 .modal-back.open{display:flex}
-.modal{background:#1e1e1e;border:0.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:26px;width:420px;max-width:92vw;max-height:90vh;overflow-y:auto}
+.modal{background:#1e1e1e;border:0.5px solid rgba(255,255,255,0.12);border-radius:14px;padding:26px;width:460px;max-width:92vw;max-height:90vh;overflow-y:auto}
 .modal-title{font-family:'Montserrat',sans-serif;font-weight:900;font-size:14px;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}
 .form-group{margin-bottom:14px}
 .form-label{display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--hint);margin-bottom:6px}
@@ -150,17 +111,17 @@ a{color:inherit;text-decoration:none}
 .form-textarea{resize:vertical;min-height:80px;line-height:1.5}
 .form-select option{background:#1e1e1e}
 .modal-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px}
-
-/* EMPTY STATE */
 .empty{text-align:center;padding:36px;color:var(--hint);font-size:13px}
 .empty i{font-size:28px;display:block;margin-bottom:10px;opacity:0.3}
-
-/* GRID HELPERS */
 .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.tab-row{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.tab-btn{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:0.5px solid var(--border);background:transparent;color:var(--hint);transition:all 0.15s}
+.tab-btn.active{background:rgba(232,93,138,0.15);border-color:rgba(232,93,138,0.4);color:var(--accent)}
+.editable-cell{cursor:pointer;position:relative}
+.editable-cell:hover::after{content:'\270E';font-size:10px;color:var(--accent);margin-left:5px;opacity:0.7}
+.inline-input{background:rgba(255,255,255,0.08);border:0.5px solid rgba(232,93,138,0.5);border-radius:4px;color:#fff;font-size:12px;padding:3px 7px;font-family:'Inter',sans-serif;outline:none;width:100%}
 @media(max-width:700px){.two-col{grid-template-columns:1fr}.sidebar{width:180px}.page{padding:18px}}
-@media(max-width:520px){.shell{flex-direction:column}.sidebar{width:100%;height:auto;border-right:none;border-bottom:0.5px solid var(--border)}.main{overflow-y:auto}.sb-nav{display:flex;flex-wrap:wrap;gap:0;padding:6px}.nav-item{padding:8px 12px;border-left:none;border-bottom:2px solid transparent}.nav-item.active{border-bottom-color:var(--accent)}}
-
-/* SCROLLBAR */
+@media(max-width:520px){.shell{flex-direction:column}.sidebar{width:100%;height:auto}.main{overflow-y:auto}.sb-nav{display:flex;flex-wrap:wrap;gap:0;padding:6px}.nav-item{padding:8px 12px;border-left:none;border-bottom:2px solid transparent}.nav-item.active{border-bottom-color:var(--accent)}}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:transparent}
 ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
@@ -168,8 +129,6 @@ a{color:inherit;text-decoration:none}
 </head>
 <body>
 <div class="shell">
-
-<!-- SIDEBAR -->
 <div class="sidebar">
   <div class="sb-logo">
     <div class="sb-logo-mark">47 Society</div>
@@ -185,14 +144,11 @@ a{color:inherit;text-decoration:none}
     <div class="nav-item" onclick="nav('yearly',this)"><i class="ti ti-chart-bar"></i>Yearly Overview</div>
   </nav>
   <div class="sb-bottom">
-    <div class="sync-status"><span class="sync-dot"></span><span id="last-sync-label">Ready to sync</span></div>
+    <div class="sync-status"><span class="sync-dot"></span><span id="last-sync-label">Square + Stripe loaded</span></div>
   </div>
 </div>
-
-<!-- MAIN -->
 <div class="main">
 
-<!-- DASHBOARD -->
 <div class="page active" id="page-dashboard">
   <div class="page-header">
     <div class="page-title">Overview</div>
@@ -200,7 +156,7 @@ a{color:inherit;text-decoration:none}
   </div>
   <div class="stat-grid" id="dash-stats"></div>
   <div class="progress-card">
-    <div class="progress-top"><span class="progress-label">Monthly goal — $10,000 target</span><span class="progress-pct" id="goal-pct">0%</span></div>
+    <div class="progress-top"><span class="progress-label">Monthly goal - $10,000 target</span><span class="progress-pct" id="goal-pct">0%</span></div>
     <div class="progress-bg"><div class="progress-fill" id="goal-bar" style="width:0%"></div></div>
     <div class="progress-meta"><span id="goal-current">$0 this month</span><span id="goal-gap">$10,000 to go</span></div>
   </div>
@@ -208,64 +164,71 @@ a{color:inherit;text-decoration:none}
     <div class="chart-card">
       <div class="chart-label">Revenue breakdown</div>
       <div class="chart-legend" id="rev-legend"></div>
-      <div style="position:relative;height:160px"><canvas id="revChart" role="img" aria-label="Revenue breakdown chart"></canvas></div>
+      <div style="position:relative;height:160px"><canvas id="revChart"></canvas></div>
     </div>
     <div class="chart-card">
-      <div class="chart-label">Casual — last 7 days</div>
-      <div style="position:relative;height:185px"><canvas id="casualChart" role="img" aria-label="Casual revenue last 7 days"></canvas></div>
+      <div class="chart-label">Casual - last 7 days</div>
+      <div style="position:relative;height:185px"><canvas id="casualChart"></canvas></div>
     </div>
   </div>
   <div class="chart-card">
-    <div class="chart-label">Monthly revenue — <span id="dash-year-label">2026</span></div>
-    <div style="position:relative;height:160px"><canvas id="monthlyChart" role="img" aria-label="Monthly revenue chart"></canvas></div>
+    <div class="chart-label">Monthly revenue - <span id="dash-year-label">2026</span></div>
+    <div style="position:relative;height:160px"><canvas id="monthlyChart"></canvas></div>
   </div>
 </div>
 
-<!-- CLIENTS -->
 <div class="page" id="page-clients">
   <div class="page-header">
     <div class="page-title">Clients</div>
-    <button class="btn btn-accent" onclick="openAddClient()"><i class="ti ti-plus"></i>Add client</button>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-ghost" onclick="toggleChurned()" id="btn-churned"><i class="ti ti-eye"></i>Show Churned</button>
+      <button class="btn btn-accent" onclick="openAddClient()"><i class="ti ti-plus"></i>Add client</button>
+    </div>
   </div>
   <div class="stat-grid" id="client-stats"></div>
   <div class="table-card" style="overflow-x:auto">
     <table class="data-table">
       <thead><tr>
-        <th style="width:22%;cursor:pointer;user-select:none" onclick="sortClients('name')"><span id="sh-name">Name</span></th>
-        <th style="width:14%;cursor:pointer;user-select:none" onclick="sortClients('tier')"><span id="sh-tier">Tier</span></th>
-        <th style="width:12%;cursor:pointer;user-select:none" onclick="sortClients('monthly')"><span id="sh-monthly">Monthly</span></th>
-        <th style="width:13%;cursor:pointer;user-select:none" onclick="sortClients('startDate')"><span id="sh-startDate">Start</span></th>
-        <th style="width:14%;cursor:pointer;user-select:none" onclick="sortClients('lifetime')"><span id="sh-lifetime">Lifetime</span></th>
-        <th style="width:25%">Actions</th>
+        <th style="width:22%;cursor:pointer" onclick="sortClients('name')"><span id="sh-name">Name</span></th>
+        <th style="width:13%;cursor:pointer" onclick="sortClients('tier')"><span id="sh-tier">Tier</span></th>
+        <th style="width:12%;cursor:pointer" onclick="sortClients('monthly')"><span id="sh-monthly">Monthly</span></th>
+        <th style="width:13%;cursor:pointer" onclick="sortClients('startDate')"><span id="sh-startDate">Start</span></th>
+        <th style="width:14%;cursor:pointer" onclick="sortClients('lifetime')"><span id="sh-lifetime">Lifetime</span></th>
+        <th style="width:26%">Actions</th>
       </tr></thead>
       <tbody id="client-tbody"></tbody>
     </table>
   </div>
 </div>
 
-<!-- CASUAL REVENUE -->
 <div class="page" id="page-casual">
   <div class="page-header">
     <div class="page-title">Casual Revenue</div>
     <button class="btn btn-accent" onclick="openAddCasual()"><i class="ti ti-plus"></i>Add manual</button>
   </div>
-  <div class="sync-bar">
-    <span class="sync-bar-dot"></span>
-    <i class="ti ti-mail"></i>
-    <span>Auto-synced from Square daily summary emails</span>
-    <button class="btn btn-ghost" style="margin-left:auto" onclick="triggerSync()"><i class="ti ti-refresh"></i>Sync now</button>
-  </div>
   <div class="stat-grid" id="casual-stats"></div>
+  <div class="tab-row" id="casual-tabs">
+    <button class="tab-btn active" onclick="setCasualFilter('all',this)">All</button>
+    <button class="tab-btn" onclick="setCasualFilter('Intro Offer',this)">Intro Offers</button>
+    <button class="tab-btn" onclick="setCasualFilter('Casual PT',this)">Casual PT</button>
+    <button class="tab-btn" onclick="setCasualFilter('Casual Massage',this)">Casual Massage</button>
+    <button class="tab-btn" onclick="setCasualFilter('Other',this)">Other</button>
+  </div>
   <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-    <div class="chart-label" style="margin:0">Daily log — <span id="casual-month-label"></span></div>
+    <div class="chart-label" style="margin:0">Log - <span id="casual-month-label"></span></div>
+    <select class="form-select" id="casual-year-select" style="width:auto;padding:5px 10px;font-size:12px" onchange="renderCasual()">
+      <option value="2026">2026</option>
+      <option value="2025">2025</option>
+      <option value="all">All time</option>
+    </select>
   </div>
   <div class="table-card" id="casual-log"></div>
 </div>
 
-<!-- EXPENSES -->
 <div class="page" id="page-expenses">
   <div class="page-header">
     <div class="page-title">Expenses</div>
+    <button class="btn btn-ghost" onclick="openEditExpenses()"><i class="ti ti-edit"></i>Edit expenses</button>
   </div>
   <div class="two-col">
     <div class="chart-card">
@@ -276,13 +239,12 @@ a{color:inherit;text-decoration:none}
       <div class="stat-grid" id="profit-stats"></div>
       <div class="chart-card">
         <div class="chart-label">Expense breakdown</div>
-        <div style="position:relative;height:200px"><canvas id="expChart" role="img" aria-label="Expense breakdown pie chart"></canvas></div>
+        <div style="position:relative;height:200px"><canvas id="expChart"></canvas></div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- YEARLY -->
 <div class="page" id="page-yearly">
   <div class="page-header">
     <div class="page-title">Yearly Overview</div>
@@ -292,30 +254,198 @@ a{color:inherit;text-decoration:none}
     </div>
   </div>
   <div class="stat-grid" id="yearly-stats"></div>
-  <div class="chart-card">
-    <div class="chart-label">Monthly revenue — <span id="yearly-year-label">2026</span></div>
-    <div style="position:relative;height:220px"><canvas id="yearlyChart" role="img" aria-label="Yearly monthly revenue chart"></canvas></div>
+  <div class="two-col" style="margin-bottom:0">
+    <div class="chart-card">
+      <div class="chart-label">MRR + Casual - <span id="yearly-year-label">2026</span></div>
+      <div style="position:relative;height:200px"><canvas id="yearlyChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-label">Casual by category - <span id="yearly-cat-label">2026</span></div>
+      <div style="position:relative;height:200px"><canvas id="yearlyCatChart"></canvas></div>
+    </div>
   </div>
-  <div class="table-card" style="overflow-x:auto">
+  <div class="table-card" style="overflow-x:auto;margin-top:16px">
     <table class="data-table">
-      <thead><tr><th>Month</th><th>MRR</th><th>Casual</th><th>Total</th><th>vs Target</th></tr></thead>
+      <thead><tr><th>Month</th><th>MRR</th><th>Casual PT</th><th>Casual Massage</th><th>Intro Offers</th><th>Total</th><th>vs Target</th></tr></thead>
       <tbody id="yearly-tbody"></tbody>
     </table>
   </div>
 </div>
 
-</div><!-- /main -->
-</div><!-- /shell -->
+</div>
+</div>
 
-<!-- MODAL -->
 <div class="modal-back" id="modal-back">
   <div class="modal" id="modal-content"></div>
 </div>
 
 <script>
-const STORE = 'fs47_v3';
+const STORE = 'fs47_v5';
 const TARGET = 10000;
-const EXPENSES = [
+const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+const STRIPE_MRR = {
+  2025: [0, 0, 0, 1800, 2800, 3225, 2800, 1700, 260, 2250, 2750, 3650],
+  2026: [6575, 6450, 5750, 5050, 4500, 0, 0, 0, 0, 0, 0, 0]
+};
+
+const SQUARE_CASUAL = [
+  {date:'2025-01-22',time:'12:56',amount:72.61,customer:'Maureen Pound',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-01-22',time:'16:57',amount:89.86,customer:'Mark Stolz',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-01-22',time:'18:32',amount:89.86,customer:'Sam Bury',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-01-23',time:'08:02',amount:89.86,customer:'Lambros Strouzas',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-01-29',time:'12:55',amount:72.61,customer:'Maureen Pound',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-01-29',time:'17:47',amount:54.46,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-01-31',time:'11:57',amount:72.61,customer:'Leanne McNaught',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-01-31',time:'16:57',amount:89.86,customer:'Mark Jones',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-02-05',time:'17:55',amount:72.61,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-02-07',time:'15:56',amount:63.53,customer:'Grant Maynard',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-02-07',time:'17:58',amount:63.53,customer:'Luke Scanlon',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-02-12',time:'13:55',amount:72.61,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-02-12',time:'17:49',amount:63.53,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-02-19',time:'11:59',amount:72.61,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-02-19',time:'16:58',amount:272.29,customer:'Sam Bury',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-02-19',time:'17:50',amount:63.53,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-02-21',time:'15:57',amount:72.61,customer:'Grant Maynard',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-02-21',time:'17:57',amount:72.61,customer:'Luke Scanlon',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-02-26',time:'11:43',amount:63.53,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-02-26',time:'12:31',amount:45.38,customer:'Dan Hamill',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-02-26',time:'16:46',amount:63.53,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-02-28',time:'13:01',amount:290.44,customer:'Maureen Pound',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-02-28',time:'15:56',amount:72.61,customer:'Grant Maynard',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-03-05',time:'11:56',amount:72.61,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-03-05',time:'14:05',amount:54.46,customer:'Carl Flahavin',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-03-05',time:'17:27',amount:63.53,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-03-12',time:'13:57',amount:72.61,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-03-12',time:'15:57',amount:72.61,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-03-14',time:'15:56',amount:72.61,customer:'Grant Maynard',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-03-14',time:'16:56',amount:72.61,customer:'Mark Jones',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-03-19',time:'11:56',amount:72.61,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-03-19',time:'17:20',amount:63.53,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-03-21',time:'12:59',amount:89.86,customer:'Bec Lowry',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-03-26',time:'13:55',amount:72.61,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-03-26',time:'17:18',amount:63.53,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-03-28',time:'12:28',amount:72.61,customer:'Grant Maynard',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-04-02',time:'17:14',amount:63.53,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-04-09',time:'17:26',amount:72.61,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-04-10',time:'12:59',amount:72.61,customer:'Mark Jones',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-04-15',time:'08:59',amount:72.61,customer:'Emily Collier',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-04-16',time:'11:56',amount:72.61,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-04-16',time:'17:19',amount:63.53,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-04-16',time:'18:31',amount:89.86,customer:"Mack O'Sullivan",category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-04-30',time:'11:56',amount:72.73,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-04-30',time:'11:56',amount:63.53,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-05-07',time:'12:56',amount:136.15,customer:'Richard Simmie',category:'Casual Massage',note:'Pre-member',source:'square_csv'},
+  {date:'2025-05-13',time:'17:27',amount:89.86,customer:'Eliza Riddle',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-05-14',time:'11:57',amount:72.61,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-05-14',time:'16:33',amount:89.86,customer:'Christy Gerred',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-05-20',time:'12:58',amount:89.86,customer:'Lachlan Potter',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-05-21',time:'08:56',amount:68.07,customer:'Sam Bury',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-05-21',time:'12:54',amount:136.15,customer:'Richard Simmie',category:'Casual Massage',note:'Pre-member',source:'square_csv'},
+  {date:'2025-05-22',time:'15:09',amount:89.86,customer:'George Barnstable',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-05-27',time:'17:58',amount:77.15,customer:'Eliza Riddle',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-05-28',time:'11:55',amount:72.61,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-05-28',time:'12:57',amount:72.61,customer:'Maureen Pound',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-05-28',time:'17:58',amount:77.15,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-06-03',time:'17:54',amount:77.15,customer:'Eliza Riddle',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-06-04',time:'09:00',amount:68.07,customer:'Sam Bury',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-06-04',time:'12:56',amount:136.15,customer:'Richard Simmie',category:'Casual Massage',note:'Pre-member',source:'square_csv'},
+  {date:'2025-06-04',time:'18:48',amount:89.86,customer:'Lamya Hassan',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-06-11',time:'11:57',amount:72.61,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-06-11',time:'13:58',amount:90.76,customer:'Tony Watts',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-06-11',time:'15:01',amount:81.69,customer:"Mack O'Sullivan",category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-06-13',time:'12:58',amount:113.45,customer:'David Stevens',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-06-18',time:'13:13',amount:170.00,customer:'Richard Simmie',category:'Casual Massage',note:'Pre-member',source:'square_csv'},
+  {date:'2025-06-24',time:'14:00',amount:100.00,customer:'Vernon Ho',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2025-06-25',time:'11:56',amount:80.00,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-07-01',time:'15:00',amount:100.00,customer:'Carlton Quay',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-07-02',time:'13:25',amount:200.00,customer:'Richard Simmie',category:'Casual Massage',note:'Pre-member',source:'square_csv'},
+  {date:'2025-07-08',time:'17:59',amount:99.00,customer:'John Cook',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-07-09',time:'11:57',amount:85.00,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-07-09',time:'15:27',amount:125.00,customer:'David Stevens',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-07-10',time:'18:29',amount:110.00,customer:'Daniel Nguyen',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-07-16',time:'08:57',amount:99.00,customer:'Jake Beddows',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-07-16',time:'13:15',amount:210.00,customer:'Richard Simmie',category:'Casual Massage',note:'Pre-member',source:'square_csv'},
+  {date:'2025-07-16',time:'15:40',amount:100.00,customer:'Cristy Gerred',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-07-22',time:'16:56',amount:100.00,customer:'Lauren McCann',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-07-23',time:'11:56',amount:85.00,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-07-24',time:'11:55',amount:99.00,customer:'Eric Hayden',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-07-29',time:'11:37',amount:99.00,customer:'Alexander Pillai',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-07-29',time:'12:58',amount:100.00,customer:'Lauren McCann',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-07-30',time:'13:26',amount:210.00,customer:'Richard Simmie',category:'Casual Massage',note:'Pre-member',source:'square_csv'},
+  {date:'2025-08-06',time:'11:49',amount:85.00,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-08-07',time:'15:24',amount:99.00,customer:'Jared Bowen',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-08-12',time:'14:05',amount:100.00,customer:'George Barnstable',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-08-13',time:'13:22',amount:210.00,customer:'Richard Simmie',category:'Casual Massage',note:'Pre-member',source:'square_csv'},
+  {date:'2025-08-13',time:'17:28',amount:110.00,customer:"Vanessa O'Meara",category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-08-14',time:'09:00',amount:75.00,customer:'Joel Roos',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-08-14',time:'11:58',amount:110.00,customer:"Vanessa O'Meara",category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-08-19',time:'15:57',amount:125.00,customer:'David Stevens',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-08-20',time:'11:55',amount:85.00,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-08-20',time:'13:57',amount:99.00,customer:'Adam Kweifio-Okai',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-08-26',time:'09:05',amount:75.00,customer:'Joel Roos',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-08-26',time:'14:26',amount:310.00,customer:'Richard Simmie',category:'Casual Massage',note:'Pre-member',source:'square_csv'},
+  {date:'2025-08-26',time:'16:28',amount:99.00,customer:'Tash Haron',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-08-27',time:'08:58',amount:100.00,customer:'George Barnstable',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-08-27',time:'08:59',amount:40.00,customer:'George Barnstable',category:'Other',note:'Merch',source:'square_csv'},
+  {date:'2025-08-27',time:'16:00',amount:125.00,customer:'David Stevens',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-09-02',time:'07:50',amount:99.00,customer:'Jan Henderson',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-09-03',time:'11:59',amount:85.00,customer:'Richard Simmie',category:'Casual PT',note:'Pre-member',source:'square_csv'},
+  {date:'2025-09-10',time:'13:26',amount:210.00,customer:'Richard Simmie',category:'Casual Massage',note:'Pre-member',source:'square_csv'},
+  {date:'2025-09-10',time:'17:28',amount:150.00,customer:"Vanessa O'Meara",category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-10-22',time:'06:54',amount:110.00,customer:'Jan Henderson',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-10-22',time:'18:26',amount:70.00,customer:'Shayne Nash',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-10-23',time:'16:40',amount:150.00,customer:"Vanessa O'Meara",category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-10-28',time:'12:58',amount:110.00,customer:'Adam Kweifio-Okai',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-10-29',time:'16:29',amount:110.00,customer:'Sikandar Daha',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-10-30',time:'11:58',amount:110.00,customer:'George Barnstable',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-11-04',time:'08:52',amount:110.00,customer:'Jan Henderson',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-11-11',time:'14:29',amount:150.00,customer:'David Stevens',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-11-12',time:'07:56',amount:99.00,customer:'Mike Perez',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-11-27',time:'10:57',amount:110.00,customer:'Adam Cowey',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-11-27',time:'11:56',amount:110.00,customer:'George Barnstable',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-12-02',time:'16:59',amount:110.00,customer:'Unknown',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-12-03',time:'11:00',amount:110.00,customer:'Adam Cowey',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-12-04',time:'06:57',amount:110.00,customer:'Adriano Carnevale',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-12-09',time:'09:01',amount:110.00,customer:'Archie Thangarajah',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-12-11',time:'10:59',amount:110.00,customer:'Josie Ietto',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-12-16',time:'06:59',amount:99.00,customer:'Daniel Robbins',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2025-12-16',time:'09:02',amount:110.00,customer:'Archie Thangarajah',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-12-17',time:'18:28',amount:110.00,customer:"Vanessa O'Meara",category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-12-23',time:'11:58',amount:110.00,customer:'Steven Paraskevas',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2025-12-23',time:'16:33',amount:110.00,customer:'Sikandar Daha',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2026-01-07',time:'13:27',amount:330.00,customer:'Maureen Pound',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2026-01-08',time:'09:09',amount:99.00,customer:'Chloe Rendevski',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2026-01-08',time:'19:00',amount:99.00,customer:'Todd Bellingham',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2026-01-14',time:'10:01',amount:110.00,customer:'Archie Thangarajah',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2026-02-03',time:'10:08',amount:99.00,customer:'Matthew Savelberg',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2026-02-03',time:'18:50',amount:99.00,customer:'Milla Munro',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2026-02-04',time:'11:59',amount:110.00,customer:'Arjunan Thangarajah',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2026-02-12',time:'18:59',amount:110.00,customer:'Adriano Carnevale',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2026-02-19',time:'10:00',amount:110.00,customer:'George Barnstable',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2026-02-26',time:'17:58',amount:85.00,customer:'Tim Luttges',category:'Casual Massage',note:'Family/Friend discount',source:'square_csv'},
+  {date:'2026-02-26',time:'19:00',amount:99.00,customer:'Lindsay Moore',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2026-03-12',time:'09:57',amount:99.00,customer:'Jodi Atkinson',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2026-03-13',time:'09:58',amount:85.00,customer:'Matthew Savelberg',category:'Casual Massage',note:'Family/Friend discount',source:'square_csv'},
+  {date:'2026-03-17',time:'10:56',amount:105.35,customer:'Grant Maynard',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2026-04-21',time:'17:51',amount:75.00,customer:"Vanessa O'Meara",category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2026-04-28',time:'06:55',amount:85.00,customer:'Matthew Savelberg',category:'Casual Massage',note:'Family/Friend discount',source:'square_csv'},
+  {date:'2026-04-28',time:'17:57',amount:99.00,customer:'Richard Bradley',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2026-04-28',time:'18:56',amount:85.00,customer:'Giles Davis',category:'Casual Massage',note:'Family/Friend discount',source:'square_csv'},
+  {date:'2026-04-29',time:'12:56',amount:110.00,customer:'George Barnstable',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2026-04-30',time:'11:57',amount:105.35,customer:'Grant Maynard',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2026-05-05',time:'18:54',amount:85.00,customer:'Giles Davis',category:'Casual Massage',note:'Family/Friend discount',source:'square_csv'},
+  {date:'2026-05-06',time:'07:47',amount:150.00,customer:'Shaun Gray',category:'Intro Offer',note:'And Keiran',source:'square_csv'},
+  {date:'2026-05-07',time:'10:55',amount:99.00,customer:'Geraldine Stallard',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2026-05-13',time:'07:50',amount:99.00,customer:'Monica Lewin',category:'Intro Offer',note:'',source:'square_csv'},
+  {date:'2026-05-13',time:'10:55',amount:110.00,customer:'Brendan Johns',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2026-05-14',time:'13:55',amount:199.00,customer:'James Pattison',category:'Casual PT',note:'',source:'square_csv'},
+  {date:'2026-05-20',time:'10:58',amount:110.00,customer:'Adam Cowey',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2026-05-20',time:'18:57',amount:150.00,customer:'James Pattison',category:'Casual Massage',note:'',source:'square_csv'},
+  {date:'2026-05-21',time:'16:48',amount:99.00,customer:'Jasmin Razmos',category:'Intro Offer',note:'',source:'square_csv'},
+];
+
+const DEFAULT_EXPENSES = [
   {name:'Gym rent',amount:500,cat:'Rent'},
   {name:'GoHighLevel',amount:250,cat:'Software'},
   {name:'Trainerize',amount:95,cat:'Software'},
@@ -327,55 +457,95 @@ const EXPENSES = [
   {name:'Google',amount:25,cat:'Software'},
   {name:'Canva',amount:20,cat:'Software'},
 ];
-const TOTAL_EXP = EXPENSES.reduce((a,e)=>a+e.amount,0);
-
-const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 
 const DEFAULT_CLIENTS = [
-  {id:1,name:'Shaun & Kieran',tier:'Gold',monthly:1000,startDate:'2025-01-01',notes:'Gold tier. Two clients under one membership.'},
-  {id:2,name:'Steven Haby',tier:'Silver',monthly:750,startDate:'2025-01-01',notes:''},
-  {id:3,name:'Richard Simmie',tier:'Silver',monthly:750,startDate:'2025-01-01',notes:''},
-  {id:4,name:'Alexander Pillai',tier:'Silver',monthly:750,startDate:'2025-01-01',notes:''},
-  {id:5,name:'Nikki Onslow',tier:'Bronze',monthly:500,startDate:'2025-01-01',notes:''},
-  {id:6,name:'Mark Stolz',tier:'Bronze',monthly:500,startDate:'2025-01-01',notes:''},
-  {id:7,name:'Jodi Atkinson',tier:'Bronze',monthly:500,startDate:'2025-01-01',notes:''},
-];
-
-const DEFAULT_CASUAL = [
-  {id:1,date:'2026-05-22',amount:150,source:'invoice',note:'James Pattison - Remedial Massage'},
-  {id:2,date:'2026-05-22',amount:150,source:'invoice',note:'Richard Simmie - Remedial Massage'},
-  {id:3,date:'2026-05-21',amount:100.58,source:'daily_summary',note:'Square daily summary'},
-  {id:4,date:'2026-05-20',amount:264.16,source:'daily_summary',note:'Square daily summary'},
+  {id:1,name:'Shaun Gray',email:'shaun.gray83@gmail.com',tier:'Gold',monthly:1000,startDate:'2026-05-10',notes:'Gold tier. First payment May 2026.'},
+  {id:2,name:'Richard Simmie',email:'rsimmie54@gmail.com',tier:'Silver',monthly:750,startDate:'2025-10-22',notes:'Silver tier. Active since Oct 2025. Was a casual client Feb-Sep 2025 before joining.'},
+  {id:3,name:'Alexander Pillai',email:'alexander@suitably.com.au',tier:'Silver',monthly:750,startDate:'2025-10-21',notes:'Silver tier. Active since Oct 2025.'},
+  {id:4,name:'Mark Stolz',email:'mstolz@live.com.au',tier:'Bronze',monthly:500,startDate:'2025-04-28',notes:'Was $425/mo Apr-Aug 2025, upgraded to $500 Nov 2025.'},
+  {id:5,name:'Eliza Riddle',email:'riddlesmith@gmail.com',tier:'Bronze',monthly:500,startDate:'2025-06-29',notes:'Bronze tier. Intro offer client May 2025 before joining.'},
+  {id:6,name:'Nikki Onslow',email:'nicole@nicoleonslow.com',tier:'Bronze',monthly:500,startDate:'2025-12-02',notes:'Bronze tier. Active since Dec 2025.'},
+  {id:7,name:'Jodi Atkinson',email:'jodi@calthorpe.co.nz',tier:'Bronze',monthly:500,startDate:'2026-04-16',notes:'Bronze tier. Active since Apr 2026. Intro offer client Mar 2026.'},
+  {id:8,name:'Michelle Macky',email:'macky.michelle@gmail.com',tier:'Bronze',monthly:500,startDate:'2026-05-08',notes:'Active. $500 May 2026.'},
+  {id:9,name:'Doyle Barrow',email:'Doylebarrow@outlook.com',tier:'Bronze',monthly:0,startDate:'2025-04-27',notes:'CHURNED. Was paying $950/mo Apr-Jul 2025, then $875-$1575 Jan-Mar 2026, $525 Apr 2026. Re-activation target.'},
+  {id:10,name:'Simona Casineanu',email:'simona1103@gmail.com',tier:'Bronze',monthly:0,startDate:'2026-01-27',notes:'CHURNED. Paid $750 Jan-Feb 2026, then $175 x3 weekly Mar-Apr. No May payment.'},
+  {id:11,name:'Tubole G (update name)',email:'gtubole@gmail.com',tier:'Bronze',monthly:0,startDate:'2025-04-27',notes:'CHURNED. Paid $425/mo Apr-Aug 2025.'},
+  {id:12,name:'John Cook',email:'johncook77@gmail.com',tier:'Bronze',monthly:0,startDate:'2025-12-23',notes:'CHURNED. Paid $650/mo Dec 2025 - Feb 2026.'},
+  {id:13,name:'Emily Collier',email:'emilyloucollier@gmail.com',tier:'Bronze',monthly:0,startDate:'2025-05-06',notes:'CHURNED. Paid $425/mo May-Aug 2025.'},
+  {id:14,name:'Michael Murphy',email:'michaelmurphy5646@gmail.com',tier:'Bronze',monthly:0,startDate:'2026-01-14',notes:'CHURNED. Paid $500/mo Jan-Mar 2026.'},
+  {id:15,name:'Leo Ait Aoudia',email:'Leoaiit@hotmail.fr',tier:'Bronze',monthly:0,startDate:'2026-02-15',notes:'CHURNED. Paid $500 Feb-Mar 2026.'},
+  {id:16,name:'Maureen Pound',email:'maureen@maureenpound.com',tier:'Bronze',monthly:0,startDate:'2025-09-02',notes:'CHURNED. Paid $260/mo Sep-Nov 2025. Also had large casual PT sessions Jan-Feb 2026 ($330, $290).'},
+  {id:17,name:'Vanessa O\'Meara',email:'ness_o_@hotmail.com',tier:'Bronze',monthly:0,startDate:'2026-01-15',notes:'CHURNED. Paid $500 Jan 2026 only. Regular casual massage client Aug 2025 onwards.'},
+  {id:18,name:'Samantha Bury',email:'samanthabury4200@gmail.com',tier:'Bronze',monthly:0,startDate:'2025-05-21',notes:'CHURNED. Paid $150/mo May-Jul 2025.'},
+  {id:19,name:'Lachlan Potter',email:'Lachlanpotter110@gmail.com',tier:'Bronze',monthly:0,startDate:'2025-06-08',notes:'CHURNED. Paid $425 Jun 2025 only.'},
+  {id:20,name:'Leigh Henry',email:'leighjghenry@gmail.com',tier:'Bronze',monthly:0,startDate:'2025-05-27',notes:'CHURNED. Paid $425 May 2025 only.'},
+  {id:21,name:'Sarah Clayton',email:'sarahclayton.film@gmail.com',tier:'Bronze',monthly:0,startDate:'2026-01-13',notes:'CHURNED. Paid $300 Jan 2026.'},
+  {id:22,name:'Serge Huber',email:'serge_huber@hotmail.com',tier:'Bronze',monthly:0,startDate:'2026-04-28',notes:'CHURNED. Paid $500 Apr 2026 only.'},
 ];
 
 function loadState(){
   try{const s=localStorage.getItem(STORE);if(s)return JSON.parse(s);}catch(e){}
-  return {clients:DEFAULT_CLIENTS,casual:DEFAULT_CASUAL,lastSync:null,activeYear:2026};
+  return {clients:DEFAULT_CLIENTS,manualCasual:[],expenses:DEFAULT_EXPENSES,activeYear:2026,showChurned:false};
 }
 function save(){try{localStorage.setItem(STORE,JSON.stringify(state));}catch(e){}}
 
 let state = loadState();
-let charts = {};
-let activeYear = state.activeYear || 2026;
+if(!state.expenses) {state.expenses=DEFAULT_EXPENSES; save();}
+if(!state.manualCasual) {state.manualCasual=[]; save();}
 
-/* ---- UTILS ---- */
+// Merge Stripe-era clients if state has old smaller list
+if(state.clients.length < 10){
+  const existingEmails = state.clients.map(c=>c.email.toLowerCase());
+  DEFAULT_CLIENTS.forEach(nc=>{
+    if(!existingEmails.includes(nc.email.toLowerCase())) state.clients.push(nc);
+  });
+  save();
+}
+
+let charts={};
+let activeYear=state.activeYear||2026;
+let casualFilter='all';
+let showChurned=false;
+
 function fmt(n){return '$'+Math.round(n).toLocaleString('en-AU')}
 function fmtD(n){return '$'+(+n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,',')}
-function getMRR(){return state.clients.reduce((a,c)=>a+c.monthly,0)}
-function getMonthCasual(y,m){
-  return state.casual.filter(c=>{const d=new Date(c.date);return d.getFullYear()===y&&d.getMonth()===m;}).reduce((a,c)=>a+c.amount,0);
+function getMRR(){return state.clients.filter(c=>c.monthly>0).reduce((a,c)=>a+c.monthly,0)}
+function getTotalExp(){return state.expenses.reduce((a,e)=>a+e.amount,0)}
+
+function getAllCasual(){
+  return [...SQUARE_CASUAL, ...state.manualCasual];
+}
+function getMonthCasual(y,m,cat){
+  return getAllCasual().filter(c=>{
+    const d=new Date(c.date);
+    const match=d.getFullYear()===y&&d.getMonth()===m;
+    if(!match) return false;
+    if(cat && c.category!==cat) return false;
+    return c.category!=='Other';
+  }).reduce((a,c)=>a+c.amount,0);
+}
+function getHistoricalMRR(y,m){
+  const arr=STRIPE_MRR[y];
+  return arr?(arr[m]||0):0;
 }
 function getLifetime(c){
-  const ms=Math.max(1,Math.round((new Date()-new Date(c.startDate))/(1000*60*60*24*30.4)));
+  const start=new Date(c.startDate||'2025-01-01');
+  const now=new Date();
+  const ms=Math.max(1,Math.round((now-start)/(1000*60*60*24*30.4)));
   return c.monthly*ms;
 }
 function destroyChart(k){if(charts[k]){charts[k].destroy();delete charts[k];}}
 function tierBadge(t){
-  const map={Gold:'badge-gold',Silver:'badge-silver',Bronze:'badge-bronze'};
+  const map={Gold:'badge-gold',Silver:'badge-silver',Bronze:'badge-bronze','Online + Coaching Call':'badge-online','Online Membership':'badge-online'};
   return `<span class="badge ${map[t]||'badge-online'}">${t}</span>`;
 }
+function catBadge(cat){
+  if(!cat) return '';
+  const map={'Casual PT':'badge-pt','Casual Massage':'badge-massage','Intro Offer':'badge-intro','Other':'badge-other'};
+  const short={'Casual PT':'PT','Casual Massage':'Massage','Intro Offer':'Intro','Other':'Other'};
+  return `<span class="badge ${map[cat]||'badge-other'}">${short[cat]||cat}</span>`;
+}
 
-/* ---- NAV ---- */
 function nav(page,el){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
@@ -385,14 +555,15 @@ function nav(page,el){
   if(renders[page]) renders[page]();
 }
 
-/* ---- DASHBOARD ---- */
 function renderDashboard(){
   const now=new Date(),y=now.getFullYear(),m=now.getMonth();
-  const mrr=getMRR(),casual=getMonthCasual(y,m),total=mrr+casual;
+  const mrr=getMRR();
+  const casual=getMonthCasual(y,m);
+  const total=mrr+casual;
   const gap=Math.max(0,TARGET-total),pct=Math.min(100,Math.round((total/TARGET)*100));
-
+  const activeCount=state.clients.filter(c=>c.monthly>0).length;
   document.getElementById('dash-stats').innerHTML=`
-    <div class="stat-card hl"><div class="sl">MRR</div><div class="sv">${fmt(mrr)}</div><div class="ss">${state.clients.length} active clients</div></div>
+    <div class="stat-card hl"><div class="sl">MRR</div><div class="sv">${fmt(mrr)}</div><div class="ss">${activeCount} active clients</div></div>
     <div class="stat-card"><div class="sl">Casual</div><div class="sv">${fmt(casual)}</div><div class="ss">This month</div></div>
     <div class="stat-card"><div class="sl">Total revenue</div><div class="sv">${fmt(total)}</div><div class="ss">This month</div></div>
     <div class="stat-card ${gap===0?'gold-hl':''}"><div class="sl">Gap to $10k</div><div class="sv">${gap===0?'Hit!':fmt(gap)}</div><div class="ss">${gap===0?'Target reached':'Still needed'}</div></div>
@@ -402,130 +573,177 @@ function renderDashboard(){
   document.getElementById('goal-current').textContent=fmt(total)+' this month';
   document.getElementById('goal-gap').textContent=gap===0?'Target hit!':fmt(gap)+' to go';
   document.getElementById('dash-year-label').textContent=y;
-
   document.getElementById('rev-legend').innerHTML=`
     <span class="legend-item"><span class="legend-dot" style="background:#E85D8A"></span>MRR ${fmt(mrr)}</span>
     <span class="legend-item"><span class="legend-dot" style="background:#F4A261"></span>Casual ${fmt(casual)}</span>
   `;
   destroyChart('rev');
   charts.rev=new Chart(document.getElementById('revChart'),{type:'bar',data:{labels:['MRR','Casual','Total'],datasets:[{data:[mrr,casual,total],backgroundColor:['#E85D8A','#F4A261','rgba(255,255,255,0.12)'],borderRadius:5,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmt(c.raw)}}},scales:{x:{ticks:{color:'rgba(255,255,255,0.3)',font:{size:11}},grid:{display:false},border:{display:false}},y:{ticks:{color:'rgba(255,255,255,0.3)',font:{size:10},callback:v=>fmt(v)},grid:{color:'rgba(255,255,255,0.05)'},border:{display:false}}}}});
-
   const labels7=[],data7=[];
-  for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);labels7.push(d.toLocaleDateString('en-AU',{weekday:'short'}));data7.push(state.casual.filter(c=>c.date===d.toISOString().slice(0,10)).reduce((a,c)=>a+c.amount,0));}
+  for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);labels7.push(d.toLocaleDateString('en-AU',{weekday:'short'}));data7.push(getAllCasual().filter(c=>c.date===d.toISOString().slice(0,10)&&c.category!=='Other').reduce((a,c)=>a+c.amount,0));}
   destroyChart('casual7');
-  charts.casual7=new Chart(document.getElementById('casualChart'),{type:'line',data:{labels:labels7,datasets:[{data:data7,borderColor:'#E85D8A',backgroundColor:'rgba(232,93,138,0.08)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#E85D8A',pointBorderColor:'#E85D8A'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmt(c.raw)}}},scales:{x:{ticks:{color:'rgba(255,255,255,0.3)',font:{size:11}},grid:{display:false},border:{display:false}},y:{ticks:{color:'rgba(255,255,255,0.3)',font:{size:10},callback:v=>fmt(v)},grid:{color:'rgba(255,255,255,0.05)'},border:{display:false}}}}});
-
+  charts.casual7=new Chart(document.getElementById('casualChart'),{type:'line',data:{labels:labels7,datasets:[{data:data7,borderColor:'#E85D8A',backgroundColor:'rgba(232,93,138,0.08)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#E85D8A'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmt(c.raw)}}},scales:{x:{ticks:{color:'rgba(255,255,255,0.3)',font:{size:11}},grid:{display:false},border:{display:false}},y:{ticks:{color:'rgba(255,255,255,0.3)',font:{size:10},callback:v=>fmt(v)},grid:{color:'rgba(255,255,255,0.05)'},border:{display:false}}}}});
   const mrrData=[],casData=[];
-  for(let i=0;i<12;i++){const cm=getMRR();mrrData.push(cm);casData.push(getMonthCasual(y,i));}
+  for(let i=0;i<12;i++){
+    mrrData.push(i===m?mrr:getHistoricalMRR(y,i));
+    casData.push(getMonthCasual(y,i));
+  }
   destroyChart('monthly');
   charts.monthly=new Chart(document.getElementById('monthlyChart'),{type:'bar',data:{labels:MONTHS,datasets:[{label:'MRR',data:mrrData,backgroundColor:'rgba(232,93,138,0.7)',borderRadius:3,borderSkipped:false},{label:'Casual',data:casData,backgroundColor:'rgba(244,162,97,0.7)',borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmt(c.raw)}}},scales:{x:{stacked:true,ticks:{color:'rgba(255,255,255,0.3)',font:{size:10}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:'rgba(255,255,255,0.3)',font:{size:10},callback:v=>fmt(v)},grid:{color:'rgba(255,255,255,0.05)'},border:{display:false}}}}});
 }
 
-/* ---- CLIENTS ---- */
 let clientSort={key:'monthly',dir:-1};
-
+function toggleChurned(){
+  showChurned=!showChurned;
+  const btn=document.getElementById('btn-churned');
+  btn.innerHTML=showChurned?'<i class="ti ti-eye-off"></i>Hide Churned':'<i class="ti ti-eye"></i>Show Churned';
+  renderClients();
+}
 function sortClients(key){
   if(clientSort.key===key){clientSort.dir*=-1;}else{clientSort.key=key;clientSort.dir=key==='name'?1:-1;}
   renderClients();
 }
-
 function renderClients(){
-  const mrr=getMRR(),lt=state.clients.reduce((a,c)=>a+getLifetime(c),0);
+  const activeClients=state.clients.filter(c=>c.monthly>0);
+  const churnedClients=state.clients.filter(c=>c.monthly===0);
+  const mrr=getMRR();
+  const lt=activeClients.reduce((a,c)=>a+getLifetime(c),0);
   document.getElementById('client-stats').innerHTML=`
-    <div class="stat-card hl"><div class="sl">Active clients</div><div class="sv">${state.clients.length}</div></div>
+    <div class="stat-card hl"><div class="sl">Active</div><div class="sv">${activeClients.length}</div></div>
     <div class="stat-card"><div class="sl">Total MRR</div><div class="sv">${fmt(mrr)}</div></div>
-    <div class="stat-card gold-hl"><div class="sl">Est. lifetime total</div><div class="sv">${fmt(lt)}</div><div class="ss">All clients combined</div></div>
+    <div class="stat-card"><div class="sl">Churned</div><div class="sv">${churnedClients.length}</div><div class="ss">Re-activation targets</div></div>
+    <div class="stat-card gold-hl"><div class="sl">Est. lifetime</div><div class="sv">${fmt(lt)}</div><div class="ss">Active clients</div></div>
   `;
   ['name','tier','monthly','startDate','lifetime'].forEach(k=>{
-    const el=document.getElementById('sh-'+k);
-    if(!el)return;
+    const el=document.getElementById('sh-'+k);if(!el)return;
     const arrow=clientSort.key===k?(clientSort.dir===1?' ↑':' ↓'):'';
     el.style.color=clientSort.key===k?'#E85D8A':'';
     el.textContent={name:'Name',tier:'Tier',monthly:'Monthly',startDate:'Start',lifetime:'Lifetime'}[k]+arrow;
   });
-  const tb=document.getElementById('client-tbody');
-  if(!state.clients.length){tb.innerHTML='<tr><td colspan="6"><div class="empty"><i class="ti ti-users"></i>No clients yet</div></td></tr>';return;}
-  const sorted=[...state.clients].sort((a,b)=>{
+  const display=showChurned?state.clients:activeClients;
+  const sorted=[...display].sort((a,b)=>{
     let av,bv;
     if(clientSort.key==='lifetime'){av=getLifetime(a);bv=getLifetime(b);}
     else if(clientSort.key==='name'){av=a.name.toLowerCase();bv=b.name.toLowerCase();}
     else if(clientSort.key==='startDate'){av=a.startDate||'';bv=b.startDate||'';}
     else{av=a[clientSort.key];bv=b[clientSort.key];}
-    if(av<bv)return -1*clientSort.dir;
-    if(av>bv)return 1*clientSort.dir;
-    return 0;
+    if(av<bv)return -1*clientSort.dir;if(av>bv)return 1*clientSort.dir;return 0;
   });
+  const tb=document.getElementById('client-tbody');
+  if(!sorted.length){tb.innerHTML='<tr><td colspan="6"><div class="empty"><i class="ti ti-users"></i>No clients found</div></td></tr>';return;}
   tb.innerHTML=sorted.map(c=>`
-    <tr>
-      <td class="td-strong">${c.name}</td>
+    <tr style="${c.monthly===0?'opacity:0.5':''}">
+      <td class="td-strong editable-cell" onclick="inlineEdit(${c.id},'name',this)">${c.name}${c.monthly===0?'&nbsp;<span class="badge badge-churned">Churned</span>':''}</td>
       <td>${tierBadge(c.tier)}</td>
-      <td class="td-money">${fmt(c.monthly)}</td>
+      <td class="td-money editable-cell" onclick="inlineEdit(${c.id},'monthly',this)">${c.monthly>0?fmt(c.monthly):'--'}</td>
       <td style="font-size:11px;color:var(--hint)">${c.startDate?new Date(c.startDate).toLocaleDateString('en-AU',{month:'short',year:'numeric'}):'-'}</td>
-      <td class="td-accent">${fmt(getLifetime(c))}</td>
+      <td class="td-accent">${c.monthly>0?fmt(getLifetime(c)):'--'}</td>
       <td>
-        <button class="icon-btn" onclick="toggleNotes(${c.id})" style="margin-right:4px"><i class="ti ti-notes" style="font-size:12px"></i> Notes</button>
+        <button class="icon-btn" onclick="toggleNotes(${c.id})" style="margin-right:4px"><i class="ti ti-notes" style="font-size:12px"></i></button>
         <button class="icon-btn" onclick="openEditClient(${c.id})"><i class="ti ti-edit" style="font-size:12px"></i> Edit</button>
       </td>
     </tr>
     <tr class="notes-row" id="nr-${c.id}">
       <td colspan="6" style="padding:4px 14px 12px">
-        <div class="notes-content">${c.notes||'<span style="opacity:0.4;font-style:italic">No notes yet. Click Edit to add notes.</span>'}</div>
+        <div class="notes-content">${c.notes||'<span style="opacity:0.4;font-style:italic">No notes.</span>'}</div>
       </td>
     </tr>
   `).join('');
 }
 function toggleNotes(id){const r=document.getElementById('nr-'+id);r.style.display=r.style.display==='table-row'?'none':'table-row';}
+function inlineEdit(id,field,cell){
+  const c=state.clients.find(x=>x.id===id);if(!c)return;
+  const input=document.createElement('input');
+  input.className='inline-input';input.type=field==='monthly'?'number':'text';input.value=c[field];
+  cell.innerHTML='';cell.appendChild(input);input.focus();input.select();
+  const commit=()=>{c[field]=field==='monthly'?parseFloat(input.value)||0:input.value.trim();save();renderClients();};
+  input.addEventListener('blur',commit);
+  input.addEventListener('keydown',e=>{if(e.key==='Enter')commit();if(e.key==='Escape')renderClients();});
+}
 
-/* ---- CASUAL ---- */
+function setCasualFilter(f,btn){
+  casualFilter=f;
+  document.querySelectorAll('#casual-tabs .tab-btn').forEach(b=>b.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  renderCasualLog();
+}
 function renderCasual(){
   const now=new Date(),y=now.getFullYear(),m=now.getMonth();
   document.getElementById('casual-month-label').textContent=now.toLocaleDateString('en-AU',{month:'long',year:'numeric'});
+  const all=getAllCasual();
   const thisMonth=getMonthCasual(y,m);
-  const thisYear=state.casual.filter(c=>new Date(c.date).getFullYear()===y).reduce((a,c)=>a+c.amount,0);
-  const autoCount=state.casual.filter(c=>c.source==='daily_summary').length;
+  const yr2025=all.filter(c=>new Date(c.date).getFullYear()===2025&&c.category!=='Other').reduce((a,c)=>a+c.amount,0);
+  const yr2026=all.filter(c=>new Date(c.date).getFullYear()===2026&&c.category!=='Other').reduce((a,c)=>a+c.amount,0);
+  const introAll=all.filter(c=>c.category==='Intro Offer').reduce((a,c)=>a+c.amount,0);
+  const ptAll=all.filter(c=>c.category==='Casual PT').reduce((a,c)=>a+c.amount,0);
+  const massageAll=all.filter(c=>c.category==='Casual Massage').reduce((a,c)=>a+c.amount,0);
   document.getElementById('casual-stats').innerHTML=`
     <div class="stat-card hl"><div class="sl">This month</div><div class="sv">${fmtD(thisMonth)}</div></div>
-    <div class="stat-card"><div class="sl">This year</div><div class="sv">${fmt(thisYear)}</div></div>
-    <div class="stat-card"><div class="sl">Auto-synced</div><div class="sv">${autoCount}</div><div class="ss">From Square emails</div></div>
+    <div class="stat-card"><div class="sl">2025 total</div><div class="sv">${fmt(yr2025)}</div></div>
+    <div class="stat-card"><div class="sl">2026 total</div><div class="sv">${fmt(yr2026)}</div></div>
+    <div class="stat-card"><div class="sl">Intro offers</div><div class="sv">${fmt(introAll)}</div><div class="ss">All time</div></div>
+    <div class="stat-card"><div class="sl">Casual PT</div><div class="sv">${fmt(ptAll)}</div><div class="ss">All time</div></div>
+    <div class="stat-card"><div class="sl">Casual Massage</div><div class="sv">${fmt(massageAll)}</div><div class="ss">All time</div></div>
   `;
-  const sorted=[...state.casual].sort((a,b)=>new Date(b.date)-new Date(a.date));
-  const wrap=document.getElementById('casual-log');
-  if(!sorted.length){wrap.innerHTML='<div class="empty"><i class="ti ti-cash"></i>No entries yet. Hit Sync or add manually.</div>';return;}
-  wrap.innerHTML=sorted.map(c=>`
-    <div class="log-row">
-      <div>
-        <div class="log-desc">${c.note||'Square transaction'}</div>
-        <div class="log-date">${new Date(c.date).toLocaleDateString('en-AU',{weekday:'short',day:'numeric',month:'short',year:'numeric'})}</div>
-      </div>
-      <div class="log-right">
-        <span class="log-amount">${fmtD(c.amount)}</span>
-        <span class="badge ${c.source==='daily_summary'?'badge-auto':'badge-manual'}">${c.source==='daily_summary'?'AUTO':'MANUAL'}</span>
-        <button onclick="deleteCasual(${c.id})" style="background:none;border:none;color:rgba(255,255,255,0.2);cursor:pointer;padding:2px 4px" title="Delete"><i class="ti ti-trash" style="font-size:14px"></i></button>
-      </div>
-    </div>
-  `).join('');
+  renderCasualLog();
 }
-function deleteCasual(id){state.casual=state.casual.filter(c=>c.id!==id);save();renderCasual();}
+function renderCasualLog(){
+  const yearSel=document.getElementById('casual-year-select');
+  const selectedYear=yearSel?yearSel.value:'all';
+  let filtered=getAllCasual();
+  if(selectedYear!=='all'){
+    const yr=parseInt(selectedYear);
+    filtered=filtered.filter(c=>new Date(c.date).getFullYear()===yr);
+  }
+  if(casualFilter!=='all') filtered=filtered.filter(c=>c.category===casualFilter);
+  const sorted=filtered.sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const wrap=document.getElementById('casual-log');
+  if(!sorted.length){wrap.innerHTML='<div class="empty"><i class="ti ti-cash"></i>No entries.</div>';return;}
+  wrap.innerHTML=`
+    <table class="data-table" style="table-layout:auto">
+      <thead><tr>
+        <th style="width:90px">Date</th>
+        <th style="width:130px">Customer</th>
+        <th style="width:100px">Category</th>
+        <th style="width:80px">Amount</th>
+        <th>Notes</th>
+        <th style="width:30px"></th>
+      </tr></thead>
+      <tbody>
+        ${sorted.map(c=>`
+          <tr>
+            <td style="font-size:11px;color:var(--hint)">${new Date(c.date).toLocaleDateString('en-AU',{day:'numeric',month:'short',year:'2-digit'})}</td>
+            <td class="td-strong" style="font-size:12px">${c.customer||'Unknown'}</td>
+            <td>${catBadge(c.category)}</td>
+            <td class="td-money">${fmtD(c.amount)}</td>
+            <td style="font-size:11px;color:var(--hint)">${c.note||''}</td>
+            <td>${c.source==='manual'?`<button onclick="deleteCasual(${c.id})" style="background:none;border:none;color:rgba(255,255,255,0.2);cursor:pointer;padding:2px 4px"><i class="ti ti-trash" style="font-size:13px"></i></button>`:'<span style="font-size:9px;color:var(--hint)">CSV</span>'}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  `;
+}
+function deleteCasual(id){state.manualCasual=state.manualCasual.filter(c=>c.id!==id);save();renderCasual();}
 
-/* ---- EXPENSES ---- */
-let expChartInst;
 function renderExpenses(){
   const mrr=getMRR(),casual=getMonthCasual(new Date().getFullYear(),new Date().getMonth()),total=mrr+casual;
-  const profit=total-TOTAL_EXP,margin=total>0?Math.round((profit/total)*100):0;
+  const totalExp=getTotalExp(),profit=total-totalExp,margin=total>0?Math.round((profit/total)*100):0;
   document.getElementById('exp-list').innerHTML=`
-    ${EXPENSES.map(e=>`<div class="exp-row"><span class="exp-name">${e.name}</span><span class="exp-amount">${fmt(e.amount)}</span></div>`).join('')}
-    <div class="exp-total"><span>Total expenses</span><span>${fmt(TOTAL_EXP)}</span></div>
+    ${state.expenses.map(e=>`<div class="exp-row"><span class="exp-name">${e.name}</span><span class="exp-amount">${fmt(e.amount)}</span></div>`).join('')}
+    <div class="exp-total"><span>Total expenses</span><span>${fmt(totalExp)}</span></div>
   `;
   document.getElementById('profit-stats').innerHTML=`
     <div class="stat-card hl"><div class="sl">Net profit</div><div class="sv">${fmt(profit)}</div><div class="ss">Revenue minus expenses</div></div>
-    <div class="stat-card"><div class="sl">Profit margin</div><div class="sv">${margin}%</div></div>
-    <div class="stat-card"><div class="sl">Fixed expenses</div><div class="sv">${fmt(TOTAL_EXP)}</div><div class="ss">Per month</div></div>
+    <div class="stat-card"><div class="sl">Margin</div><div class="sv">${margin}%</div></div>
+    <div class="stat-card"><div class="sl">Fixed expenses</div><div class="sv">${fmt(totalExp)}</div></div>
   `;
   destroyChart('exp');
-  charts.exp=new Chart(document.getElementById('expChart'),{type:'doughnut',data:{labels:['Rent','Software'],datasets:[{data:[500,TOTAL_EXP-500],backgroundColor:['#E85D8A','#F4A261'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+': '+fmt(c.raw)}}},cutout:'65%'}});
+  const rentTotal=state.expenses.filter(e=>e.cat==='Rent').reduce((a,e)=>a+e.amount,0);
+  const swTotal=state.expenses.filter(e=>e.cat==='Software').reduce((a,e)=>a+e.amount,0);
+  charts.exp=new Chart(document.getElementById('expChart'),{type:'doughnut',data:{labels:['Rent','Software'],datasets:[{data:[rentTotal,swTotal],backgroundColor:['#E85D8A','#F4A261'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+': '+fmt(c.raw)}}},cutout:'65%'}});
 }
 
-/* ---- YEARLY ---- */
 function setYear(y){
   activeYear=y;state.activeYear=y;save();
   document.querySelectorAll('[id^="yr-"]').forEach(b=>{b.className=b.id==='yr-'+y?'btn btn-accent':'btn btn-ghost';});
@@ -533,62 +751,65 @@ function setYear(y){
 }
 function renderYearly(){
   document.getElementById('yearly-year-label').textContent=activeYear;
-  const mrrData=[],casData=[],totalData=[];
-  let yearTotal=0,monthsWithData=0;
+  document.getElementById('yearly-cat-label').textContent=activeYear;
+  const mrrData=[],casData=[],ptData=[],massData=[],introData=[];
+  let yearTotal=0;
   const now=new Date(),curY=now.getFullYear(),curM=now.getMonth();
   for(let i=0;i<12;i++){
-    const m=getMRR(),c=getMonthCasual(activeYear,i),t=m+c;
-    mrrData.push(m);casData.push(c);totalData.push(t);
-    if(activeYear<curY||(activeYear===curY&&i<=curM)){yearTotal+=t;if(t>0)monthsWithData++;}
+    const stripeM=getHistoricalMRR(activeYear,i);
+    const mVal=(activeYear===curY&&i===curM)?getMRR():stripeM;
+    const cas=getMonthCasual(activeYear,i);
+    const pt=getMonthCasual(activeYear,i,'Casual PT');
+    const mass=getMonthCasual(activeYear,i,'Casual Massage');
+    const intro=getMonthCasual(activeYear,i,'Intro Offer');
+    mrrData.push(mVal);casData.push(cas);ptData.push(pt);massData.push(mass);introData.push(intro);
+    if(activeYear<curY||(activeYear===curY&&i<=curM)) yearTotal+=mVal+cas;
   }
+  const monthsWithData=mrrData.filter((v,i)=>{const k=activeYear<curY||(activeYear===curY&&i<=curM);return k&&(v+casData[i])>0;}).length;
   const avgMonth=monthsWithData>0?yearTotal/monthsWithData:0;
-  const projected=avgMonth*12;
   document.getElementById('yearly-stats').innerHTML=`
     <div class="stat-card"><div class="sl">${activeYear} total</div><div class="sv">${fmt(yearTotal)}</div></div>
     <div class="stat-card"><div class="sl">Annual target</div><div class="sv">$120,000</div><div class="ss">$10k x 12</div></div>
     <div class="stat-card hl"><div class="sl">Annual gap</div><div class="sv">${fmt(Math.max(0,120000-yearTotal))}</div></div>
     <div class="stat-card"><div class="sl">Avg monthly</div><div class="sv">${avgMonth?fmt(avgMonth):'--'}</div></div>
-    <div class="stat-card gold-hl"><div class="sl">Projected annual</div><div class="sv">${projected?fmt(projected):'--'}</div><div class="ss">At current avg</div></div>
+    <div class="stat-card gold-hl"><div class="sl">Projected annual</div><div class="sv">${avgMonth?fmt(avgMonth*12):'--'}</div></div>
   `;
   destroyChart('yearly');
   charts.yearly=new Chart(document.getElementById('yearlyChart'),{type:'bar',data:{labels:MONTHS,datasets:[{label:'MRR',data:mrrData,backgroundColor:'rgba(232,93,138,0.75)',borderRadius:4,borderSkipped:false},{label:'Casual',data:casData,backgroundColor:'rgba(244,162,97,0.75)',borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmt(c.raw)}}},scales:{x:{stacked:true,ticks:{color:'rgba(255,255,255,0.3)',font:{size:11}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:'rgba(255,255,255,0.3)',font:{size:10},callback:v=>fmt(v)},grid:{color:'rgba(255,255,255,0.05)'},border:{display:false}}}}});
-
+  destroyChart('yearlycat');
+  charts.yearlycat=new Chart(document.getElementById('yearlyCatChart'),{type:'bar',data:{labels:MONTHS,datasets:[{label:'Casual PT',data:ptData,backgroundColor:'rgba(55,138,221,0.75)',borderRadius:3,borderSkipped:false},{label:'Massage',data:massData,backgroundColor:'rgba(93,202,165,0.75)',borderRadius:3,borderSkipped:false},{label:'Intro',data:introData,backgroundColor:'rgba(155,63,191,0.75)',borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+': '+fmt(c.raw)}}},scales:{x:{stacked:true,ticks:{color:'rgba(255,255,255,0.3)',font:{size:11}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:'rgba(255,255,255,0.3)',font:{size:10},callback:v=>fmt(v)},grid:{color:'rgba(255,255,255,0.05)'},border:{display:false}}}}});
   const tb=document.getElementById('yearly-tbody');
   tb.innerHTML=MONTHS.map((mo,i)=>{
-    const m=getMRR(),c=getMonthCasual(activeYear,i),t=m+c;
-    const diff=t-TARGET,isFuture=activeYear===curY&&i>curM;
+    const m=mrrData[i],pt=ptData[i],mass=massData[i],intro=introData[i];
+    const cas=pt+mass+intro;
+    const t=m+cas;
+    const diff=t-TARGET;
+    const isFuture=activeYear===curY&&i>curM;
+    const hasData=t>0;
     return `<tr ${isFuture?'style="opacity:0.35"':''}>
       <td>${mo} ${activeYear}</td>
-      <td class="td-money">${fmt(m)}</td>
-      <td>${fmt(c)}</td>
-      <td class="td-strong">${fmt(t)}</td>
-      <td style="color:${diff>=0?'#5DCAA5':'#E24B4A'}">${diff>=0?'+':''} ${fmt(diff)}</td>
+      <td class="td-money">${m?fmt(m):'--'}</td>
+      <td style="color:#378ADD;font-weight:700">${pt?fmtD(pt):'--'}</td>
+      <td style="color:var(--green);font-weight:700">${mass?fmtD(mass):'--'}</td>
+      <td style="color:var(--purple);font-weight:700">${intro?fmtD(intro):'--'}</td>
+      <td class="td-strong">${hasData?fmt(t):'--'}</td>
+      <td style="color:${!hasData?'var(--hint)':diff>=0?'#5DCAA5':'#E24B4A'}">${!hasData?'--':(diff>=0?'+':'')+fmt(diff)}</td>
     </tr>`;
   }).join('');
 }
 
-/* ---- SYNC ---- */
 function triggerSync(){
-  document.getElementById('last-sync-label').textContent='Syncing...';
-  const prompt='Please read my Gmail and find all Square daily summary emails from the last 14 days (subject contains "your daily sales summary report"). For each one, extract the date and Net Sales figure. Return each as: DATE|AMOUNT. Then I will update my dashboard.';
-  if(typeof sendPrompt==='function'){
-    sendPrompt(prompt);
-  } else {
-    alert('Open this dashboard inside a Claude conversation to use the Gmail sync feature. The sync button sends a prompt to Claude to read your Square emails automatically.');
-    document.getElementById('last-sync-label').textContent='Ready to sync';
-  }
+  const prompt='Please read my Gmail and find all Square daily summary emails from the last 14 days. Extract date and Net Sales from each. Return as DATE|AMOUNT.';
+  if(typeof sendPrompt==='function'){sendPrompt(prompt);}
+  else{alert('Open this dashboard inside a Claude conversation to use Gmail sync.');}
 }
-
-/* ---- ADD CASUAL (from sync result) ---- */
-function addSyncedEntry(date, amount){
-  const existing = state.casual.find(c=>c.date===date&&c.source==='daily_summary');
-  if(existing){ existing.amount=amount; }
-  else { state.casual.push({id:Date.now()+Math.random(),date,amount,source:'daily_summary',note:'Square daily summary'}); }
+function addSyncedEntry(date,amount){
+  const existing=state.manualCasual.find(c=>c.date===date&&c.source==='daily_summary');
+  if(existing){existing.amount=amount;}
+  else{state.manualCasual.push({id:Date.now()+Math.random(),date,amount,category:'manual',source:'daily_summary',note:'Square daily summary'});}
   save();
-  document.getElementById('last-sync-label').textContent='Synced '+new Date().toLocaleTimeString('en-AU',{hour:'2-digit',minute:'2-digit'});
 }
 
-/* ---- MODALS ---- */
 function openModal(html){document.getElementById('modal-content').innerHTML=html;document.getElementById('modal-back').classList.add('open');}
 function closeModal(){document.getElementById('modal-back').classList.remove('open');}
 document.getElementById('modal-back').addEventListener('click',function(e){if(e.target===this)closeModal();});
@@ -597,75 +818,4 @@ function openAddClient(){
   openModal(`
     <div class="modal-title">Add client</div>
     <div class="form-group"><label class="form-label">Name</label><input class="form-input" id="m-name" placeholder="Client name"></div>
-    <div class="form-group"><label class="form-label">Tier</label>
-      <select class="form-select" id="m-tier">
-        <option>Gold</option><option>Silver</option><option>Bronze</option>
-        <option>Online + Coaching Call</option><option>Online Membership</option>
-      </select>
-    </div>
-    <div class="form-group"><label class="form-label">Monthly rate ($AUD)</label><input class="form-input" id="m-monthly" type="number" placeholder="e.g. 750"></div>
-    <div class="form-group"><label class="form-label">Start date</label><input class="form-input" id="m-start" type="date"></div>
-    <div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" id="m-notes" placeholder="Goals, injuries, preferences, anything relevant..."></textarea></div>
-    <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveNewClient()">Add client</button></div>
-  `);
-}
-function saveNewClient(){
-  const name=document.getElementById('m-name').value.trim();if(!name)return;
-  state.clients.push({id:Date.now(),name,tier:document.getElementById('m-tier').value,monthly:parseFloat(document.getElementById('m-monthly').value)||0,startDate:document.getElementById('m-start').value,notes:document.getElementById('m-notes').value.trim()});
-  save();closeModal();renderClients();
-}
-
-function openEditClient(id){
-  const c=state.clients.find(x=>x.id===id);if(!c)return;
-  openModal(`
-    <div class="modal-title">Edit — ${c.name}</div>
-    <div class="form-group"><label class="form-label">Name</label><input class="form-input" id="m-name" value="${c.name}"></div>
-    <div class="form-group"><label class="form-label">Tier</label>
-      <select class="form-select" id="m-tier">${['Gold','Silver','Bronze','Online + Coaching Call','Online Membership'].map(t=>`<option ${t===c.tier?'selected':''}>${t}</option>`).join('')}</select>
-    </div>
-    <div class="form-group"><label class="form-label">Monthly rate ($AUD)</label><input class="form-input" id="m-monthly" type="number" value="${c.monthly}"></div>
-    <div class="form-group"><label class="form-label">Start date</label><input class="form-input" id="m-start" type="date" value="${c.startDate}"></div>
-    <div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" id="m-notes">${c.notes||''}</textarea></div>
-    <div class="modal-actions">
-      <button class="btn btn-danger" onclick="deleteClient(${id})">Delete</button>
-      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
-      <button class="btn btn-primary" onclick="saveEditClient(${id})">Save</button>
-    </div>
-  `);
-}
-function saveEditClient(id){
-  const c=state.clients.find(x=>x.id===id);if(!c)return;
-  c.name=document.getElementById('m-name').value.trim();
-  c.tier=document.getElementById('m-tier').value;
-  c.monthly=parseFloat(document.getElementById('m-monthly').value)||0;
-  c.startDate=document.getElementById('m-start').value;
-  c.notes=document.getElementById('m-notes').value.trim();
-  save();closeModal();renderClients();
-}
-function deleteClient(id){
-  if(!confirm('Remove this client? This cannot be undone.'))return;
-  state.clients=state.clients.filter(c=>c.id!==id);
-  save();closeModal();renderClients();
-}
-
-function openAddCasual(){
-  openModal(`
-    <div class="modal-title">Add casual entry</div>
-    <div class="form-group"><label class="form-label">Date</label><input class="form-input" id="m-date" type="date" value="${new Date().toISOString().slice(0,10)}"></div>
-    <div class="form-group"><label class="form-label">Amount ($AUD)</label><input class="form-input" id="m-amount" type="number" step="0.01" placeholder="e.g. 150.00"></div>
-    <div class="form-group"><label class="form-label">Description</label><input class="form-input" id="m-note" placeholder="e.g. Remedial Massage - James P"></div>
-    <div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveNewCasual()">Add entry</button></div>
-  `);
-}
-function saveNewCasual(){
-  const amount=parseFloat(document.getElementById('m-amount').value)||0;if(!amount)return;
-  state.casual.push({id:Date.now(),date:document.getElementById('m-date').value,amount,source:'manual',note:document.getElementById('m-note').value.trim()});
-  save();closeModal();renderCasual();
-}
-
-/* ---- INIT ---- */
-renderDashboard();
-setYear(activeYear);
-</script>
-</body>
-</html>
+    <div class="form-group"><label class="form-label">Email</label><input clas
