@@ -131,11 +131,27 @@ html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:
     <div class="progress-bg"><div class="progress-fill" id="goal-bar" style="width:0%"></div></div>
     <div class="progress-meta"><span id="goal-current">$0 this month</span><span id="goal-gap">$10,000 to go</span></div>
   </div>
-  <div class="two-col">
-    <div class="chart-card"><div class="chart-label">Revenue breakdown</div><div class="chart-legend" id="rev-legend"></div><div style="position:relative;height:160px"><canvas id="revChart"></canvas></div></div>
-    <div class="chart-card"><div class="chart-label">Casual - last 7 days</div><div style="position:relative;height:185px"><canvas id="casualChart"></canvas></div></div>
+  <div class="chart-card" style="padding:14px 18px;margin-bottom:16px">
+    <div class="chart-label" style="margin-bottom:10px">This month breakdown</div>
+    <div id="dash-breakdown-strip" style="display:flex;gap:6px;flex-wrap:wrap"></div>
   </div>
-  <div class="chart-card"><div class="chart-label">Monthly revenue - <span id="dash-year-label">2026</span></div><div style="position:relative;height:160px"><canvas id="monthlyChart"></canvas></div></div>
+  <div class="two-col">
+    <div class="chart-card">
+      <div class="chart-label">MRR trend - <span id="dash-year-label">2026</span></div>
+      <div style="position:relative;height:190px"><canvas id="mrrChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-label">Casual mix - this month</div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div style="position:relative;height:160px;width:160px;flex-shrink:0"><canvas id="casualDonutChart"></canvas></div>
+        <div id="donut-legend" style="display:flex;flex-direction:column;gap:10px"></div>
+      </div>
+    </div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-label">Monthly revenue breakdown - <span id="dash-year-label2">2026</span></div>
+    <div style="position:relative;height:200px"><canvas id="monthlyChart"></canvas></div>
+  </div>
 </div>
 <div class="page" id="page-clients">
   <div class="page-header"><div class="page-title">Clients</div><div style="display:flex;gap:8px"><button class="btn btn-ghost" onclick="toggleChurned()" id="btn-churned"><i class="ti ti-eye"></i>Show Churned</button><button class="btn btn-accent" onclick="openAddClient()"><i class="ti ti-plus"></i>Add client</button></div></div>
@@ -461,35 +477,75 @@ function renderDashboard(){
   const total=mrr+casual;
   const gap=Math.max(0,TARGET-total),pct=Math.min(100,Math.round((total/TARGET)*100));
   const activeCount=state.clients.filter(c=>c.monthly>0).length;
+
+  // YTD total across Stripe MRR + Square casual
+  let ytd=0;
+  for(let i=0;i<=m;i++){
+    ytd+=(i===m?mrr:getHistoricalMRR(y,i))+getMonthCasual(y,i);
+  }
+  const ytdGap=Math.max(0,120000-ytd);
+  const ytdPct=Math.round((ytd/120000)*100);
+
   document.getElementById("dash-stats").innerHTML=
     '<div class="stat-card hl"><div class="sl">MRR</div><div class="sv">'+fmt(mrr)+'</div><div class="ss">'+activeCount+' active clients</div></div>'+
     '<div class="stat-card"><div class="sl">Casual</div><div class="sv">'+fmt(casual)+'</div><div class="ss">This month</div></div>'+
-    '<div class="stat-card"><div class="sl">Total revenue</div><div class="sv">'+fmt(total)+'</div><div class="ss">This month</div></div>'+
-    '<div class="stat-card '+(gap===0?"gold-hl":"")+'"><div class="sl">Gap to $10k</div><div class="sv">'+(gap===0?"Hit!":fmt(gap))+'</div><div class="ss">'+(gap===0?"Target reached":"Still needed")+'</div></div>';
+    '<div class="stat-card"><div class="sl">Total this month</div><div class="sv">'+fmt(total)+'</div><div class="ss">'+(gap===0?"Target hit!":fmt(gap)+" to go")+'</div></div>'+
+    '<div class="stat-card gold-hl"><div class="sl">'+y+' YTD</div><div class="sv">'+fmt(ytd)+'</div><div class="ss">'+ytdPct+'% of $120k annual</div></div>'+
+    '<div class="stat-card '+(ytdGap===0?"gold-hl":"")+'"><div class="sl">Annual gap</div><div class="sv">'+(ytdGap===0?"Done!":fmt(ytdGap))+'</div><div class="ss">To $120k target</div></div>';
+
   document.getElementById("goal-pct").textContent=pct+"%";
   document.getElementById("goal-bar").style.width=pct+"%";
   document.getElementById("goal-current").textContent=fmt(total)+" this month";
   document.getElementById("goal-gap").textContent=gap===0?"Target hit!":fmt(gap)+" to go";
   document.getElementById("dash-year-label").textContent=y;
-  document.getElementById("rev-legend").innerHTML=
-    '<span class="legend-item"><span class="legend-dot" style="background:#F4A261"></span>MRR '+fmt(mrr)+'</span>'+
-    '<span class="legend-item"><span class="legend-dot" style="background:#9B3FBF"></span>Massage '+fmt(massage)+'</span>'+
-    '<span class="legend-item"><span class="legend-dot" style="background:#5DCAA5"></span>Intro '+fmt(intro)+'</span>'+
-    '<span class="legend-item"><span class="legend-dot" style="background:#378ADD"></span>PT '+fmt(pt)+'</span>';
-  destroyChart("rev");
-  const chartOpts={responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+": "+fmt(c.raw)}}},scales:{x:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:11}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}};
-  charts.rev=new Chart(document.getElementById("revChart"),{type:"bar",data:{
-    labels:["MRR","Massage","Intro","PT","Total"],
-    datasets:[
-      {label:"MRR",data:[mrr,0,0,0,mrr],backgroundColor:"rgba(244,162,97,0.85)",borderRadius:3,borderSkipped:false},
-      {label:"Massage",data:[0,massage,0,0,massage],backgroundColor:"rgba(155,63,191,0.8)",borderRadius:3,borderSkipped:false},
-      {label:"Intro",data:[0,0,intro,0,intro],backgroundColor:"rgba(93,202,165,0.8)",borderRadius:3,borderSkipped:false},
-      {label:"PT",data:[0,0,0,pt,pt],backgroundColor:"rgba(55,138,221,0.8)",borderRadius:3,borderSkipped:false}
-    ]},options:chartOpts});
-  const labels7=[],data7=[];
-  for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);labels7.push(d.toLocaleDateString("en-AU",{weekday:"short"}));data7.push(getAllCasual().filter(c=>c.date===d.toISOString().slice(0,10)&&c.category!=="Other").reduce((a,c)=>a+c.amount,0));}
-  destroyChart("casual7");
-  charts.casual7=new Chart(document.getElementById("casualChart"),{type:"line",data:{labels:labels7,datasets:[{data:data7,borderColor:"#E85D8A",backgroundColor:"rgba(232,93,138,0.08)",fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:"#E85D8A"}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>fmt(c.raw)}}},scales:{x:{ticks:{color:"rgba(255,255,255,0.3)",font:{size:11}},grid:{display:false},border:{display:false}},y:{ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}}});
+  document.getElementById("dash-year-label2").textContent=y;
+
+  // Breakdown strip — pill for each revenue type with value and % of total
+  const items=[
+    {label:"MRR",val:mrr,color:"#F4A261"},
+    {label:"Massage",val:massage,color:"#9B3FBF"},
+    {label:"Intro Offer",val:intro,color:"#5DCAA5"},
+    {label:"Casual PT",val:pt,color:"#378ADD"}
+  ];
+  document.getElementById("dash-breakdown-strip").innerHTML=items.map(item=>{
+    const pctOfTotal=total>0?Math.round((item.val/total)*100):0;
+    return '<div style="background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 16px;display:flex;flex-direction:column;gap:4px;min-width:140px;flex:1">'+
+      '<div style="display:flex;align-items:center;gap:7px">'+
+        '<span style="width:10px;height:10px;border-radius:2px;background:'+item.color+';flex-shrink:0;display:inline-block"></span>'+
+        '<span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4)">'+item.label+'</span>'+
+      '</div>'+
+      '<div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:22px;color:#fff">'+fmt(item.val)+'</div>'+
+      '<div style="font-size:11px;color:rgba(255,255,255,0.3)">'+pctOfTotal+'% of total</div>'+
+    '</div>';
+  }).join("");
+
+  // MRR trend chart — orange bars, own axis, no casual mixed in
+  const mrrTrend=[];
+  for(let i=0;i<12;i++) mrrTrend.push(i===m?mrr:getHistoricalMRR(y,i));
+  destroyChart("mrr");
+  charts.mrr=new Chart(document.getElementById("mrrChart"),{type:"bar",data:{labels:MONTHS,datasets:[{label:"MRR",data:mrrTrend,backgroundColor:MONTHS.map((_,i)=>i===m?"rgba(244,162,97,1)":"rgba(244,162,97,0.55)"),borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>"MRR: "+fmt(c.raw)}}},scales:{x:{ticks:{color:"rgba(255,255,255,0.3)",font:{size:10}},grid:{display:false},border:{display:false}},y:{ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}}});
+
+  // Casual mix donut — only show if there's casual data this month
+  destroyChart("donut");
+  const donutData=[massage,intro,pt];
+  const donutLabels=["Massage","Intro Offer","Casual PT"];
+  const donutColors=["rgba(155,63,191,0.85)","rgba(93,202,165,0.85)","rgba(55,138,221,0.85)"];
+  const hasDonut=donutData.some(v=>v>0);
+  if(hasDonut){
+    charts.donut=new Chart(document.getElementById("casualDonutChart"),{type:"doughnut",data:{labels:donutLabels,datasets:[{data:donutData,backgroundColor:donutColors,borderWidth:0,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:"68%",plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+": "+fmt(c.raw)}}}}});
+    document.getElementById("donut-legend").innerHTML=donutLabels.map((l,i)=>donutData[i]>0?
+      '<div style="display:flex;align-items:center;gap:8px">'+
+        '<span style="width:10px;height:10px;border-radius:2px;background:'+donutColors[i]+';flex-shrink:0;display:inline-block"></span>'+
+        '<div><div style="font-size:12px;color:#fff;font-weight:600">'+fmt(donutData[i])+'</div>'+
+        '<div style="font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1px">'+l+'</div></div>'+
+      '</div>':""
+    ).join("");
+  } else {
+    document.getElementById("casualDonutChart").parentElement.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:160px;color:rgba(255,255,255,0.25);font-size:13px">No casual revenue this month yet</div>';
+    document.getElementById("donut-legend").innerHTML="";
+  }
+
+  // Full-width stacked monthly breakdown — 4 segments
   const mrrData=[],massData=[],introData=[],ptData=[];
   for(let i=0;i<12;i++){
     mrrData.push(i===m?mrr:getHistoricalMRR(y,i));
@@ -503,7 +559,7 @@ function renderDashboard(){
     {label:"Massage",data:massData,backgroundColor:"rgba(155,63,191,0.8)",borderRadius:3,borderSkipped:false},
     {label:"Intro",data:introData,backgroundColor:"rgba(93,202,165,0.8)",borderRadius:3,borderSkipped:false},
     {label:"PT",data:ptData,backgroundColor:"rgba(55,138,221,0.8)",borderRadius:3,borderSkipped:false}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+": "+fmt(c.raw)}}},scales:{x:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}}});
+  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:"index",callbacks:{label:c=>c.dataset.label+": "+fmt(c.raw),footer:items=>"Total: "+fmt(items.reduce((a,i)=>a+i.raw,0))}}},scales:{x:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}}});
 }
 
 let clientSort={key:"monthly",dir:-1};
