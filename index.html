@@ -99,7 +99,6 @@ html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:
 .tab-btn{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border:0.5px solid var(--border);background:transparent;color:var(--hint);transition:all 0.15s}
 .tab-btn.active{background:rgba(232,93,138,0.15);border-color:rgba(232,93,138,0.4);color:var(--accent)}
 .inline-input{background:rgba(255,255,255,0.08);border:0.5px solid rgba(232,93,138,0.5);border-radius:4px;color:#fff;font-size:12px;padding:3px 7px;font-family:'Inter',sans-serif;outline:none;width:100%}
-.editable-cell{cursor:pointer}
 .import-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1e1e1e;border:0.5px solid rgba(93,202,165,0.4);border-radius:10px;padding:14px 20px;font-size:13px;color:#5DCAA5;z-index:300;display:none;gap:10px;align-items:center;box-shadow:0 8px 32px rgba(0,0,0,0.5)}
 .import-toast.show{display:flex}
 @media(max-width:700px){.two-col{grid-template-columns:1fr}.sidebar{width:180px}.page{padding:18px}}
@@ -135,36 +134,22 @@ html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:
     <div id="dash-breakdown-strip" style="display:flex;gap:6px;flex-wrap:wrap"></div>
   </div>
   <div class="two-col">
-    <div class="chart-card">
-      <div class="chart-label">MRR trend - <span id="dash-year-label">2026</span></div>
-      <div style="position:relative;height:190px"><canvas id="mrrChart"></canvas></div>
-    </div>
-    <div class="chart-card">
-      <div class="chart-label">Casual mix - this month</div>
-      <div style="display:flex;align-items:center;gap:16px">
-        <div style="position:relative;height:160px;width:160px;flex-shrink:0"><canvas id="casualDonutChart"></canvas></div>
-        <div id="donut-legend" style="display:flex;flex-direction:column;gap:10px"></div>
-      </div>
-    </div>
+    <div class="chart-card"><div class="chart-label">MRR trend - <span id="dash-year-label">2026</span></div><div style="position:relative;height:190px"><canvas id="mrrChart"></canvas></div></div>
+    <div class="chart-card"><div class="chart-label">Casual mix - this month</div><div style="display:flex;align-items:center;gap:16px"><div style="position:relative;height:160px;width:160px;flex-shrink:0"><canvas id="casualDonutChart"></canvas></div><div id="donut-legend" style="display:flex;flex-direction:column;gap:10px"></div></div></div>
   </div>
-  <div class="chart-card">
-    <div class="chart-label">Monthly revenue breakdown - <span id="dash-year-label2">2026</span></div>
-    <div style="position:relative;height:200px"><canvas id="monthlyChart"></canvas></div>
-  </div>
+  <div class="chart-card"><div class="chart-label">Monthly revenue breakdown - <span id="dash-year-label2">2026</span></div><div style="position:relative;height:200px"><canvas id="monthlyChart"></canvas></div></div>
 </div>
 <div class="page" id="page-clients">
   <div class="page-header"><div class="page-title">Clients</div><div style="display:flex;gap:8px"><button class="btn btn-ghost" onclick="toggleChurned()" id="btn-churned"><i class="ti ti-eye"></i>Show Churned</button><button class="btn btn-accent" onclick="openAddClient()"><i class="ti ti-plus"></i>Add client</button></div></div>
   <div class="stat-grid" id="client-stats"></div>
-  <div class="table-card" style="overflow-x:auto">
-    <table class="data-table"><thead><tr>
-      <th style="width:22%;cursor:pointer" onclick="sortClients('name')"><span id="sh-name">Name</span></th>
-      <th style="width:13%;cursor:pointer" onclick="sortClients('tier')"><span id="sh-tier">Tier</span></th>
-      <th style="width:12%;cursor:pointer" onclick="sortClients('monthly')"><span id="sh-monthly">Monthly</span></th>
-      <th style="width:13%;cursor:pointer" onclick="sortClients('startDate')"><span id="sh-startDate">Start</span></th>
-      <th style="width:14%;cursor:pointer" onclick="sortClients('lifetime')"><span id="sh-lifetime">Lifetime</span></th>
-      <th style="width:26%">Actions</th>
-    </tr></thead><tbody id="client-tbody"></tbody></table>
-  </div>
+  <div class="table-card" style="overflow-x:auto"><table class="data-table"><thead><tr>
+    <th style="width:22%;cursor:pointer" onclick="sortClients('name')"><span id="sh-name">Name</span></th>
+    <th style="width:13%;cursor:pointer" onclick="sortClients('tier')"><span id="sh-tier">Tier</span></th>
+    <th style="width:12%;cursor:pointer" onclick="sortClients('monthly')"><span id="sh-monthly">Monthly</span></th>
+    <th style="width:13%;cursor:pointer" onclick="sortClients('startDate')"><span id="sh-startDate">Start</span></th>
+    <th style="width:14%;cursor:pointer" onclick="sortClients('lifetime')"><span id="sh-lifetime">Lifetime</span></th>
+    <th style="width:26%">Actions</th>
+  </tr></thead><tbody id="client-tbody"></tbody></table></div>
 </div>
 <div class="page" id="page-casual">
   <div class="page-header">
@@ -209,21 +194,17 @@ html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:
 </div>
 </div>
 </div>
-
 <div class="modal-back" id="modal-back"><div class="modal" id="modal-content"></div></div>
 <div class="import-toast" id="import-toast"><i class="ti ti-circle-check" style="font-size:18px"></i><span id="import-toast-msg"></span></div>
-
 <script>
-const STORE = "fs47_v5";
-const TARGET = 10000;
-const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-
-const STRIPE_MRR = {
-  2025: [0,0,0,1800,2800,3225,2800,1700,260,2250,2750,3650],
-  2026: [6575,6450,5750,5050,4500,0,0,0,0,0,0,0]
+const STORE="fs47_v5";
+const TARGET=10000;
+const MONTHS=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const STRIPE_MRR={
+  2025:[0,0,0,1800,2800,3225,2800,1700,260,2250,2750,3650],
+  2026:[6575,6450,5750,5050,4500,0,0,0,0,0,0,0]
 };
-
-const SQUARE_CASUAL = [
+const SQUARE_CASUAL=[
   {date:"2025-01-22",time:"12:56",amount:72.61,customer:"Maureen Pound",category:"Casual Massage",note:"",source:"square_csv"},
   {date:"2025-01-22",time:"16:57",amount:89.86,customer:"Mark Stolz",category:"Intro Offer",note:"",source:"square_csv"},
   {date:"2025-01-22",time:"18:32",amount:89.86,customer:"Sam Bury",category:"Intro Offer",note:"",source:"square_csv"},
@@ -376,23 +357,17 @@ const SQUARE_CASUAL = [
   {date:"2026-05-14",time:"13:55",amount:199.0,customer:"James Pattison",category:"Casual PT",note:"",source:"square_csv"},
   {date:"2026-05-20",time:"10:58",amount:110.0,customer:"Adam Cowey",category:"Casual Massage",note:"",source:"square_csv"},
   {date:"2026-05-20",time:"18:57",amount:150.0,customer:"James Pattison",category:"Casual Massage",note:"",source:"square_csv"},
-  {date:"2026-05-21",time:"16:48",amount:99.0,customer:"Jasmin Razmos",category:"Intro Offer",note:"",source:"square_csv"}
+  {date:"2026-05-21",time:"16:48",amount:99.0,customer:"Jasmin Razmos",category:"Intro Offer",note:"",source:"square_csv"},
+  {date:"2026-05-26",time:"17:58",amount:85.0,customer:"Matthew Savelberg",category:"Casual Massage",note:"Family/Friend discount",source:"square_csv"}
 ];
-
-const DEFAULT_EXPENSES = [
-  {name:"Gym rent",amount:500,cat:"Rent"},
-  {name:"GoHighLevel",amount:250,cat:"Software"},
-  {name:"Trainerize",amount:95,cat:"Software"},
-  {name:"Square",amount:40,cat:"Software"},
-  {name:"Claude AI",amount:30,cat:"Software"},
-  {name:"ChatGPT",amount:30,cat:"Software"},
-  {name:"CapCut",amount:30,cat:"Software"},
-  {name:"Notion",amount:25,cat:"Software"},
-  {name:"Google",amount:25,cat:"Software"},
-  {name:"Canva",amount:20,cat:"Software"}
+const DEFAULT_EXPENSES=[
+  {name:"Gym rent",amount:500,cat:"Rent"},{name:"GoHighLevel",amount:250,cat:"Software"},
+  {name:"Trainerize",amount:95,cat:"Software"},{name:"Square",amount:40,cat:"Software"},
+  {name:"Claude AI",amount:30,cat:"Software"},{name:"ChatGPT",amount:30,cat:"Software"},
+  {name:"CapCut",amount:30,cat:"Software"},{name:"Notion",amount:25,cat:"Software"},
+  {name:"Google",amount:25,cat:"Software"},{name:"Canva",amount:20,cat:"Software"}
 ];
-
-const DEFAULT_CLIENTS = [
+const DEFAULT_CLIENTS=[
   {id:1,name:"Shaun Gray",email:"shaun.gray83@gmail.com",tier:"Gold",monthly:1000,startDate:"2026-05-10",notes:"Gold tier. First payment May 2026."},
   {id:2,name:"Richard Simmie",email:"rsimmie54@gmail.com",tier:"Silver",monthly:750,startDate:"2025-10-22",notes:"Silver tier. Was a casual client Feb-Sep 2025 before joining."},
   {id:3,name:"Alexander Pillai",email:"alexander@suitably.com.au",tier:"Silver",monthly:750,startDate:"2025-10-21",notes:"Silver tier. Active since Oct 2025."},
@@ -401,14 +376,14 @@ const DEFAULT_CLIENTS = [
   {id:6,name:"Nikki Onslow",email:"nicole@nicoleonslow.com",tier:"Bronze",monthly:500,startDate:"2025-12-02",notes:"Bronze tier. Active since Dec 2025."},
   {id:7,name:"Jodi Atkinson",email:"jodi@calthorpe.co.nz",tier:"Bronze",monthly:500,startDate:"2026-04-16",notes:"Bronze tier. Active since Apr 2026."},
   {id:8,name:"Michelle Macky",email:"macky.michelle@gmail.com",tier:"Bronze",monthly:500,startDate:"2026-05-08",notes:"Active. $500 May 2026."},
-  {id:9,name:"Doyle Barrow",email:"Doylebarrow@outlook.com",tier:"Bronze",monthly:0,startDate:"2025-04-27",notes:"CHURNED. Was paying varying amounts Apr 2025 - Apr 2026. Re-activation target."},
-  {id:10,name:"Simona Casineanu",email:"simona1103@gmail.com",tier:"Bronze",monthly:0,startDate:"2026-01-27",notes:"CHURNED. Paid $750 Jan-Feb 2026, then $175 x3 weekly Mar-Apr. No May payment."},
+  {id:9,name:"Doyle Barrow",email:"Doylebarrow@outlook.com",tier:"Bronze",monthly:0,startDate:"2025-04-27",notes:"CHURNED. Was paying varying amounts Apr 2025 - Apr 2026."},
+  {id:10,name:"Simona Casineanu",email:"simona1103@gmail.com",tier:"Bronze",monthly:0,startDate:"2026-01-27",notes:"CHURNED. Paid $750 Jan-Feb 2026, then $175 x3 weekly Mar-Apr."},
   {id:11,name:"Tubole G (update name)",email:"gtubole@gmail.com",tier:"Bronze",monthly:0,startDate:"2025-04-27",notes:"CHURNED. Paid $425/mo Apr-Aug 2025."},
   {id:12,name:"John Cook",email:"johncook77@gmail.com",tier:"Bronze",monthly:0,startDate:"2025-12-23",notes:"CHURNED. Paid $650/mo Dec 2025 - Feb 2026."},
   {id:13,name:"Emily Collier",email:"emilyloucollier@gmail.com",tier:"Bronze",monthly:0,startDate:"2025-05-06",notes:"CHURNED. Paid $425/mo May-Aug 2025."},
   {id:14,name:"Michael Murphy",email:"michaelmurphy5646@gmail.com",tier:"Bronze",monthly:0,startDate:"2026-01-14",notes:"CHURNED. Paid $500/mo Jan-Mar 2026."},
   {id:15,name:"Leo Ait Aoudia",email:"Leoaiit@hotmail.fr",tier:"Bronze",monthly:0,startDate:"2026-02-15",notes:"CHURNED. Paid $500 Feb-Mar 2026."},
-  {id:16,name:"Maureen Pound",email:"maureen@maureenpound.com",tier:"Bronze",monthly:0,startDate:"2025-09-02",notes:"CHURNED. Also had large casual PT sessions. Was a Stripe member Sep-Nov 2025."},
+  {id:16,name:"Maureen Pound",email:"maureen@maureenpound.com",tier:"Bronze",monthly:0,startDate:"2025-09-02",notes:"CHURNED. Was a Stripe member Sep-Nov 2025. Regular casual PT."},
   {id:17,name:"Vanessa O Meara",email:"ness_o_@hotmail.com",tier:"Bronze",monthly:0,startDate:"2026-01-15",notes:"CHURNED. Paid $500 Jan 2026. Regular casual massage client."},
   {id:18,name:"Samantha Bury",email:"samanthabury4200@gmail.com",tier:"Bronze",monthly:0,startDate:"2025-05-21",notes:"CHURNED. Paid $150/mo May-Jul 2025."},
   {id:19,name:"Lachlan Potter",email:"Lachlanpotter110@gmail.com",tier:"Bronze",monthly:0,startDate:"2026-06-08",notes:"CHURNED. Paid $425 Jun 2025 only."},
@@ -417,31 +392,21 @@ const DEFAULT_CLIENTS = [
   {id:22,name:"Serge Huber",email:"serge_huber@hotmail.com",tier:"Bronze",monthly:0,startDate:"2026-04-28",notes:"CHURNED. Paid $500 Apr 2026 only."}
 ];
 
-function loadState(){
-  try{const s=localStorage.getItem(STORE);if(s)return JSON.parse(s);}catch(e){}
-  return {clients:DEFAULT_CLIENTS,manualCasual:[],expenses:DEFAULT_EXPENSES,activeYear:2026,showChurned:false};
-}
+function loadState(){try{const s=localStorage.getItem(STORE);if(s)return JSON.parse(s);}catch(e){}return{clients:DEFAULT_CLIENTS,manualCasual:[],expenses:DEFAULT_EXPENSES,activeYear:2026};}
 function save(){try{localStorage.setItem(STORE,JSON.stringify(state));}catch(e){}}
-
 let state=loadState();
 if(!state.expenses){state.expenses=DEFAULT_EXPENSES;save();}
 if(!state.manualCasual){state.manualCasual=[];save();}
-if(state.clients.length<10){
-  const existing=state.clients.map(c=>c.email.toLowerCase());
-  DEFAULT_CLIENTS.forEach(nc=>{if(!existing.includes(nc.email.toLowerCase()))state.clients.push(nc);});
-  save();
-}
-
+if(state.clients.length<10){const existing=state.clients.map(c=>c.email.toLowerCase());DEFAULT_CLIENTS.forEach(nc=>{if(!existing.includes(nc.email.toLowerCase()))state.clients.push(nc);});save();}
 let charts={};
 let activeYear=state.activeYear||2026;
 let casualFilter="all";
 let showChurned=false;
-
 function fmt(n){return "$"+Math.round(n).toLocaleString("en-AU")}
 function fmtD(n){return "$"+(+n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,",")}
 function getMRR(){return state.clients.filter(c=>c.monthly>0).reduce((a,c)=>a+c.monthly,0)}
 function getTotalExp(){return state.expenses.reduce((a,e)=>a+e.amount,0)}
-function getAllCasual(){return [...SQUARE_CASUAL,...state.manualCasual]}
+function getAllCasual(){return[...SQUARE_CASUAL,...state.manualCasual]}
 function getMonthCasual(y,m,cat){
   return getAllCasual().filter(c=>{
     const d=new Date(c.date);
@@ -451,139 +416,62 @@ function getMonthCasual(y,m,cat){
   }).reduce((a,c)=>a+c.amount,0);
 }
 function getHistoricalMRR(y,m){const arr=STRIPE_MRR[y];return arr?(arr[m]||0):0;}
-function getLifetime(c){
-  const ms=Math.max(1,Math.round((new Date()-new Date(c.startDate||"2025-01-01"))/(1000*60*60*24*30.4)));
-  return c.monthly*ms;
-}
+function getLifetime(c){const ms=Math.max(1,Math.round((new Date()-new Date(c.startDate||"2025-01-01"))/(1000*60*60*24*30.4)));return c.monthly*ms;}
 function destroyChart(k){if(charts[k]){charts[k].destroy();delete charts[k];}}
-function tierBadge(t){
-  const map={Gold:"badge-gold",Silver:"badge-silver",Bronze:"badge-bronze","Online + Coaching Call":"badge-online","Online Membership":"badge-online"};
-  return '<span class="badge '+(map[t]||"badge-online")+'">'+t+"</span>";
-}
-function catBadge(cat){
-  if(!cat)return "";
-  const map={"Casual PT":"badge-pt","Casual Massage":"badge-massage","Intro Offer":"badge-intro","Other":"badge-other"};
-  const short={"Casual PT":"PT","Casual Massage":"Massage","Intro Offer":"Intro","Other":"Other"};
-  return '<span class="badge '+(map[cat]||"badge-other")+'">'+(short[cat]||cat)+"</span>";
-}
+function tierBadge(t){const map={Gold:"badge-gold",Silver:"badge-silver",Bronze:"badge-bronze","Online + Coaching Call":"badge-online","Online Membership":"badge-online"};return'<span class="badge '+(map[t]||"badge-online")+'">'+t+"</span>";}
+function catBadge(cat){if(!cat)return"";const map={"Casual PT":"badge-pt","Casual Massage":"badge-massage","Intro Offer":"badge-intro","Other":"badge-other"};const short={"Casual PT":"PT","Casual Massage":"Massage","Intro Offer":"Intro","Other":"Other"};return'<span class="badge '+(map[cat]||"badge-other")+'">'+(short[cat]||cat)+"</span>";}
 
-/* ---- CSV IMPORT ---- */
+function parseCSVLine(line){
+  const result=[];let current="";let inQuotes=false;
+  for(let i=0;i<line.length;i++){const ch=line[i];if(ch==='"'){if(inQuotes&&line[i+1]==='"'){current+='"';i++;}else{inQuotes=!inQuotes;}}else if(ch===','&&!inQuotes){result.push(current);current="";}else{current+=ch;}}
+  result.push(current);return result;
+}
 function parseSquareCSV(text){
-  const lines=text.split('\n');
-  if(lines.length<2)return{added:0,skipped:0,duplicate:0};
-  
-  // Parse header to find column indices
+  const lines=text.split('\n');if(lines.length<2)return{added:0,skipped:0,duplicate:0};
   const headers=parseCSVLine(lines[0]);
-  const col={};
-  headers.forEach((h,i)=>{col[h.trim()]=i;});
-  
-  const required=['Date','Time','Net Sales','Source','Customer Name','Payment ID','Description','Discount Name','Transaction Status'];
-  for(const r of required){
-    if(col[r]===undefined){console.warn('Missing column:',r);}
-  }
-
-  // Build set of existing payment IDs to deduplicate
+  const col={};headers.forEach((h,i)=>{col[h.trim()]=i;});
   const existingIds=new Set(state.manualCasual.filter(c=>c.paymentId).map(c=>c.paymentId));
-
   let added=0,skipped=0,duplicate=0;
-
   for(let i=1;i<lines.length;i++){
-    const line=lines[i].trim();
-    if(!line)continue;
-    const fields=parseCSVLine(line);
-    if(fields.length<5)continue;
-
+    const line=lines[i].trim();if(!line)continue;
+    const fields=parseCSVLine(line);if(fields.length<5)continue;
     const source=(fields[col['Source']]||'').trim();
     const status=(fields[col['Transaction Status']]||'').trim();
     const paymentId=(fields[col['Payment ID']]||'').trim();
-
-    // Skip invoices
     if(source.toLowerCase()==='invoices'){skipped++;continue;}
-    // Skip non-complete
     if(status&&status.toLowerCase()!=='complete'){skipped++;continue;}
-    // Skip duplicates
     if(paymentId&&existingIds.has(paymentId)){duplicate++;continue;}
-
     const dateRaw=(fields[col['Date']]||'').trim();
     const timeRaw=(fields[col['Time']]||'').trim();
     const netSalesRaw=(fields[col['Net Sales']]||'0').replace(/[$,]/g,'');
     const amount=parseFloat(netSalesRaw)||0;
     if(!amount||!dateRaw)continue;
-
     const customerName=(fields[col['Customer Name']]||'').trim()||'Unknown';
     const description=(fields[col['Description']]||'').trim();
     const discountName=(fields[col['Discount Name']]||'').trim();
-
-    // Category mapping
     let category='Casual PT';
-    if(/remedial massage/i.test(description)||/massage/i.test(description)){
-      category='Casual Massage';
-    } else if(/new member offer/i.test(description)||/gym 247/i.test(description)){
-      category='Intro Offer';
-    }
-
-    const note=discountName||'';
-
-    state.manualCasual.push({
-      id:Date.now()+Math.random(),
-      date:dateRaw,
-      time:timeRaw,
-      amount,
-      customer:customerName,
-      category,
-      source:'square_csv_import',
-      note,
-      paymentId
-    });
+    if(/remedial massage/i.test(description)||/massage/i.test(description)){category='Casual Massage';}
+    else if(/new member offer/i.test(description)||/gym 247/i.test(description)){category='Intro Offer';}
+    state.manualCasual.push({id:Date.now()+Math.random(),date:dateRaw,time:timeRaw,amount,customer:customerName,category,source:'square_csv_import',note:discountName||'',paymentId});
     if(paymentId)existingIds.add(paymentId);
     added++;
   }
-
-  save();
-  return{added,skipped,duplicate};
+  save();return{added,skipped,duplicate};
 }
-
-function parseCSVLine(line){
-  const result=[];
-  let current='';
-  let inQuotes=false;
-  for(let i=0;i<line.length;i++){
-    const ch=line[i];
-    if(ch==='"'){
-      if(inQuotes&&line[i+1]==='"'){current+='"';i++;}
-      else{inQuotes=!inQuotes;}
-    } else if(ch===','&&!inQuotes){
-      result.push(current);
-      current='';
-    } else {
-      current+=ch;
-    }
-  }
-  result.push(current);
-  return result;
-}
-
 function handleCSVImport(event){
-  const file=event.target.files[0];
-  if(!file)return;
+  const file=event.target.files[0];if(!file)return;
   const reader=new FileReader();
   reader.onload=function(e){
-    const text=e.target.result;
-    const result=parseSquareCSV(text);
+    const result=parseSquareCSV(e.target.result);
     showToast(result.added+' transactions imported, '+result.duplicate+' duplicates skipped, '+result.skipped+' invoices skipped');
-    renderCasual();
-    renderDashboard();
-    // Reset file input so same file can be re-selected if needed
-    event.target.value='';
+    renderCasual();renderDashboard();event.target.value='';
   };
   reader.readAsText(file);
 }
-
 function showToast(msg){
   const t=document.getElementById('import-toast');
   document.getElementById('import-toast-msg').textContent=msg;
-  t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),4000);
+  t.classList.add('show');setTimeout(()=>t.classList.remove('show'),4000);
 }
 
 function nav(page,el){
@@ -597,165 +485,65 @@ function nav(page,el){
 
 function renderDashboard(){
   const now=new Date(),y=now.getFullYear(),m=now.getMonth();
-  const mrr=getMRR();
-  const massage=getMonthCasual(y,m,"Casual Massage");
-  const intro=getMonthCasual(y,m,"Intro Offer");
-  const pt=getMonthCasual(y,m,"Casual PT");
-  const casual=massage+intro+pt;
-  const total=mrr+casual;
-  const gap=Math.max(0,TARGET-total),pct=Math.min(100,Math.round((total/TARGET)*100));
+  const mrr=getMRR(),massage=getMonthCasual(y,m,"Casual Massage"),intro=getMonthCasual(y,m,"Intro Offer"),pt=getMonthCasual(y,m,"Casual PT");
+  const casual=massage+intro+pt,total=mrr+casual,gap=Math.max(0,TARGET-total),pct=Math.min(100,Math.round((total/TARGET)*100));
   const activeCount=state.clients.filter(c=>c.monthly>0).length;
-
-  let ytd=0;
-  for(let i=0;i<=m;i++){
-    ytd+=(i===m?mrr:getHistoricalMRR(y,i))+getMonthCasual(y,i);
-  }
-  const ytdGap=Math.max(0,120000-ytd);
-  const ytdPct=Math.round((ytd/120000)*100);
-
+  let ytd=0;for(let i=0;i<=m;i++){ytd+=(i===m?mrr:getHistoricalMRR(y,i))+getMonthCasual(y,i);}
+  const ytdGap=Math.max(0,120000-ytd),ytdPct=Math.round((ytd/120000)*100);
   document.getElementById("dash-stats").innerHTML=
     '<div class="stat-card hl"><div class="sl">MRR</div><div class="sv">'+fmt(mrr)+'</div><div class="ss">'+activeCount+' active clients</div></div>'+
     '<div class="stat-card"><div class="sl">Casual</div><div class="sv">'+fmt(casual)+'</div><div class="ss">This month</div></div>'+
     '<div class="stat-card"><div class="sl">Total this month</div><div class="sv">'+fmt(total)+'</div><div class="ss">'+(gap===0?"Target hit!":fmt(gap)+" to go")+'</div></div>'+
     '<div class="stat-card gold-hl"><div class="sl">'+y+' YTD</div><div class="sv">'+fmt(ytd)+'</div><div class="ss">'+ytdPct+'% of $120k annual</div></div>'+
     '<div class="stat-card '+(ytdGap===0?"gold-hl":"")+'"><div class="sl">Annual gap</div><div class="sv">'+(ytdGap===0?"Done!":fmt(ytdGap))+'</div><div class="ss">To $120k target</div></div>';
-
   document.getElementById("goal-pct").textContent=pct+"%";
   document.getElementById("goal-bar").style.width=pct+"%";
   document.getElementById("goal-current").textContent=fmt(total)+" this month";
   document.getElementById("goal-gap").textContent=gap===0?"Target hit!":fmt(gap)+" to go";
   document.getElementById("dash-year-label").textContent=y;
   document.getElementById("dash-year-label2").textContent=y;
-
-  const items=[
-    {label:"MRR",val:mrr,color:"#F4A261"},
-    {label:"Massage",val:massage,color:"#9B3FBF"},
-    {label:"Intro Offer",val:intro,color:"#5DCAA5"},
-    {label:"Casual PT",val:pt,color:"#378ADD"}
-  ];
+  const items=[{label:"MRR",val:mrr,color:"#F4A261"},{label:"Massage",val:massage,color:"#9B3FBF"},{label:"Intro Offer",val:intro,color:"#5DCAA5"},{label:"Casual PT",val:pt,color:"#378ADD"}];
   document.getElementById("dash-breakdown-strip").innerHTML=items.map(item=>{
-    const pctOfTotal=total>0?Math.round((item.val/total)*100):0;
-    return '<div style="background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 16px;display:flex;flex-direction:column;gap:4px;min-width:140px;flex:1">'+
-      '<div style="display:flex;align-items:center;gap:7px">'+
-        '<span style="width:10px;height:10px;border-radius:2px;background:'+item.color+';flex-shrink:0;display:inline-block"></span>'+
-        '<span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4)">'+item.label+'</span>'+
-      '</div>'+
-      '<div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:22px;color:#fff">'+fmt(item.val)+'</div>'+
-      '<div style="font-size:11px;color:rgba(255,255,255,0.3)">'+pctOfTotal+'% of total</div>'+
-    '</div>';
+    const p=total>0?Math.round((item.val/total)*100):0;
+    return '<div style="background:rgba(255,255,255,0.04);border:0.5px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 16px;display:flex;flex-direction:column;gap:4px;min-width:140px;flex:1"><div style="display:flex;align-items:center;gap:7px"><span style="width:10px;height:10px;border-radius:2px;background:'+item.color+';flex-shrink:0;display:inline-block"></span><span style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4)">'+item.label+'</span></div><div style="font-family:Montserrat,sans-serif;font-weight:900;font-size:22px;color:#fff">'+fmt(item.val)+'</div><div style="font-size:11px;color:rgba(255,255,255,0.3)">'+p+'% of total</div></div>';
   }).join("");
-
-  const mrrTrend=[];
-  for(let i=0;i<12;i++) mrrTrend.push(i===m?mrr:getHistoricalMRR(y,i));
+  const mrrTrend=[];for(let i=0;i<12;i++)mrrTrend.push(i===m?mrr:getHistoricalMRR(y,i));
   destroyChart("mrr");
   charts.mrr=new Chart(document.getElementById("mrrChart"),{type:"bar",data:{labels:MONTHS,datasets:[{label:"MRR",data:mrrTrend,backgroundColor:MONTHS.map((_,i)=>i===m?"rgba(244,162,97,1)":"rgba(244,162,97,0.55)"),borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>"MRR: "+fmt(c.raw)}}},scales:{x:{ticks:{color:"rgba(255,255,255,0.3)",font:{size:10}},grid:{display:false},border:{display:false}},y:{ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}}});
-
   destroyChart("donut");
-  const donutData=[massage,intro,pt];
-  const donutLabels=["Massage","Intro Offer","Casual PT"];
-  const donutColors=["rgba(155,63,191,0.85)","rgba(93,202,165,0.85)","rgba(55,138,221,0.85)"];
-  const hasDonut=donutData.some(v=>v>0);
-  if(hasDonut){
-    charts.donut=new Chart(document.getElementById("casualDonutChart"),{type:"doughnut",data:{labels:donutLabels,datasets:[{data:donutData,backgroundColor:donutColors,borderWidth:0,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:"68%",plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+": "+fmt(c.raw)}}}}});
-    document.getElementById("donut-legend").innerHTML=donutLabels.map((l,i)=>donutData[i]>0?
-      '<div style="display:flex;align-items:center;gap:8px">'+
-        '<span style="width:10px;height:10px;border-radius:2px;background:'+donutColors[i]+';flex-shrink:0;display:inline-block"></span>'+
-        '<div><div style="font-size:12px;color:#fff;font-weight:600">'+fmt(donutData[i])+'</div>'+
-        '<div style="font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1px">'+l+'</div></div>'+
-      '</div>':""
-    ).join("");
-  } else {
-    document.getElementById("casualDonutChart").parentElement.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:160px;color:rgba(255,255,255,0.25);font-size:13px">No casual revenue this month yet</div>';
-    document.getElementById("donut-legend").innerHTML="";
-  }
-
-  const mrrData=[],massData=[],introData=[],ptData=[];
-  for(let i=0;i<12;i++){
-    mrrData.push(i===m?mrr:getHistoricalMRR(y,i));
-    massData.push(getMonthCasual(y,i,"Casual Massage"));
-    introData.push(getMonthCasual(y,i,"Intro Offer"));
-    ptData.push(getMonthCasual(y,i,"Casual PT"));
-  }
+  const dD=[massage,intro,pt],dL=["Massage","Intro Offer","Casual PT"],dC=["rgba(155,63,191,0.85)","rgba(93,202,165,0.85)","rgba(55,138,221,0.85)"];
+  if(dD.some(v=>v>0)){
+    charts.donut=new Chart(document.getElementById("casualDonutChart"),{type:"doughnut",data:{labels:dL,datasets:[{data:dD,backgroundColor:dC,borderWidth:0,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:"68%",plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+": "+fmt(c.raw)}}}}});
+    document.getElementById("donut-legend").innerHTML=dL.map((l,i)=>dD[i]>0?'<div style="display:flex;align-items:center;gap:8px"><span style="width:10px;height:10px;border-radius:2px;background:'+dC[i]+';flex-shrink:0;display:inline-block"></span><div><div style="font-size:12px;color:#fff;font-weight:600">'+fmt(dD[i])+'</div><div style="font-size:10px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:1px">'+l+'</div></div></div>':"").join("");
+  }else{document.getElementById("casualDonutChart").parentElement.innerHTML='<div style="display:flex;align-items:center;justify-content:center;height:160px;color:rgba(255,255,255,0.25);font-size:13px">No casual revenue this month yet</div>';document.getElementById("donut-legend").innerHTML="";}
+  const mrrD=[],massD=[],introD=[],ptD=[];
+  for(let i=0;i<12;i++){mrrD.push(i===m?mrr:getHistoricalMRR(y,i));massD.push(getMonthCasual(y,i,"Casual Massage"));introD.push(getMonthCasual(y,i,"Intro Offer"));ptD.push(getMonthCasual(y,i,"Casual PT"));}
   destroyChart("monthly");
-  charts.monthly=new Chart(document.getElementById("monthlyChart"),{type:"bar",data:{labels:MONTHS,datasets:[
-    {label:"MRR",data:mrrData,backgroundColor:"rgba(244,162,97,0.85)",borderRadius:3,borderSkipped:false},
-    {label:"Massage",data:massData,backgroundColor:"rgba(155,63,191,0.8)",borderRadius:3,borderSkipped:false},
-    {label:"Intro",data:introData,backgroundColor:"rgba(93,202,165,0.8)",borderRadius:3,borderSkipped:false},
-    {label:"PT",data:ptData,backgroundColor:"rgba(55,138,221,0.8)",borderRadius:3,borderSkipped:false}
-  ]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:"index",callbacks:{label:c=>c.dataset.label+": "+fmt(c.raw),footer:items=>"Total: "+fmt(items.reduce((a,i)=>a+i.raw,0))}}},scales:{x:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}}});
+  charts.monthly=new Chart(document.getElementById("monthlyChart"),{type:"bar",data:{labels:MONTHS,datasets:[{label:"MRR",data:mrrD,backgroundColor:"rgba(244,162,97,0.85)",borderRadius:3,borderSkipped:false},{label:"Massage",data:massD,backgroundColor:"rgba(155,63,191,0.8)",borderRadius:3,borderSkipped:false},{label:"Intro",data:introD,backgroundColor:"rgba(93,202,165,0.8)",borderRadius:3,borderSkipped:false},{label:"PT",data:ptD,backgroundColor:"rgba(55,138,221,0.8)",borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{mode:"index",callbacks:{label:c=>c.dataset.label+": "+fmt(c.raw),footer:items=>"Total: "+fmt(items.reduce((a,i)=>a+i.raw,0))}}},scales:{x:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}}});
 }
 
 let clientSort={key:"monthly",dir:-1};
-function toggleChurned(){
-  showChurned=!showChurned;
-  document.getElementById("btn-churned").innerHTML=showChurned?"<i class=\"ti ti-eye-off\"></i>Hide Churned":"<i class=\"ti ti-eye\"></i>Show Churned";
-  renderClients();
-}
-function sortClients(key){
-  if(clientSort.key===key){clientSort.dir*=-1;}else{clientSort.key=key;clientSort.dir=key==="name"?1:-1;}
-  renderClients();
-}
+function toggleChurned(){showChurned=!showChurned;document.getElementById("btn-churned").innerHTML=showChurned?'<i class="ti ti-eye-off"></i>Hide Churned':'<i class="ti ti-eye"></i>Show Churned';renderClients();}
+function sortClients(key){if(clientSort.key===key){clientSort.dir*=-1;}else{clientSort.key=key;clientSort.dir=key==="name"?1:-1;}renderClients();}
 function renderClients(){
-  const active=state.clients.filter(c=>c.monthly>0);
-  const churned=state.clients.filter(c=>c.monthly===0);
+  const active=state.clients.filter(c=>c.monthly>0),churned=state.clients.filter(c=>c.monthly===0);
   const mrr=getMRR(),lt=active.reduce((a,c)=>a+getLifetime(c),0);
   document.getElementById("client-stats").innerHTML=
     '<div class="stat-card hl"><div class="sl">Active</div><div class="sv">'+active.length+'</div></div>'+
     '<div class="stat-card"><div class="sl">Total MRR</div><div class="sv">'+fmt(mrr)+'</div></div>'+
     '<div class="stat-card"><div class="sl">Churned</div><div class="sv">'+churned.length+'</div><div class="ss">Re-activation targets</div></div>'+
     '<div class="stat-card gold-hl"><div class="sl">Est. lifetime</div><div class="sv">'+fmt(lt)+'</div><div class="ss">Active clients</div></div>';
-  ["name","tier","monthly","startDate","lifetime"].forEach(k=>{
-    const el=document.getElementById("sh-"+k);if(!el)return;
-    el.style.color=clientSort.key===k?"#E85D8A":"";
-    el.textContent={name:"Name",tier:"Tier",monthly:"Monthly",startDate:"Start",lifetime:"Lifetime"}[k]+(clientSort.key===k?(clientSort.dir===1?" up":" dn"):"");
-  });
+  ["name","tier","monthly","startDate","lifetime"].forEach(k=>{const el=document.getElementById("sh-"+k);if(!el)return;el.style.color=clientSort.key===k?"#E85D8A":"";el.textContent={name:"Name",tier:"Tier",monthly:"Monthly",startDate:"Start",lifetime:"Lifetime"}[k]+(clientSort.key===k?(clientSort.dir===1?" up":" dn"):"");});
   const display=showChurned?state.clients:active;
-  const sorted=[...display].sort((a,b)=>{
-    let av,bv;
-    if(clientSort.key==="lifetime"){av=getLifetime(a);bv=getLifetime(b);}
-    else if(clientSort.key==="name"){av=a.name.toLowerCase();bv=b.name.toLowerCase();}
-    else if(clientSort.key==="startDate"){av=a.startDate||"";bv=b.startDate||"";}
-    else{av=a[clientSort.key];bv=b[clientSort.key];}
-    if(av<bv)return -1*clientSort.dir;if(av>bv)return 1*clientSort.dir;return 0;
-  });
+  const sorted=[...display].sort((a,b)=>{let av,bv;if(clientSort.key==="lifetime"){av=getLifetime(a);bv=getLifetime(b);}else if(clientSort.key==="name"){av=a.name.toLowerCase();bv=b.name.toLowerCase();}else if(clientSort.key==="startDate"){av=a.startDate||"";bv=b.startDate||"";}else{av=a[clientSort.key];bv=b[clientSort.key];}if(av<bv)return -1*clientSort.dir;if(av>bv)return 1*clientSort.dir;return 0;});
   const tb=document.getElementById("client-tbody");
   if(!sorted.length){tb.innerHTML='<tr><td colspan="6"><div class="empty"><i class="ti ti-users"></i>No clients found</div></td></tr>';return;}
-  tb.innerHTML=sorted.map(c=>`
-    <tr style="${c.monthly===0?"opacity:0.5":""}">
-      <td class="td-strong" style="cursor:pointer" onclick="inlineEdit(${c.id},'name',this)">${c.name}${c.monthly===0?' <span class="badge badge-churned">Churned</span>':""}</td>
-      <td>${tierBadge(c.tier)}</td>
-      <td class="td-money" style="cursor:pointer" onclick="inlineEdit(${c.id},'monthly',this)">${c.monthly>0?fmt(c.monthly):"--"}</td>
-      <td style="font-size:11px;color:var(--hint)">${c.startDate?new Date(c.startDate).toLocaleDateString("en-AU",{month:"short",year:"numeric"}):"-"}</td>
-      <td class="td-accent">${c.monthly>0?fmt(getLifetime(c)):"--"}</td>
-      <td>
-        <button class="icon-btn" onclick="toggleNotes(${c.id})" style="margin-right:4px"><i class="ti ti-notes" style="font-size:12px"></i></button>
-        <button class="icon-btn" onclick="openEditClient(${c.id})"><i class="ti ti-edit" style="font-size:12px"></i> Edit</button>
-      </td>
-    </tr>
-    <tr class="notes-row" id="nr-${c.id}">
-      <td colspan="6" style="padding:4px 14px 12px">
-        <div class="notes-content">${c.notes||"<span style=\"opacity:0.4;font-style:italic\">No notes.</span>"}</div>
-      </td>
-    </tr>
-  `).join("");
+  tb.innerHTML=sorted.map(c=>`<tr style="${c.monthly===0?"opacity:0.5":""}"><td class="td-strong" style="cursor:pointer" onclick="inlineEdit(${c.id},'name',this)">${c.name}${c.monthly===0?' <span class="badge badge-churned">Churned</span>':""}</td><td>${tierBadge(c.tier)}</td><td class="td-money" style="cursor:pointer" onclick="inlineEdit(${c.id},'monthly',this)">${c.monthly>0?fmt(c.monthly):"--"}</td><td style="font-size:11px;color:var(--hint)">${c.startDate?new Date(c.startDate).toLocaleDateString("en-AU",{month:"short",year:"numeric"}):"-"}</td><td class="td-accent">${c.monthly>0?fmt(getLifetime(c)):"--"}</td><td><button class="icon-btn" onclick="toggleNotes(${c.id})" style="margin-right:4px"><i class="ti ti-notes" style="font-size:12px"></i></button><button class="icon-btn" onclick="openEditClient(${c.id})"><i class="ti ti-edit" style="font-size:12px"></i> Edit</button></td></tr><tr class="notes-row" id="nr-${c.id}"><td colspan="6" style="padding:4px 14px 12px"><div class="notes-content">${c.notes||'<span style="opacity:0.4;font-style:italic">No notes.</span>'}</div></td></tr>`).join("");
 }
 function toggleNotes(id){const r=document.getElementById("nr-"+id);r.style.display=r.style.display==="table-row"?"none":"table-row";}
-function inlineEdit(id,field,cell){
-  const c=state.clients.find(x=>x.id===id);if(!c)return;
-  const input=document.createElement("input");
-  input.className="inline-input";input.type=field==="monthly"?"number":"text";input.value=c[field];
-  cell.innerHTML="";cell.appendChild(input);input.focus();input.select();
-  const commit=()=>{c[field]=field==="monthly"?parseFloat(input.value)||0:input.value.trim();save();renderClients();};
-  input.addEventListener("blur",commit);
-  input.addEventListener("keydown",e=>{if(e.key==="Enter")commit();if(e.key==="Escape")renderClients();});
-}
+function inlineEdit(id,field,cell){const c=state.clients.find(x=>x.id===id);if(!c)return;const input=document.createElement("input");input.className="inline-input";input.type=field==="monthly"?"number":"text";input.value=c[field];cell.innerHTML="";cell.appendChild(input);input.focus();input.select();const commit=()=>{c[field]=field==="monthly"?parseFloat(input.value)||0:input.value.trim();save();renderClients();};input.addEventListener("blur",commit);input.addEventListener("keydown",e=>{if(e.key==="Enter")commit();if(e.key==="Escape")renderClients();});}
 
-function setCasualFilter(f,btn){
-  casualFilter=f;
-  document.querySelectorAll("#casual-tabs .tab-btn").forEach(b=>b.classList.remove("active"));
-  if(btn)btn.classList.add("active");
-  renderCasualLog();
-}
+function setCasualFilter(f,btn){casualFilter=f;document.querySelectorAll("#casual-tabs .tab-btn").forEach(b=>b.classList.remove("active"));if(btn)btn.classList.add("active");renderCasualLog();}
 function renderCasual(){
   const now=new Date(),y=now.getFullYear(),m=now.getMonth();
   document.getElementById("casual-month-label").textContent=now.toLocaleDateString("en-AU",{month:"long",year:"numeric"});
@@ -775,8 +563,7 @@ function renderCasual(){
   renderCasualLog();
 }
 function renderCasualLog(){
-  const yrSel=document.getElementById("casual-year-select");
-  const selYear=yrSel?yrSel.value:"all";
+  const yrSel=document.getElementById("casual-year-select");const selYear=yrSel?yrSel.value:"all";
   let filtered=getAllCasual();
   if(selYear!=="all"){const yr=parseInt(selYear);filtered=filtered.filter(c=>new Date(c.date).getFullYear()===yr);}
   if(casualFilter!=="all")filtered=filtered.filter(c=>c.category===casualFilter);
@@ -784,14 +571,7 @@ function renderCasualLog(){
   const wrap=document.getElementById("casual-log");
   if(!filtered.length){wrap.innerHTML='<div class="empty"><i class="ti ti-cash"></i>No entries.</div>';return;}
   wrap.innerHTML='<table class="data-table" style="table-layout:auto"><thead><tr><th style="width:88px">Date</th><th style="width:140px">Customer</th><th style="width:90px">Category</th><th style="width:80px">Amount</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody>'+
-    filtered.map(c=>`<tr>
-      <td style="font-size:11px;color:var(--hint)">${new Date(c.date).toLocaleDateString("en-AU",{day:"numeric",month:"short",year:"2-digit"})}</td>
-      <td class="td-strong" style="font-size:12px">${c.customer||"Unknown"}</td>
-      <td>${catBadge(c.category)}</td>
-      <td class="td-money">${fmtD(c.amount)}</td>
-      <td style="font-size:11px;color:var(--hint)">${c.note||""}</td>
-      <td>${(c.source==='manual'||c.source==='square_csv_import')?'<button onclick="deleteCasual('+c.id+')" style="background:none;border:none;color:rgba(255,255,255,0.2);cursor:pointer;padding:2px 4px"><i class="ti ti-trash" style="font-size:13px"></i></button>':'<span style="font-size:9px;color:var(--hint)">CSV</span>'}</td>
-    </tr>`).join("")+
+    filtered.map(c=>`<tr><td style="font-size:11px;color:var(--hint)">${new Date(c.date).toLocaleDateString("en-AU",{day:"numeric",month:"short",year:"2-digit"})}</td><td class="td-strong" style="font-size:12px">${c.customer||"Unknown"}</td><td>${catBadge(c.category)}</td><td class="td-money">${fmtD(c.amount)}</td><td style="font-size:11px;color:var(--hint)">${c.note||""}</td><td>${(c.source==='manual'||c.source==='square_csv_import')?'<button onclick="deleteCasual('+c.id+')" style="background:none;border:none;color:rgba(255,255,255,0.2);cursor:pointer;padding:2px 4px"><i class="ti ti-trash" style="font-size:13px"></i></button>':'<span style="font-size:9px;color:var(--hint)">CSV</span>'}</td></tr>`).join("")+
     '</tbody></table>';
 }
 function deleteCasual(id){state.manualCasual=state.manualCasual.filter(c=>c.id!==id);save();renderCasual();}
@@ -810,19 +590,83 @@ function renderExpenses(){
   charts.exp=new Chart(document.getElementById("expChart"),{type:"doughnut",data:{labels:["Rent","Software"],datasets:[{data:[rentT,swT],backgroundColor:["#E85D8A","#F4A261"],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.label+": "+fmt(c.raw)}}},cutout:"65%"}});
 }
 
-function setYear(y){
-  activeYear=y;state.activeYear=y;save();
-  document.querySelectorAll("[id^=yr-]").forEach(b=>{b.className=b.id==="yr-"+y?"btn btn-accent":"btn btn-ghost";});
-  renderYearly();
-}
+function setYear(y){activeYear=y;state.activeYear=y;save();document.querySelectorAll("[id^=yr-]").forEach(b=>{b.className=b.id==="yr-"+y?"btn btn-accent":"btn btn-ghost";});renderYearly();}
 function renderYearly(){
   document.getElementById("yearly-year-label").textContent=activeYear;
   document.getElementById("yearly-cat-label").textContent=activeYear;
   const mrrData=[],casData=[],ptData=[],massData=[],introData=[];
-  let yearTotal=0;
-  const now=new Date(),curY=now.getFullYear(),curM=now.getMonth();
+  let yearTotal=0;const now=new Date(),curY=now.getFullYear(),curM=now.getMonth();
   for(let i=0;i<12;i++){
     const sM=getHistoricalMRR(activeYear,i);
     const mV=(activeYear===curY&&i===curM)?getMRR():sM;
-    const cas=getMonthCasual(activeYear,i);
-    const pt=getMonthCasual(activeYear,i,"Casu
+    const cas=getMonthCasual(activeYear,i),pt=getMonthCasual(activeYear,i,"Casual PT"),mass=getMonthCasual(activeYear,i,"Casual Massage"),intro=getMonthCasual(activeYear,i,"Intro Offer");
+    mrrData.push(mV);casData.push(cas);ptData.push(pt);massData.push(mass);introData.push(intro);
+    if(activeYear<curY||(activeYear===curY&&i<=curM))yearTotal+=mV+cas;
+  }
+  const mwd=mrrData.filter((v,i)=>{const k=activeYear<curY||(activeYear===curY&&i<=curM);return k&&(v+casData[i])>0;}).length;
+  const avg=mwd>0?yearTotal/mwd:0;
+  document.getElementById("yearly-stats").innerHTML=
+    '<div class="stat-card"><div class="sl">'+activeYear+' total</div><div class="sv">'+fmt(yearTotal)+'</div></div>'+
+    '<div class="stat-card"><div class="sl">Annual target</div><div class="sv">$120,000</div><div class="ss">$10k x 12</div></div>'+
+    '<div class="stat-card hl"><div class="sl">Annual gap</div><div class="sv">'+fmt(Math.max(0,120000-yearTotal))+'</div></div>'+
+    '<div class="stat-card"><div class="sl">Avg monthly</div><div class="sv">'+(avg?fmt(avg):"--")+'</div></div>'+
+    '<div class="stat-card gold-hl"><div class="sl">Projected annual</div><div class="sv">'+(avg?fmt(avg*12):"--")+'</div></div>';
+  destroyChart("yearly");
+  charts.yearly=new Chart(document.getElementById("yearlyChart"),{type:"bar",data:{labels:MONTHS,datasets:[{label:"MRR",data:mrrData,backgroundColor:"rgba(244,162,97,0.8)",borderRadius:4,borderSkipped:false},{label:"Casual",data:casData,backgroundColor:"rgba(232,93,138,0.75)",borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:11}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}}});
+  destroyChart("yearlycat");
+  charts.yearlycat=new Chart(document.getElementById("yearlyCatChart"),{type:"bar",data:{labels:MONTHS,datasets:[{label:"PT",data:ptData,backgroundColor:"rgba(55,138,221,0.75)",borderRadius:3,borderSkipped:false},{label:"Massage",data:massData,backgroundColor:"rgba(155,63,191,0.75)",borderRadius:3,borderSkipped:false},{label:"Intro",data:introData,backgroundColor:"rgba(93,202,165,0.75)",borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:11}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}}});
+  document.getElementById("yearly-tbody").innerHTML=MONTHS.map((mo,i)=>{
+    const m=mrrData[i],pt=ptData[i],mass=massData[i],intro=introData[i],cas=pt+mass+intro,t=m+cas;
+    const diff=t-TARGET,isFuture=activeYear===curY&&i>curM,hasData=t>0;
+    return'<tr '+(isFuture?'style="opacity:0.35"':'')+'>'+
+      '<td>'+mo+' '+activeYear+'</td><td class="td-money">'+(m?fmt(m):"--")+'</td>'+
+      '<td style="color:#378ADD;font-weight:700">'+(pt?fmtD(pt):"--")+'</td>'+
+      '<td style="color:#B06EE0;font-weight:700">'+(mass?fmtD(mass):"--")+'</td>'+
+      '<td style="color:#5DCAA5;font-weight:700">'+(intro?fmtD(intro):"--")+'</td>'+
+      '<td class="td-strong">'+(hasData?fmt(t):"--")+'</td>'+
+      '<td style="color:'+(hasData?(diff>=0?"#5DCAA5":"#E24B4A"):"var(--hint)")+'">'+(hasData?((diff>=0?"+":"")+fmt(diff)):"--")+'</td></tr>';
+  }).join("");
+}
+
+function triggerSync(){if(typeof sendPrompt==="function"){sendPrompt("Please read my Gmail and find all Square daily summary emails from the last 14 days. Extract date and Net Sales from each. Return as DATE|AMOUNT.");}else{alert("Open this dashboard inside a Claude conversation to use Gmail sync.");}}
+function addSyncedEntry(date,amount){const existing=state.manualCasual.find(c=>c.date===date&&c.source==="daily_summary");if(existing){existing.amount=amount;}else{state.manualCasual.push({id:Date.now()+Math.random(),date,amount,category:"manual",source:"daily_summary",note:"Square daily summary"});}save();}
+
+function openModal(html){document.getElementById("modal-content").innerHTML=html;document.getElementById("modal-back").classList.add("open");}
+function closeModal(){document.getElementById("modal-back").classList.remove("open");}
+document.getElementById("modal-back").addEventListener("click",function(e){if(e.target===this)closeModal();});
+
+function openAddClient(){openModal('<div class="modal-title">Add client</div><div class="form-group"><label class="form-label">Name</label><input class="form-input" id="m-name" placeholder="Client name"></div><div class="form-group"><label class="form-label">Email</label><input class="form-input" id="m-email" type="email"></div><div class="form-group"><label class="form-label">Tier</label><select class="form-select" id="m-tier"><option>Gold</option><option>Silver</option><option selected>Bronze</option><option>Online + Coaching Call</option><option>Online Membership</option></select></div><div class="form-group"><label class="form-label">Monthly rate ($AUD)</label><input class="form-input" id="m-monthly" type="number" placeholder="500"></div><div class="form-group"><label class="form-label">Start date</label><input class="form-input" id="m-start" type="date"></div><div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" id="m-notes" placeholder="Goals, injuries, notes..."></textarea></div><div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveNewClient()">Add client</button></div>');}
+function saveNewClient(){const name=document.getElementById("m-name").value.trim();if(!name)return;state.clients.push({id:Date.now(),name,email:document.getElementById("m-email").value.trim(),tier:document.getElementById("m-tier").value,monthly:parseFloat(document.getElementById("m-monthly").value)||0,startDate:document.getElementById("m-start").value,notes:document.getElementById("m-notes").value.trim()});save();closeModal();renderClients();}
+function openEditClient(id){
+  const c=state.clients.find(x=>x.id===id);if(!c)return;
+  openModal('<div class="modal-title">Edit - '+c.name+'</div><div class="form-group"><label class="form-label">Name</label><input class="form-input" id="m-name" value="'+c.name+'"></div><div class="form-group"><label class="form-label">Email</label><input class="form-input" id="m-email" type="email" value="'+(c.email||"")+'"></div><div class="form-group"><label class="form-label">Tier</label><select class="form-select" id="m-tier">'+["Gold","Silver","Bronze","Online + Coaching Call","Online Membership"].map(t=>'<option '+(t===c.tier?"selected":"")+">"+t+"</option>").join("")+"</select></div>"+
+  '<div class="form-group"><label class="form-label">Monthly rate (0 if churned)</label><input class="form-input" id="m-monthly" type="number" value="'+c.monthly+'"></div><div class="form-group"><label class="form-label">Start date</label><input class="form-input" id="m-start" type="date" value="'+(c.startDate||"")+'"></div><div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" id="m-notes">'+(c.notes||"")+'</textarea></div><div class="modal-actions"><button class="btn btn-danger" onclick="deleteClient('+id+')">Delete</button><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveEditClient('+id+')">Save</button></div>');
+}
+function saveEditClient(id){const c=state.clients.find(x=>x.id===id);if(!c)return;c.name=document.getElementById("m-name").value.trim();c.email=document.getElementById("m-email").value.trim();c.tier=document.getElementById("m-tier").value;c.monthly=parseFloat(document.getElementById("m-monthly").value)||0;c.startDate=document.getElementById("m-start").value;c.notes=document.getElementById("m-notes").value.trim();save();closeModal();renderClients();}
+function deleteClient(id){if(!confirm("Remove this client?"))return;state.clients=state.clients.filter(c=>c.id!==id);save();closeModal();renderClients();}
+function openAddCasual(){openModal('<div class="modal-title">Add casual entry</div><div class="form-group"><label class="form-label">Date</label><input class="form-input" id="m-date" type="date" value="'+new Date().toISOString().slice(0,10)+'"></div><div class="form-group"><label class="form-label">Amount ($AUD net)</label><input class="form-input" id="m-amount" type="number" step="0.01" placeholder="110.00"></div><div class="form-group"><label class="form-label">Customer</label><input class="form-input" id="m-cust" placeholder="Name"></div><div class="form-group"><label class="form-label">Category</label><select class="form-select" id="m-cat"><option value="Intro Offer">Intro Offer</option><option value="Casual PT">Casual PT</option><option value="Casual Massage">Casual Massage</option><option value="Other">Other</option></select></div><div class="form-group"><label class="form-label">Notes</label><input class="form-input" id="m-note" placeholder="Optional notes..."></div><div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveNewCasual()">Add entry</button></div>');}
+function saveNewCasual(){const amount=parseFloat(document.getElementById("m-amount").value)||0;if(!amount)return;state.manualCasual.push({id:Date.now(),date:document.getElementById("m-date").value,amount,customer:document.getElementById("m-cust").value.trim(),category:document.getElementById("m-cat").value,source:"manual",note:document.getElementById("m-note").value.trim()});save();closeModal();renderCasual();}
+function openEditExpenses(){
+  const rows=state.expenses.map((e,i)=>'<div style="display:flex;gap:10px;align-items:center;margin-bottom:8px"><input class="form-input" id="exp-name-'+i+'" value="'+e.name+'" style="flex:2"><input class="form-input" id="exp-amt-'+i+'" type="number" value="'+e.amount+'" style="flex:1;max-width:90px"><button onclick="removeExpense('+i+')" style="background:none;border:none;color:rgba(226,75,74,0.6);cursor:pointer;font-size:18px;padding:4px">x</button></div>').join("");
+  openModal('<div class="modal-title">Edit Expenses</div><div id="exp-edit-rows">'+rows+'</div><button class="btn btn-ghost" style="width:100%;margin-top:8px" onclick="addExpenseRow()"><i class="ti ti-plus"></i>Add row</button><div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveExpenses()">Save</button></div>');
+}
+function saveExpenses(){const rows=document.querySelectorAll("[id^=exp-name-]");state.expenses=[];rows.forEach((el,i)=>{const name=el.value.trim(),amount=parseFloat(document.getElementById("exp-amt-"+i).value)||0;if(name)state.expenses.push({name,amount,cat:name==="Gym rent"?"Rent":"Software"});});save();closeModal();renderExpenses();}
+function removeExpense(i){state.expenses.splice(i,1);save();openEditExpenses();}
+function addExpenseRow(){state.expenses.push({name:"New expense",amount:0,cat:"Software"});openEditExpenses();}
+
+// Expose all functions to global scope so inline onclick handlers work
+window.nav=nav;window.triggerSync=triggerSync;window.toggleChurned=toggleChurned;
+window.sortClients=sortClients;window.toggleNotes=toggleNotes;window.inlineEdit=inlineEdit;
+window.openAddClient=openAddClient;window.saveNewClient=saveNewClient;
+window.openEditClient=openEditClient;window.saveEditClient=saveEditClient;window.deleteClient=deleteClient;
+window.setCasualFilter=setCasualFilter;window.deleteCasual=deleteCasual;
+window.openAddCasual=openAddCasual;window.saveNewCasual=saveNewCasual;
+window.handleCSVImport=handleCSVImport;window.openEditExpenses=openEditExpenses;
+window.saveExpenses=saveExpenses;window.removeExpense=removeExpense;window.addExpenseRow=addExpenseRow;
+window.setYear=setYear;window.closeModal=closeModal;window.addSyncedEntry=addSyncedEntry;
+
+renderDashboard();
+setYear(activeYear);
+</script>
+</body>
+</html>
