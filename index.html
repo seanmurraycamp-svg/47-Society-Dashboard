@@ -53,9 +53,6 @@ html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:
 .progress-meta{display:flex;justify-content:space-between;margin-top:8px;font-size:11px;color:var(--hint)}
 .chart-card{background:var(--surface);border:0.5px solid var(--border);border-radius:10px;padding:18px;margin-bottom:20px}
 .chart-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--hint);margin-bottom:14px}
-.chart-legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px}
-.legend-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--muted)}
-.legend-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
 .table-card{background:var(--surface);border:0.5px solid var(--border);border-radius:10px;overflow:hidden;margin-bottom:20px}
 .data-table{width:100%;border-collapse:collapse;table-layout:fixed}
 .data-table th{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.2);padding:10px 14px;border-bottom:0.5px solid var(--border);text-align:left}
@@ -103,6 +100,8 @@ html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:
 .tab-btn.active{background:rgba(232,93,138,0.15);border-color:rgba(232,93,138,0.4);color:var(--accent)}
 .inline-input{background:rgba(255,255,255,0.08);border:0.5px solid rgba(232,93,138,0.5);border-radius:4px;color:#fff;font-size:12px;padding:3px 7px;font-family:'Inter',sans-serif;outline:none;width:100%}
 .editable-cell{cursor:pointer}
+.import-toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#1e1e1e;border:0.5px solid rgba(93,202,165,0.4);border-radius:10px;padding:14px 20px;font-size:13px;color:#5DCAA5;z-index:300;display:none;gap:10px;align-items:center;box-shadow:0 8px 32px rgba(0,0,0,0.5)}
+.import-toast.show{display:flex}
 @media(max-width:700px){.two-col{grid-template-columns:1fr}.sidebar{width:180px}.page{padding:18px}}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
 </style>
@@ -168,7 +167,14 @@ html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:
   </div>
 </div>
 <div class="page" id="page-casual">
-  <div class="page-header"><div class="page-title">Casual Revenue</div><button class="btn btn-accent" onclick="openAddCasual()"><i class="ti ti-plus"></i>Add manual</button></div>
+  <div class="page-header">
+    <div class="page-title">Casual Revenue</div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-ghost" onclick="document.getElementById('csv-file-input').click()"><i class="ti ti-upload"></i>Import CSV</button>
+      <button class="btn btn-accent" onclick="openAddCasual()"><i class="ti ti-plus"></i>Add manual</button>
+    </div>
+  </div>
+  <input type="file" id="csv-file-input" accept=".csv" style="display:none" onchange="handleCSVImport(event)">
   <div class="stat-grid" id="casual-stats"></div>
   <div class="tab-row" id="casual-tabs">
     <button class="tab-btn active" onclick="setCasualFilter('all',this)">All</button>
@@ -203,7 +209,10 @@ html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:
 </div>
 </div>
 </div>
+
 <div class="modal-back" id="modal-back"><div class="modal" id="modal-content"></div></div>
+<div class="import-toast" id="import-toast"><i class="ti ti-circle-check" style="font-size:18px"></i><span id="import-toast-msg"></span></div>
+
 <script>
 const STORE = "fs47_v5";
 const TARGET = 10000;
@@ -402,7 +411,7 @@ const DEFAULT_CLIENTS = [
   {id:16,name:"Maureen Pound",email:"maureen@maureenpound.com",tier:"Bronze",monthly:0,startDate:"2025-09-02",notes:"CHURNED. Also had large casual PT sessions. Was a Stripe member Sep-Nov 2025."},
   {id:17,name:"Vanessa O Meara",email:"ness_o_@hotmail.com",tier:"Bronze",monthly:0,startDate:"2026-01-15",notes:"CHURNED. Paid $500 Jan 2026. Regular casual massage client."},
   {id:18,name:"Samantha Bury",email:"samanthabury4200@gmail.com",tier:"Bronze",monthly:0,startDate:"2025-05-21",notes:"CHURNED. Paid $150/mo May-Jul 2025."},
-  {id:19,name:"Lachlan Potter",email:"Lachlanpotter110@gmail.com",tier:"Bronze",monthly:0,startDate:"2025-06-08",notes:"CHURNED. Paid $425 Jun 2025 only."},
+  {id:19,name:"Lachlan Potter",email:"Lachlanpotter110@gmail.com",tier:"Bronze",monthly:0,startDate:"2026-06-08",notes:"CHURNED. Paid $425 Jun 2025 only."},
   {id:20,name:"Leigh Henry",email:"leighjghenry@gmail.com",tier:"Bronze",monthly:0,startDate:"2025-05-27",notes:"CHURNED. Paid $425 May 2025 only."},
   {id:21,name:"Sarah Clayton",email:"sarahclayton.film@gmail.com",tier:"Bronze",monthly:0,startDate:"2026-01-13",notes:"CHURNED. Paid $300 Jan 2026."},
   {id:22,name:"Serge Huber",email:"serge_huber@hotmail.com",tier:"Bronze",monthly:0,startDate:"2026-04-28",notes:"CHURNED. Paid $500 Apr 2026 only."}
@@ -458,6 +467,125 @@ function catBadge(cat){
   return '<span class="badge '+(map[cat]||"badge-other")+'">'+(short[cat]||cat)+"</span>";
 }
 
+/* ---- CSV IMPORT ---- */
+function parseSquareCSV(text){
+  const lines=text.split('\n');
+  if(lines.length<2)return{added:0,skipped:0,duplicate:0};
+  
+  // Parse header to find column indices
+  const headers=parseCSVLine(lines[0]);
+  const col={};
+  headers.forEach((h,i)=>{col[h.trim()]=i;});
+  
+  const required=['Date','Time','Net Sales','Source','Customer Name','Payment ID','Description','Discount Name','Transaction Status'];
+  for(const r of required){
+    if(col[r]===undefined){console.warn('Missing column:',r);}
+  }
+
+  // Build set of existing payment IDs to deduplicate
+  const existingIds=new Set(state.manualCasual.filter(c=>c.paymentId).map(c=>c.paymentId));
+
+  let added=0,skipped=0,duplicate=0;
+
+  for(let i=1;i<lines.length;i++){
+    const line=lines[i].trim();
+    if(!line)continue;
+    const fields=parseCSVLine(line);
+    if(fields.length<5)continue;
+
+    const source=(fields[col['Source']]||'').trim();
+    const status=(fields[col['Transaction Status']]||'').trim();
+    const paymentId=(fields[col['Payment ID']]||'').trim();
+
+    // Skip invoices
+    if(source.toLowerCase()==='invoices'){skipped++;continue;}
+    // Skip non-complete
+    if(status&&status.toLowerCase()!=='complete'){skipped++;continue;}
+    // Skip duplicates
+    if(paymentId&&existingIds.has(paymentId)){duplicate++;continue;}
+
+    const dateRaw=(fields[col['Date']]||'').trim();
+    const timeRaw=(fields[col['Time']]||'').trim();
+    const netSalesRaw=(fields[col['Net Sales']]||'0').replace(/[$,]/g,'');
+    const amount=parseFloat(netSalesRaw)||0;
+    if(!amount||!dateRaw)continue;
+
+    const customerName=(fields[col['Customer Name']]||'').trim()||'Unknown';
+    const description=(fields[col['Description']]||'').trim();
+    const discountName=(fields[col['Discount Name']]||'').trim();
+
+    // Category mapping
+    let category='Casual PT';
+    if(/remedial massage/i.test(description)||/massage/i.test(description)){
+      category='Casual Massage';
+    } else if(/new member offer/i.test(description)||/gym 247/i.test(description)){
+      category='Intro Offer';
+    }
+
+    const note=discountName||'';
+
+    state.manualCasual.push({
+      id:Date.now()+Math.random(),
+      date:dateRaw,
+      time:timeRaw,
+      amount,
+      customer:customerName,
+      category,
+      source:'square_csv_import',
+      note,
+      paymentId
+    });
+    if(paymentId)existingIds.add(paymentId);
+    added++;
+  }
+
+  save();
+  return{added,skipped,duplicate};
+}
+
+function parseCSVLine(line){
+  const result=[];
+  let current='';
+  let inQuotes=false;
+  for(let i=0;i<line.length;i++){
+    const ch=line[i];
+    if(ch==='"'){
+      if(inQuotes&&line[i+1]==='"'){current+='"';i++;}
+      else{inQuotes=!inQuotes;}
+    } else if(ch===','&&!inQuotes){
+      result.push(current);
+      current='';
+    } else {
+      current+=ch;
+    }
+  }
+  result.push(current);
+  return result;
+}
+
+function handleCSVImport(event){
+  const file=event.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(e){
+    const text=e.target.result;
+    const result=parseSquareCSV(text);
+    showToast(result.added+' transactions imported, '+result.duplicate+' duplicates skipped, '+result.skipped+' invoices skipped');
+    renderCasual();
+    renderDashboard();
+    // Reset file input so same file can be re-selected if needed
+    event.target.value='';
+  };
+  reader.readAsText(file);
+}
+
+function showToast(msg){
+  const t=document.getElementById('import-toast');
+  document.getElementById('import-toast-msg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),4000);
+}
+
 function nav(page,el){
   document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
   document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));
@@ -478,7 +606,6 @@ function renderDashboard(){
   const gap=Math.max(0,TARGET-total),pct=Math.min(100,Math.round((total/TARGET)*100));
   const activeCount=state.clients.filter(c=>c.monthly>0).length;
 
-  // YTD total across Stripe MRR + Square casual
   let ytd=0;
   for(let i=0;i<=m;i++){
     ytd+=(i===m?mrr:getHistoricalMRR(y,i))+getMonthCasual(y,i);
@@ -500,7 +627,6 @@ function renderDashboard(){
   document.getElementById("dash-year-label").textContent=y;
   document.getElementById("dash-year-label2").textContent=y;
 
-  // Breakdown strip — pill for each revenue type with value and % of total
   const items=[
     {label:"MRR",val:mrr,color:"#F4A261"},
     {label:"Massage",val:massage,color:"#9B3FBF"},
@@ -519,13 +645,11 @@ function renderDashboard(){
     '</div>';
   }).join("");
 
-  // MRR trend chart — orange bars, own axis, no casual mixed in
   const mrrTrend=[];
   for(let i=0;i<12;i++) mrrTrend.push(i===m?mrr:getHistoricalMRR(y,i));
   destroyChart("mrr");
   charts.mrr=new Chart(document.getElementById("mrrChart"),{type:"bar",data:{labels:MONTHS,datasets:[{label:"MRR",data:mrrTrend,backgroundColor:MONTHS.map((_,i)=>i===m?"rgba(244,162,97,1)":"rgba(244,162,97,0.55)"),borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>"MRR: "+fmt(c.raw)}}},scales:{x:{ticks:{color:"rgba(255,255,255,0.3)",font:{size:10}},grid:{display:false},border:{display:false}},y:{ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}}});
 
-  // Casual mix donut — only show if there's casual data this month
   destroyChart("donut");
   const donutData=[massage,intro,pt];
   const donutLabels=["Massage","Intro Offer","Casual PT"];
@@ -545,7 +669,6 @@ function renderDashboard(){
     document.getElementById("donut-legend").innerHTML="";
   }
 
-  // Full-width stacked monthly breakdown — 4 segments
   const mrrData=[],massData=[],introData=[],ptData=[];
   for(let i=0;i<12;i++){
     mrrData.push(i===m?mrr:getHistoricalMRR(y,i));
@@ -583,9 +706,8 @@ function renderClients(){
     '<div class="stat-card gold-hl"><div class="sl">Est. lifetime</div><div class="sv">'+fmt(lt)+'</div><div class="ss">Active clients</div></div>';
   ["name","tier","monthly","startDate","lifetime"].forEach(k=>{
     const el=document.getElementById("sh-"+k);if(!el)return;
-    const arrow=clientSort.key===k?(clientSort.dir===1?" up":" dn"):"";
     el.style.color=clientSort.key===k?"#E85D8A":"";
-    el.textContent={name:"Name",tier:"Tier",monthly:"Monthly",startDate:"Start",lifetime:"Lifetime"}[k]+(clientSort.key===k?(clientSort.dir===1?" ↑":" ↓"):"");
+    el.textContent={name:"Name",tier:"Tier",monthly:"Monthly",startDate:"Start",lifetime:"Lifetime"}[k]+(clientSort.key===k?(clientSort.dir===1?" up":" dn"):"");
   });
   const display=showChurned?state.clients:active;
   const sorted=[...display].sort((a,b)=>{
@@ -668,7 +790,7 @@ function renderCasualLog(){
       <td>${catBadge(c.category)}</td>
       <td class="td-money">${fmtD(c.amount)}</td>
       <td style="font-size:11px;color:var(--hint)">${c.note||""}</td>
-      <td>${c.source==="manual"?'<button onclick="deleteCasual('+c.id+')" style="background:none;border:none;color:rgba(255,255,255,0.2);cursor:pointer;padding:2px 4px"><i class="ti ti-trash" style="font-size:13px"></i></button>':'<span style="font-size:9px;color:var(--hint)">CSV</span>'}</td>
+      <td>${(c.source==='manual'||c.source==='square_csv_import')?'<button onclick="deleteCasual('+c.id+')" style="background:none;border:none;color:rgba(255,255,255,0.2);cursor:pointer;padding:2px 4px"><i class="ti ti-trash" style="font-size:13px"></i></button>':'<span style="font-size:9px;color:var(--hint)">CSV</span>'}</td>
     </tr>`).join("")+
     '</tbody></table>';
 }
@@ -703,124 +825,4 @@ function renderYearly(){
     const sM=getHistoricalMRR(activeYear,i);
     const mV=(activeYear===curY&&i===curM)?getMRR():sM;
     const cas=getMonthCasual(activeYear,i);
-    const pt=getMonthCasual(activeYear,i,"Casual PT");
-    const mass=getMonthCasual(activeYear,i,"Casual Massage");
-    const intro=getMonthCasual(activeYear,i,"Intro Offer");
-    mrrData.push(mV);casData.push(cas);ptData.push(pt);massData.push(mass);introData.push(intro);
-    if(activeYear<curY||(activeYear===curY&&i<=curM))yearTotal+=mV+cas;
-  }
-  const mwd=mrrData.filter((v,i)=>{const k=activeYear<curY||(activeYear===curY&&i<=curM);return k&&(v+casData[i])>0;}).length;
-  const avg=mwd>0?yearTotal/mwd:0;
-  document.getElementById("yearly-stats").innerHTML=
-    '<div class="stat-card"><div class="sl">'+activeYear+' total</div><div class="sv">'+fmt(yearTotal)+'</div></div>'+
-    '<div class="stat-card"><div class="sl">Annual target</div><div class="sv">$120,000</div><div class="ss">$10k x 12</div></div>'+
-    '<div class="stat-card hl"><div class="sl">Annual gap</div><div class="sv">'+fmt(Math.max(0,120000-yearTotal))+'</div></div>'+
-    '<div class="stat-card"><div class="sl">Avg monthly</div><div class="sv">'+(avg?fmt(avg):"--")+'</div></div>'+
-    '<div class="stat-card gold-hl"><div class="sl">Projected annual</div><div class="sv">'+(avg?fmt(avg*12):"--")+'</div></div>';
-  destroyChart("yearly");
-  charts.yearly=new Chart(document.getElementById("yearlyChart"),{type:"bar",data:{labels:MONTHS,datasets:[{label:"MRR",data:mrrData,backgroundColor:"rgba(244,162,97,0.8)",borderRadius:4,borderSkipped:false},{label:"Casual",data:casData,backgroundColor:"rgba(232,93,138,0.75)",borderRadius:4,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+": "+fmt(c.raw)}}},scales:{x:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:11}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}}});
-  destroyChart("yearlycat");
-  charts.yearlycat=new Chart(document.getElementById("yearlyCatChart"),{type:"bar",data:{labels:MONTHS,datasets:[{label:"Casual PT",data:ptData,backgroundColor:"rgba(55,138,221,0.75)",borderRadius:3,borderSkipped:false},{label:"Massage",data:massData,backgroundColor:"rgba(155,63,191,0.75)",borderRadius:3,borderSkipped:false},{label:"Intro",data:introData,backgroundColor:"rgba(93,202,165,0.75)",borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.dataset.label+": "+fmt(c.raw)}}},scales:{x:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:11}},grid:{display:false},border:{display:false}},y:{stacked:true,ticks:{color:"rgba(255,255,255,0.3)",font:{size:10},callback:v=>fmt(v)},grid:{color:"rgba(255,255,255,0.05)"},border:{display:false}}}}});
-  document.getElementById("yearly-tbody").innerHTML=MONTHS.map((mo,i)=>{
-    const m=mrrData[i],pt=ptData[i],mass=massData[i],intro=introData[i],cas=pt+mass+intro,t=m+cas;
-    const diff=t-TARGET,isFuture=activeYear===curY&&i>curM,hasData=t>0;
-    return '<tr '+(isFuture?'style="opacity:0.35"':'')+'>'+
-      '<td>'+mo+' '+activeYear+'</td>'+
-      '<td class="td-money">'+(m?fmt(m):"--")+'</td>'+
-      '<td style="color:#378ADD;font-weight:700">'+(pt?fmtD(pt):"--")+'</td>'+
-      '<td style="color:#B06EE0;font-weight:700">'+(mass?fmtD(mass):"--")+'</td>'+
-      '<td style="color:#5DCAA5;font-weight:700">'+(intro?fmtD(intro):"--")+'</td>'+
-      '<td class="td-strong">'+(hasData?fmt(t):"--")+'</td>'+
-      '<td style="color:'+(hasData?(diff>=0?"#5DCAA5":"#E24B4A"):"var(--hint)")+'">'+(hasData?((diff>=0?"+":"")+fmt(diff)):"--")+'</td>'+
-    '</tr>';
-  }).join("");
-}
-
-function triggerSync(){
-  if(typeof sendPrompt==="function"){sendPrompt("Please read my Gmail and find all Square daily summary emails from the last 14 days. Extract date and Net Sales from each. Return as DATE|AMOUNT.");}
-  else{alert("Open this dashboard inside a Claude conversation to use Gmail sync.");}
-}
-function addSyncedEntry(date,amount){
-  const existing=state.manualCasual.find(c=>c.date===date&&c.source==="daily_summary");
-  if(existing){existing.amount=amount;}
-  else{state.manualCasual.push({id:Date.now()+Math.random(),date,amount,category:"manual",source:"daily_summary",note:"Square daily summary"});}
-  save();
-}
-
-function openModal(html){document.getElementById("modal-content").innerHTML=html;document.getElementById("modal-back").classList.add("open");}
-function closeModal(){document.getElementById("modal-back").classList.remove("open");}
-document.getElementById("modal-back").addEventListener("click",function(e){if(e.target===this)closeModal();});
-
-function openAddClient(){
-  openModal('<div class="modal-title">Add client</div>'+
-    '<div class="form-group"><label class="form-label">Name</label><input class="form-input" id="m-name" placeholder="Client name"></div>'+
-    '<div class="form-group"><label class="form-label">Email</label><input class="form-input" id="m-email" type="email"></div>'+
-    '<div class="form-group"><label class="form-label">Tier</label><select class="form-select" id="m-tier"><option>Gold</option><option>Silver</option><option selected>Bronze</option><option>Online + Coaching Call</option><option>Online Membership</option></select></div>'+
-    '<div class="form-group"><label class="form-label">Monthly rate ($AUD)</label><input class="form-input" id="m-monthly" type="number" placeholder="500"></div>'+
-    '<div class="form-group"><label class="form-label">Start date</label><input class="form-input" id="m-start" type="date"></div>'+
-    '<div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" id="m-notes" placeholder="Goals, injuries, notes..."></textarea></div>'+
-    '<div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveNewClient()">Add client</button></div>');
-}
-function saveNewClient(){
-  const name=document.getElementById("m-name").value.trim();if(!name)return;
-  state.clients.push({id:Date.now(),name,email:document.getElementById("m-email").value.trim(),tier:document.getElementById("m-tier").value,monthly:parseFloat(document.getElementById("m-monthly").value)||0,startDate:document.getElementById("m-start").value,notes:document.getElementById("m-notes").value.trim()});
-  save();closeModal();renderClients();
-}
-function openEditClient(id){
-  const c=state.clients.find(x=>x.id===id);if(!c)return;
-  openModal('<div class="modal-title">Edit - '+c.name+'</div>'+
-    '<div class="form-group"><label class="form-label">Name</label><input class="form-input" id="m-name" value="'+c.name+'"></div>'+
-    '<div class="form-group"><label class="form-label">Email</label><input class="form-input" id="m-email" type="email" value="'+(c.email||"")+'"></div>'+
-    '<div class="form-group"><label class="form-label">Tier</label><select class="form-select" id="m-tier">'+["Gold","Silver","Bronze","Online + Coaching Call","Online Membership"].map(t=>'<option '+(t===c.tier?"selected":"")+">"+t+"</option>").join("")+"</select></div>"+
-    '<div class="form-group"><label class="form-label">Monthly rate (0 if churned)</label><input class="form-input" id="m-monthly" type="number" value="'+c.monthly+'"></div>'+
-    '<div class="form-group"><label class="form-label">Start date</label><input class="form-input" id="m-start" type="date" value="'+(c.startDate||"")+'"></div>'+
-    '<div class="form-group"><label class="form-label">Notes</label><textarea class="form-textarea" id="m-notes">'+(c.notes||"")+'</textarea></div>'+
-    '<div class="modal-actions"><button class="btn btn-danger" onclick="deleteClient('+id+')">Delete</button><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveEditClient('+id+')">Save</button></div>');
-}
-function saveEditClient(id){
-  const c=state.clients.find(x=>x.id===id);if(!c)return;
-  c.name=document.getElementById("m-name").value.trim();
-  c.email=document.getElementById("m-email").value.trim();
-  c.tier=document.getElementById("m-tier").value;
-  c.monthly=parseFloat(document.getElementById("m-monthly").value)||0;
-  c.startDate=document.getElementById("m-start").value;
-  c.notes=document.getElementById("m-notes").value.trim();
-  save();closeModal();renderClients();
-}
-function deleteClient(id){
-  if(!confirm("Remove this client?"))return;
-  state.clients=state.clients.filter(c=>c.id!==id);
-  save();closeModal();renderClients();
-}
-function openAddCasual(){
-  openModal('<div class="modal-title">Add casual entry</div>'+
-    '<div class="form-group"><label class="form-label">Date</label><input class="form-input" id="m-date" type="date" value="'+new Date().toISOString().slice(0,10)+'"></div>'+
-    '<div class="form-group"><label class="form-label">Amount ($AUD net)</label><input class="form-input" id="m-amount" type="number" step="0.01" placeholder="110.00"></div>'+
-    '<div class="form-group"><label class="form-label">Customer</label><input class="form-input" id="m-cust" placeholder="Name"></div>'+
-    '<div class="form-group"><label class="form-label">Category</label><select class="form-select" id="m-cat"><option value="Intro Offer">Intro Offer</option><option value="Casual PT">Casual PT</option><option value="Casual Massage">Casual Massage</option><option value="Other">Other</option></select></div>'+
-    '<div class="form-group"><label class="form-label">Notes</label><input class="form-input" id="m-note" placeholder="Optional notes..."></div>'+
-    '<div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveNewCasual()">Add entry</button></div>');
-}
-function saveNewCasual(){
-  const amount=parseFloat(document.getElementById("m-amount").value)||0;if(!amount)return;
-  state.manualCasual.push({id:Date.now(),date:document.getElementById("m-date").value,amount,customer:document.getElementById("m-cust").value.trim(),category:document.getElementById("m-cat").value,source:"manual",note:document.getElementById("m-note").value.trim()});
-  save();closeModal();renderCasual();
-}
-function openEditExpenses(){
-  const rows=state.expenses.map((e,i)=>'<div style="display:flex;gap:10px;align-items:center;margin-bottom:8px"><input class="form-input" id="exp-name-'+i+'" value="'+e.name+'" style="flex:2"><input class="form-input" id="exp-amt-'+i+'" type="number" value="'+e.amount+'" style="flex:1;max-width:90px"><button onclick="removeExpense('+i+')" style="background:none;border:none;color:rgba(226,75,74,0.6);cursor:pointer;font-size:18px;padding:4px">x</button></div>').join("");
-  openModal('<div class="modal-title">Edit Expenses</div><div id="exp-edit-rows">'+rows+'</div><button class="btn btn-ghost" style="width:100%;margin-top:8px" onclick="addExpenseRow()"><i class="ti ti-plus"></i>Add row</button><div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveExpenses()">Save</button></div>');
-}
-function saveExpenses(){
-  const rows=document.querySelectorAll("[id^=exp-name-]");
-  state.expenses=[];
-  rows.forEach((el,i)=>{const name=el.value.trim(),amount=parseFloat(document.getElementById("exp-amt-"+i).value)||0;if(name)state.expenses.push({name,amount,cat:name==="Gym rent"?"Rent":"Software"});});
-  save();closeModal();renderExpenses();
-}
-function removeExpense(i){state.expenses.splice(i,1);save();openEditExpenses();}
-function addExpenseRow(){state.expenses.push({name:"New expense",amount:0,cat:"Software"});openEditExpenses();}
-
-renderDashboard();
-setYear(activeYear);
-</script>
-</body>
-</html>
+    const pt=getMonthCasual(activeYear,i,"Casu
