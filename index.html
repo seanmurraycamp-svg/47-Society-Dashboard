@@ -155,6 +155,7 @@ html,body{height:100%;background:var(--bg);font-family:'Inter',sans-serif;color:
   <div class="page-header">
     <div class="page-title">Casual Revenue</div>
     <div style="display:flex;gap:8px">
+      <button class="btn btn-ghost" onclick="openDuplicates()"><i class="ti ti-copy"></i>Find duplicates</button>
       <button class="btn btn-ghost" onclick="document.getElementById('csv-file-input').click()"><i class="ti ti-upload"></i>Import CSV</button>
       <button class="btn btn-accent" onclick="openAddCasual()"><i class="ti ti-plus"></i>Add manual</button>
     </div>
@@ -368,7 +369,7 @@ const DEFAULT_EXPENSES=[
   {name:"Google",amount:25,cat:"Software"},{name:"Canva",amount:20,cat:"Software"}
 ];
 const DEFAULT_CLIENTS=[
-  {id:1,name:"Shaun Gray",email:"shaun.gray83@gmail.com",tier:"Gold",monthly:1000,startDate:"2026-05-10",notes:"Gold tier. First payment May 2026."},
+  {id:1,name:"Shaun Gray",email:"shaun.gray83@gmail.com",tier:"Bronze",monthly:500,startDate:"2026-05-10",notes:"Bronze tier. First payment May 2026."},
   {id:2,name:"Richard Simmie",email:"rsimmie54@gmail.com",tier:"Silver",monthly:750,startDate:"2025-10-22",notes:"Silver tier. Was a casual client Feb-Sep 2025 before joining."},
   {id:3,name:"Alexander Pillai",email:"alexander@suitably.com.au",tier:"Silver",monthly:750,startDate:"2025-10-21",notes:"Silver tier. Active since Oct 2025."},
   {id:4,name:"Mark Stolz",email:"mstolz@live.com.au",tier:"Bronze",monthly:500,startDate:"2025-04-28",notes:"Was $425/mo Apr-Aug 2025, upgraded to $500 Nov 2025."},
@@ -389,7 +390,10 @@ const DEFAULT_CLIENTS=[
   {id:19,name:"Lachlan Potter",email:"Lachlanpotter110@gmail.com",tier:"Bronze",monthly:0,startDate:"2026-06-08",notes:"CHURNED. Paid $425 Jun 2025 only."},
   {id:20,name:"Leigh Henry",email:"leighjghenry@gmail.com",tier:"Bronze",monthly:0,startDate:"2025-05-27",notes:"CHURNED. Paid $425 May 2025 only."},
   {id:21,name:"Sarah Clayton",email:"sarahclayton.film@gmail.com",tier:"Bronze",monthly:0,startDate:"2026-01-13",notes:"CHURNED. Paid $300 Jan 2026."},
-  {id:22,name:"Serge Huber",email:"serge_huber@hotmail.com",tier:"Bronze",monthly:0,startDate:"2026-04-28",notes:"CHURNED. Paid $500 Apr 2026 only."}
+  {id:22,name:"Serge Huber",email:"serge_huber@hotmail.com",tier:"Bronze",monthly:0,startDate:"2026-04-28",notes:"CHURNED. Paid $500 Apr 2026 only."},
+  {id:23,name:"Steven Haby",email:"",tier:"Silver",monthly:750,startDate:"2026-02-01",notes:"Silver tier. Active since Feb 2026. Add email."},
+  {id:24,name:"Keiran Hargreaves",email:"",tier:"Bronze",monthly:500,startDate:"2026-05-01",notes:"Bronze tier. Active since May 2026. Add email."},
+  {id:25,name:"Jenny Miao",email:"",tier:"Bronze",monthly:500,startDate:"2026-05-01",notes:"Bronze tier. Active since May 2026. Add email."}
 ];
 
 function loadState(){try{const s=localStorage.getItem(STORE);if(s)return JSON.parse(s);}catch(e){}return{clients:DEFAULT_CLIENTS,manualCasual:[],expenses:DEFAULT_EXPENSES,activeYear:2026};}
@@ -397,6 +401,7 @@ function save(){try{localStorage.setItem(STORE,JSON.stringify(state));}catch(e){
 let state=loadState();
 if(!state.expenses){state.expenses=DEFAULT_EXPENSES;save();}
 if(!state.manualCasual){state.manualCasual=[];save();}
+if(!state.casualMigrated){let seed=Date.now();SQUARE_CASUAL.forEach(c=>{state.manualCasual.push(Object.assign({},c,{id:(seed++)+Math.random(),source:c.source||"square_csv"}));});state.casualMigrated=true;save();}
 if(state.clients.length<10){const existing=state.clients.map(c=>c.email.toLowerCase());DEFAULT_CLIENTS.forEach(nc=>{if(!existing.includes(nc.email.toLowerCase()))state.clients.push(nc);});save();}
 let charts={};
 let activeYear=state.activeYear||2026;
@@ -406,7 +411,7 @@ function fmt(n){return "$"+Math.round(n).toLocaleString("en-AU")}
 function fmtD(n){return "$"+(+n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g,",")}
 function getMRR(){return state.clients.filter(c=>c.monthly>0).reduce((a,c)=>a+c.monthly,0)}
 function getTotalExp(){return state.expenses.reduce((a,e)=>a+e.amount,0)}
-function getAllCasual(){return[...SQUARE_CASUAL,...state.manualCasual]}
+function getAllCasual(){return state.casualMigrated?state.manualCasual:[...SQUARE_CASUAL,...state.manualCasual]}
 function getMonthCasual(y,m,cat){
   return getAllCasual().filter(c=>{
     const d=new Date(c.date);
@@ -438,7 +443,7 @@ function parseSquareCSV(text){
     const source=(fields[col['Source']]||'').trim();
     const status=(fields[col['Transaction Status']]||'').trim();
     const paymentId=(fields[col['Payment ID']]||'').trim();
-    if(source.toLowerCase()==='invoices'){skipped++;continue;}
+    if(source.toLowerCase().includes('invoice')){skipped++;continue;}
     if(status&&status.toLowerCase()!=='complete'){skipped++;continue;}
     if(paymentId&&existingIds.has(paymentId)){duplicate++;continue;}
     const dateRaw=(fields[col['Date']]||'').trim();
@@ -571,7 +576,7 @@ function renderCasualLog(){
   const wrap=document.getElementById("casual-log");
   if(!filtered.length){wrap.innerHTML='<div class="empty"><i class="ti ti-cash"></i>No entries.</div>';return;}
   wrap.innerHTML='<table class="data-table" style="table-layout:auto"><thead><tr><th style="width:88px">Date</th><th style="width:140px">Customer</th><th style="width:90px">Category</th><th style="width:80px">Amount</th><th>Notes</th><th style="width:36px"></th></tr></thead><tbody>'+
-    filtered.map(c=>`<tr><td style="font-size:11px;color:var(--hint)">${new Date(c.date).toLocaleDateString("en-AU",{day:"numeric",month:"short",year:"2-digit"})}</td><td class="td-strong" style="font-size:12px">${c.customer||"Unknown"}</td><td>${catBadge(c.category)}</td><td class="td-money">${fmtD(c.amount)}</td><td style="font-size:11px;color:var(--hint)">${c.note||""}</td><td>${(c.source==='manual'||c.source==='square_csv_import')?'<button onclick="deleteCasual('+c.id+')" style="background:none;border:none;color:rgba(255,255,255,0.2);cursor:pointer;padding:2px 4px"><i class="ti ti-trash" style="font-size:13px"></i></button>':'<span style="font-size:9px;color:var(--hint)">CSV</span>'}</td></tr>`).join("")+
+    filtered.map(c=>`<tr onclick="openEditCasual(${c.id})" style="cursor:pointer"><td style="font-size:11px;color:var(--hint)">${new Date(c.date).toLocaleDateString("en-AU",{day:"numeric",month:"short",year:"2-digit"})}</td><td class="td-strong" style="font-size:12px">${c.customer||"Unknown"}</td><td>${catBadge(c.category)}</td><td class="td-money">${fmtD(c.amount)}</td><td style="font-size:11px;color:var(--hint)">${c.note||""}</td><td><button onclick="event.stopPropagation();deleteCasual(${c.id})" style="background:none;border:none;color:rgba(255,255,255,0.2);cursor:pointer;padding:2px 4px"><i class="ti ti-trash" style="font-size:13px"></i></button></td></tr>`).join("")+
     '</tbody></table>';
 }
 function deleteCasual(id){state.manualCasual=state.manualCasual.filter(c=>c.id!==id);save();renderCasual();}
@@ -645,7 +650,74 @@ function openEditClient(id){
 function saveEditClient(id){const c=state.clients.find(x=>x.id===id);if(!c)return;c.name=document.getElementById("m-name").value.trim();c.email=document.getElementById("m-email").value.trim();c.tier=document.getElementById("m-tier").value;c.monthly=parseFloat(document.getElementById("m-monthly").value)||0;c.startDate=document.getElementById("m-start").value;c.notes=document.getElementById("m-notes").value.trim();save();closeModal();renderClients();}
 function deleteClient(id){if(!confirm("Remove this client?"))return;state.clients=state.clients.filter(c=>c.id!==id);save();closeModal();renderClients();}
 function openAddCasual(){openModal('<div class="modal-title">Add casual entry</div><div class="form-group"><label class="form-label">Date</label><input class="form-input" id="m-date" type="date" value="'+new Date().toISOString().slice(0,10)+'"></div><div class="form-group"><label class="form-label">Amount ($AUD net)</label><input class="form-input" id="m-amount" type="number" step="0.01" placeholder="110.00"></div><div class="form-group"><label class="form-label">Customer</label><input class="form-input" id="m-cust" placeholder="Name"></div><div class="form-group"><label class="form-label">Category</label><select class="form-select" id="m-cat"><option value="Intro Offer">Intro Offer</option><option value="Casual PT">Casual PT</option><option value="Casual Massage">Casual Massage</option><option value="Other">Other</option></select></div><div class="form-group"><label class="form-label">Notes</label><input class="form-input" id="m-note" placeholder="Optional notes..."></div><div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveNewCasual()">Add entry</button></div>');}
-function saveNewCasual(){const amount=parseFloat(document.getElementById("m-amount").value)||0;if(!amount)return;state.manualCasual.push({id:Date.now(),date:document.getElementById("m-date").value,amount,customer:document.getElementById("m-cust").value.trim(),category:document.getElementById("m-cat").value,source:"manual",note:document.getElementById("m-note").value.trim()});save();closeModal();renderCasual();}
+function saveNewCasual(){const amount=parseFloat(document.getElementById("m-amount").value)||0;if(!amount)return;state.manualCasual.push({id:Date.now(),date:document.getElementById("m-date").value,amount,customer:document.getElementById("m-cust").value.trim(),category:document.getElementById("m-cat").value,source:"manual",note:document.getElementById("m-note").value.trim()});save();closeModal();renderCasual();renderDashboard();}
+function openEditCasual(id){
+  const c=state.manualCasual.find(x=>x.id===id);if(!c)return;
+  const cats=["Intro Offer","Casual PT","Casual Massage","Other"];
+  const esc=s=>(s||"").replace(/"/g,"&quot;");
+  openModal('<div class="modal-title">Edit casual entry</div>'+
+  '<div class="form-group"><label class="form-label">Date</label><input class="form-input" id="m-date" type="date" value="'+(c.date||"")+'"></div>'+
+  '<div class="form-group"><label class="form-label">Amount ($AUD net)</label><input class="form-input" id="m-amount" type="number" step="0.01" value="'+c.amount+'"></div>'+
+  '<div class="form-group"><label class="form-label">Customer</label><input class="form-input" id="m-cust" value="'+esc(c.customer)+'"></div>'+
+  '<div class="form-group"><label class="form-label">Category</label><select class="form-select" id="m-cat">'+cats.map(t=>'<option '+(t===c.category?"selected":"")+'>'+t+'</option>').join("")+'</select></div>'+
+  '<div class="form-group"><label class="form-label">Notes</label><input class="form-input" id="m-note" value="'+esc(c.note)+'"></div>'+
+  '<div class="modal-actions"><button class="btn btn-danger" onclick="deleteCasual('+id+');closeModal()">Delete</button><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveEditCasual('+id+')">Save</button></div>');
+}
+function saveEditCasual(id){
+  const c=state.manualCasual.find(x=>x.id===id);if(!c)return;
+  const amount=parseFloat(document.getElementById("m-amount").value);
+  c.date=document.getElementById("m-date").value;
+  if(!isNaN(amount))c.amount=amount;
+  c.customer=document.getElementById("m-cust").value.trim();
+  c.category=document.getElementById("m-cat").value;
+  c.note=document.getElementById("m-note").value.trim();
+  save();closeModal();renderCasual();renderDashboard();
+}
+function openDuplicates(){
+  const groups={};
+  state.manualCasual.forEach(c=>{const key=(c.date||"")+"|"+(+c.amount).toFixed(2)+"|"+((c.customer||"").trim().toLowerCase())+"|"+(c.category||"");(groups[key]=groups[key]||[]).push(c);});
+  const dupes=Object.values(groups).filter(g=>g.length>1).sort((a,b)=>new Date(b[0].date)-new Date(a[0].date));
+  let html='<div class="modal-title">Possible duplicates</div>';
+  if(!dupes.length){
+    html+='<div style="color:var(--hint);font-size:13px;padding:8px 0 4px">No duplicate groups found.</div>';
+  }else{
+    html+='<div style="color:var(--hint);font-size:12px;margin-bottom:12px;line-height:1.5">Grouped by date, amount, customer and category. A pair with one hardcoded row and one imported row is almost always the same transaction counted twice.</div>';
+    html+='<button class="btn btn-accent" style="width:100%;margin-bottom:14px" onclick="autoCleanDuplicates()"><i class="ti ti-wand"></i>Auto-remove hardcoded duplicates (keeps imported)</button>';
+    dupes.forEach(g=>{
+      html+='<div style="border:0.5px solid rgba(255,255,255,0.12);border-radius:10px;padding:8px 12px;margin-bottom:10px">';
+      g.forEach(c=>{
+        const srcTag=(c.paymentId||c.source==="square_csv_import")?"imported":(c.source==="square_csv"?"hardcoded":(c.source||""));
+        html+='<div style="display:flex;align-items:center;gap:10px;padding:5px 0;font-size:12px">'+
+          '<span style="color:var(--hint);min-width:74px">'+new Date(c.date).toLocaleDateString("en-AU",{day:"numeric",month:"short",year:"2-digit"})+'</span>'+
+          '<span class="td-strong" style="min-width:110px">'+(c.customer||"Unknown")+'</span>'+
+          catBadge(c.category)+
+          '<span class="td-money" style="min-width:64px">'+fmtD(c.amount)+'</span>'+
+          '<span style="color:var(--hint);font-size:10px;flex:1">'+srcTag+(c.note?(" \u00b7 "+c.note):"")+'</span>'+
+          '<button onclick="deleteCasual('+c.id+');openDuplicates()" style="background:none;border:none;color:rgba(226,75,74,0.7);cursor:pointer;padding:2px 4px"><i class="ti ti-trash" style="font-size:14px"></i></button>'+
+        '</div>';
+      });
+      html+='</div>';
+    });
+  }
+  html+='<div class="modal-actions"><button class="btn btn-primary" onclick="closeModal()">Done</button></div>';
+  openModal(html);
+}
+function autoCleanDuplicates(){
+  const groups={};
+  state.manualCasual.forEach(c=>{const key=(c.date||"")+"|"+(+c.amount).toFixed(2)+"|"+((c.customer||"").trim().toLowerCase())+"|"+(c.category||"");(groups[key]=groups[key]||[]).push(c);});
+  const removeIds=[];
+  Object.values(groups).forEach(g=>{
+    if(g.length<2)return;
+    const imported=g.filter(c=>c.paymentId||c.source==="square_csv_import"||c.source==="manual"||c.source==="daily_summary");
+    const hardcoded=g.filter(c=>c.source==="square_csv"&&!c.paymentId);
+    if(imported.length&&hardcoded.length){hardcoded.forEach(c=>removeIds.push(c.id));}
+  });
+  if(!removeIds.length){showToast("No cross-source duplicates to remove");return;}
+  if(!confirm("Remove "+removeIds.length+" hardcoded duplicate row(s)? The imported copy of each is kept.")){return;}
+  const rm=new Set(removeIds);
+  state.manualCasual=state.manualCasual.filter(c=>!rm.has(c.id));
+  save();renderCasual();renderDashboard();showToast(removeIds.length+" duplicate(s) removed");openDuplicates();
+}
 function openEditExpenses(){
   const rows=state.expenses.map((e,i)=>'<div style="display:flex;gap:10px;align-items:center;margin-bottom:8px"><input class="form-input" id="exp-name-'+i+'" value="'+e.name+'" style="flex:2"><input class="form-input" id="exp-amt-'+i+'" type="number" value="'+e.amount+'" style="flex:1;max-width:90px"><button onclick="removeExpense('+i+')" style="background:none;border:none;color:rgba(226,75,74,0.6);cursor:pointer;font-size:18px;padding:4px">x</button></div>').join("");
   openModal('<div class="modal-title">Edit Expenses</div><div id="exp-edit-rows">'+rows+'</div><button class="btn btn-ghost" style="width:100%;margin-top:8px" onclick="addExpenseRow()"><i class="ti ti-plus"></i>Add row</button><div class="modal-actions"><button class="btn btn-ghost" onclick="closeModal()">Cancel</button><button class="btn btn-primary" onclick="saveExpenses()">Save</button></div>');
@@ -661,6 +733,7 @@ window.openAddClient=openAddClient;window.saveNewClient=saveNewClient;
 window.openEditClient=openEditClient;window.saveEditClient=saveEditClient;window.deleteClient=deleteClient;
 window.setCasualFilter=setCasualFilter;window.deleteCasual=deleteCasual;
 window.openAddCasual=openAddCasual;window.saveNewCasual=saveNewCasual;
+window.openEditCasual=openEditCasual;window.saveEditCasual=saveEditCasual;window.openDuplicates=openDuplicates;window.autoCleanDuplicates=autoCleanDuplicates;
 window.handleCSVImport=handleCSVImport;window.openEditExpenses=openEditExpenses;
 window.saveExpenses=saveExpenses;window.removeExpense=removeExpense;window.addExpenseRow=addExpenseRow;
 window.setYear=setYear;window.closeModal=closeModal;window.addSyncedEntry=addSyncedEntry;
