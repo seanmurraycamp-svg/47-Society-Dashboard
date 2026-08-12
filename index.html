@@ -385,7 +385,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
         <input type="month" id="paymentsMonthFilter" class="month-picker">
       </div>
 
-      <div class="pill-note">Tip: use “Bulk-log roster” below to quickly drop in all your active recurring clients for a month, then adjust or delete any that didn't come through.</div>
+      <div class="pill-note">Active recurring clients are logged automatically the first time you open this dashboard each month (dated the 1st). If someone doesn't pay, just delete their row below — it won't come back. Use “Bulk-log” to pull in the roster for a past or future month manually.</div>
 
       <div class="table-scroll">
         <table>
@@ -406,7 +406,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
           <p class="card-title">Log a Payment</p>
           <p class="card-sub">Pick an existing client, or choose “Casual / Other” for a one-off like a massage walk-in.</p>
         </div>
-        <button class="btn btn-ghost btn-sm" id="btnBulkLog">Bulk-log active roster for this month</button>
+        <button class="btn btn-ghost btn-sm" id="btnBulkLog">Bulk-log active roster (selected month)</button>
       </div>
       <form id="paymentForm" class="form-grid">
         <input type="hidden" id="paymentId">
@@ -543,7 +543,8 @@ function defaultState(){
       { id: 'e7', name: 'Google',        full: 26,  charged: 26, notes: '' },
       { id: 'e8', name: 'Canva',         full: 20,  charged: 20, notes: '' }
     ],
-    payments: []
+    payments: [],
+    autoLoggedMonths: []
   };
 }
 
@@ -558,6 +559,7 @@ function loadState(){
     if(!parsed.clients) parsed.clients = [];
     if(!parsed.expenses) parsed.expenses = [];
     if(!parsed.payments) parsed.payments = [];
+    if(!parsed.autoLoggedMonths) parsed.autoLoggedMonths = [];
     return parsed;
   }catch(e){
     console.error('Failed to load saved data, starting fresh.', e);
@@ -973,8 +975,7 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
   renderAll();
 });
 
-document.getElementById('btnBulkLog').addEventListener('click', function(){
-  var monthKey = document.getElementById('paymentsMonthFilter').value || currentMonthKey();
+function logMissingActiveClients(monthKey, noteText){
   var existing = paymentsForMonth(monthKey);
   var existingClientIds = {};
   existing.forEach(function(p){ if(p.clientId) existingClientIds[p.clientId] = true; });
@@ -992,10 +993,17 @@ document.getElementById('btnBulkLog').addEventListener('click', function(){
       amount: c.amount,
       method: c.method,
       fee: stripeFee(c.amount, c.method),
-      notes: 'Bulk-logged from roster'
+      notes: noteText
     });
     added++;
   });
+  return added;
+}
+
+document.getElementById('btnBulkLog').addEventListener('click', function(){
+  var monthKey = document.getElementById('paymentsMonthFilter').value || currentMonthKey();
+  var added = logMissingActiveClients(monthKey, 'Bulk-logged from roster');
+  if(state.autoLoggedMonths.indexOf(monthKey) === -1) state.autoLoggedMonths.push(monthKey);
   if(added === 0){
     toast('Every active client is already logged for ' + monthLabel(monthKey));
   } else {
@@ -1004,6 +1012,20 @@ document.getElementById('btnBulkLog').addEventListener('click', function(){
     toast(added + ' client' + (added===1?'':'s') + ' logged for ' + monthLabel(monthKey));
   }
 });
+
+/* Auto-log active recurring clients for the real current month, once per month per browser.
+   This is what makes "recurring members" appear automatically without a manual click.
+   Uses a record of already-processed months (state.autoLoggedMonths) so that if you
+   delete an entry because someone genuinely didn't pay, it won't silently reappear
+   the next time you open the dashboard. */
+function autoLogCurrentMonthIfNeeded(){
+  var cm = currentMonthKey();
+  if(state.autoLoggedMonths.indexOf(cm) !== -1) return 0;
+  var added = logMissingActiveClients(cm, 'Auto-logged (recurring)');
+  state.autoLoggedMonths.push(cm);
+  saveState();
+  return added;
+}
 
 document.getElementById('paymentsMonthFilter').addEventListener('change', renderPayments);
 
@@ -1289,7 +1311,11 @@ function renderAll(){
   document.getElementById('paymentsMonthFilter').value = cm;
   document.getElementById('paymentDate').value = todayISO();
   saveState();
+  var autoAdded = autoLogCurrentMonthIfNeeded();
   renderAll();
+  if(autoAdded > 0){
+    toast(autoAdded + ' recurring client' + (autoAdded===1?'':'s') + ' auto-logged for ' + monthLabel(cm));
+  }
 })();
 
 })();
