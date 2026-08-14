@@ -151,6 +151,11 @@ th{
   color:var(--text-muted);padding:10px 12px;border-bottom:1px solid var(--border);
   white-space:nowrap;
 }
+th.sortable{cursor:pointer;user-select:none;}
+th.sortable:hover{color:var(--text);}
+th.sortable::after{content:'';margin-left:5px;opacity:0.35;font-size:9px;}
+th.sortable.sort-asc::after{content:'\25B2';opacity:1;color:var(--accent);}
+th.sortable.sort-desc::after{content:'\25BC';opacity:1;color:var(--accent);}
 td{padding:11px 12px;border-bottom:1px solid var(--border-soft);color:var(--text);white-space:nowrap;}
 tr:last-child td{border-bottom:none;}
 tbody tr:hover{background:rgba(255,255,255,0.02);}
@@ -167,8 +172,10 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
 .tag-inperson{background:rgba(232,93,138,0.18);color:var(--accent);}
 .tag-casual{background:rgba(244,162,97,0.18);color:var(--accent-2);}
 .tag-stripe{background:rgba(74,222,128,0.14);color:var(--success);}
+.tag-square{background:rgba(96,165,250,0.16);color:#60A5FA;}
 .tag-bank{background:rgba(255,255,255,0.08);color:var(--text-muted);}
 .tag-inactive{background:rgba(255,255,255,0.05);color:var(--text-faint);}
+.tag-massage{background:rgba(244,162,97,0.18);color:var(--accent-2);}
 .muted{color:var(--text-faint);}
 .icon-btn{
   background:none;border:none;color:var(--text-faint);cursor:pointer;
@@ -228,6 +235,19 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
   background:rgba(244,162,97,0.1);border:1px solid rgba(244,162,97,0.3);
   color:var(--accent-2);font-size:12px;padding:10px 14px;border-radius:8px;margin-bottom:16px;
 }
+.goal-row{margin-bottom:18px;}
+.goal-row:last-child{margin-bottom:0;}
+.goal-label{display:flex;justify-content:space-between;font-size:12.5px;color:var(--text-muted);margin-bottom:7px;font-weight:600;}
+.goal-label b{color:var(--text);font-weight:700;}
+.goal-bar-track{background:var(--bg-elevated);border:1px solid var(--border);border-radius:999px;height:10px;overflow:hidden;}
+.goal-bar-fill{height:100%;border-radius:999px;background:var(--gradient);transition:width .3s ease;}
+.goal-sub{font-size:11px;color:var(--text-faint);margin-top:5px;}
+.service-legend-row{
+  display:flex;align-items:center;justify-content:space-between;padding:9px 0;
+  border-bottom:1px solid var(--border-soft);font-size:13px;
+}
+.service-legend-row:last-child{border-bottom:none;}
+.service-swatch{width:10px;height:10px;border-radius:3px;display:inline-block;margin-right:8px;}
 @media(max-width:640px){
   .wrap{padding:14px 12px 60px;}
   .kpi-value{font-size:20px;}
@@ -280,7 +300,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
       <div class="kpi">
         <div class="kpi-label">Stripe Fees</div>
         <div class="kpi-value neg" id="kpiFees">$0</div>
-        <div class="kpi-sub" id="kpiFeesSub">1.7% + 30c per txn</div>
+        <div class="kpi-sub" id="kpiFeesSub">Stripe 1.7%+30c · Square 1.6%</div>
       </div>
       <div class="kpi">
         <div class="kpi-label">Net Income</div>
@@ -312,6 +332,29 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
     <div class="card">
       <div class="card-head">
         <div>
+          <p class="card-title">Revenue By Service</p>
+          <p class="card-sub">Where this month's gross income is coming from</p>
+        </div>
+      </div>
+      <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:center;">
+        <div class="chart-wrap" style="flex:0 0 200px;width:200px;height:200px;"><canvas id="serviceChart"></canvas></div>
+        <div id="serviceLegend" style="flex:1;min-width:220px;"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <p class="card-title">2026 Client Goals</p>
+          <p class="card-sub">Target: 10 online + 10 in-person active clients by 31 Dec 2026</p>
+        </div>
+      </div>
+      <div id="goalTracker"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
           <p class="card-title">This Month's Payments</p>
           <p class="card-sub" id="overviewPaymentsSub">Everything logged for the selected month</p>
         </div>
@@ -319,7 +362,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
       </div>
       <div class="table-scroll">
         <table id="overviewPaymentsTable">
-          <thead><tr><th>Date</th><th>Payee</th><th>Category</th><th>Method</th><th class="num">Amount</th><th class="num">Fee</th><th class="num">Net</th></tr></thead>
+          <thead><tr><th>Date</th><th>Payee</th><th>Category</th><th>Service</th><th>Method</th><th class="num">Amount</th><th class="num">Fee</th><th class="num">Net</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
@@ -339,8 +382,11 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
       <div class="table-scroll">
         <table>
           <thead><tr>
-            <th>Client</th><th>Type</th><th class="num">Monthly $</th><th>Method</th>
-            <th class="num">Est. Stripe Fee</th><th class="num">Venue Rent /mo</th><th class="num">Est. Net</th><th>Status</th><th></th>
+            <th class="sortable" data-sort="name">Client</th><th class="sortable" data-sort="type">Type</th>
+            <th class="sortable" data-sort="serviceType">Service</th>
+            <th class="num sortable" data-sort="amount">Monthly $</th><th class="sortable" data-sort="method">Method</th>
+            <th class="num sortable" data-sort="fee">Est. Fee</th><th class="num sortable" data-sort="venueRent">Venue Rent /mo</th>
+            <th class="num sortable" data-sort="net">Est. Net</th><th class="sortable" data-sort="active">Status</th><th></th>
           </tr></thead>
           <tbody id="clientsTableBody"></tbody>
           <tfoot><tr class="tfoot-row" id="clientsTotalRow"></tr></tfoot>
@@ -362,15 +408,22 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
         <div class="field"><label>Type</label>
           <select id="clientType"><option value="Online">Online</option><option value="In-Person">In-Person</option></select>
         </div>
+        <div class="field"><label>Service Type</label>
+          <select id="clientServiceType">
+            <option value="Personal Training">Personal Training</option>
+            <option value="Massage">Massage</option>
+            <option value="Online Coaching">Online Coaching</option>
+          </select>
+        </div>
         <div class="field"><label>Monthly Amount ($)</label><input type="number" step="0.01" min="0" id="clientAmount" required placeholder="500"></div>
         <div class="field"><label>Payment Method</label>
-          <select id="clientMethod"><option value="Stripe">Stripe</option><option value="Bank Transfer">Bank Transfer</option></select>
+          <select id="clientMethod"><option value="Stripe">Stripe</option><option value="Square">Square</option><option value="Bank Transfer">Bank Transfer</option></select>
         </div>
         <div class="field"><label>Venue Rent / mo ($)</label><input type="number" step="0.01" min="0" id="clientVenue" value="0"></div>
         <div class="checkline"><input type="checkbox" id="clientActive" checked><label for="clientActive">Active</label></div>
         <div class="field"><button type="submit" class="btn btn-primary" style="width:100%;">Save client</button></div>
       </form>
-      <p class="field-hint">Stripe fee is auto-calculated at 1.7% + 30c. Bank transfer clients show $0 fee. Venue rent is what Training Depot charges you for that client's sessions each month (0 if none, e.g. apartment training).</p>
+      <p class="field-hint">Stripe fee is auto-calculated at 1.7% + 30c, Square at 1.6%. Bank transfer clients show $0 fee. Venue rent is what Training Depot charges you for that client's sessions each month (0 if none, e.g. apartment training). Click any column header in the table above to sort — defaults to highest paying clients first.</p>
     </div>
   </div>
 
@@ -390,7 +443,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
       <div class="table-scroll">
         <table>
           <thead><tr>
-            <th>Date</th><th>Payee</th><th>Category</th><th>Method</th>
+            <th>Date</th><th>Payee</th><th>Category</th><th>Service</th><th>Method</th>
             <th class="num">Amount</th><th class="num">Fee</th><th class="num">Net</th><th>Notes</th><th></th>
           </tr></thead>
           <tbody id="paymentsTableBody"></tbody>
@@ -424,9 +477,16 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
             <option value="Casual">Casual / one-off</option>
           </select>
         </div>
+        <div class="field"><label>Service Type</label>
+          <select id="paymentServiceType">
+            <option value="Personal Training">Personal Training</option>
+            <option value="Massage">Massage</option>
+            <option value="Online Coaching">Online Coaching</option>
+          </select>
+        </div>
         <div class="field"><label>Amount ($)</label><input type="number" step="0.01" min="0" id="paymentAmount" required></div>
         <div class="field"><label>Method</label>
-          <select id="paymentMethod"><option value="Stripe">Stripe</option><option value="Bank Transfer">Bank Transfer</option><option value="Cash">Cash</option></select>
+          <select id="paymentMethod"><option value="Stripe">Stripe</option><option value="Square">Square</option><option value="Bank Transfer">Bank Transfer</option><option value="Cash">Cash</option></select>
         </div>
         <div class="field"><label>Notes</label><input type="text" id="paymentNotes" placeholder="optional"></div>
         <div class="field"><button type="submit" class="btn btn-primary" style="width:100%;">Save payment</button></div>
@@ -521,17 +581,17 @@ var STORAGE_KEY = 's47_finance_v1';
 
 function defaultState(){
   return {
-    settings: { stripePct: 0.017, stripeFlat: 0.30 },
+    settings: { stripePct: 0.017, stripeFlat: 0.30, squarePct: 0.016 },
     clients: [
-      { id: 'c1', name: 'Mark Stolz',         type: 'Online',    amount: 400, method: 'Stripe',        venueRent: 0,      active: true },
-      { id: 'c2', name: 'Nikki Onslow',       type: 'Online',    amount: 200, method: 'Stripe',        venueRent: 0,      active: true },
-      { id: 'c3', name: 'Steven Haby',        type: 'In-Person', amount: 750, method: 'Bank Transfer', venueRent: 0,      active: true },
-      { id: 'c4', name: 'Richard Bradley',    type: 'In-Person', amount: 750, method: 'Stripe',        venueRent: 132.00, active: true },
-      { id: 'c5', name: 'Alex Pillai',        type: 'In-Person', amount: 750, method: 'Stripe',        venueRent: 96.80,  active: true },
-      { id: 'c6', name: 'Brendan Johns',      type: 'In-Person', amount: 500, method: 'Stripe',        venueRent: 72.60,  active: true },
-      { id: 'c7', name: 'Geraldine Stallard', type: 'In-Person', amount: 500, method: 'Stripe',        venueRent: 72.60,  active: true },
-      { id: 'c8', name: 'Jenny Miao',         type: 'In-Person', amount: 500, method: 'Bank Transfer', venueRent: 72.60,  active: true },
-      { id: 'c9', name: 'Maureen Pound',      type: 'In-Person', amount: 360, method: 'Bank Transfer', venueRent: 118.80, active: true }
+      { id: 'c1', name: 'Mark Stolz',         type: 'Online',    serviceType: 'Online Coaching',   amount: 400, method: 'Stripe',        venueRent: 0,      active: true },
+      { id: 'c2', name: 'Nikki Onslow',       type: 'Online',    serviceType: 'Online Coaching',   amount: 200, method: 'Stripe',        venueRent: 0,      active: true },
+      { id: 'c3', name: 'Steven Haby',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Bank Transfer', venueRent: 0,      active: true },
+      { id: 'c4', name: 'Richard Bradley',    type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        venueRent: 132.00, active: true },
+      { id: 'c5', name: 'Alex Pillai',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        venueRent: 96.80,  active: true },
+      { id: 'c6', name: 'Brendan Johns',      type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        venueRent: 72.60,  active: true },
+      { id: 'c7', name: 'Geraldine Stallard', type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        venueRent: 72.60,  active: true },
+      { id: 'c8', name: 'Jenny Miao',         type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Bank Transfer', venueRent: 72.60,  active: true },
+      { id: 'c9', name: 'Maureen Pound',      type: 'In-Person', serviceType: 'Personal Training', amount: 360, method: 'Bank Transfer', venueRent: 118.80, active: true }
     ],
     expenses: [
       { id: 'e1', name: 'Go High Level', full: 140, charged: 70, notes: '$70 of $140 is claimable through Loose Human' },
@@ -556,10 +616,17 @@ function loadState(){
     if(!raw) return defaultState();
     var parsed = JSON.parse(raw);
     if(!parsed.settings) parsed.settings = defaultState().settings;
+    if(!parsed.settings.squarePct) parsed.settings.squarePct = 0.016;
     if(!parsed.clients) parsed.clients = [];
     if(!parsed.expenses) parsed.expenses = [];
     if(!parsed.payments) parsed.payments = [];
     if(!parsed.autoLoggedMonths) parsed.autoLoggedMonths = [];
+    parsed.clients.forEach(function(c){
+      if(!c.serviceType) c.serviceType = c.type === 'Online' ? 'Online Coaching' : 'Personal Training';
+    });
+    parsed.payments.forEach(function(p){
+      if(!p.serviceType) p.serviceType = p.category === 'Online' ? 'Online Coaching' : 'Personal Training';
+    });
     return parsed;
   }catch(e){
     console.error('Failed to load saved data, starting fresh.', e);
@@ -586,11 +653,15 @@ function money(n){
   return neg ? '-' + s : s;
 }
 
-function stripeFee(amount, method){
+function calcFee(amount, method){
   amount = Number(amount) || 0;
-  if(method !== 'Stripe') return 0;
-  var fee = amount * state.settings.stripePct + state.settings.stripeFlat;
-  return Math.round(fee * 100) / 100;
+  if(method === 'Stripe'){
+    return Math.round((amount * state.settings.stripePct + state.settings.stripeFlat) * 100) / 100;
+  }
+  if(method === 'Square'){
+    return Math.round(amount * state.settings.squarePct * 100) / 100;
+  }
+  return 0;
 }
 
 function todayISO(){
@@ -639,8 +710,15 @@ function typeTag(type){
 
 function methodTag(method){
   if(method === 'Stripe') return '<span class="tag tag-stripe">Stripe</span>';
+  if(method === 'Square') return '<span class="tag tag-square">Square</span>';
   if(method === 'Bank Transfer') return '<span class="tag tag-bank">Bank Transfer</span>';
   return '<span class="tag tag-bank">' + escapeHtml(method) + '</span>';
+}
+
+function serviceTypeTag(st){
+  if(st === 'Massage') return '<span class="tag tag-massage">Massage</span>';
+  if(st === 'Online Coaching') return '<span class="tag tag-online">Online Coaching</span>';
+  return '<span class="tag tag-inperson">Personal Training</span>';
 }
 
 function escapeHtml(s){
@@ -709,16 +787,69 @@ document.querySelectorAll('[data-open-payment-form]').forEach(function(el){
 /* ============================================================
    RENDER: CLIENTS
    ============================================================ */
-var clientSort = { key: 'name', dir: 1 };
+var clientSort = { key: 'amount', dir: -1 };
+
+function clientSortValue(row, key){
+  var c = row.c;
+  switch(key){
+    case 'name': return (c.name||'').toLowerCase();
+    case 'type': return c.type||'';
+    case 'serviceType': return c.serviceType||'';
+    case 'amount': return Number(c.amount)||0;
+    case 'method': return c.method||'';
+    case 'fee': return row.fee;
+    case 'venueRent': return Number(c.venueRent)||0;
+    case 'net': return row.net;
+    case 'active': return c.active ? 1 : 0;
+    default: return '';
+  }
+}
+
+function initClientSortHeaders(){
+  document.querySelectorAll('#panel-clients thead th.sortable').forEach(function(th){
+    th.addEventListener('click', function(){
+      var key = th.dataset.sort;
+      if(clientSort.key === key){
+        clientSort.dir *= -1;
+      } else {
+        clientSort.key = key;
+        clientSort.dir = (key === 'name' || key === 'type' || key === 'serviceType' || key === 'method') ? 1 : -1;
+      }
+      renderClients();
+    });
+  });
+}
+
+function updateClientSortHeaders(){
+  document.querySelectorAll('#panel-clients thead th.sortable').forEach(function(th){
+    th.classList.remove('sort-asc','sort-desc');
+    if(th.dataset.sort === clientSort.key){
+      th.classList.add(clientSort.dir === 1 ? 'sort-asc' : 'sort-desc');
+    }
+  });
+}
 
 function renderClients(){
   var tbody = document.getElementById('clientsTableBody');
   tbody.innerHTML = '';
   var totalMonthly = 0, totalFee = 0, totalVenue = 0, totalNet = 0;
 
-  state.clients.forEach(function(c){
-    var fee = stripeFee(c.amount, c.method);
+  var rows = state.clients.map(function(c){
+    var fee = calcFee(c.amount, c.method);
     var net = (Number(c.amount)||0) - fee - (Number(c.venueRent)||0);
+    return { c: c, fee: fee, net: net };
+  });
+
+  rows.sort(function(a,b){
+    var av = clientSortValue(a, clientSort.key);
+    var bv = clientSortValue(b, clientSort.key);
+    if(av < bv) return -1 * clientSort.dir;
+    if(av > bv) return 1 * clientSort.dir;
+    return 0;
+  });
+
+  rows.forEach(function(row){
+    var c = row.c, fee = row.fee, net = row.net;
     if(c.active){
       totalMonthly += Number(c.amount)||0;
       totalFee += fee;
@@ -730,6 +861,7 @@ function renderClients(){
     tr.innerHTML =
       '<td>' + escapeHtml(c.name) + '</td>' +
       '<td>' + typeTag(c.type) + '</td>' +
+      '<td>' + serviceTypeTag(c.serviceType) + '</td>' +
       '<td class="num">' + money(c.amount) + '</td>' +
       '<td>' + methodTag(c.method) + '</td>' +
       '<td class="num">' + money(fee) + '</td>' +
@@ -744,11 +876,13 @@ function renderClients(){
   });
 
   document.getElementById('clientsTotalRow').innerHTML =
-    '<td>Active total</td><td></td>' +
+    '<td>Active total</td><td></td><td></td>' +
     '<td class="num">' + money(totalMonthly) + '</td><td></td>' +
     '<td class="num">' + money(totalFee) + '</td>' +
     '<td class="num">' + money(totalVenue) + '</td>' +
     '<td class="num">' + money(totalNet) + '</td><td></td><td></td>';
+
+  updateClientSortHeaders();
 
   tbody.querySelectorAll('[data-edit-client]').forEach(function(b){
     b.addEventListener('click', function(){ editClient(b.dataset.editClient); });
@@ -767,6 +901,7 @@ function editClient(id){
   document.getElementById('clientId').value = c.id;
   document.getElementById('clientName').value = c.name;
   document.getElementById('clientType').value = c.type;
+  document.getElementById('clientServiceType').value = c.serviceType || 'Personal Training';
   document.getElementById('clientAmount').value = c.amount;
   document.getElementById('clientMethod').value = c.method;
   document.getElementById('clientVenue').value = c.venueRent;
@@ -799,6 +934,7 @@ document.getElementById('clientForm').addEventListener('submit', function(e){
   var data = {
     name: document.getElementById('clientName').value.trim(),
     type: document.getElementById('clientType').value,
+    serviceType: document.getElementById('clientServiceType').value,
     amount: parseFloat(document.getElementById('clientAmount').value) || 0,
     method: document.getElementById('clientMethod').value,
     venueRent: parseFloat(document.getElementById('clientVenue').value) || 0,
@@ -840,6 +976,7 @@ function renderPaymentClientOptions(){
     opt.dataset.type = c.type;
     opt.dataset.amount = c.amount;
     opt.dataset.method = c.method;
+    opt.dataset.serviceType = c.serviceType || 'Personal Training';
     sel.appendChild(opt);
   });
   if(prevVal){
@@ -860,6 +997,7 @@ document.getElementById('paymentClientSelect').addEventListener('change', functi
       document.getElementById('paymentAmount').value = opt.dataset.amount || '';
       document.getElementById('paymentMethod').value = opt.dataset.method || 'Stripe';
       document.getElementById('paymentCategory').value = opt.dataset.type || 'Online';
+      document.getElementById('paymentServiceType').value = opt.dataset.serviceType || 'Personal Training';
     }
   }
 });
@@ -882,6 +1020,7 @@ function renderPayments(){
       '<td>' + escapeHtml(p.date) + '</td>' +
       '<td>' + escapeHtml(p.payee) + '</td>' +
       '<td>' + typeTag(p.category) + '</td>' +
+      '<td>' + serviceTypeTag(p.serviceType) + '</td>' +
       '<td>' + methodTag(p.method) + '</td>' +
       '<td class="num">' + money(p.amount) + '</td>' +
       '<td class="num">' + money(p.fee) + '</td>' +
@@ -893,7 +1032,7 @@ function renderPayments(){
   });
 
   document.getElementById('paymentsTotalRow').innerHTML =
-    '<td colspan="4">Total (' + monthLabel(monthKey) + ')</td>' +
+    '<td colspan="5">Total (' + monthLabel(monthKey) + ')</td>' +
     '<td class="num">' + money(totalAmt) + '</td>' +
     '<td class="num">' + money(totalFee) + '</td>' +
     '<td class="num">' + money(totalNet) + '</td><td></td><td></td>';
@@ -914,6 +1053,7 @@ function editPayment(id){
   document.getElementById('paymentAmount').value = p.amount;
   document.getElementById('paymentMethod').value = p.method;
   document.getElementById('paymentCategory').value = p.category;
+  document.getElementById('paymentServiceType').value = p.serviceType || 'Personal Training';
   document.getElementById('paymentNotes').value = p.notes || '';
   var sel = document.getElementById('paymentClientSelect');
   if(p.clientId && state.clients.some(function(c){ return c.id === p.clientId; })){
@@ -947,12 +1087,13 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
   if(!payee){ toast('Enter a payee name'); return; }
   var amount = parseFloat(document.getElementById('paymentAmount').value) || 0;
   var method = document.getElementById('paymentMethod').value;
-  var fee = stripeFee(amount, method);
+  var fee = calcFee(amount, method);
   var data = {
     date: document.getElementById('paymentDate').value || todayISO(),
     clientId: isOther ? null : sel.value,
     payee: payee,
     category: document.getElementById('paymentCategory').value,
+    serviceType: document.getElementById('paymentServiceType').value,
     amount: amount,
     method: method,
     fee: fee,
@@ -990,9 +1131,10 @@ function logMissingActiveClients(monthKey, noteText){
       clientId: c.id,
       payee: c.name,
       category: c.type,
+      serviceType: c.serviceType || 'Personal Training',
       amount: c.amount,
       method: c.method,
-      fee: stripeFee(c.amount, c.method),
+      fee: calcFee(c.amount, c.method),
       notes: noteText
     });
     added++;
@@ -1129,6 +1271,10 @@ document.getElementById('expenseForm').addEventListener('submit', function(e){
    RENDER: OVERVIEW
    ============================================================ */
 var trendChartInstance = null;
+var serviceChartInstance = null;
+var SERVICE_COLORS = { 'Personal Training': '#E85D8A', 'Massage': '#F4A261', 'Online Coaching': '#9B3FBF' };
+var GOAL_TARGET = 10;
+var GOAL_DATE = '2026-12-31';
 
 function renderOverview(){
   var monthKey = document.getElementById('overviewMonth').value || currentMonthKey();
@@ -1155,6 +1301,7 @@ function renderOverview(){
       '<td>' + escapeHtml(p.date) + '</td>' +
       '<td>' + escapeHtml(p.payee) + '</td>' +
       '<td>' + typeTag(p.category) + '</td>' +
+      '<td>' + serviceTypeTag(p.serviceType) + '</td>' +
       '<td>' + methodTag(p.method) + '</td>' +
       '<td class="num">' + money(p.amount) + '</td>' +
       '<td class="num">' + money(p.fee) + '</td>' +
@@ -1163,6 +1310,71 @@ function renderOverview(){
   });
 
   renderTrendChart(monthKey);
+  renderServiceChart(monthKey);
+  renderGoalTracker();
+}
+
+function renderServiceChart(monthKey){
+  var pays = paymentsForMonth(monthKey);
+  var totals = { 'Personal Training': 0, 'Massage': 0, 'Online Coaching': 0 };
+  pays.forEach(function(p){
+    var st = p.serviceType || 'Personal Training';
+    if(!(st in totals)) totals[st] = 0;
+    totals[st] += Number(p.amount)||0;
+  });
+  var labels = Object.keys(totals).filter(function(k){ return totals[k] > 0; });
+  var data = labels.map(function(k){ return totals[k]; });
+  var colors = labels.map(function(k){ return SERVICE_COLORS[k] || '#9C9C9C'; });
+
+  var ctx = document.getElementById('serviceChart').getContext('2d');
+  if(serviceChartInstance){ serviceChartInstance.destroy(); serviceChartInstance = null; }
+
+  if(!labels.length){
+    document.getElementById('serviceLegend').innerHTML = '<p class="muted" style="font-size:13px;">No payments logged for this month yet.</p>';
+    return;
+  }
+
+  serviceChartInstance = new Chart(ctx, {
+    type: 'doughnut',
+    data: { labels: labels, datasets: [{ data: data, backgroundColor: colors, borderWidth: 0 }] },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: function(ctx){ return ctx.label + ': ' + money(ctx.parsed); } } }
+      }
+    }
+  });
+
+  var total = data.reduce(function(a,b){ return a+b; }, 0);
+  document.getElementById('serviceLegend').innerHTML = labels.map(function(k,i){
+    var pct = total ? Math.round(data[i]/total*100) : 0;
+    return '<div class="service-legend-row">' +
+      '<span><span class="service-swatch" style="background:' + colors[i] + ';"></span>' + escapeHtml(k) + '</span>' +
+      '<span><b>' + money(data[i]) + '</b> <span class="muted">(' + pct + '%)</span></span></div>';
+  }).join('');
+}
+
+function renderGoalTracker(){
+  var onlineActive = state.clients.filter(function(c){ return c.active && c.type === 'Online'; }).length;
+  var inPersonActive = state.clients.filter(function(c){ return c.active && c.type === 'In-Person'; }).length;
+
+  var target = new Date(GOAL_DATE + 'T23:59:59');
+  var daysLeft = Math.max(0, Math.ceil((target - new Date()) / (1000*60*60*24)));
+
+  function row(label, count){
+    var pct = Math.min(100, Math.round(count / GOAL_TARGET * 100));
+    return '<div class="goal-row">' +
+      '<div class="goal-label"><span>' + label + '</span><span><b>' + count + '</b> / ' + GOAL_TARGET + '</span></div>' +
+      '<div class="goal-bar-track"><div class="goal-bar-fill" style="width:' + pct + '%;"></div></div>' +
+      '</div>';
+  }
+
+  document.getElementById('goalTracker').innerHTML =
+    row('Online clients', onlineActive) +
+    row('In-person clients', inPersonActive) +
+    '<div class="goal-sub">' + daysLeft + ' days left until 31 Dec 2026</div>';
 }
 
 function renderTrendChart(centerMonthKey){
@@ -1311,6 +1523,7 @@ function renderAll(){
   document.getElementById('paymentsMonthFilter').value = cm;
   document.getElementById('paymentDate').value = todayISO();
   saveState();
+  initClientSortHeaders();
   var autoAdded = autoLogCurrentMonthIfNeeded();
   renderAll();
   if(autoAdded > 0){
