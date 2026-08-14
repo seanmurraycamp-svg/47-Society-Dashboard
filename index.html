@@ -426,18 +426,20 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
         <div class="field"><label>Payment Method</label>
           <select id="clientMethod"><option value="Stripe">Stripe</option><option value="Square">Square</option><option value="Bank Transfer">Bank Transfer</option></select>
         </div>
-        <div class="field"><label>Session Length</label>
-          <select id="clientSessionLength">
-            <option value="30">30 min</option>
-            <option value="45">45 min</option>
-            <option value="60" selected>60 min</option>
-          </select>
-        </div>
-        <div class="field"><label>Sessions / Week</label><input type="number" step="0.5" min="0" id="clientSessionsPerWeek" value="0" placeholder="e.g. 1"></div>
         <div class="checkline"><input type="checkbox" id="clientActive" checked><label for="clientActive">Active</label></div>
-        <div class="field"><button type="submit" class="btn btn-primary" style="width:100%;">Save client</button></div>
+        <div class="field" style="grid-column:1/-1;">
+          <label>Venue Sessions</label>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Service</th><th class="num">Length (min)</th><th class="num">Sessions/Wk</th><th class="num">Est. $/mo</th><th></th></tr></thead>
+              <tbody id="clientSessionsBody"></tbody>
+            </table>
+          </div>
+          <button type="button" class="btn btn-ghost btn-sm" id="btnAddSessionRow" style="margin-top:10px;">+ Add session</button>
+        </div>
+        <div class="field" style="grid-column:1/-1;"><button type="submit" class="btn btn-primary" style="width:100%;">Save client</button></div>
       </form>
-      <p class="field-hint">Stripe fee is auto-calculated at 1.7% + 30c, Square at 1.6%. Bank transfer clients show $0 fee. Venue rent is calculated automatically from Training Depot's per-session hire rates (session length × sessions/week, at the Massage or Personal Training room rate, incl. GST) — 0 sessions/week means $0 rent (e.g. apartment training or online coaching). Click any column header in the table above to sort — defaults to highest paying clients first.</p>
+      <p class="field-hint">Stripe fee is auto-calculated at 1.7% + 30c, Square at 1.6%. Bank transfer clients show $0 fee. Venue rent is calculated automatically from Training Depot's per-session hire rates (incl. GST) — add one row per recurring session type (e.g. weekly PT + fortnightly massage), each is calculated and summed. No rows means $0 rent (e.g. apartment training or online coaching). Click any column header in the table above to sort — defaults to highest paying clients first.</p>
     </div>
   </div>
 
@@ -665,22 +667,22 @@ function defaultState(){
     settings: {
       stripePct: 0.017, stripeFlat: 0.30, squarePct: 0.016,
       gstRate: 0.10,
-      venueRates: {
-        'Personal Training': { 30: 11.00, 45: 16.50, 60: 22.00 },
-        'Massage':            { 30: 13.50, 45: 20.25, 60: 27.00 },
-        'Online Coaching':    { 30: 0,     45: 0,     60: 0     }
+      venueRates60: {
+        'Personal Training': 22.00,
+        'Massage':            27.00,
+        'Online Coaching':    0
       }
     },
     clients: [
-      { id: 'c1', name: 'Mark Stolz',         type: 'Online',    serviceType: 'Online Coaching',   amount: 400, method: 'Stripe',        sessionLength: 60, sessionsPerWeek: 0, active: true },
-      { id: 'c2', name: 'Nikki Onslow',       type: 'Online',    serviceType: 'Online Coaching',   amount: 200, method: 'Stripe',        sessionLength: 60, sessionsPerWeek: 0, active: true },
-      { id: 'c3', name: 'Steven Haby',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Bank Transfer', sessionLength: 60, sessionsPerWeek: 0, active: true },
-      { id: 'c4', name: 'Richard Bradley',    type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        sessionLength: 60, sessionsPerWeek: 0, active: true },
-      { id: 'c5', name: 'Alex Pillai',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        sessionLength: 60, sessionsPerWeek: 0, active: true },
-      { id: 'c6', name: 'Brendan Johns',      type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        sessionLength: 60, sessionsPerWeek: 0, active: true },
-      { id: 'c7', name: 'Geraldine Stallard', type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        sessionLength: 60, sessionsPerWeek: 0, active: true },
-      { id: 'c8', name: 'Jenny Miao',         type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Bank Transfer', sessionLength: 60, sessionsPerWeek: 0, active: true },
-      { id: 'c9', name: 'Maureen Pound',      type: 'In-Person', serviceType: 'Personal Training', amount: 360, method: 'Bank Transfer', sessionLength: 60, sessionsPerWeek: 0, active: true }
+      { id: 'c1', name: 'Mark Stolz',         type: 'Online',    serviceType: 'Online Coaching',   amount: 400, method: 'Stripe',        sessions: [], active: true },
+      { id: 'c2', name: 'Nikki Onslow',       type: 'Online',    serviceType: 'Online Coaching',   amount: 200, method: 'Stripe',        sessions: [], active: true },
+      { id: 'c3', name: 'Steven Haby',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Bank Transfer', sessions: [], active: true },
+      { id: 'c4', name: 'Richard Simmie',     type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        sessions: [{ serviceType: 'Personal Training', sessionLength: 60, sessionsPerWeek: 1 }], active: true },
+      { id: 'c5', name: 'Alex Pillai',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        sessions: [{ serviceType: 'Personal Training', sessionLength: 30, sessionsPerWeek: 2 }], active: true },
+      { id: 'c6', name: 'Brendan Johns',      type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        sessions: [{ serviceType: 'Personal Training', sessionLength: 45, sessionsPerWeek: 1 }], active: true },
+      { id: 'c7', name: 'Geraldine Stallard', type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        sessions: [], active: true },
+      { id: 'c8', name: 'Jenny Miao',         type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Bank Transfer', sessions: [], active: true },
+      { id: 'c9', name: 'Maureen Pound',      type: 'In-Person', serviceType: 'Personal Training', amount: 360, method: 'Bank Transfer', sessions: [], active: true }
     ],
     expenses: [
       { id: 'e1', name: 'Go High Level', full: 140, charged: 70, notes: '$70 of $140 is claimable through Loose Human' },
@@ -708,7 +710,18 @@ function loadState(){
     if(!parsed.settings) parsed.settings = defaultState().settings;
     if(!parsed.settings.squarePct) parsed.settings.squarePct = 0.016;
     if(!parsed.settings.gstRate) parsed.settings.gstRate = 0.10;
-    if(!parsed.settings.venueRates) parsed.settings.venueRates = defaultState().settings.venueRates;
+    if(!parsed.settings.venueRates60){
+      if(parsed.settings.venueRates){
+        parsed.settings.venueRates60 = {
+          'Personal Training': (parsed.settings.venueRates['Personal Training']||{})[60] || 22.00,
+          'Massage': (parsed.settings.venueRates['Massage']||{})[60] || 27.00,
+          'Online Coaching': 0
+        };
+        delete parsed.settings.venueRates;
+      } else {
+        parsed.settings.venueRates60 = defaultState().settings.venueRates60;
+      }
+    }
     if(!parsed.clients) parsed.clients = [];
     if(!parsed.expenses) parsed.expenses = [];
     if(!parsed.payments) parsed.payments = [];
@@ -716,8 +729,11 @@ function loadState(){
     if(!parsed.autoLoggedMonths) parsed.autoLoggedMonths = [];
     parsed.clients.forEach(function(c){
       if(!c.serviceType) c.serviceType = c.type === 'Online' ? 'Online Coaching' : 'Personal Training';
-      if(!c.sessionLength) c.sessionLength = 60;
-      if(c.sessionsPerWeek === undefined) c.sessionsPerWeek = 0;
+      if(!c.sessions){
+        c.sessions = c.sessionsPerWeek ? [{ serviceType: c.serviceType, sessionLength: c.sessionLength || 60, sessionsPerWeek: c.sessionsPerWeek }] : [];
+      }
+      delete c.sessionLength;
+      delete c.sessionsPerWeek;
       delete c.venueRent;
     });
     parsed.payments.forEach(function(p){
@@ -762,14 +778,17 @@ function calcFee(amount, method){
 
 var WEEKS_PER_MONTH = 52 / 12;
 
-function calcVenueRent(c){
-  var perWeek = Number(c.sessionsPerWeek) || 0;
+function calcSessionRent(s){
+  var perWeek = Number(s.sessionsPerWeek) || 0;
   if(!perWeek) return 0;
-  var rates = state.settings.venueRates[c.serviceType] || state.settings.venueRates['Personal Training'];
-  var base = rates[c.sessionLength] || 0;
-  if(!base) return 0;
-  var perSession = base * (1 + state.settings.gstRate);
+  var rate60 = state.settings.venueRates60[s.serviceType];
+  if(!rate60) return 0;
+  var perSession = rate60 * (Number(s.sessionLength)||0) / 60 * (1 + state.settings.gstRate);
   return Math.round(perSession * perWeek * WEEKS_PER_MONTH * 100) / 100;
+}
+
+function calcVenueRent(c){
+  return (c.sessions || []).reduce(function(sum, s){ return sum + calcSessionRent(s); }, 0);
 }
 
 function todayISO(){
@@ -1004,6 +1023,56 @@ function renderClients(){
   renderVenueTable();
 }
 
+/* ---- Venue Sessions mini-editor (Add/Edit Client form) ---- */
+var editingSessions = [];
+
+function renderSessionRows(){
+  var tbody = document.getElementById('clientSessionsBody');
+  tbody.innerHTML = '';
+  if(!editingSessions.length){
+    tbody.innerHTML = '<tr><td colspan="5" class="muted">No sessions yet — click "+ Add session" below.</td></tr>';
+    return;
+  }
+  editingSessions.forEach(function(row, idx){
+    var rent = calcSessionRent(row);
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td><select class="rowSelect" data-row="' + idx + '" data-field="serviceType">' +
+        '<option value="Personal Training"' + (row.serviceType==='Personal Training'?' selected':'') + '>Personal Training</option>' +
+        '<option value="Massage"' + (row.serviceType==='Massage'?' selected':'') + '>Massage</option>' +
+        '<option value="Online Coaching"' + (row.serviceType==='Online Coaching'?' selected':'') + '>Online Coaching</option>' +
+      '</select></td>' +
+      '<td class="num"><input type="number" step="5" min="5" style="width:70px;" class="rowInput" data-row="' + idx + '" data-field="sessionLength" value="' + row.sessionLength + '"></td>' +
+      '<td class="num"><input type="number" step="0.5" min="0" style="width:70px;" class="rowInput" data-row="' + idx + '" data-field="sessionsPerWeek" value="' + row.sessionsPerWeek + '"></td>' +
+      '<td class="num">' + money(rent) + '</td>' +
+      '<td><button type="button" class="icon-btn del" data-remove-row="' + idx + '">Remove</button></td>';
+    tbody.appendChild(tr);
+  });
+  tbody.querySelectorAll('.rowSelect').forEach(function(el){
+    el.addEventListener('change', function(){
+      editingSessions[Number(this.dataset.row)][this.dataset.field] = this.value;
+      renderSessionRows();
+    });
+  });
+  tbody.querySelectorAll('.rowInput').forEach(function(el){
+    el.addEventListener('change', function(){
+      editingSessions[Number(this.dataset.row)][this.dataset.field] = parseFloat(this.value) || 0;
+      renderSessionRows();
+    });
+  });
+  tbody.querySelectorAll('[data-remove-row]').forEach(function(b){
+    b.addEventListener('click', function(){
+      editingSessions.splice(Number(b.dataset.removeRow), 1);
+      renderSessionRows();
+    });
+  });
+}
+
+document.getElementById('btnAddSessionRow').addEventListener('click', function(){
+  editingSessions.push({ serviceType: 'Personal Training', sessionLength: 60, sessionsPerWeek: 0 });
+  renderSessionRows();
+});
+
 function editClient(id){
   var c = state.clients.find(function(x){ return x.id === id; });
   if(!c) return;
@@ -1013,9 +1082,11 @@ function editClient(id){
   document.getElementById('clientServiceType').value = c.serviceType || 'Personal Training';
   document.getElementById('clientAmount').value = c.amount;
   document.getElementById('clientMethod').value = c.method;
-  document.getElementById('clientSessionLength').value = c.sessionLength || 60;
-  document.getElementById('clientSessionsPerWeek').value = c.sessionsPerWeek || 0;
   document.getElementById('clientActive').checked = !!c.active;
+  editingSessions = (c.sessions || []).map(function(s){
+    return { serviceType: s.serviceType, sessionLength: s.sessionLength, sessionsPerWeek: s.sessionsPerWeek };
+  });
+  renderSessionRows();
   document.getElementById('btnCancelClientEdit').style.display = 'inline-flex';
   document.querySelector('.tab-btn[data-tab="clients"]').click();
   document.getElementById('clientForm').scrollIntoView({behavior:'smooth', block:'center'});
@@ -1034,7 +1105,8 @@ function deleteClient(id){
 document.getElementById('btnCancelClientEdit').addEventListener('click', function(){
   document.getElementById('clientForm').reset();
   document.getElementById('clientId').value = '';
-  document.getElementById('clientSessionsPerWeek').value = 0;
+  editingSessions = [];
+  renderSessionRows();
   this.style.display = 'none';
 });
 
@@ -1047,8 +1119,9 @@ document.getElementById('clientForm').addEventListener('submit', function(e){
     serviceType: document.getElementById('clientServiceType').value,
     amount: parseFloat(document.getElementById('clientAmount').value) || 0,
     method: document.getElementById('clientMethod').value,
-    sessionLength: parseInt(document.getElementById('clientSessionLength').value, 10) || 60,
-    sessionsPerWeek: parseFloat(document.getElementById('clientSessionsPerWeek').value) || 0,
+    sessions: editingSessions.map(function(s){
+      return { serviceType: s.serviceType, sessionLength: s.sessionLength, sessionsPerWeek: s.sessionsPerWeek };
+    }),
     active: document.getElementById('clientActive').checked
   };
   if(!data.name) return;
@@ -1064,7 +1137,8 @@ document.getElementById('clientForm').addEventListener('submit', function(e){
   saveState();
   this.reset();
   document.getElementById('clientId').value = '';
-  document.getElementById('clientSessionsPerWeek').value = 0;
+  editingSessions = [];
+  renderSessionRows();
   document.getElementById('btnCancelClientEdit').style.display = 'none';
   renderAll();
 });
@@ -1249,8 +1323,7 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
       serviceType: data.serviceType,
       amount: amount,
       method: method,
-      sessionLength: 60,
-      sessionsPerWeek: 0,
+      sessions: [],
       active: true
     });
   } else if(isNew && saveAs === 'casual'){
@@ -1474,20 +1547,22 @@ function renderVenueTable(){
   var tbody = document.getElementById('venueTableBody');
   tbody.innerHTML = '';
   var total = 0;
-  state.clients.map(function(c){ return { c: c, rent: calcVenueRent(c) }; })
-    .filter(function(row){ return row.rent > 0; })
-    .forEach(function(row){
-      total += row.rent;
+  state.clients.forEach(function(c){
+    (c.sessions || []).forEach(function(s){
+      var rent = calcSessionRent(s);
+      if(rent <= 0) return;
+      total += rent;
       var tr = document.createElement('tr');
-      tr.innerHTML = '<td>' + escapeHtml(row.c.name) + '</td>' +
-        '<td>' + serviceTypeTag(row.c.serviceType) + '</td>' +
-        '<td class="num">' + row.c.sessionLength + ' min</td>' +
-        '<td class="num">' + row.c.sessionsPerWeek + '</td>' +
-        '<td class="num">' + money(row.rent) + '</td>';
+      tr.innerHTML = '<td>' + escapeHtml(c.name) + '</td>' +
+        '<td>' + serviceTypeTag(s.serviceType) + '</td>' +
+        '<td class="num">' + s.sessionLength + ' min</td>' +
+        '<td class="num">' + s.sessionsPerWeek + '</td>' +
+        '<td class="num">' + money(rent) + '</td>';
       tbody.appendChild(tr);
     });
+  });
   if(total === 0){
-    tbody.innerHTML = '<tr><td colspan="5" class="muted">No venue rent set on any client yet — set a session length & sessions/week on the Clients tab.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="5" class="muted">No venue rent set on any client yet — add a session on the Clients tab.</td></tr>';
   }
   document.getElementById('venueTotalRow').innerHTML =
     '<td>Total venue rent</td><td></td><td></td><td></td><td class="num">' + money(total) + '</td>';
@@ -1798,6 +1873,7 @@ function renderAll(){
   document.getElementById('paymentDate').value = todayISO();
   saveState();
   initClientSortHeaders();
+  renderSessionRows();
   var autoAdded = autoLogCurrentMonthIfNeeded();
   renderAll();
   syncPaymentClientFields();
