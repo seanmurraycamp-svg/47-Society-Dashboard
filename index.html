@@ -470,6 +470,13 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
         <div class="field" id="paymentCustomNameField" style="display:none;">
           <label>Payee Name</label><input type="text" id="paymentCustomName" placeholder="e.g. Grant Maynard (casual massage)">
         </div>
+        <div class="checkline" id="paymentNewClientCheck" style="display:none;">
+          <input type="checkbox" id="paymentAddAsClient"><label for="paymentAddAsClient">Also add as a new recurring client</label>
+        </div>
+        <div class="field" id="paymentNewClientTypeField" style="display:none;">
+          <label>New Client Type</label>
+          <select id="paymentNewClientType"><option value="In-Person">In-Person</option><option value="Online">Online</option></select>
+        </div>
         <div class="field"><label>Category</label>
           <select id="paymentCategory">
             <option value="Online">Online (recurring)</option>
@@ -984,14 +991,27 @@ function renderPaymentClientOptions(){
   }
 }
 
-document.getElementById('paymentClientSelect').addEventListener('change', function(){
-  var val = this.value;
+function syncPaymentClientFields(){
+  var val = document.getElementById('paymentClientSelect').value;
   var customField = document.getElementById('paymentCustomNameField');
+  var newClientCheck = document.getElementById('paymentNewClientCheck');
   if(val === '__other__'){
     customField.style.display = '';
-    document.getElementById('paymentCategory').value = 'Casual';
+    newClientCheck.style.display = 'flex';
   } else {
     customField.style.display = 'none';
+    newClientCheck.style.display = 'none';
+    document.getElementById('paymentAddAsClient').checked = false;
+    document.getElementById('paymentNewClientTypeField').style.display = 'none';
+  }
+}
+
+document.getElementById('paymentClientSelect').addEventListener('change', function(){
+  var val = this.value;
+  syncPaymentClientFields();
+  if(val === '__other__'){
+    document.getElementById('paymentCategory').value = 'Casual';
+  } else {
     var opt = this.selectedOptions[0];
     if(opt){
       document.getElementById('paymentAmount').value = opt.dataset.amount || '';
@@ -999,6 +1019,15 @@ document.getElementById('paymentClientSelect').addEventListener('change', functi
       document.getElementById('paymentCategory').value = opt.dataset.type || 'Online';
       document.getElementById('paymentServiceType').value = opt.dataset.serviceType || 'Personal Training';
     }
+  }
+});
+
+document.getElementById('paymentAddAsClient').addEventListener('change', function(){
+  var typeField = document.getElementById('paymentNewClientTypeField');
+  typeField.style.display = this.checked ? '' : 'none';
+  if(this.checked){
+    var cat = document.getElementById('paymentCategory').value;
+    document.getElementById('paymentNewClientType').value = (cat === 'Online') ? 'Online' : 'In-Person';
   }
 });
 
@@ -1058,12 +1087,11 @@ function editPayment(id){
   var sel = document.getElementById('paymentClientSelect');
   if(p.clientId && state.clients.some(function(c){ return c.id === p.clientId; })){
     sel.value = p.clientId;
-    document.getElementById('paymentCustomNameField').style.display = 'none';
   } else {
     sel.value = '__other__';
-    document.getElementById('paymentCustomNameField').style.display = '';
     document.getElementById('paymentCustomName').value = p.payee;
   }
+  syncPaymentClientFields();
   document.querySelector('.tab-btn[data-tab="payments"]').click();
   document.getElementById('paymentForm').scrollIntoView({behavior:'smooth', block:'center'});
 }
@@ -1099,21 +1127,33 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
     fee: fee,
     notes: document.getElementById('paymentNotes').value.trim()
   };
+  var addAsClient = !id && isOther && document.getElementById('paymentAddAsClient').checked;
   if(id){
     var p = state.payments.find(function(x){ return x.id === id; });
     Object.assign(p, data);
-    toast('Payment updated');
   } else {
     data.id = uid('p');
     state.payments.push(data);
-    toast('Payment logged');
+  }
+  if(addAsClient){
+    state.clients.push({
+      id: uid('c'),
+      name: payee,
+      type: document.getElementById('paymentNewClientType').value,
+      serviceType: data.serviceType,
+      amount: amount,
+      method: method,
+      venueRent: 0,
+      active: true
+    });
   }
   saveState();
   this.reset();
   document.getElementById('paymentId').value = '';
-  document.getElementById('paymentCustomNameField').style.display = 'none';
   document.getElementById('paymentDate').value = todayISO();
+  syncPaymentClientFields();
   renderAll();
+  toast(addAsClient ? (payee + ' logged and added as a new client') : (id ? 'Payment updated' : 'Payment logged'));
 });
 
 function logMissingActiveClients(monthKey, noteText){
@@ -1526,6 +1566,7 @@ function renderAll(){
   initClientSortHeaders();
   var autoAdded = autoLogCurrentMonthIfNeeded();
   renderAll();
+  syncPaymentClientFields();
   if(autoAdded > 0){
     toast(autoAdded + ' recurring client' + (autoAdded===1?'':'s') + ' auto-logged for ' + monthLabel(cm));
   }
