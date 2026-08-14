@@ -175,7 +175,8 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
 .tag-square{background:rgba(96,165,250,0.16);color:#60A5FA;}
 .tag-bank{background:rgba(255,255,255,0.08);color:var(--text-muted);}
 .tag-inactive{background:rgba(255,255,255,0.05);color:var(--text-faint);}
-.tag-massage{background:rgba(244,162,97,0.18);color:var(--accent-2);}
+.tag-massage{background:rgba(155,63,191,0.18);color:#c98bec;}
+.tag-onlinecoaching{background:rgba(244,162,97,0.18);color:var(--accent-2);}
 .muted{color:var(--text-faint);}
 .icon-btn{
   background:none;border:none;color:var(--text-faint);cursor:pointer;
@@ -425,11 +426,18 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
         <div class="field"><label>Payment Method</label>
           <select id="clientMethod"><option value="Stripe">Stripe</option><option value="Square">Square</option><option value="Bank Transfer">Bank Transfer</option></select>
         </div>
-        <div class="field"><label>Venue Rent / mo ($)</label><input type="number" step="0.01" min="0" id="clientVenue" value="0"></div>
+        <div class="field"><label>Session Length</label>
+          <select id="clientSessionLength">
+            <option value="30">30 min</option>
+            <option value="45">45 min</option>
+            <option value="60" selected>60 min</option>
+          </select>
+        </div>
+        <div class="field"><label>Sessions / Week</label><input type="number" step="0.5" min="0" id="clientSessionsPerWeek" value="0" placeholder="e.g. 1"></div>
         <div class="checkline"><input type="checkbox" id="clientActive" checked><label for="clientActive">Active</label></div>
         <div class="field"><button type="submit" class="btn btn-primary" style="width:100%;">Save client</button></div>
       </form>
-      <p class="field-hint">Stripe fee is auto-calculated at 1.7% + 30c, Square at 1.6%. Bank transfer clients show $0 fee. Venue rent is what Training Depot charges you for that client's sessions each month (0 if none, e.g. apartment training). Click any column header in the table above to sort — defaults to highest paying clients first.</p>
+      <p class="field-hint">Stripe fee is auto-calculated at 1.7% + 30c, Square at 1.6%. Bank transfer clients show $0 fee. Venue rent is calculated automatically from Training Depot's per-session hire rates (session length × sessions/week, at the Massage or Personal Training room rate, incl. GST) — 0 sessions/week means $0 rent (e.g. apartment training or online coaching). Click any column header in the table above to sort — defaults to highest paying clients first.</p>
     </div>
   </div>
 
@@ -471,10 +479,8 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
         <input type="hidden" id="paymentId">
         <div class="field"><label>Date</label><input type="date" id="paymentDate" required></div>
         <div class="field"><label>Client</label>
-          <select id="paymentClientSelect"></select>
-        </div>
-        <div class="field" id="paymentCustomNameField" style="display:none;">
-          <label>Payee Name</label><input type="text" id="paymentCustomName" placeholder="e.g. Grant Maynard (casual massage)">
+          <input type="text" id="paymentClientInput" list="paymentClientDatalist" autocomplete="off" placeholder="Type a name…">
+          <datalist id="paymentClientDatalist"></datalist>
         </div>
         <div class="field" id="paymentNewClientCheck" style="display:none;">
           <label>Save this payee as</label>
@@ -603,12 +609,12 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
       <div class="card-head">
         <div>
           <p class="card-title">Venue Rent (from Client Roster)</p>
-          <p class="card-sub">Read-only here — edit each client's venue rent on the Clients tab.</p>
+          <p class="card-sub">Auto-calculated from Training Depot's per-session rates (incl. GST). Read-only here — edit each client's session length & sessions/week on the Clients tab.</p>
         </div>
       </div>
       <div class="table-scroll">
         <table>
-          <thead><tr><th>Client</th><th class="num">Venue Rent / mo</th></tr></thead>
+          <thead><tr><th>Client</th><th>Service</th><th class="num">Session</th><th class="num">Sessions/Wk</th><th class="num">Venue Rent / mo</th></tr></thead>
           <tbody id="venueTableBody"></tbody>
           <tfoot><tr class="tfoot-row" id="venueTotalRow"></tr></tfoot>
         </table>
@@ -656,17 +662,25 @@ var STORAGE_KEY = 's47_finance_v1';
 
 function defaultState(){
   return {
-    settings: { stripePct: 0.017, stripeFlat: 0.30, squarePct: 0.016 },
+    settings: {
+      stripePct: 0.017, stripeFlat: 0.30, squarePct: 0.016,
+      gstRate: 0.10,
+      venueRates: {
+        'Personal Training': { 30: 11.00, 45: 16.50, 60: 22.00 },
+        'Massage':            { 30: 13.50, 45: 20.25, 60: 27.00 },
+        'Online Coaching':    { 30: 0,     45: 0,     60: 0     }
+      }
+    },
     clients: [
-      { id: 'c1', name: 'Mark Stolz',         type: 'Online',    serviceType: 'Online Coaching',   amount: 400, method: 'Stripe',        venueRent: 0,      active: true },
-      { id: 'c2', name: 'Nikki Onslow',       type: 'Online',    serviceType: 'Online Coaching',   amount: 200, method: 'Stripe',        venueRent: 0,      active: true },
-      { id: 'c3', name: 'Steven Haby',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Bank Transfer', venueRent: 0,      active: true },
-      { id: 'c4', name: 'Richard Bradley',    type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        venueRent: 132.00, active: true },
-      { id: 'c5', name: 'Alex Pillai',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        venueRent: 96.80,  active: true },
-      { id: 'c6', name: 'Brendan Johns',      type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        venueRent: 72.60,  active: true },
-      { id: 'c7', name: 'Geraldine Stallard', type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        venueRent: 72.60,  active: true },
-      { id: 'c8', name: 'Jenny Miao',         type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Bank Transfer', venueRent: 72.60,  active: true },
-      { id: 'c9', name: 'Maureen Pound',      type: 'In-Person', serviceType: 'Personal Training', amount: 360, method: 'Bank Transfer', venueRent: 118.80, active: true }
+      { id: 'c1', name: 'Mark Stolz',         type: 'Online',    serviceType: 'Online Coaching',   amount: 400, method: 'Stripe',        sessionLength: 60, sessionsPerWeek: 0, active: true },
+      { id: 'c2', name: 'Nikki Onslow',       type: 'Online',    serviceType: 'Online Coaching',   amount: 200, method: 'Stripe',        sessionLength: 60, sessionsPerWeek: 0, active: true },
+      { id: 'c3', name: 'Steven Haby',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Bank Transfer', sessionLength: 60, sessionsPerWeek: 0, active: true },
+      { id: 'c4', name: 'Richard Bradley',    type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        sessionLength: 60, sessionsPerWeek: 0, active: true },
+      { id: 'c5', name: 'Alex Pillai',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        sessionLength: 60, sessionsPerWeek: 0, active: true },
+      { id: 'c6', name: 'Brendan Johns',      type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        sessionLength: 60, sessionsPerWeek: 0, active: true },
+      { id: 'c7', name: 'Geraldine Stallard', type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        sessionLength: 60, sessionsPerWeek: 0, active: true },
+      { id: 'c8', name: 'Jenny Miao',         type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Bank Transfer', sessionLength: 60, sessionsPerWeek: 0, active: true },
+      { id: 'c9', name: 'Maureen Pound',      type: 'In-Person', serviceType: 'Personal Training', amount: 360, method: 'Bank Transfer', sessionLength: 60, sessionsPerWeek: 0, active: true }
     ],
     expenses: [
       { id: 'e1', name: 'Go High Level', full: 140, charged: 70, notes: '$70 of $140 is claimable through Loose Human' },
@@ -693,6 +707,8 @@ function loadState(){
     var parsed = JSON.parse(raw);
     if(!parsed.settings) parsed.settings = defaultState().settings;
     if(!parsed.settings.squarePct) parsed.settings.squarePct = 0.016;
+    if(!parsed.settings.gstRate) parsed.settings.gstRate = 0.10;
+    if(!parsed.settings.venueRates) parsed.settings.venueRates = defaultState().settings.venueRates;
     if(!parsed.clients) parsed.clients = [];
     if(!parsed.expenses) parsed.expenses = [];
     if(!parsed.payments) parsed.payments = [];
@@ -700,6 +716,9 @@ function loadState(){
     if(!parsed.autoLoggedMonths) parsed.autoLoggedMonths = [];
     parsed.clients.forEach(function(c){
       if(!c.serviceType) c.serviceType = c.type === 'Online' ? 'Online Coaching' : 'Personal Training';
+      if(!c.sessionLength) c.sessionLength = 60;
+      if(c.sessionsPerWeek === undefined) c.sessionsPerWeek = 0;
+      delete c.venueRent;
     });
     parsed.payments.forEach(function(p){
       if(!p.serviceType) p.serviceType = p.category === 'Online' ? 'Online Coaching' : 'Personal Training';
@@ -739,6 +758,18 @@ function calcFee(amount, method){
     return Math.round(amount * state.settings.squarePct * 100) / 100;
   }
   return 0;
+}
+
+var WEEKS_PER_MONTH = 52 / 12;
+
+function calcVenueRent(c){
+  var perWeek = Number(c.sessionsPerWeek) || 0;
+  if(!perWeek) return 0;
+  var rates = state.settings.venueRates[c.serviceType] || state.settings.venueRates['Personal Training'];
+  var base = rates[c.sessionLength] || 0;
+  if(!base) return 0;
+  var perSession = base * (1 + state.settings.gstRate);
+  return Math.round(perSession * perWeek * WEEKS_PER_MONTH * 100) / 100;
 }
 
 function todayISO(){
@@ -794,7 +825,7 @@ function methodTag(method){
 
 function serviceTypeTag(st){
   if(st === 'Massage') return '<span class="tag tag-massage">Massage</span>';
-  if(st === 'Online Coaching') return '<span class="tag tag-online">Online Coaching</span>';
+  if(st === 'Online Coaching') return '<span class="tag tag-onlinecoaching">Online Coaching</span>';
   return '<span class="tag tag-inperson">Personal Training</span>';
 }
 
@@ -809,7 +840,7 @@ function escapeHtml(s){
    ============================================================ */
 function totalExpenses(){
   var subs = state.expenses.reduce(function(sum, e){ return sum + (Number(e.charged)||0); }, 0);
-  var venue = state.clients.reduce(function(sum, c){ return sum + (Number(c.venueRent)||0); }, 0);
+  var venue = state.clients.reduce(function(sum, c){ return sum + calcVenueRent(c); }, 0);
   return { subs: subs, venue: venue, total: subs + venue };
 }
 
@@ -875,7 +906,7 @@ function clientSortValue(row, key){
     case 'amount': return Number(c.amount)||0;
     case 'method': return c.method||'';
     case 'fee': return row.fee;
-    case 'venueRent': return Number(c.venueRent)||0;
+    case 'venueRent': return row.venueRent;
     case 'net': return row.net;
     case 'active': return c.active ? 1 : 0;
     default: return '';
@@ -913,8 +944,9 @@ function renderClients(){
 
   var rows = state.clients.map(function(c){
     var fee = calcFee(c.amount, c.method);
-    var net = (Number(c.amount)||0) - fee - (Number(c.venueRent)||0);
-    return { c: c, fee: fee, net: net };
+    var venueRent = calcVenueRent(c);
+    var net = (Number(c.amount)||0) - fee - venueRent;
+    return { c: c, fee: fee, venueRent: venueRent, net: net };
   });
 
   rows.sort(function(a,b){
@@ -926,11 +958,11 @@ function renderClients(){
   });
 
   rows.forEach(function(row){
-    var c = row.c, fee = row.fee, net = row.net;
+    var c = row.c, fee = row.fee, net = row.net, venueRent = row.venueRent;
     if(c.active){
       totalMonthly += Number(c.amount)||0;
       totalFee += fee;
-      totalVenue += Number(c.venueRent)||0;
+      totalVenue += venueRent;
       totalNet += net;
     }
     var tr = document.createElement('tr');
@@ -942,7 +974,7 @@ function renderClients(){
       '<td class="num">' + money(c.amount) + '</td>' +
       '<td>' + methodTag(c.method) + '</td>' +
       '<td class="num">' + money(fee) + '</td>' +
-      '<td class="num">' + money(c.venueRent) + '</td>' +
+      '<td class="num">' + money(venueRent) + '</td>' +
       '<td class="num">' + money(net) + '</td>' +
       '<td>' + (c.active ? '<span class="tag" style="background:rgba(74,222,128,0.14);color:#4ADE80;">Active</span>' : '<span class="tag tag-inactive">Inactive</span>') + '</td>' +
       '<td>' +
@@ -981,7 +1013,8 @@ function editClient(id){
   document.getElementById('clientServiceType').value = c.serviceType || 'Personal Training';
   document.getElementById('clientAmount').value = c.amount;
   document.getElementById('clientMethod').value = c.method;
-  document.getElementById('clientVenue').value = c.venueRent;
+  document.getElementById('clientSessionLength').value = c.sessionLength || 60;
+  document.getElementById('clientSessionsPerWeek').value = c.sessionsPerWeek || 0;
   document.getElementById('clientActive').checked = !!c.active;
   document.getElementById('btnCancelClientEdit').style.display = 'inline-flex';
   document.querySelector('.tab-btn[data-tab="clients"]').click();
@@ -1001,7 +1034,7 @@ function deleteClient(id){
 document.getElementById('btnCancelClientEdit').addEventListener('click', function(){
   document.getElementById('clientForm').reset();
   document.getElementById('clientId').value = '';
-  document.getElementById('clientVenue').value = 0;
+  document.getElementById('clientSessionsPerWeek').value = 0;
   this.style.display = 'none';
 });
 
@@ -1014,7 +1047,8 @@ document.getElementById('clientForm').addEventListener('submit', function(e){
     serviceType: document.getElementById('clientServiceType').value,
     amount: parseFloat(document.getElementById('clientAmount').value) || 0,
     method: document.getElementById('clientMethod').value,
-    venueRent: parseFloat(document.getElementById('clientVenue').value) || 0,
+    sessionLength: parseInt(document.getElementById('clientSessionLength').value, 10) || 60,
+    sessionsPerWeek: parseFloat(document.getElementById('clientSessionsPerWeek').value) || 0,
     active: document.getElementById('clientActive').checked
   };
   if(!data.name) return;
@@ -1030,7 +1064,7 @@ document.getElementById('clientForm').addEventListener('submit', function(e){
   saveState();
   this.reset();
   document.getElementById('clientId').value = '';
-  document.getElementById('clientVenue').value = 0;
+  document.getElementById('clientSessionsPerWeek').value = 0;
   document.getElementById('btnCancelClientEdit').style.display = 'none';
   renderAll();
 });
@@ -1039,81 +1073,60 @@ document.getElementById('clientForm').addEventListener('submit', function(e){
    RENDER: PAYMENTS
    ============================================================ */
 function renderPaymentClientOptions(){
-  var sel = document.getElementById('paymentClientSelect');
-  var prevVal = sel.value;
-  sel.innerHTML = '';
-  var optOther = document.createElement('option');
-  optOther.value = '__other__';
-  optOther.textContent = 'Casual / Other (type name)';
-  sel.appendChild(optOther);
+  var datalist = document.getElementById('paymentClientDatalist');
+  datalist.innerHTML = '';
+  var names = state.casualClients.map(function(cc){ return cc.name; })
+    .concat(state.clients.map(function(c){ return c.name; }));
+  names.sort(function(a,b){ return a.toLowerCase() < b.toLowerCase() ? -1 : 1; });
+  var seen = {};
+  names.forEach(function(name){
+    var key = name.toLowerCase();
+    if(seen[key]) return;
+    seen[key] = true;
+    var opt = document.createElement('option');
+    opt.value = name;
+    datalist.appendChild(opt);
+  });
+}
 
-  if(state.casualClients.length){
-    var grpCasual = document.createElement('optgroup');
-    grpCasual.label = 'Casual Clients';
-    state.casualClients.forEach(function(cc){
-      var opt = document.createElement('option');
-      opt.value = 'casual:' + cc.id;
-      opt.textContent = cc.name + (cc.amount ? ' (' + money(cc.amount) + ')' : '');
-      opt.dataset.name = cc.name;
-      opt.dataset.amount = cc.amount || '';
-      opt.dataset.method = cc.method || 'Cash';
-      opt.dataset.serviceType = cc.serviceType || 'Massage';
-      grpCasual.appendChild(opt);
-    });
-    sel.appendChild(grpCasual);
-  }
-
-  if(state.clients.length){
-    var grpRecurring = document.createElement('optgroup');
-    grpRecurring.label = 'Recurring Clients';
-    state.clients.forEach(function(c){
-      var opt = document.createElement('option');
-      opt.value = c.id;
-      opt.textContent = c.name + ' — ' + c.type + ' (' + money(c.amount) + ')';
-      opt.dataset.name = c.name;
-      opt.dataset.type = c.type;
-      opt.dataset.amount = c.amount;
-      opt.dataset.method = c.method;
-      opt.dataset.serviceType = c.serviceType || 'Personal Training';
-      grpRecurring.appendChild(opt);
-    });
-    sel.appendChild(grpRecurring);
-  }
-
-  if(prevVal){
-    sel.value = prevVal;
-  }
+function resolveClientInput(){
+  var raw = document.getElementById('paymentClientInput').value.trim();
+  if(!raw) return null;
+  var casual = state.casualClients.find(function(cc){ return cc.name.toLowerCase() === raw.toLowerCase(); });
+  if(casual) return { kind: 'casual', rec: casual, name: casual.name };
+  var rec = state.clients.find(function(c){ return c.name.toLowerCase() === raw.toLowerCase(); });
+  if(rec) return { kind: 'recurring', rec: rec, name: rec.name };
+  return { kind: 'other', name: raw };
 }
 
 function syncPaymentClientFields(){
-  var val = document.getElementById('paymentClientSelect').value;
-  var customField = document.getElementById('paymentCustomNameField');
+  var match = resolveClientInput();
   var newClientCheck = document.getElementById('paymentNewClientCheck');
-  if(val === '__other__'){
-    customField.style.display = '';
+  if(match && match.kind === 'other'){
     newClientCheck.style.display = '';
   } else {
-    customField.style.display = 'none';
     newClientCheck.style.display = 'none';
     document.getElementById('paymentSaveAs').value = 'none';
     document.getElementById('paymentNewClientTypeField').style.display = 'none';
   }
 }
 
-document.getElementById('paymentClientSelect').addEventListener('change', function(){
-  var val = this.value;
+document.getElementById('paymentClientInput').addEventListener('input', function(){
+  var match = resolveClientInput();
   syncPaymentClientFields();
-  if(val === '__other__'){
+  if(!match) return;
+  if(match.kind === 'casual'){
+    document.getElementById('paymentAmount').value = match.rec.amount || '';
+    document.getElementById('paymentMethod').value = match.rec.method || 'Cash';
+    document.getElementById('paymentServiceType').value = match.rec.serviceType || 'Massage';
     document.getElementById('paymentCategory').value = 'Casual';
+  } else if(match.kind === 'recurring'){
+    document.getElementById('paymentAmount').value = match.rec.amount || '';
+    document.getElementById('paymentMethod').value = match.rec.method || 'Stripe';
+    document.getElementById('paymentServiceType').value = match.rec.serviceType || 'Personal Training';
+    document.getElementById('paymentCategory').value = match.rec.type || 'Online';
   } else {
-    var opt = this.selectedOptions[0];
-    var isCasual = val.indexOf('casual:') === 0;
-    if(opt){
-      document.getElementById('paymentAmount').value = opt.dataset.amount || '';
-      document.getElementById('paymentMethod').value = opt.dataset.method || 'Stripe';
-      document.getElementById('paymentServiceType').value = opt.dataset.serviceType || 'Personal Training';
-      document.getElementById('paymentCategory').value = isCasual ? 'Casual' : (opt.dataset.type || 'Online');
-    }
+    document.getElementById('paymentCategory').value = 'Casual';
   }
 });
 
@@ -1179,15 +1192,7 @@ function editPayment(id){
   document.getElementById('paymentCategory').value = p.category;
   document.getElementById('paymentServiceType').value = p.serviceType || 'Personal Training';
   document.getElementById('paymentNotes').value = p.notes || '';
-  var sel = document.getElementById('paymentClientSelect');
-  if(p.clientId && state.clients.some(function(c){ return c.id === p.clientId; })){
-    sel.value = p.clientId;
-  } else if(p.casualClientId && state.casualClients.some(function(cc){ return cc.id === p.casualClientId; })){
-    sel.value = 'casual:' + p.casualClientId;
-  } else {
-    sel.value = '__other__';
-    document.getElementById('paymentCustomName').value = p.payee;
-  }
+  document.getElementById('paymentClientInput').value = p.payee;
   syncPaymentClientFields();
   document.querySelector('.tab-btn[data-tab="payments"]').click();
   document.getElementById('paymentForm').scrollIntoView({behavior:'smooth', block:'center'});
@@ -1206,19 +1211,19 @@ function deletePayment(id){
 document.getElementById('paymentForm').addEventListener('submit', function(e){
   e.preventDefault();
   var id = document.getElementById('paymentId').value;
-  var sel = document.getElementById('paymentClientSelect');
-  var selVal = sel.value;
-  var isOther = selVal === '__other__';
-  var isCasualClient = selVal.indexOf('casual:') === 0;
-  var payee = isOther ? document.getElementById('paymentCustomName').value.trim() : (sel.selectedOptions[0].dataset.name || '');
+  var match = resolveClientInput();
+  var isOther = !match || match.kind === 'other';
+  var isCasualClient = !!match && match.kind === 'casual';
+  var isRecurringClient = !!match && match.kind === 'recurring';
+  var payee = match ? match.name : '';
   if(!payee){ toast('Enter a payee name'); return; }
   var amount = parseFloat(document.getElementById('paymentAmount').value) || 0;
   var method = document.getElementById('paymentMethod').value;
   var fee = calcFee(amount, method);
   var data = {
     date: document.getElementById('paymentDate').value || todayISO(),
-    clientId: (!isOther && !isCasualClient) ? selVal : null,
-    casualClientId: isCasualClient ? selVal.slice(7) : null,
+    clientId: isRecurringClient ? match.rec.id : null,
+    casualClientId: isCasualClient ? match.rec.id : null,
     payee: payee,
     category: document.getElementById('paymentCategory').value,
     serviceType: document.getElementById('paymentServiceType').value,
@@ -1244,7 +1249,8 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
       serviceType: data.serviceType,
       amount: amount,
       method: method,
-      venueRent: 0,
+      sessionLength: 60,
+      sessionsPerWeek: 0,
       active: true
     });
   } else if(isNew && saveAs === 'casual'){
@@ -1468,17 +1474,23 @@ function renderVenueTable(){
   var tbody = document.getElementById('venueTableBody');
   tbody.innerHTML = '';
   var total = 0;
-  state.clients.filter(function(c){ return Number(c.venueRent) > 0; }).forEach(function(c){
-    total += Number(c.venueRent)||0;
-    var tr = document.createElement('tr');
-    tr.innerHTML = '<td>' + escapeHtml(c.name) + '</td><td class="num">' + money(c.venueRent) + '</td>';
-    tbody.appendChild(tr);
-  });
+  state.clients.map(function(c){ return { c: c, rent: calcVenueRent(c) }; })
+    .filter(function(row){ return row.rent > 0; })
+    .forEach(function(row){
+      total += row.rent;
+      var tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + escapeHtml(row.c.name) + '</td>' +
+        '<td>' + serviceTypeTag(row.c.serviceType) + '</td>' +
+        '<td class="num">' + row.c.sessionLength + ' min</td>' +
+        '<td class="num">' + row.c.sessionsPerWeek + '</td>' +
+        '<td class="num">' + money(row.rent) + '</td>';
+      tbody.appendChild(tr);
+    });
   if(total === 0){
-    tbody.innerHTML = '<tr><td colspan="2" class="muted">No venue rent set on any client yet.</td></tr>';
+    tbody.innerHTML = '<tr><td colspan="5" class="muted">No venue rent set on any client yet — set a session length & sessions/week on the Clients tab.</td></tr>';
   }
   document.getElementById('venueTotalRow').innerHTML =
-    '<td>Total venue rent</td><td class="num">' + money(total) + '</td>';
+    '<td>Total venue rent</td><td></td><td></td><td></td><td class="num">' + money(total) + '</td>';
 }
 
 function editExpense(id){
@@ -1533,7 +1545,7 @@ document.getElementById('expenseForm').addEventListener('submit', function(e){
    ============================================================ */
 var trendChartInstance = null;
 var serviceChartInstance = null;
-var SERVICE_COLORS = { 'Personal Training': '#E85D8A', 'Massage': '#F4A261', 'Online Coaching': '#9B3FBF' };
+var SERVICE_COLORS = { 'Personal Training': '#E85D8A', 'Massage': '#9B3FBF', 'Online Coaching': '#F4A261' };
 var GOAL_TARGET = 10;
 var GOAL_DATE = '2026-12-31';
 
