@@ -199,6 +199,12 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
   font-size:13px;
 }
 .field input:focus,.field select:focus{outline:none;border-color:var(--accent);}
+.field textarea{
+  width:100%;background:var(--bg-elevated);border:1px solid var(--border);
+  border-radius:8px;color:var(--text);padding:9px 10px;font-family:'Inter',sans-serif;
+  font-size:13px;resize:vertical;
+}
+.field textarea:focus{outline:none;border-color:var(--accent);}
 .field-hint{font-size:11px;color:var(--text-faint);margin-top:5px;}
 .checkline{display:flex;align-items:center;gap:8px;padding-bottom:9px;}
 .checkline input{width:16px;height:16px;accent-color:var(--accent);}
@@ -470,8 +476,13 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
         <div class="field" id="paymentCustomNameField" style="display:none;">
           <label>Payee Name</label><input type="text" id="paymentCustomName" placeholder="e.g. Grant Maynard (casual massage)">
         </div>
-        <div class="checkline" id="paymentNewClientCheck" style="display:none;">
-          <input type="checkbox" id="paymentAddAsClient"><label for="paymentAddAsClient">Also add as a new recurring client</label>
+        <div class="field" id="paymentNewClientCheck" style="display:none;">
+          <label>Save this payee as</label>
+          <select id="paymentSaveAs">
+            <option value="none">Don't save — one-off only</option>
+            <option value="casual">Casual client (quick-select next time, never auto-billed)</option>
+            <option value="recurring">Recurring client (auto-billed monthly)</option>
+          </select>
         </div>
         <div class="field" id="paymentNewClientTypeField" style="display:none;">
           <label>New Client Type</label>
@@ -498,6 +509,63 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
         <div class="field"><label>Notes</label><input type="text" id="paymentNotes" placeholder="optional"></div>
         <div class="field"><button type="submit" class="btn btn-primary" style="width:100%;">Save payment</button></div>
       </form>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <p class="card-title">Casual Client Directory</p>
+          <p class="card-sub">People who pay one-off (e.g. a walk-in massage) but might come back. Saved here so you can pick them from the dropdown above — they're never auto-billed monthly and don't count toward your recurring goals.</p>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Name</th><th>Default Service</th><th class="num">Typical $</th><th>Default Method</th><th>Notes</th><th></th></tr></thead>
+          <tbody id="casualClientsTableBody"></tbody>
+        </table>
+      </div>
+      <div class="empty-state" id="casualClientsEmpty" style="display:none;">No casual clients saved yet — add them one at a time below, or paste a whole list with Bulk Add.</div>
+
+      <div class="section-divider">Add / Edit One</div>
+      <form id="casualClientForm" class="form-grid">
+        <input type="hidden" id="casualClientId">
+        <div class="field"><label>Name</label><input type="text" id="casualClientName" required placeholder="e.g. Grant Maynard"></div>
+        <div class="field"><label>Default Service</label>
+          <select id="casualClientService">
+            <option value="Massage">Massage</option>
+            <option value="Personal Training">Personal Training</option>
+            <option value="Online Coaching">Online Coaching</option>
+          </select>
+        </div>
+        <div class="field"><label>Typical Amount ($)</label><input type="number" step="0.01" min="0" id="casualClientAmount" placeholder="optional"></div>
+        <div class="field"><label>Default Method</label>
+          <select id="casualClientMethod"><option value="Cash">Cash</option><option value="Stripe">Stripe</option><option value="Square">Square</option><option value="Bank Transfer">Bank Transfer</option></select>
+        </div>
+        <div class="field"><label>Notes</label><input type="text" id="casualClientNotes" placeholder="optional"></div>
+        <div class="field">
+          <button type="submit" class="btn btn-primary" style="width:100%;">Save casual client</button>
+        </div>
+      </form>
+      <button class="btn btn-ghost btn-sm" id="btnCancelCasualEdit" style="display:none;margin-top:10px;">Cancel edit</button>
+
+      <div class="section-divider">Bulk Add</div>
+      <p class="field-hint" style="margin-top:-6px;margin-bottom:12px;">Paste one name per line to add a whole list at once. They'll all get the default service/method chosen here — edit individuals afterwards if needed.</p>
+      <div class="form-grid">
+        <div class="field" style="grid-column:1/-1;"><label>Names (one per line)</label>
+          <textarea id="bulkCasualNames" rows="5" placeholder="Grant Maynard&#10;Priya Nair&#10;Tom O'Rourke"></textarea>
+        </div>
+        <div class="field"><label>Default Service</label>
+          <select id="bulkCasualService">
+            <option value="Massage">Massage</option>
+            <option value="Personal Training">Personal Training</option>
+            <option value="Online Coaching">Online Coaching</option>
+          </select>
+        </div>
+        <div class="field"><label>Default Method</label>
+          <select id="bulkCasualMethod"><option value="Cash">Cash</option><option value="Stripe">Stripe</option><option value="Square">Square</option><option value="Bank Transfer">Bank Transfer</option></select>
+        </div>
+        <div class="field"><button type="button" class="btn btn-primary" id="btnBulkAddCasual" style="width:100%;">Add all</button></div>
+      </div>
     </div>
   </div>
 
@@ -611,6 +679,7 @@ function defaultState(){
       { id: 'e8', name: 'Canva',         full: 20,  charged: 20, notes: '' }
     ],
     payments: [],
+    casualClients: [],
     autoLoggedMonths: []
   };
 }
@@ -627,6 +696,7 @@ function loadState(){
     if(!parsed.clients) parsed.clients = [];
     if(!parsed.expenses) parsed.expenses = [];
     if(!parsed.payments) parsed.payments = [];
+    if(!parsed.casualClients) parsed.casualClients = [];
     if(!parsed.autoLoggedMonths) parsed.autoLoggedMonths = [];
     parsed.clients.forEach(function(c){
       if(!c.serviceType) c.serviceType = c.type === 'Online' ? 'Online Coaching' : 'Personal Training';
@@ -976,16 +1046,40 @@ function renderPaymentClientOptions(){
   optOther.value = '__other__';
   optOther.textContent = 'Casual / Other (type name)';
   sel.appendChild(optOther);
-  state.clients.forEach(function(c){
-    var opt = document.createElement('option');
-    opt.value = c.id;
-    opt.textContent = c.name + ' — ' + c.type + ' (' + money(c.amount) + ')';
-    opt.dataset.type = c.type;
-    opt.dataset.amount = c.amount;
-    opt.dataset.method = c.method;
-    opt.dataset.serviceType = c.serviceType || 'Personal Training';
-    sel.appendChild(opt);
-  });
+
+  if(state.casualClients.length){
+    var grpCasual = document.createElement('optgroup');
+    grpCasual.label = 'Casual Clients';
+    state.casualClients.forEach(function(cc){
+      var opt = document.createElement('option');
+      opt.value = 'casual:' + cc.id;
+      opt.textContent = cc.name + (cc.amount ? ' (' + money(cc.amount) + ')' : '');
+      opt.dataset.name = cc.name;
+      opt.dataset.amount = cc.amount || '';
+      opt.dataset.method = cc.method || 'Cash';
+      opt.dataset.serviceType = cc.serviceType || 'Massage';
+      grpCasual.appendChild(opt);
+    });
+    sel.appendChild(grpCasual);
+  }
+
+  if(state.clients.length){
+    var grpRecurring = document.createElement('optgroup');
+    grpRecurring.label = 'Recurring Clients';
+    state.clients.forEach(function(c){
+      var opt = document.createElement('option');
+      opt.value = c.id;
+      opt.textContent = c.name + ' — ' + c.type + ' (' + money(c.amount) + ')';
+      opt.dataset.name = c.name;
+      opt.dataset.type = c.type;
+      opt.dataset.amount = c.amount;
+      opt.dataset.method = c.method;
+      opt.dataset.serviceType = c.serviceType || 'Personal Training';
+      grpRecurring.appendChild(opt);
+    });
+    sel.appendChild(grpRecurring);
+  }
+
   if(prevVal){
     sel.value = prevVal;
   }
@@ -997,11 +1091,11 @@ function syncPaymentClientFields(){
   var newClientCheck = document.getElementById('paymentNewClientCheck');
   if(val === '__other__'){
     customField.style.display = '';
-    newClientCheck.style.display = 'flex';
+    newClientCheck.style.display = '';
   } else {
     customField.style.display = 'none';
     newClientCheck.style.display = 'none';
-    document.getElementById('paymentAddAsClient').checked = false;
+    document.getElementById('paymentSaveAs').value = 'none';
     document.getElementById('paymentNewClientTypeField').style.display = 'none';
   }
 }
@@ -1013,19 +1107,20 @@ document.getElementById('paymentClientSelect').addEventListener('change', functi
     document.getElementById('paymentCategory').value = 'Casual';
   } else {
     var opt = this.selectedOptions[0];
+    var isCasual = val.indexOf('casual:') === 0;
     if(opt){
       document.getElementById('paymentAmount').value = opt.dataset.amount || '';
       document.getElementById('paymentMethod').value = opt.dataset.method || 'Stripe';
-      document.getElementById('paymentCategory').value = opt.dataset.type || 'Online';
       document.getElementById('paymentServiceType').value = opt.dataset.serviceType || 'Personal Training';
+      document.getElementById('paymentCategory').value = isCasual ? 'Casual' : (opt.dataset.type || 'Online');
     }
   }
 });
 
-document.getElementById('paymentAddAsClient').addEventListener('change', function(){
+document.getElementById('paymentSaveAs').addEventListener('change', function(){
   var typeField = document.getElementById('paymentNewClientTypeField');
-  typeField.style.display = this.checked ? '' : 'none';
-  if(this.checked){
+  typeField.style.display = (this.value === 'recurring') ? '' : 'none';
+  if(this.value === 'recurring'){
     var cat = document.getElementById('paymentCategory').value;
     document.getElementById('paymentNewClientType').value = (cat === 'Online') ? 'Online' : 'In-Person';
   }
@@ -1087,6 +1182,8 @@ function editPayment(id){
   var sel = document.getElementById('paymentClientSelect');
   if(p.clientId && state.clients.some(function(c){ return c.id === p.clientId; })){
     sel.value = p.clientId;
+  } else if(p.casualClientId && state.casualClients.some(function(cc){ return cc.id === p.casualClientId; })){
+    sel.value = 'casual:' + p.casualClientId;
   } else {
     sel.value = '__other__';
     document.getElementById('paymentCustomName').value = p.payee;
@@ -1110,15 +1207,18 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
   e.preventDefault();
   var id = document.getElementById('paymentId').value;
   var sel = document.getElementById('paymentClientSelect');
-  var isOther = sel.value === '__other__';
-  var payee = isOther ? document.getElementById('paymentCustomName').value.trim() : sel.selectedOptions[0].textContent.split(' — ')[0];
+  var selVal = sel.value;
+  var isOther = selVal === '__other__';
+  var isCasualClient = selVal.indexOf('casual:') === 0;
+  var payee = isOther ? document.getElementById('paymentCustomName').value.trim() : (sel.selectedOptions[0].dataset.name || '');
   if(!payee){ toast('Enter a payee name'); return; }
   var amount = parseFloat(document.getElementById('paymentAmount').value) || 0;
   var method = document.getElementById('paymentMethod').value;
   var fee = calcFee(amount, method);
   var data = {
     date: document.getElementById('paymentDate').value || todayISO(),
-    clientId: isOther ? null : sel.value,
+    clientId: (!isOther && !isCasualClient) ? selVal : null,
+    casualClientId: isCasualClient ? selVal.slice(7) : null,
     payee: payee,
     category: document.getElementById('paymentCategory').value,
     serviceType: document.getElementById('paymentServiceType').value,
@@ -1127,7 +1227,8 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
     fee: fee,
     notes: document.getElementById('paymentNotes').value.trim()
   };
-  var addAsClient = !id && isOther && document.getElementById('paymentAddAsClient').checked;
+  var saveAs = isOther ? document.getElementById('paymentSaveAs').value : 'none';
+  var isNew = !id;
   if(id){
     var p = state.payments.find(function(x){ return x.id === id; });
     Object.assign(p, data);
@@ -1135,7 +1236,7 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
     data.id = uid('p');
     state.payments.push(data);
   }
-  if(addAsClient){
+  if(isNew && saveAs === 'recurring'){
     state.clients.push({
       id: uid('c'),
       name: payee,
@@ -1146,6 +1247,15 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
       venueRent: 0,
       active: true
     });
+  } else if(isNew && saveAs === 'casual'){
+    state.casualClients.push({
+      id: uid('cc'),
+      name: payee,
+      serviceType: data.serviceType,
+      amount: amount,
+      method: method,
+      notes: ''
+    });
   }
   saveState();
   this.reset();
@@ -1153,7 +1263,118 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
   document.getElementById('paymentDate').value = todayISO();
   syncPaymentClientFields();
   renderAll();
-  toast(addAsClient ? (payee + ' logged and added as a new client') : (id ? 'Payment updated' : 'Payment logged'));
+  var savedNote = saveAs === 'recurring' ? ' and added as a new recurring client' : (saveAs === 'casual' ? ' and saved as a casual client' : '');
+  toast(isNew ? ('Payment logged' + savedNote) : 'Payment updated');
+});
+
+/* ============================================================
+   RENDER: CASUAL CLIENTS
+   ============================================================ */
+function renderCasualClients(){
+  var tbody = document.getElementById('casualClientsTableBody');
+  tbody.innerHTML = '';
+  var list = state.casualClients.slice().sort(function(a,b){ return (a.name||'').toLowerCase() < (b.name||'').toLowerCase() ? -1 : 1; });
+  document.getElementById('casualClientsEmpty').style.display = list.length ? 'none' : 'block';
+  list.forEach(function(cc){
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + escapeHtml(cc.name) + '</td>' +
+      '<td>' + serviceTypeTag(cc.serviceType) + '</td>' +
+      '<td class="num">' + (cc.amount ? money(cc.amount) : '<span class="muted">—</span>') + '</td>' +
+      '<td>' + methodTag(cc.method) + '</td>' +
+      '<td class="muted">' + escapeHtml(cc.notes || '') + '</td>' +
+      '<td><button class="icon-btn" data-edit-casual="' + cc.id + '">Edit</button>' +
+      '<button class="icon-btn del" data-del-casual="' + cc.id + '">Delete</button></td>';
+    tbody.appendChild(tr);
+  });
+  tbody.querySelectorAll('[data-edit-casual]').forEach(function(b){
+    b.addEventListener('click', function(){ editCasualClient(b.dataset.editCasual); });
+  });
+  tbody.querySelectorAll('[data-del-casual]').forEach(function(b){
+    b.addEventListener('click', function(){ deleteCasualClient(b.dataset.delCasual); });
+  });
+  renderPaymentClientOptions();
+}
+
+function editCasualClient(id){
+  var cc = state.casualClients.find(function(x){ return x.id === id; });
+  if(!cc) return;
+  document.getElementById('casualClientId').value = cc.id;
+  document.getElementById('casualClientName').value = cc.name;
+  document.getElementById('casualClientService').value = cc.serviceType || 'Massage';
+  document.getElementById('casualClientAmount').value = cc.amount || '';
+  document.getElementById('casualClientMethod').value = cc.method || 'Cash';
+  document.getElementById('casualClientNotes').value = cc.notes || '';
+  document.getElementById('btnCancelCasualEdit').style.display = 'inline-flex';
+  document.querySelector('.tab-btn[data-tab="payments"]').click();
+  document.getElementById('casualClientForm').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function deleteCasualClient(id){
+  var cc = state.casualClients.find(function(x){ return x.id === id; });
+  if(!cc) return;
+  if(!confirm('Remove ' + cc.name + ' from the casual client directory? Their past payment log entries stay untouched.')) return;
+  state.casualClients = state.casualClients.filter(function(x){ return x.id !== id; });
+  saveState();
+  renderAll();
+  toast('Casual client removed');
+}
+
+document.getElementById('btnCancelCasualEdit').addEventListener('click', function(){
+  document.getElementById('casualClientForm').reset();
+  document.getElementById('casualClientId').value = '';
+  this.style.display = 'none';
+});
+
+document.getElementById('casualClientForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var id = document.getElementById('casualClientId').value;
+  var data = {
+    name: document.getElementById('casualClientName').value.trim(),
+    serviceType: document.getElementById('casualClientService').value,
+    amount: parseFloat(document.getElementById('casualClientAmount').value) || 0,
+    method: document.getElementById('casualClientMethod').value,
+    notes: document.getElementById('casualClientNotes').value.trim()
+  };
+  if(!data.name) return;
+  if(id){
+    var cc = state.casualClients.find(function(x){ return x.id === id; });
+    Object.assign(cc, data);
+    toast('Casual client updated');
+  } else {
+    data.id = uid('cc');
+    state.casualClients.push(data);
+    toast('Casual client added');
+  }
+  saveState();
+  this.reset();
+  document.getElementById('casualClientId').value = '';
+  document.getElementById('btnCancelCasualEdit').style.display = 'none';
+  renderAll();
+});
+
+document.getElementById('btnBulkAddCasual').addEventListener('click', function(){
+  var raw = document.getElementById('bulkCasualNames').value;
+  var serviceType = document.getElementById('bulkCasualService').value;
+  var method = document.getElementById('bulkCasualMethod').value;
+  var existingNames = {};
+  state.casualClients.forEach(function(cc){ existingNames[cc.name.toLowerCase()] = true; });
+  var names = raw.split('\n').map(function(s){ return s.trim(); }).filter(function(s){ return s.length > 0; });
+  var added = 0, skipped = 0;
+  names.forEach(function(name){
+    if(existingNames[name.toLowerCase()]){ skipped++; return; }
+    state.casualClients.push({ id: uid('cc'), name: name, serviceType: serviceType, amount: 0, method: method, notes: '' });
+    existingNames[name.toLowerCase()] = true;
+    added++;
+  });
+  if(added === 0){
+    toast(names.length ? 'All those names already exist' : 'Paste at least one name first');
+    return;
+  }
+  saveState();
+  document.getElementById('bulkCasualNames').value = '';
+  renderAll();
+  toast(added + ' casual client' + (added===1?'':'s') + ' added' + (skipped ? ' (' + skipped + ' duplicate skipped)' : ''));
 });
 
 function logMissingActiveClients(monthKey, noteText){
@@ -1551,6 +1772,7 @@ document.getElementById('fileImport').addEventListener('change', function(e){
    ============================================================ */
 function renderAll(){
   renderClients();
+  renderCasualClients();
   renderExpenses();
   renderPayments();
   renderOverview();
