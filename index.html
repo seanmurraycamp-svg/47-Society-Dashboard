@@ -369,7 +369,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
       </div>
       <div class="table-scroll">
         <table id="overviewPaymentsTable">
-          <thead><tr><th>Date</th><th>Payee</th><th>Category</th><th>Service</th><th>Method</th><th class="num">Amount</th><th class="num">Fee</th><th class="num">Net</th></tr></thead>
+          <thead><tr><th>Date</th><th>Payee</th><th>Category</th><th>Service</th><th>Method</th><th class="num">Amount</th><th class="num">Fee</th><th class="num">Rent</th><th class="num">Net</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
@@ -460,7 +460,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
         <table>
           <thead><tr>
             <th>Date</th><th>Payee</th><th>Category</th><th>Service</th><th>Method</th>
-            <th class="num">Amount</th><th class="num">Fee</th><th class="num">Net</th><th>Notes</th><th></th>
+            <th class="num">Amount</th><th class="num">Fee</th><th class="num">Rent</th><th class="num">Net</th><th>Notes</th><th></th>
           </tr></thead>
           <tbody id="paymentsTableBody"></tbody>
           <tfoot><tr class="tfoot-row" id="paymentsTotalRow"></tr></tfoot>
@@ -509,6 +509,21 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
             <option value="Massage">Massage</option>
             <option value="Online Coaching">Online Coaching</option>
           </select>
+        </div>
+        <div class="field" id="paymentSessionField" style="display:none;">
+          <label>Session Length</label>
+          <select id="paymentSessionLength">
+            <option value="30">30 min</option>
+            <option value="45">45 min</option>
+            <option value="60" selected>60 min</option>
+            <option value="75">75 min</option>
+            <option value="90">90 min</option>
+            <option value="120">120 min</option>
+          </select>
+        </div>
+        <div class="field" id="paymentRentField" style="display:none;">
+          <label>Venue Rent (auto)</label>
+          <input type="text" id="paymentRentDisplay" disabled>
         </div>
         <div class="field"><label>Amount ($)</label><input type="number" step="0.01" min="0" id="paymentAmount" required></div>
         <div class="field"><label>Method</label>
@@ -791,6 +806,13 @@ function calcVenueRent(c){
   return (c.sessions || []).reduce(function(sum, s){ return sum + calcSessionRent(s); }, 0);
 }
 
+function calcCasualRent(serviceType, minutes){
+  var rate60 = state.settings.venueRates60[serviceType];
+  if(!rate60) return 0;
+  var rent = rate60 * (Number(minutes)||0) / 60 * (1 + state.settings.gstRate);
+  return Math.round(rent * 100) / 100;
+}
+
 function todayISO(){
   var d = new Date();
   var m = (d.getMonth()+1).toString().padStart(2,'0');
@@ -874,12 +896,15 @@ function monthAggregate(monthKey){
     gross += Number(p.amount) || 0;
     fees += Number(p.fee) || 0;
   });
+  var casualRent = 0;
+  pays.forEach(function(p){ casualRent += Number(p.rent) || 0; });
   var net = gross - fees;
   var exp = totalExpenses();
+  var totalExp = exp.total + casualRent;
   return {
     gross: gross, fees: fees, net: net,
-    expenses: exp.total, profit: net - exp.total,
-    count: pays.length
+    expenses: totalExp, profit: net - totalExp,
+    count: pays.length, casualRent: casualRent
   };
 }
 
@@ -1183,6 +1208,22 @@ function syncPaymentClientFields(){
     document.getElementById('paymentSaveAs').value = 'none';
     document.getElementById('paymentNewClientTypeField').style.display = 'none';
   }
+  updatePaymentRentUI();
+}
+
+/* ---- Casual booking venue rent (Payment Log form) ---- */
+function currentCasualRent(){
+  if(document.getElementById('paymentCategory').value !== 'Casual') return 0;
+  var serviceType = document.getElementById('paymentServiceType').value;
+  var minutes = Number(document.getElementById('paymentSessionLength').value) || 0;
+  return calcCasualRent(serviceType, minutes);
+}
+
+function updatePaymentRentUI(){
+  var show = document.getElementById('paymentCategory').value === 'Casual';
+  document.getElementById('paymentSessionField').style.display = show ? '' : 'none';
+  document.getElementById('paymentRentField').style.display = show ? '' : 'none';
+  document.getElementById('paymentRentDisplay').value = show ? money(currentCasualRent()) : '';
 }
 
 document.getElementById('paymentClientInput').addEventListener('input', function(){
@@ -1202,7 +1243,12 @@ document.getElementById('paymentClientInput').addEventListener('input', function
   } else {
     document.getElementById('paymentCategory').value = 'Casual';
   }
+  updatePaymentRentUI();
 });
+
+document.getElementById('paymentCategory').addEventListener('change', updatePaymentRentUI);
+document.getElementById('paymentServiceType').addEventListener('change', updatePaymentRentUI);
+document.getElementById('paymentSessionLength').addEventListener('change', updatePaymentRentUI);
 
 document.getElementById('paymentSaveAs').addEventListener('change', function(){
   var typeField = document.getElementById('paymentNewClientTypeField');
@@ -1221,11 +1267,13 @@ function renderPayments(){
 
   document.getElementById('paymentsEmpty').style.display = rows.length ? 'none' : 'block';
 
-  var totalAmt = 0, totalFee = 0, totalNet = 0;
+  var totalAmt = 0, totalFee = 0, totalRent = 0, totalNet = 0;
   rows.forEach(function(p){
+    var rent = Number(p.rent)||0;
     totalAmt += Number(p.amount)||0;
     totalFee += Number(p.fee)||0;
-    totalNet += (Number(p.amount)||0) - (Number(p.fee)||0);
+    totalRent += rent;
+    totalNet += (Number(p.amount)||0) - (Number(p.fee)||0) - rent;
     var tr = document.createElement('tr');
     tr.innerHTML =
       '<td>' + escapeHtml(p.date) + '</td>' +
@@ -1235,7 +1283,8 @@ function renderPayments(){
       '<td>' + methodTag(p.method) + '</td>' +
       '<td class="num">' + money(p.amount) + '</td>' +
       '<td class="num">' + money(p.fee) + '</td>' +
-      '<td class="num">' + money((Number(p.amount)||0) - (Number(p.fee)||0)) + '</td>' +
+      '<td class="num">' + (rent ? money(rent) : '<span class="muted">—</span>') + '</td>' +
+      '<td class="num">' + money((Number(p.amount)||0) - (Number(p.fee)||0) - rent) + '</td>' +
       '<td class="muted">' + escapeHtml(p.notes || '') + '</td>' +
       '<td><button class="icon-btn" data-edit-payment="' + p.id + '">Edit</button>' +
       '<button class="icon-btn del" data-del-payment="' + p.id + '">Delete</button></td>';
@@ -1246,6 +1295,7 @@ function renderPayments(){
     '<td colspan="5">Total (' + monthLabel(monthKey) + ')</td>' +
     '<td class="num">' + money(totalAmt) + '</td>' +
     '<td class="num">' + money(totalFee) + '</td>' +
+    '<td class="num">' + money(totalRent) + '</td>' +
     '<td class="num">' + money(totalNet) + '</td><td></td><td></td>';
 
   tbody.querySelectorAll('[data-edit-payment]').forEach(function(b){
@@ -1267,6 +1317,7 @@ function editPayment(id){
   document.getElementById('paymentServiceType').value = p.serviceType || 'Personal Training';
   document.getElementById('paymentNotes').value = p.notes || '';
   document.getElementById('paymentClientInput').value = p.payee;
+  document.getElementById('paymentSessionLength').value = p.sessionLength || 60;
   syncPaymentClientFields();
   document.querySelector('.tab-btn[data-tab="payments"]').click();
   document.getElementById('paymentForm').scrollIntoView({behavior:'smooth', block:'center'});
@@ -1294,6 +1345,9 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
   var amount = parseFloat(document.getElementById('paymentAmount').value) || 0;
   var method = document.getElementById('paymentMethod').value;
   var fee = calcFee(amount, method);
+  var isCasualCategory = document.getElementById('paymentCategory').value === 'Casual';
+  var sessionLength = isCasualCategory ? (Number(document.getElementById('paymentSessionLength').value) || 0) : 0;
+  var rent = isCasualCategory ? calcCasualRent(document.getElementById('paymentServiceType').value, sessionLength) : 0;
   var data = {
     date: document.getElementById('paymentDate').value || todayISO(),
     clientId: isRecurringClient ? match.rec.id : null,
@@ -1304,6 +1358,8 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
     amount: amount,
     method: method,
     fee: fee,
+    rent: rent,
+    sessionLength: sessionLength,
     notes: document.getElementById('paymentNotes').value.trim()
   };
   var saveAs = isOther ? document.getElementById('paymentSaveAs').value : 'none';
@@ -1644,6 +1700,7 @@ function renderOverview(){
   var rows = paymentsForMonth(monthKey).slice().sort(function(a,b){ return a.date < b.date ? 1 : -1; });
   document.getElementById('overviewEmpty').style.display = rows.length ? 'none' : 'block';
   rows.forEach(function(p){
+    var rent = Number(p.rent)||0;
     var tr = document.createElement('tr');
     tr.innerHTML =
       '<td>' + escapeHtml(p.date) + '</td>' +
@@ -1653,7 +1710,8 @@ function renderOverview(){
       '<td>' + methodTag(p.method) + '</td>' +
       '<td class="num">' + money(p.amount) + '</td>' +
       '<td class="num">' + money(p.fee) + '</td>' +
-      '<td class="num">' + money((Number(p.amount)||0)-(Number(p.fee)||0)) + '</td>';
+      '<td class="num">' + (rent ? money(rent) : '<span class="muted">—</span>') + '</td>' +
+      '<td class="num">' + money((Number(p.amount)||0)-(Number(p.fee)||0)-rent) + '</td>';
     tbody.appendChild(tr);
   });
 
