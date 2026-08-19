@@ -369,7 +369,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
       </div>
       <div class="table-scroll">
         <table id="overviewPaymentsTable">
-          <thead><tr><th>Date</th><th>Payee</th><th>Category</th><th>Service</th><th>Method</th><th class="num">Amount</th><th class="num">Fee</th><th class="num">Rent</th><th class="num">Net</th></tr></thead>
+          <thead><tr><th>Date</th><th>Payee</th><th>Category</th><th>Service</th><th>Method</th><th class="num">Amount</th><th class="num">Fee</th><th class="num">Net</th></tr></thead>
           <tbody></tbody>
         </table>
       </div>
@@ -392,7 +392,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
             <th class="sortable" data-sort="name">Client</th><th class="sortable" data-sort="type">Type</th>
             <th class="sortable" data-sort="serviceType">Service</th>
             <th class="num sortable" data-sort="amount">Monthly $</th><th class="sortable" data-sort="method">Method</th>
-            <th class="num sortable" data-sort="fee">Est. Fee</th><th class="num sortable" data-sort="venueRent">Venue Rent /mo</th>
+            <th class="num sortable" data-sort="fee">Est. Fee</th>
             <th class="num sortable" data-sort="net">Est. Net</th><th class="sortable" data-sort="active">Status</th><th></th>
           </tr></thead>
           <tbody id="clientsTableBody"></tbody>
@@ -427,19 +427,9 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
           <select id="clientMethod"><option value="Stripe">Stripe</option><option value="Square">Square</option><option value="Bank Transfer">Bank Transfer</option></select>
         </div>
         <div class="checkline"><input type="checkbox" id="clientActive" checked><label for="clientActive">Active</label></div>
-        <div class="field" style="grid-column:1/-1;">
-          <label>Venue Sessions</label>
-          <div class="table-scroll">
-            <table>
-              <thead><tr><th>Service</th><th class="num">Length (min)</th><th class="num">Sessions/Wk</th><th class="num">Est. $/mo</th><th></th></tr></thead>
-              <tbody id="clientSessionsBody"></tbody>
-            </table>
-          </div>
-          <button type="button" class="btn btn-ghost btn-sm" id="btnAddSessionRow" style="margin-top:10px;">+ Add session</button>
-        </div>
         <div class="field" style="grid-column:1/-1;"><button type="submit" class="btn btn-primary">Save client</button></div>
       </form>
-      <p class="field-hint">Stripe fee is auto-calculated at 1.7% + 30c, Square at 1.6%. Bank transfer clients show $0 fee. Venue rent is calculated automatically from Training Depot's per-session hire rates (incl. GST) — add one row per recurring session type (e.g. weekly PT + fortnightly massage), each is calculated and summed. No rows means $0 rent (e.g. apartment training or online coaching). Click any column header in the table above to sort — defaults to highest paying clients first.</p>
+      <p class="field-hint">Stripe fee is auto-calculated at 1.7% + 30c, Square at 1.6%. Bank transfer clients show $0 fee. Click any column header in the table above to sort — defaults to highest paying clients first.</p>
     </div>
   </div>
 
@@ -460,7 +450,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
         <table>
           <thead><tr>
             <th>Date</th><th>Payee</th><th>Category</th><th>Service</th><th>Method</th>
-            <th class="num">Amount</th><th class="num">Fee</th><th class="num">Rent</th><th class="num">Net</th><th>Notes</th><th></th>
+            <th class="num">Amount</th><th class="num">Fee</th><th class="num">Net</th><th>Notes</th><th></th>
           </tr></thead>
           <tbody id="paymentsTableBody"></tbody>
           <tfoot><tr class="tfoot-row" id="paymentsTotalRow"></tr></tfoot>
@@ -509,21 +499,6 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
             <option value="Massage">Massage</option>
             <option value="Online Coaching">Online Coaching</option>
           </select>
-        </div>
-        <div class="field" id="paymentSessionField" style="display:none;">
-          <label>Session Length</label>
-          <select id="paymentSessionLength">
-            <option value="30">30 min</option>
-            <option value="45">45 min</option>
-            <option value="60" selected>60 min</option>
-            <option value="75">75 min</option>
-            <option value="90">90 min</option>
-            <option value="120">120 min</option>
-          </select>
-        </div>
-        <div class="field" id="paymentRentField" style="display:none;">
-          <label>Venue Rent (auto)</label>
-          <input type="text" id="paymentRentDisplay" disabled>
         </div>
         <div class="field"><label>Amount ($)</label><input type="number" step="0.01" min="0" id="paymentAmount" required></div>
         <div class="field"><label>Method</label>
@@ -625,17 +600,29 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
     <div class="card">
       <div class="card-head">
         <div>
-          <p class="card-title">Venue Rent (from Client Roster)</p>
-          <p class="card-sub">Auto-calculated from Training Depot's per-session rates (incl. GST). Read-only here — edit each client's session length & sessions/week on the Clients tab.</p>
+          <p class="card-title">Venue Rent Log</p>
+          <p class="card-sub">Enter the exact Training Depot rent you pay each week. Only the entries in the selected month count toward that month's expenses.</p>
         </div>
+        <input type="month" id="venueRentMonthFilter" class="month-picker">
       </div>
       <div class="table-scroll">
         <table>
-          <thead><tr><th>Client</th><th>Service</th><th class="num">Session</th><th class="num">Sessions/Wk</th><th class="num">Venue Rent / mo</th></tr></thead>
-          <tbody id="venueTableBody"></tbody>
-          <tfoot><tr class="tfoot-row" id="venueTotalRow"></tr></tfoot>
+          <thead><tr><th>Date</th><th class="num">Amount</th><th>Notes</th><th></th></tr></thead>
+          <tbody id="venueRentTableBody"></tbody>
+          <tfoot><tr class="tfoot-row" id="venueRentTotalRow"></tr></tfoot>
         </table>
       </div>
+      <div class="empty-state" id="venueRentEmpty" style="display:none;">No venue rent logged for this month yet.</div>
+
+      <div class="section-divider">Add / Edit Entry</div>
+      <form id="venueRentForm" class="form-grid">
+        <input type="hidden" id="venueRentId">
+        <div class="field"><label>Date</label><input type="date" id="venueRentDate" required></div>
+        <div class="field"><label>Amount ($)</label><input type="number" step="0.01" min="0" id="venueRentAmount" required></div>
+        <div class="field"><label>Notes</label><input type="text" id="venueRentNotes" placeholder="optional"></div>
+        <div class="field"><button type="submit" class="btn btn-primary" style="width:100%;">Save rent entry</button></div>
+      </form>
+      <button class="btn btn-ghost btn-sm" id="btnCancelVenueRentEdit" style="display:none;margin-top:10px;">Cancel edit</button>
     </div>
   </div>
 
@@ -680,24 +667,18 @@ var STORAGE_KEY = 's47_finance_v1';
 function defaultState(){
   return {
     settings: {
-      stripePct: 0.017, stripeFlat: 0.30, squarePct: 0.016,
-      gstRate: 0.10,
-      venueRates60: {
-        'Personal Training': 22.00,
-        'Massage':            27.00,
-        'Online Coaching':    0
-      }
+      stripePct: 0.017, stripeFlat: 0.30, squarePct: 0.016
     },
     clients: [
-      { id: 'c1', name: 'Mark Stolz',         type: 'Online',    serviceType: 'Online Coaching',   amount: 400, method: 'Stripe',        sessions: [], active: true },
-      { id: 'c2', name: 'Nikki Onslow',       type: 'Online',    serviceType: 'Online Coaching',   amount: 200, method: 'Stripe',        sessions: [], active: true },
-      { id: 'c3', name: 'Steven Haby',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Bank Transfer', sessions: [], active: true },
-      { id: 'c4', name: 'Richard Simmie',     type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        sessions: [{ serviceType: 'Personal Training', sessionLength: 60, sessionsPerWeek: 1 }], active: true },
-      { id: 'c5', name: 'Alex Pillai',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        sessions: [{ serviceType: 'Personal Training', sessionLength: 30, sessionsPerWeek: 2 }], active: true },
-      { id: 'c6', name: 'Brendan Johns',      type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        sessions: [{ serviceType: 'Personal Training', sessionLength: 45, sessionsPerWeek: 1 }], active: true },
-      { id: 'c7', name: 'Geraldine Stallard', type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        sessions: [], active: true },
-      { id: 'c8', name: 'Jenny Miao',         type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Bank Transfer', sessions: [], active: true },
-      { id: 'c9', name: 'Maureen Pound',      type: 'In-Person', serviceType: 'Personal Training', amount: 360, method: 'Bank Transfer', sessions: [], active: true }
+      { id: 'c1', name: 'Mark Stolz',         type: 'Online',    serviceType: 'Online Coaching',   amount: 400, method: 'Stripe',        active: true },
+      { id: 'c2', name: 'Nikki Onslow',       type: 'Online',    serviceType: 'Online Coaching',   amount: 200, method: 'Stripe',        active: true },
+      { id: 'c3', name: 'Steven Haby',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Bank Transfer', active: true },
+      { id: 'c4', name: 'Richard Simmie',     type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        active: true },
+      { id: 'c5', name: 'Alex Pillai',        type: 'In-Person', serviceType: 'Personal Training', amount: 750, method: 'Stripe',        active: true },
+      { id: 'c6', name: 'Brendan Johns',      type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        active: true },
+      { id: 'c7', name: 'Geraldine Stallard', type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Stripe',        active: true },
+      { id: 'c8', name: 'Jenny Miao',         type: 'In-Person', serviceType: 'Personal Training', amount: 500, method: 'Bank Transfer', active: true },
+      { id: 'c9', name: 'Maureen Pound',      type: 'In-Person', serviceType: 'Personal Training', amount: 360, method: 'Bank Transfer', active: true }
     ],
     expenses: [
       { id: 'e1', name: 'Go High Level', full: 140, charged: 70, notes: '$70 of $140 is claimable through Loose Human' },
@@ -711,7 +692,8 @@ function defaultState(){
     ],
     payments: [],
     casualClients: [],
-    autoLoggedMonths: []
+    autoLoggedMonths: [],
+    venueRentLog: []
   };
 }
 
@@ -724,35 +706,26 @@ function loadState(){
     var parsed = JSON.parse(raw);
     if(!parsed.settings) parsed.settings = defaultState().settings;
     if(!parsed.settings.squarePct) parsed.settings.squarePct = 0.016;
-    if(!parsed.settings.gstRate) parsed.settings.gstRate = 0.10;
-    if(!parsed.settings.venueRates60){
-      if(parsed.settings.venueRates){
-        parsed.settings.venueRates60 = {
-          'Personal Training': (parsed.settings.venueRates['Personal Training']||{})[60] || 22.00,
-          'Massage': (parsed.settings.venueRates['Massage']||{})[60] || 27.00,
-          'Online Coaching': 0
-        };
-        delete parsed.settings.venueRates;
-      } else {
-        parsed.settings.venueRates60 = defaultState().settings.venueRates60;
-      }
-    }
+    delete parsed.settings.gstRate;
+    delete parsed.settings.venueRates60;
+    delete parsed.settings.venueRates;
     if(!parsed.clients) parsed.clients = [];
     if(!parsed.expenses) parsed.expenses = [];
     if(!parsed.payments) parsed.payments = [];
     if(!parsed.casualClients) parsed.casualClients = [];
     if(!parsed.autoLoggedMonths) parsed.autoLoggedMonths = [];
+    if(!parsed.venueRentLog) parsed.venueRentLog = [];
     parsed.clients.forEach(function(c){
       if(!c.serviceType) c.serviceType = c.type === 'Online' ? 'Online Coaching' : 'Personal Training';
-      if(!c.sessions){
-        c.sessions = c.sessionsPerWeek ? [{ serviceType: c.serviceType, sessionLength: c.sessionLength || 60, sessionsPerWeek: c.sessionsPerWeek }] : [];
-      }
+      delete c.sessions;
       delete c.sessionLength;
       delete c.sessionsPerWeek;
       delete c.venueRent;
     });
     parsed.payments.forEach(function(p){
       if(!p.serviceType) p.serviceType = p.category === 'Online' ? 'Online Coaching' : 'Personal Training';
+      delete p.rent;
+      delete p.sessionLength;
     });
     return parsed;
   }catch(e){
@@ -789,28 +762,6 @@ function calcFee(amount, method){
     return Math.round(amount * state.settings.squarePct * 100) / 100;
   }
   return 0;
-}
-
-var WEEKS_PER_MONTH = 52 / 12;
-
-function calcSessionRent(s){
-  var perWeek = Number(s.sessionsPerWeek) || 0;
-  if(!perWeek) return 0;
-  var rate60 = state.settings.venueRates60[s.serviceType];
-  if(!rate60) return 0;
-  var perSession = rate60 * (Number(s.sessionLength)||0) / 60 * (1 + state.settings.gstRate);
-  return Math.round(perSession * perWeek * WEEKS_PER_MONTH * 100) / 100;
-}
-
-function calcVenueRent(c){
-  return (c.sessions || []).reduce(function(sum, s){ return sum + calcSessionRent(s); }, 0);
-}
-
-function calcCasualRent(serviceType, minutes){
-  var rate60 = state.settings.venueRates60[serviceType];
-  if(!rate60) return 0;
-  var rent = rate60 * (Number(minutes)||0) / 60 * (1 + state.settings.gstRate);
-  return Math.round(rent * 100) / 100;
 }
 
 function todayISO(){
@@ -881,12 +832,19 @@ function escapeHtml(s){
    ============================================================ */
 function totalExpenses(){
   var subs = state.expenses.reduce(function(sum, e){ return sum + (Number(e.charged)||0); }, 0);
-  var venue = state.clients.reduce(function(sum, c){ return sum + calcVenueRent(c); }, 0);
-  return { subs: subs, venue: venue, total: subs + venue };
+  return { subs: subs, total: subs };
 }
 
 function paymentsForMonth(monthKey){
   return state.payments.filter(function(p){ return monthKeyFromDate(p.date) === monthKey; });
+}
+
+function venueRentEntriesForMonth(monthKey){
+  return state.venueRentLog.filter(function(v){ return monthKeyFromDate(v.date) === monthKey; });
+}
+
+function venueRentForMonth(monthKey){
+  return venueRentEntriesForMonth(monthKey).reduce(function(sum, v){ return sum + (Number(v.amount)||0); }, 0);
 }
 
 function monthAggregate(monthKey){
@@ -896,15 +854,14 @@ function monthAggregate(monthKey){
     gross += Number(p.amount) || 0;
     fees += Number(p.fee) || 0;
   });
-  var casualRent = 0;
-  pays.forEach(function(p){ casualRent += Number(p.rent) || 0; });
   var net = gross - fees;
   var exp = totalExpenses();
-  var totalExp = exp.total + casualRent;
+  var venueRent = venueRentForMonth(monthKey);
+  var totalExp = exp.total + venueRent;
   return {
     gross: gross, fees: fees, net: net,
     expenses: totalExp, profit: net - totalExp,
-    count: pays.length, casualRent: casualRent
+    count: pays.length, venueRent: venueRent
   };
 }
 
@@ -950,7 +907,6 @@ function clientSortValue(row, key){
     case 'amount': return Number(c.amount)||0;
     case 'method': return c.method||'';
     case 'fee': return row.fee;
-    case 'venueRent': return row.venueRent;
     case 'net': return row.net;
     case 'active': return c.active ? 1 : 0;
     default: return '';
@@ -984,13 +940,12 @@ function updateClientSortHeaders(){
 function renderClients(){
   var tbody = document.getElementById('clientsTableBody');
   tbody.innerHTML = '';
-  var totalMonthly = 0, totalFee = 0, totalVenue = 0, totalNet = 0;
+  var totalMonthly = 0, totalFee = 0, totalNet = 0;
 
   var rows = state.clients.map(function(c){
     var fee = calcFee(c.amount, c.method);
-    var venueRent = calcVenueRent(c);
-    var net = (Number(c.amount)||0) - fee - venueRent;
-    return { c: c, fee: fee, venueRent: venueRent, net: net };
+    var net = (Number(c.amount)||0) - fee;
+    return { c: c, fee: fee, net: net };
   });
 
   rows.sort(function(a,b){
@@ -1002,11 +957,10 @@ function renderClients(){
   });
 
   rows.forEach(function(row){
-    var c = row.c, fee = row.fee, net = row.net, venueRent = row.venueRent;
+    var c = row.c, fee = row.fee, net = row.net;
     if(c.active){
       totalMonthly += Number(c.amount)||0;
       totalFee += fee;
-      totalVenue += venueRent;
       totalNet += net;
     }
     var tr = document.createElement('tr');
@@ -1018,7 +972,6 @@ function renderClients(){
       '<td class="num">' + money(c.amount) + '</td>' +
       '<td>' + methodTag(c.method) + '</td>' +
       '<td class="num">' + money(fee) + '</td>' +
-      '<td class="num">' + money(venueRent) + '</td>' +
       '<td class="num">' + money(net) + '</td>' +
       '<td>' + (c.active ? '<span class="tag" style="background:rgba(74,222,128,0.14);color:#4ADE80;">Active</span>' : '<span class="tag tag-inactive">Inactive</span>') + '</td>' +
       '<td>' +
@@ -1032,7 +985,6 @@ function renderClients(){
     '<td>Active total</td><td></td><td></td>' +
     '<td class="num">' + money(totalMonthly) + '</td><td></td>' +
     '<td class="num">' + money(totalFee) + '</td>' +
-    '<td class="num">' + money(totalVenue) + '</td>' +
     '<td class="num">' + money(totalNet) + '</td><td></td><td></td>';
 
   updateClientSortHeaders();
@@ -1045,58 +997,7 @@ function renderClients(){
   });
 
   renderPaymentClientOptions();
-  renderVenueTable();
 }
-
-/* ---- Venue Sessions mini-editor (Add/Edit Client form) ---- */
-var editingSessions = [];
-
-function renderSessionRows(){
-  var tbody = document.getElementById('clientSessionsBody');
-  tbody.innerHTML = '';
-  if(!editingSessions.length){
-    tbody.innerHTML = '<tr><td colspan="5" class="muted">No sessions yet — click "+ Add session" below.</td></tr>';
-    return;
-  }
-  editingSessions.forEach(function(row, idx){
-    var rent = calcSessionRent(row);
-    var tr = document.createElement('tr');
-    tr.innerHTML =
-      '<td><select class="rowSelect" data-row="' + idx + '" data-field="serviceType">' +
-        '<option value="Personal Training"' + (row.serviceType==='Personal Training'?' selected':'') + '>Personal Training</option>' +
-        '<option value="Massage"' + (row.serviceType==='Massage'?' selected':'') + '>Massage</option>' +
-        '<option value="Online Coaching"' + (row.serviceType==='Online Coaching'?' selected':'') + '>Online Coaching</option>' +
-      '</select></td>' +
-      '<td class="num"><input type="number" step="5" min="5" style="width:70px;" class="rowInput" data-row="' + idx + '" data-field="sessionLength" value="' + row.sessionLength + '"></td>' +
-      '<td class="num"><input type="number" step="0.5" min="0" style="width:70px;" class="rowInput" data-row="' + idx + '" data-field="sessionsPerWeek" value="' + row.sessionsPerWeek + '"></td>' +
-      '<td class="num">' + money(rent) + '</td>' +
-      '<td><button type="button" class="icon-btn del" data-remove-row="' + idx + '">Remove</button></td>';
-    tbody.appendChild(tr);
-  });
-  tbody.querySelectorAll('.rowSelect').forEach(function(el){
-    el.addEventListener('change', function(){
-      editingSessions[Number(this.dataset.row)][this.dataset.field] = this.value;
-      renderSessionRows();
-    });
-  });
-  tbody.querySelectorAll('.rowInput').forEach(function(el){
-    el.addEventListener('change', function(){
-      editingSessions[Number(this.dataset.row)][this.dataset.field] = parseFloat(this.value) || 0;
-      renderSessionRows();
-    });
-  });
-  tbody.querySelectorAll('[data-remove-row]').forEach(function(b){
-    b.addEventListener('click', function(){
-      editingSessions.splice(Number(b.dataset.removeRow), 1);
-      renderSessionRows();
-    });
-  });
-}
-
-document.getElementById('btnAddSessionRow').addEventListener('click', function(){
-  editingSessions.push({ serviceType: 'Personal Training', sessionLength: 45, sessionsPerWeek: 0 });
-  renderSessionRows();
-});
 
 function editClient(id){
   var c = state.clients.find(function(x){ return x.id === id; });
@@ -1108,10 +1009,6 @@ function editClient(id){
   document.getElementById('clientAmount').value = c.amount;
   document.getElementById('clientMethod').value = c.method;
   document.getElementById('clientActive').checked = !!c.active;
-  editingSessions = (c.sessions || []).map(function(s){
-    return { serviceType: s.serviceType, sessionLength: s.sessionLength, sessionsPerWeek: s.sessionsPerWeek };
-  });
-  renderSessionRows();
   document.getElementById('btnCancelClientEdit').style.display = 'inline-flex';
   document.querySelector('.tab-btn[data-tab="clients"]').click();
   document.getElementById('clientForm').scrollIntoView({behavior:'smooth', block:'center'});
@@ -1130,8 +1027,6 @@ function deleteClient(id){
 document.getElementById('btnCancelClientEdit').addEventListener('click', function(){
   document.getElementById('clientForm').reset();
   document.getElementById('clientId').value = '';
-  editingSessions = [];
-  renderSessionRows();
   this.style.display = 'none';
 });
 
@@ -1144,9 +1039,6 @@ document.getElementById('clientForm').addEventListener('submit', function(e){
     serviceType: document.getElementById('clientServiceType').value,
     amount: parseFloat(document.getElementById('clientAmount').value) || 0,
     method: document.getElementById('clientMethod').value,
-    sessions: editingSessions.map(function(s){
-      return { serviceType: s.serviceType, sessionLength: s.sessionLength, sessionsPerWeek: s.sessionsPerWeek };
-    }),
     active: document.getElementById('clientActive').checked
   };
   if(!data.name) return;
@@ -1162,8 +1054,6 @@ document.getElementById('clientForm').addEventListener('submit', function(e){
   saveState();
   this.reset();
   document.getElementById('clientId').value = '';
-  editingSessions = [];
-  renderSessionRows();
   document.getElementById('btnCancelClientEdit').style.display = 'none';
   renderAll();
 });
@@ -1208,22 +1098,6 @@ function syncPaymentClientFields(){
     document.getElementById('paymentSaveAs').value = 'none';
     document.getElementById('paymentNewClientTypeField').style.display = 'none';
   }
-  updatePaymentRentUI();
-}
-
-/* ---- Casual booking venue rent (Payment Log form) ---- */
-function currentCasualRent(){
-  if(document.getElementById('paymentCategory').value !== 'Casual') return 0;
-  var serviceType = document.getElementById('paymentServiceType').value;
-  var minutes = Number(document.getElementById('paymentSessionLength').value) || 0;
-  return calcCasualRent(serviceType, minutes);
-}
-
-function updatePaymentRentUI(){
-  var show = document.getElementById('paymentCategory').value === 'Casual';
-  document.getElementById('paymentSessionField').style.display = show ? '' : 'none';
-  document.getElementById('paymentRentField').style.display = show ? '' : 'none';
-  document.getElementById('paymentRentDisplay').value = show ? money(currentCasualRent()) : '';
 }
 
 document.getElementById('paymentClientInput').addEventListener('input', function(){
@@ -1243,12 +1117,7 @@ document.getElementById('paymentClientInput').addEventListener('input', function
   } else {
     document.getElementById('paymentCategory').value = 'Casual';
   }
-  updatePaymentRentUI();
 });
-
-document.getElementById('paymentCategory').addEventListener('change', updatePaymentRentUI);
-document.getElementById('paymentServiceType').addEventListener('change', updatePaymentRentUI);
-document.getElementById('paymentSessionLength').addEventListener('change', updatePaymentRentUI);
 
 document.getElementById('paymentSaveAs').addEventListener('change', function(){
   var typeField = document.getElementById('paymentNewClientTypeField');
@@ -1267,13 +1136,11 @@ function renderPayments(){
 
   document.getElementById('paymentsEmpty').style.display = rows.length ? 'none' : 'block';
 
-  var totalAmt = 0, totalFee = 0, totalRent = 0, totalNet = 0;
+  var totalAmt = 0, totalFee = 0, totalNet = 0;
   rows.forEach(function(p){
-    var rent = Number(p.rent)||0;
     totalAmt += Number(p.amount)||0;
     totalFee += Number(p.fee)||0;
-    totalRent += rent;
-    totalNet += (Number(p.amount)||0) - (Number(p.fee)||0) - rent;
+    totalNet += (Number(p.amount)||0) - (Number(p.fee)||0);
     var tr = document.createElement('tr');
     tr.innerHTML =
       '<td>' + escapeHtml(p.date) + '</td>' +
@@ -1283,8 +1150,7 @@ function renderPayments(){
       '<td>' + methodTag(p.method) + '</td>' +
       '<td class="num">' + money(p.amount) + '</td>' +
       '<td class="num">' + money(p.fee) + '</td>' +
-      '<td class="num">' + (rent ? money(rent) : '<span class="muted">—</span>') + '</td>' +
-      '<td class="num">' + money((Number(p.amount)||0) - (Number(p.fee)||0) - rent) + '</td>' +
+      '<td class="num">' + money((Number(p.amount)||0) - (Number(p.fee)||0)) + '</td>' +
       '<td class="muted">' + escapeHtml(p.notes || '') + '</td>' +
       '<td><button class="icon-btn" data-edit-payment="' + p.id + '">Edit</button>' +
       '<button class="icon-btn del" data-del-payment="' + p.id + '">Delete</button></td>';
@@ -1295,7 +1161,6 @@ function renderPayments(){
     '<td colspan="5">Total (' + monthLabel(monthKey) + ')</td>' +
     '<td class="num">' + money(totalAmt) + '</td>' +
     '<td class="num">' + money(totalFee) + '</td>' +
-    '<td class="num">' + money(totalRent) + '</td>' +
     '<td class="num">' + money(totalNet) + '</td><td></td><td></td>';
 
   tbody.querySelectorAll('[data-edit-payment]').forEach(function(b){
@@ -1317,7 +1182,6 @@ function editPayment(id){
   document.getElementById('paymentServiceType').value = p.serviceType || 'Personal Training';
   document.getElementById('paymentNotes').value = p.notes || '';
   document.getElementById('paymentClientInput').value = p.payee;
-  document.getElementById('paymentSessionLength').value = p.sessionLength || 60;
   syncPaymentClientFields();
   document.querySelector('.tab-btn[data-tab="payments"]').click();
   document.getElementById('paymentForm').scrollIntoView({behavior:'smooth', block:'center'});
@@ -1345,9 +1209,6 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
   var amount = parseFloat(document.getElementById('paymentAmount').value) || 0;
   var method = document.getElementById('paymentMethod').value;
   var fee = calcFee(amount, method);
-  var isCasualCategory = document.getElementById('paymentCategory').value === 'Casual';
-  var sessionLength = isCasualCategory ? (Number(document.getElementById('paymentSessionLength').value) || 0) : 0;
-  var rent = isCasualCategory ? calcCasualRent(document.getElementById('paymentServiceType').value, sessionLength) : 0;
   var data = {
     date: document.getElementById('paymentDate').value || todayISO(),
     clientId: isRecurringClient ? match.rec.id : null,
@@ -1358,8 +1219,6 @@ document.getElementById('paymentForm').addEventListener('submit', function(e){
     amount: amount,
     method: method,
     fee: fee,
-    rent: rent,
-    sessionLength: sessionLength,
     notes: document.getElementById('paymentNotes').value.trim()
   };
   var saveAs = isOther ? document.getElementById('paymentSaveAs').value : 'none';
@@ -1599,30 +1458,94 @@ function renderExpenses(){
   });
 }
 
-function renderVenueTable(){
-  var tbody = document.getElementById('venueTableBody');
+function renderVenueRentLog(){
+  var monthKey = document.getElementById('venueRentMonthFilter').value || currentMonthKey();
+  var tbody = document.getElementById('venueRentTableBody');
   tbody.innerHTML = '';
+  var rows = venueRentEntriesForMonth(monthKey).slice().sort(function(a,b){ return a.date < b.date ? 1 : -1; });
+
+  document.getElementById('venueRentEmpty').style.display = rows.length ? 'none' : 'block';
+
   var total = 0;
-  state.clients.forEach(function(c){
-    (c.sessions || []).forEach(function(s){
-      var rent = calcSessionRent(s);
-      if(rent <= 0) return;
-      total += rent;
-      var tr = document.createElement('tr');
-      tr.innerHTML = '<td>' + escapeHtml(c.name) + '</td>' +
-        '<td>' + serviceTypeTag(s.serviceType) + '</td>' +
-        '<td class="num">' + s.sessionLength + ' min</td>' +
-        '<td class="num">' + s.sessionsPerWeek + '</td>' +
-        '<td class="num">' + money(rent) + '</td>';
-      tbody.appendChild(tr);
-    });
+  rows.forEach(function(v){
+    total += Number(v.amount)||0;
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + escapeHtml(v.date) + '</td>' +
+      '<td class="num">' + money(v.amount) + '</td>' +
+      '<td class="muted">' + escapeHtml(v.notes || '') + '</td>' +
+      '<td><button class="icon-btn" data-edit-venuerent="' + v.id + '">Edit</button>' +
+      '<button class="icon-btn del" data-del-venuerent="' + v.id + '">Delete</button></td>';
+    tbody.appendChild(tr);
   });
-  if(total === 0){
-    tbody.innerHTML = '<tr><td colspan="5" class="muted">No venue rent set on any client yet — add a session on the Clients tab.</td></tr>';
-  }
-  document.getElementById('venueTotalRow').innerHTML =
-    '<td>Total venue rent</td><td></td><td></td><td></td><td class="num">' + money(total) + '</td>';
+
+  document.getElementById('venueRentTotalRow').innerHTML =
+    '<td>Total (' + monthLabel(monthKey) + ')</td>' +
+    '<td class="num">' + money(total) + '</td><td></td><td></td>';
+
+  tbody.querySelectorAll('[data-edit-venuerent]').forEach(function(b){
+    b.addEventListener('click', function(){ editVenueRentEntry(b.dataset.editVenuerent); });
+  });
+  tbody.querySelectorAll('[data-del-venuerent]').forEach(function(b){
+    b.addEventListener('click', function(){ deleteVenueRentEntry(b.dataset.delVenuerent); });
+  });
 }
+
+function editVenueRentEntry(id){
+  var v = state.venueRentLog.find(function(x){ return x.id === id; });
+  if(!v) return;
+  document.getElementById('venueRentId').value = v.id;
+  document.getElementById('venueRentDate').value = v.date;
+  document.getElementById('venueRentAmount').value = v.amount;
+  document.getElementById('venueRentNotes').value = v.notes || '';
+  document.getElementById('btnCancelVenueRentEdit').style.display = 'inline-flex';
+  document.querySelector('.tab-btn[data-tab="expenses"]').click();
+  document.getElementById('venueRentForm').scrollIntoView({behavior:'smooth', block:'center'});
+}
+
+function deleteVenueRentEntry(id){
+  var v = state.venueRentLog.find(function(x){ return x.id === id; });
+  if(!v) return;
+  if(!confirm('Delete this venue rent entry (' + v.date + ', ' + money(v.amount) + ')?')) return;
+  state.venueRentLog = state.venueRentLog.filter(function(x){ return x.id !== id; });
+  saveState();
+  renderAll();
+  toast('Venue rent entry deleted');
+}
+
+document.getElementById('btnCancelVenueRentEdit').addEventListener('click', function(){
+  document.getElementById('venueRentForm').reset();
+  document.getElementById('venueRentId').value = '';
+  document.getElementById('venueRentDate').value = todayISO();
+  this.style.display = 'none';
+});
+
+document.getElementById('venueRentForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var id = document.getElementById('venueRentId').value;
+  var data = {
+    date: document.getElementById('venueRentDate').value || todayISO(),
+    amount: parseFloat(document.getElementById('venueRentAmount').value) || 0,
+    notes: document.getElementById('venueRentNotes').value.trim()
+  };
+  if(id){
+    var v = state.venueRentLog.find(function(x){ return x.id === id; });
+    Object.assign(v, data);
+    toast('Venue rent entry updated');
+  } else {
+    data.id = uid('vr');
+    state.venueRentLog.push(data);
+    toast('Venue rent logged');
+  }
+  saveState();
+  this.reset();
+  document.getElementById('venueRentId').value = '';
+  document.getElementById('venueRentDate').value = todayISO();
+  document.getElementById('btnCancelVenueRentEdit').style.display = 'none';
+  renderAll();
+});
+
+document.getElementById('venueRentMonthFilter').addEventListener('change', renderVenueRentLog);
 
 function editExpense(id){
   var ex = state.expenses.find(function(x){ return x.id === id; });
@@ -1700,7 +1623,6 @@ function renderOverview(){
   var rows = paymentsForMonth(monthKey).slice().sort(function(a,b){ return a.date < b.date ? 1 : -1; });
   document.getElementById('overviewEmpty').style.display = rows.length ? 'none' : 'block';
   rows.forEach(function(p){
-    var rent = Number(p.rent)||0;
     var tr = document.createElement('tr');
     tr.innerHTML =
       '<td>' + escapeHtml(p.date) + '</td>' +
@@ -1710,8 +1632,7 @@ function renderOverview(){
       '<td>' + methodTag(p.method) + '</td>' +
       '<td class="num">' + money(p.amount) + '</td>' +
       '<td class="num">' + money(p.fee) + '</td>' +
-      '<td class="num">' + (rent ? money(rent) : '<span class="muted">—</span>') + '</td>' +
-      '<td class="num">' + money((Number(p.amount)||0)-(Number(p.fee)||0)-rent) + '</td>';
+      '<td class="num">' + money((Number(p.amount)||0)-(Number(p.fee)||0)) + '</td>';
     tbody.appendChild(tr);
   });
 
@@ -1919,6 +1840,7 @@ function renderAll(){
   renderClients();
   renderCasualClients();
   renderExpenses();
+  renderVenueRentLog();
   renderPayments();
   renderOverview();
   renderHistory();
@@ -1928,10 +1850,11 @@ function renderAll(){
   var cm = currentMonthKey();
   document.getElementById('overviewMonth').value = cm;
   document.getElementById('paymentsMonthFilter').value = cm;
+  document.getElementById('venueRentMonthFilter').value = cm;
   document.getElementById('paymentDate').value = todayISO();
+  document.getElementById('venueRentDate').value = todayISO();
   saveState();
   initClientSortHeaders();
-  renderSessionRows();
   var autoAdded = autoLogCurrentMonthIfNeeded();
   renderAll();
   syncPaymentClientFields();
