@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-24T09:49:42.000Z",
+  "lastUpdated": "2026-08-24T09:58:42.000Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -89,10 +89,10 @@
       "sentAt": "2026-08-24T08:33:58.873Z",
       "durationSec": 102.5,
       "metrics": {
-        "views": 0,
-        "reach": 0,
         "reactions": 0,
         "comments": 0,
+        "views": 0,
+        "reach": 0,
         "engagementRate": 0,
         "shares": 0
       }
@@ -142,9 +142,9 @@
       "sentAt": "2026-08-24T08:30:25.997Z",
       "durationSec": 102.5,
       "metrics": {
-        "views": 0,
         "reactions": 0,
         "comments": 0,
+        "views": 0,
         "engagementRate": 0
       }
     },
@@ -164,129 +164,143 @@
       }
     },
     {
-      "id": "6a8bb2871f04919f2b62120f",
-      "channelService": "instagram",
-      "type": "story",
-      "text": "Is so worth it!! 😍 @nicole_onslow 😍",
-      "sentAt": "2026-08-24T00:23:05.000Z",
+      "id": "6a8bdd9289a102c186d21b7a",
+      "channelService": "linkedin",
+      "type": "post",
+      "text": "Something I've been building quietly with my mate best mate @Matt Eierweis is finally ready to talk about.\n\nWe spent our 20s doing it the bodybuilding",
+      "sentAt": "2026-08-22T00:35:15.094Z",
       "metrics": {
-        "views": 62,
-        "reach": 56,
-        "reactions": 2,
-        "comments": 0,
-        "engagementRate": 3.57
+        "reactions": 9,
+        "comments": 3,
+        "reach": 101,
+        "engagementRate": 7.45,
+        "impressions": 161
       }
     },
     {
-      "id": "6a8bb2871f04919f2b62121b",
-      "channelService": "instagram",
-      "type": "story",
-      "text": "And those setbacks can be so frustrating....\n\nBut you keep going because you know the end goal....",
-      "sentAt": "2026-08-24T00:21:06.000Z",
+      "id": "6a8bdd9289a102c186d21b78",
+      "channelService": "linkedin",
+      "type": "post",
+      "text": "Something I've been sitting with for a while: my goal has always been to help as many people as I can. Properly help them, not just see them for an ho",
+      "sentAt": "2026-08-21T03:35:19.587Z",
       "metrics": {
-        "views": 63,
-        "reach": 55,
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 1.82
+        "reach": 26,
+        "engagementRate": 2.17,
+        "impressions": 46
       }
     },
     {
-      "id": "6a8bb2871f04919f2b62120d",
-      "channelService": "instagram",
-      "type": "story",
-      "text": "And injuries can pop up....\n\nBut it's all just a part of it",
-      "sentAt": "2026-08-24T00:18:57.000Z",
+      "id": "6a8bc5258a3964a76b5bd74d",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "🌅 Day 47 of 47 | Find Your Ikigai 🌱 Your Ikigai sits at the intersection of what you love, what you're good at, what the world needs, and what you can",
+      "sentAt": "2026-01-19T06:59:34.000Z",
+      "durationSec": 208.1,
       "metrics": {
-        "views": 73,
-        "reach": 58,
+        "reactions": 2,
+        "comments": 0,
+        "views": 123,
+        "reach": 117,
+        "engagementRate": 1.63,
+        "shares": 0
+      }
+    },
+    {
+      "id": "6a8bc5258a3964a76b5bd751",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "🤝 Day 46 of 47 | Give More Than You Take 🌱 The fastest way to a better life isn't chasing more for yourself. It's becoming someone who gives more to o",
+      "sentAt": "2026-01-17T08:50:49.000Z",
+      "durationSec": 151.167,
+      "metrics": {
+        "reactions": 7,
+        "comments": 2,
+        "views": 408,
+        "reach": 385,
+        "engagementRate": 2.21,
+        "shares": 0
+      }
+    },
+    {
+      "id": "6a8bc5258a3964a76b5bd755",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "🎭 Day 45 of 47 | Remove The Masks 🌱 Most of your stress comes from wearing versions of yourself that were built to survive, not to thrive. The strong",
+      "sentAt": "2026-01-17T07:17:33.000Z",
+      "durationSec": 141.234,
+      "metrics": {
+        "reactions": 19,
+        "comments": 6,
+        "views": 746,
+        "reach": 696,
+        "engagementRate": 3.49,
+        "shares": 1
+      }
+    },
+    {
+      "id": "6a8bc5258a3964a76b5bd79b",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "🧠 Day 44 of 47 | L Plates For Life 🌱 No one ever fully figures life out. We're all learners. Always. Different chapters, same lesson: stay curious, s",
+      "sentAt": "2026-01-16T06:02:59.000Z",
+      "durationSec": 128.167,
+      "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 1.72
+        "views": 168,
+        "reach": 155,
+        "engagementRate": 0.6,
+        "shares": 0
       }
     },
     {
-      "id": "6a8bb2871f04919f2b621209",
-      "channelService": "instagram",
-      "type": "story",
-      "text": "But it's not all rainbows and butterflies...\n\nOld patterns and behaviours can come up\n\nAnd that's okay! It makes us human and how cool to be human!",
-      "sentAt": "2026-08-24T00:17:35.000Z",
+      "id": "6a8bc5258a3964a76b5bd791",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "🧱 Day 43 of 47 | Progress Over Perfection 🌱 Perfection is a trap. Progress is real. If you're waiting for the perfect time, the perfect plan, or the",
+      "sentAt": "2026-01-15T06:57:17.000Z",
+      "durationSec": 135.834,
       "metrics": {
-        "views": 78,
-        "reach": 59,
-        "reactions": 2,
+        "reactions": 1,
+        "comments": 0,
+        "views": 119,
+        "reach": 115,
+        "engagementRate": 0.84,
+        "shares": 0
+      }
+    },
+    {
+      "id": "6a8bc5258a3964a76b5bd797",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "Day 42 of 47 ⏳ Delayed gratification 🧠 Most people choose what feels good now over what creates a better life later. Delayed gratification is the ab",
+      "sentAt": "2026-01-12T06:58:39.000Z",
+      "durationSec": 96.317,
+      "metrics": {
+        "reactions": 1,
         "comments": 1,
-        "engagementRate": 3.39
+        "views": 109,
+        "reach": 102,
+        "engagementRate": 1.83,
+        "shares": 0
       }
     },
     {
-      "id": "6a8bb2871f04919f2b621211",
-      "channelService": "instagram",
-      "type": "story",
-      "text": "@nicole_onslow - This girl cannot be stopped! How nice to be feeling so good 😍",
-      "sentAt": "2026-08-24T00:10:50.000Z",
+      "id": "6a8bc5258a3964a76b5bd799",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "Day 41 of 47 ⚡ Energy is everything 🔋 Your energy shapes your thoughts, your actions and the way you show up in the world. When your energy is high,",
+      "sentAt": "2026-01-11T07:33:40.000Z",
+      "durationSec": 128.6,
       "metrics": {
-        "views": 74,
-        "reach": 59,
-        "reactions": 1,
-        "comments": 0,
-        "engagementRate": 1.69
-      }
-    },
-    {
-      "id": "6a8bb2871f04919f2b621213",
-      "channelService": "instagram",
-      "type": "story",
-      "text": "To make it easier....\n\nHere is the link for a coaching application: 2 spots left for the month!",
-      "sentAt": "2026-08-23T23:15:42.000Z",
-      "metrics": {
-        "views": 66,
-        "reach": 62,
-        "reactions": 1,
-        "comments": 0,
-        "engagementRate": 1.61
-      }
-    },
-    {
-      "id": "6a8bb2871f04919f2b62120b",
-      "channelService": "instagram",
-      "type": "story",
-      "text": "",
-      "sentAt": "2026-08-23T23:10:45.000Z",
-      "metrics": {
-        "views": 70,
-        "reach": 64,
         "reactions": 2,
         "comments": 0,
-        "engagementRate": 3.13
-      }
-    },
-    {
-      "id": "6a8bb2871f04919f2b621215",
-      "channelService": "instagram",
-      "type": "story",
-      "text": "No wonder he lost 16kgs and counting! 💪🏼 @oskastolz",
-      "sentAt": "2026-08-23T23:01:51.000Z",
-      "metrics": {
-        "views": 72,
-        "reach": 66,
-        "reactions": 1,
-        "comments": 0,
-        "engagementRate": 1.52
-      }
-    },
-    {
-      "id": "6a8bb2871f04919f2b621217",
-      "channelService": "instagram",
-      "type": "story",
-      "text": "...but a reward for those who respect the grind\" @oskastolz",
-      "sentAt": "2026-08-23T23:01:50.000Z",
-      "metrics": {
-        "views": 74,
-        "reach": 68,
-        "reactions": 1,
-        "comments": 0,
-        "engagementRate": 1.47
+        "views": 147,
+        "reach": 136,
+        "engagementRate": 1.36,
+        "shares": 0
       }
     }
   ]
