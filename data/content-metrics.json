@@ -1,0 +1,119 @@
+{
+  "lastUpdated": "2026-08-24T09:15:00.000Z",
+  "channels": [
+    { "id": "6a8bb274ccaf649a6704aa8f", "service": "instagram", "name": "seanmurraycamp" },
+    { "id": "6a8bc523ccaf649a67054bee", "service": "tiktok", "name": "seanmurraycamp" },
+    { "id": "6a8bdcb3ccaf649a67061c97", "service": "youtube", "name": "Sean Murray-Camp" },
+    { "id": "6a8bdd90ccaf649a67061e38", "service": "linkedin", "name": "Sean Murray-Camp" },
+    { "id": "6a8bb7e8ccaf649a6704e317", "service": "facebook", "name": "47 Society" }
+  ],
+  "snapshots": [
+    {
+      "date": "2026-08-24",
+      "channels": {
+        "instagram": { "postCount": 23, "views": 7706, "reach": 5201, "reactions": 143, "comments": 13, "engagementRate": 4.19, "shares": 10, "saves": 4 },
+        "tiktok":    { "postCount": 0,  "views": 0,    "reach": 0,    "reactions": 0,   "comments": 0,  "engagementRate": 0 },
+        "youtube":   { "postCount": 1,  "views": 0,    "reactions": 0, "comments": 0,  "engagementRate": 0 },
+        "linkedin":  { "postCount": 2,  "impressions": 207, "reach": 127, "reactions": 10, "comments": 3, "engagementRate": 6.28 },
+        "facebook":  { "postCount": 2,  "impressions": 0, "reactions": 0, "comments": 0, "engagementRate": 0, "shares": 0, "clicks": 0 }
+      }
+    }
+  ],
+  "posts": [
+    {
+      "id": "6a8bf4e3858f542f7fdafd11",
+      "channelService": "instagram",
+      "type": "reel",
+      "text": "That 3 second window before you talk yourself out of it. That's the whole game.",
+      "sentAt": "2026-08-24T08:33:30.234Z",
+      "durationSec": 102.5,
+      "permalink": "https://www.instagram.com/reel/Dcao2wxk_eP/",
+      "metrics": null
+    },
+    {
+      "id": "6a8bf4e3858f542f7fdafd14",
+      "channelService": "youtube",
+      "type": "video",
+      "text": "That 3 second window before you talk yourself out of it. That's the whole game.",
+      "sentAt": "2026-08-24T08:30:25.997Z",
+      "durationSec": 102.5,
+      "metrics": { "reactions": 0, "comments": 0, "engagementRate": 0, "views": 0 }
+    },
+    {
+      "id": "6a8bf4e3858f542f7fdafd12",
+      "channelService": "linkedin",
+      "type": "video",
+      "text": "That 3 second window before you talk yourself out of it. That's the whole game.",
+      "sentAt": "2026-08-24T08:30:32.401Z",
+      "durationSec": 102.5,
+      "metrics": { "reactions": 0, "comments": 0 }
+    },
+    {
+      "id": "6a8bf4e3858f542f7fdafd10",
+      "channelService": "facebook",
+      "type": "video",
+      "text": "That 3 second window before you talk yourself out of it. That's the whole game.",
+      "sentAt": "2026-08-24T08:30:26.695Z",
+      "durationSec": 102.5,
+      "metrics": { "reactions": 0, "comments": 0, "engagementRate": 0, "impressions": 0, "shares": 0, "clicks": 0 }
+    },
+    {
+      "id": "6a8bb7ead62e2934f26019bc",
+      "channelService": "facebook",
+      "type": "post",
+      "text": "",
+      "sentAt": "2026-08-24T03:14:58.000Z",
+      "metrics": { "reactions": 0, "comments": 0, "engagementRate": 0, "impressions": 0, "shares": 0, "clicks": 0 }
+    },
+    {
+      "id": "6a8bdd9289a102c186d21b7a",
+      "channelService": "linkedin",
+      "type": "post",
+      "text": "Something I've been building quietly with my mate best mate @Matt Eierweis is finally ready to talk about. Waitlist for Get Loose is open now.",
+      "sentAt": "2026-08-22T00:35:15.094Z",
+      "metrics": { "reactions": 9, "comments": 3, "engagementRate": 7.45, "impressions": 161, "reach": 101 }
+    },
+    {
+      "id": "6a8bb27660cb672f896b7f46",
+      "channelService": "instagram",
+      "type": "post",
+      "text": "Nikki just lost 10kg of pure fat. Not \"weight\". Fat.",
+      "sentAt": "2026-08-19T08:21:28.000Z",
+      "metrics": { "reactions": 17, "comments": 4, "engagementRate": 4.96, "views": 733, "shares": 0, "saves": 0, "reach": 423 }
+    },
+    {
+      "id": "6a8bb27660cb672f896b7f38",
+      "channelService": "instagram",
+      "type": "reel",
+      "text": "14 DAYS UNTIL SPRING. Keep pushing - keep chippin' away - we got this!",
+      "sentAt": "2026-08-18T02:12:13.000Z",
+      "durationSec": 16,
+      "permalink": "https://www.instagram.com/reel/DcKgtKSp0d_/",
+      "metrics": { "reactions": 13, "comments": 4, "engagementRate": 3.61, "views": 667, "shares": 0, "saves": 0, "reach": 471 }
+    },
+    {
+      "id": "6a8bb27660cb672f896b7f3a",
+      "channelService": "instagram",
+      "type": "post",
+      "text": "16kg down. Father of 3. Still shows up.",
+      "sentAt": "2026-08-17T08:02:06.000Z",
+      "metrics": { "reactions": 22, "comments": 2, "engagementRate": 6.23, "views": 626, "shares": 0, "saves": 0, "reach": 385 }
+    },
+    {
+      "id": "6a8bdd9289a102c186d21b78",
+      "channelService": "linkedin",
+      "type": "post",
+      "text": "Something I've been sitting with for a while: my goal has always been to help as many people as I can. 47 Society is going fully online — the Better Human Project.",
+      "sentAt": "2026-08-21T03:35:19.587Z",
+      "metrics": { "reactions": 1, "comments": 0, "engagementRate": 2.17, "impressions": 46, "reach": 26 }
+    },
+    {
+      "id": "6a8bdd9289a102c186d21b7c",
+      "channelService": "linkedin",
+      "type": "post",
+      "text": "I'm happy to share that I'm starting a new position as Founder at 47 Society!",
+      "sentAt": "2024-12-04T01:25:51.406Z",
+      "metrics": { "reactions": 0, "comments": 0, "engagementRate": 0, "impressions": 171, "reach": 10 }
+    }
+  ]
+}

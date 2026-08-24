@@ -177,6 +177,13 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
 .tag-inactive{background:rgba(255,255,255,0.05);color:var(--text-faint);}
 .tag-massage{background:rgba(155,63,191,0.18);color:#c98bec;}
 .tag-onlinecoaching{background:rgba(244,162,97,0.18);color:var(--accent-2);}
+.tag-instagram{background:rgba(232,93,138,0.18);color:var(--accent);}
+.tag-tiktok{background:rgba(255,255,255,0.1);color:var(--text);}
+.tag-youtube{background:rgba(240,102,90,0.18);color:var(--danger);}
+.tag-linkedin{background:rgba(96,165,250,0.16);color:#60A5FA;}
+.tag-facebook{background:rgba(96,165,250,0.16);color:#60A5FA;}
+.tag-reel{background:rgba(244,162,97,0.18);color:var(--accent-2);}
+.tag-pending{background:rgba(255,255,255,0.05);color:var(--text-faint);}
 .muted{color:var(--text-faint);}
 .icon-btn{
   background:none;border:none;color:var(--text-faint);cursor:pointer;
@@ -286,6 +293,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
     <button class="tab-btn" data-tab="payments">Payment Log</button>
     <button class="tab-btn" data-tab="expenses">Expenses</button>
     <button class="tab-btn" data-tab="history">Monthly History</button>
+    <button class="tab-btn" data-tab="content">Content</button>
   </div>
 
   <!-- ================= OVERVIEW ================= -->
@@ -648,6 +656,56 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
     </div>
   </div>
 
+  <!-- ================= CONTENT ================= -->
+  <div class="tab-panel" id="panel-content">
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <p class="card-title">Content Performance</p>
+          <p class="card-sub" id="contentUpdatedSub">Snapshotted daily from your connected social accounts.</p>
+        </div>
+      </div>
+      <div class="kpi-grid" id="contentKpiGrid"></div>
+      <div class="empty-state" id="contentEmpty" style="display:none;">No content metrics snapshot found yet — this fills in once the daily snapshot has run at least once.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <p class="card-title">Views / Reach Over Time</p>
+          <p class="card-sub">One line per channel, one point per day the snapshot has run</p>
+        </div>
+      </div>
+      <div class="chart-wrap"><canvas id="contentTrendChart"></canvas></div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <div>
+          <p class="card-title">Recent Posts</p>
+          <p class="card-sub">Most recent post per channel first — metrics refresh roughly daily, so brand-new posts may show as pending.</p>
+        </div>
+        <select class="month-picker" id="contentChannelFilter">
+          <option value="all">All channels</option>
+          <option value="instagram">Instagram</option>
+          <option value="tiktok">TikTok</option>
+          <option value="youtube">YouTube</option>
+          <option value="linkedin">LinkedIn</option>
+          <option value="facebook">Facebook</option>
+        </select>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr>
+            <th>Date</th><th>Channel</th><th>Type</th><th>Post</th><th class="num">Duration</th>
+            <th class="num">Views/Impr.</th><th class="num">Reach</th><th class="num">Reactions</th><th class="num">Eng. Rate</th><th></th>
+          </tr></thead>
+          <tbody id="contentPostsTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
   <div class="footer-note">
     47 Society Finance Dashboard &nbsp;·&nbsp; All data is saved in this browser only (localStorage) &nbsp;·&nbsp; Use “Export backup” regularly to keep a copy
   </div>
@@ -883,6 +941,7 @@ document.querySelectorAll('.tab-btn').forEach(function(btn){
     document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
     if(btn.dataset.tab === 'overview') renderOverview();
     if(btn.dataset.tab === 'history') renderHistory();
+    if(btn.dataset.tab === 'content') renderContent();
   });
 });
 
@@ -1787,6 +1846,162 @@ function renderHistory(){
     tbody.appendChild(tr);
   });
 }
+
+/* ============================================================
+   RENDER: CONTENT (social performance snapshot)
+   ============================================================ */
+var contentData = null;
+var contentLoading = false;
+var contentTrendChartInstance = null;
+var CONTENT_SERVICE_LABELS = { instagram: 'Instagram', tiktok: 'TikTok', youtube: 'YouTube', linkedin: 'LinkedIn', facebook: 'Facebook' };
+var CONTENT_SERVICE_COLORS = { instagram: '#E85D8A', tiktok: '#FFFFFF', youtube: '#F0665A', linkedin: '#60A5FA', facebook: '#4A90E2' };
+var CONTENT_SERVICE_PRIMARY = { instagram: 'views', tiktok: 'views', youtube: 'views', linkedin: 'impressions', facebook: 'impressions' };
+
+function loadContentData(){
+  if(contentLoading) return;
+  contentLoading = true;
+  fetch('data/content-metrics.json', { cache: 'no-store' })
+    .then(function(r){ if(!r.ok) throw new Error('not found'); return r.json(); })
+    .then(function(d){ contentData = d; contentLoading = false; renderContent(); })
+    .catch(function(){ contentLoading = false; contentData = null; renderContent(); });
+}
+
+function formatDuration(sec){
+  if(sec === null || sec === undefined) return '<span class="muted">—</span>';
+  sec = Math.round(sec);
+  var m = Math.floor(sec / 60), s = sec % 60;
+  return m + ':' + String(s).padStart(2, '0');
+}
+
+function formatContentDate(iso){
+  var d = new Date(iso);
+  return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' }) + ' · ' + d.toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit' });
+}
+
+function numOrDash(n){
+  return (n === null || n === undefined) ? '<span class="muted">—</span>' : Number(n).toLocaleString('en-AU');
+}
+
+function contentServiceTag(service){
+  return '<span class="tag tag-' + service + '">' + (CONTENT_SERVICE_LABELS[service] || service) + '</span>';
+}
+
+function contentTypeTag(type){
+  if(type === 'reel') return '<span class="tag tag-reel">Reel</span>';
+  if(type === 'video') return '<span class="tag tag-reel">Video</span>';
+  if(type === 'story') return '<span class="tag tag-inactive">Story</span>';
+  return '<span class="tag tag-bank">Post</span>';
+}
+
+function renderContent(){
+  if(!contentData){
+    if(!contentLoading) loadContentData();
+    document.getElementById('contentEmpty').style.display = 'block';
+    document.getElementById('contentKpiGrid').innerHTML = '';
+    document.getElementById('contentPostsTableBody').innerHTML = '';
+    return;
+  }
+  document.getElementById('contentEmpty').style.display = 'none';
+
+  var updated = contentData.lastUpdated ? new Date(contentData.lastUpdated) : null;
+  document.getElementById('contentUpdatedSub').textContent = updated
+    ? 'Last snapshot: ' + updated.toLocaleDateString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' }) + ' at ' + updated.toLocaleTimeString('en-AU', { hour: 'numeric', minute: '2-digit' })
+    : 'Snapshotted daily from your connected social accounts.';
+
+  var latestSnapshot = contentData.snapshots && contentData.snapshots.length ? contentData.snapshots[contentData.snapshots.length - 1] : null;
+
+  // KPI cards, one per channel
+  var kpiGrid = document.getElementById('contentKpiGrid');
+  kpiGrid.innerHTML = '';
+  (contentData.channels || []).forEach(function(ch){
+    var cd = latestSnapshot ? (latestSnapshot.channels[ch.service] || {}) : {};
+    var primaryKey = CONTENT_SERVICE_PRIMARY[ch.service] || 'views';
+    var primaryVal = cd[primaryKey];
+    var primaryLabel = primaryKey === 'views' ? 'Views' : 'Impressions';
+    var eng = (cd.engagementRate !== undefined && cd.engagementRate !== null) ? cd.engagementRate + '%' : '—';
+    var div = document.createElement('div');
+    div.className = 'kpi';
+    div.innerHTML =
+      '<div class="kpi-label">' + contentServiceTag(ch.service) + '</div>' +
+      '<div class="kpi-value">' + (primaryVal === undefined || primaryVal === null ? '<span class="muted">—</span>' : Number(primaryVal).toLocaleString('en-AU')) + '</div>' +
+      '<div class="kpi-sub">' + primaryLabel + ' · ' + (cd.postCount || 0) + ' posts · Eng. ' + eng + '</div>';
+    kpiGrid.appendChild(div);
+  });
+
+  // Trend chart across snapshots
+  var snapshots = contentData.snapshots || [];
+  var labels = snapshots.map(function(s){
+    var d = new Date(s.date + 'T00:00:00');
+    return d.toLocaleDateString('en-AU', { day: 'numeric', month: 'short' });
+  });
+  var datasets = (contentData.channels || []).map(function(ch){
+    var primaryKey = CONTENT_SERVICE_PRIMARY[ch.service] || 'views';
+    return {
+      label: CONTENT_SERVICE_LABELS[ch.service] || ch.service,
+      data: snapshots.map(function(s){ return (s.channels[ch.service] || {})[primaryKey] || 0; }),
+      borderColor: CONTENT_SERVICE_COLORS[ch.service] || '#9C9C9C',
+      backgroundColor: CONTENT_SERVICE_COLORS[ch.service] || '#9C9C9C',
+      tension: 0.35,
+      pointRadius: 3,
+      borderWidth: 2,
+      fill: false
+    };
+  });
+  var ctx = document.getElementById('contentTrendChart').getContext('2d');
+  if(contentTrendChartInstance) contentTrendChartInstance.destroy();
+  contentTrendChartInstance = new Chart(ctx, {
+    type: 'line',
+    data: { labels: labels, datasets: datasets },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: '#9C9C9C', font: { family: 'Inter', size: 11 } } } },
+      scales: {
+        x: { ticks: { color: '#9C9C9C' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+        y: { ticks: { color: '#9C9C9C' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+      }
+    }
+  });
+
+  renderContentPostsTable();
+}
+
+function renderContentPostsTable(){
+  if(!contentData) return;
+  var filter = document.getElementById('contentChannelFilter').value;
+  var tbody = document.getElementById('contentPostsTableBody');
+  tbody.innerHTML = '';
+  var posts = (contentData.posts || [])
+    .filter(function(p){ return filter === 'all' || p.channelService === filter; })
+    .slice()
+    .sort(function(a, b){ return a.sentAt < b.sentAt ? 1 : -1; });
+
+  if(!posts.length){
+    tbody.innerHTML = '<tr><td colspan="9" class="muted">No posts logged for this channel yet.</td></tr>';
+    return;
+  }
+
+  posts.forEach(function(p){
+    var m = p.metrics;
+    var primaryKey = CONTENT_SERVICE_PRIMARY[p.channelService] || 'views';
+    var primaryVal = m ? (m[primaryKey] !== undefined ? m[primaryKey] : m.views) : null;
+    var tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + formatContentDate(p.sentAt) + '</td>' +
+      '<td>' + contentServiceTag(p.channelService) + '</td>' +
+      '<td>' + contentTypeTag(p.type) + '</td>' +
+      '<td style="white-space:normal;max-width:280px;">' + escapeHtml((p.text || '').slice(0, 90)) + ((p.text||'').length > 90 ? '…' : '') + '</td>' +
+      '<td class="num">' + formatDuration(p.durationSec) + '</td>' +
+      '<td class="num">' + (m ? numOrDash(primaryVal) : '<span class="tag tag-pending">Pending</span>') + '</td>' +
+      '<td class="num">' + (m ? numOrDash(m.reach) : '<span class="muted">—</span>') + '</td>' +
+      '<td class="num">' + (m ? numOrDash(m.reactions) : '<span class="muted">—</span>') + '</td>' +
+      '<td class="num">' + (m && m.engagementRate !== undefined && m.engagementRate !== null ? m.engagementRate + '%' : '<span class="muted">—</span>') + '</td>' +
+      '<td>' + (p.permalink ? '<a href="' + escapeHtml(p.permalink) + '" target="_blank" rel="noopener" class="icon-btn">View</a>' : '') + '</td>';
+    tbody.appendChild(tr);
+  });
+}
+
+document.getElementById('contentChannelFilter').addEventListener('change', renderContentPostsTable);
 
 /* ============================================================
    EXPORT / IMPORT
