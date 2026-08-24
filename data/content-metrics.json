@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-24T09:58:42.000Z",
+  "lastUpdated": "2026-08-24T21:10:36.000Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -33,11 +33,11 @@
       "channels": {
         "instagram": {
           "postCount": 23,
-          "views": 7706,
-          "reach": 5201,
+          "views": 7845,
+          "reach": 5320,
           "reactions": 143,
           "comments": 13,
-          "engagementRate": 4.19,
+          "engagementRate": 4.15,
           "shares": 10,
           "saves": 4,
           "impressions": 0
@@ -91,10 +91,10 @@
       "metrics": {
         "reactions": 0,
         "comments": 0,
-        "views": 0,
-        "reach": 0,
         "engagementRate": 0,
-        "shares": 0
+        "views": 0,
+        "shares": 0,
+        "reach": 0
       }
     },
     {
@@ -172,9 +172,9 @@
       "metrics": {
         "reactions": 9,
         "comments": 3,
-        "reach": 101,
         "engagementRate": 7.45,
-        "impressions": 161
+        "impressions": 161,
+        "reach": 101
       }
     },
     {
@@ -186,73 +186,73 @@
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "reach": 26,
         "engagementRate": 2.17,
-        "impressions": 46
+        "impressions": 46,
+        "reach": 26
       }
     },
     {
       "id": "6a8bc5258a3964a76b5bd74d",
       "channelService": "tiktok",
       "type": "video",
-      "text": "🌅 Day 47 of 47 | Find Your Ikigai 🌱 Your Ikigai sits at the intersection of what you love, what you're good at, what the world needs, and what you can",
+      "text": "🌅 Day 47 of 47 | Find Your Ikigai 🌱 Your Ikigai sits at the intersection of what you love, what you're good at, what the world needs, and what you c",
       "sentAt": "2026-01-19T06:59:34.000Z",
       "durationSec": 208.1,
       "metrics": {
         "reactions": 2,
         "comments": 0,
-        "views": 123,
-        "reach": 117,
         "engagementRate": 1.63,
-        "shares": 0
+        "views": 123,
+        "shares": 0,
+        "reach": 117
       }
     },
     {
       "id": "6a8bc5258a3964a76b5bd751",
       "channelService": "tiktok",
       "type": "video",
-      "text": "🤝 Day 46 of 47 | Give More Than You Take 🌱 The fastest way to a better life isn't chasing more for yourself. It's becoming someone who gives more to o",
+      "text": "🤝 Day 46 of 47 | Give More Than You Take 🌱 The fastest way to a better life isn't chasing more for yourself. It's becoming someone who gives more to",
       "sentAt": "2026-01-17T08:50:49.000Z",
       "durationSec": 151.167,
       "metrics": {
         "reactions": 7,
         "comments": 2,
-        "views": 408,
-        "reach": 385,
         "engagementRate": 2.21,
-        "shares": 0
+        "views": 408,
+        "shares": 0,
+        "reach": 385
       }
     },
     {
       "id": "6a8bc5258a3964a76b5bd755",
       "channelService": "tiktok",
       "type": "video",
-      "text": "🎭 Day 45 of 47 | Remove The Masks 🌱 Most of your stress comes from wearing versions of yourself that were built to survive, not to thrive. The strong",
+      "text": "🎭 Day 45 of 47 | Remove The Masks 🌱 Most of your stress comes from wearing versions of yourself that were built to survive, not to thrive. The stron",
       "sentAt": "2026-01-17T07:17:33.000Z",
       "durationSec": 141.234,
       "metrics": {
         "reactions": 19,
         "comments": 6,
-        "views": 746,
-        "reach": 696,
         "engagementRate": 3.49,
-        "shares": 1
+        "views": 746,
+        "shares": 1,
+        "reach": 696
       }
     },
     {
       "id": "6a8bc5258a3964a76b5bd79b",
       "channelService": "tiktok",
       "type": "video",
-      "text": "🧠 Day 44 of 47 | L Plates For Life 🌱 No one ever fully figures life out. We're all learners. Always. Different chapters, same lesson: stay curious, s",
+      "text": "🧠 Day 44 of 47 | L Plates For Life 🌱 No one ever fully figures life out. We're all learners. Always. Different chapters, same lesson: stay curious, ",
       "sentAt": "2026-01-16T06:02:59.000Z",
       "durationSec": 128.167,
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "views": 168,
-        "reach": 155,
         "engagementRate": 0.6,
-        "shares": 0
+        "views": 168,
+        "shares": 0,
+        "reach": 155
       }
     },
     {
@@ -265,42 +265,42 @@
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "views": 119,
-        "reach": 115,
         "engagementRate": 0.84,
-        "shares": 0
+        "views": 119,
+        "shares": 0,
+        "reach": 115
       }
     },
     {
       "id": "6a8bc5258a3964a76b5bd797",
       "channelService": "tiktok",
       "type": "video",
-      "text": "Day 42 of 47 ⏳ Delayed gratification 🧠 Most people choose what feels good now over what creates a better life later. Delayed gratification is the ab",
+      "text": "Day 42 of 47 ⏳ Delayed gratification 🧠 Most people choose what feels good now over what creates a better life later. Delayed gratification is the abi",
       "sentAt": "2026-01-12T06:58:39.000Z",
       "durationSec": 96.317,
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "views": 109,
-        "reach": 102,
         "engagementRate": 1.83,
-        "shares": 0
+        "views": 109,
+        "shares": 0,
+        "reach": 102
       }
     },
     {
       "id": "6a8bc5258a3964a76b5bd799",
       "channelService": "tiktok",
       "type": "video",
-      "text": "Day 41 of 47 ⚡ Energy is everything 🔋 Your energy shapes your thoughts, your actions and the way you show up in the world. When your energy is high,",
+      "text": "Day 41 of 47 ⚡ Energy is everything 🔋 Your energy shapes your thoughts, your actions and the way you show up in the world. When your energy is high, ",
       "sentAt": "2026-01-11T07:33:40.000Z",
       "durationSec": 128.6,
       "metrics": {
         "reactions": 2,
         "comments": 0,
-        "views": 147,
-        "reach": 136,
         "engagementRate": 1.36,
-        "shares": 0
+        "views": 147,
+        "shares": 0,
+        "reach": 136
       }
     }
   ]
