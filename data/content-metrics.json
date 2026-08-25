@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-25T01:55:02Z",
+  "lastUpdated": "2026-08-25T02:03:04Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -32,12 +32,12 @@
       "date": "2026-08-25",
       "channels": {
         "instagram": {
-          "postCount": 25,
-          "views": 8067,
-          "reach": 5459,
-          "reactions": 143,
-          "comments": 13,
-          "engagementRate": 4.12,
+          "postCount": 26,
+          "views": 8378,
+          "reach": 5669,
+          "reactions": 156,
+          "comments": 21,
+          "engagementRate": 4.34,
           "shares": 10,
           "saves": 4,
           "impressions": 0
@@ -84,7 +84,7 @@
     {
       "id": "6a8bf4e3858f542f7fdafd13",
       "channelService": "tiktok",
-      "type": "post",
+      "type": "video",
       "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
       "sentAt": "2026-08-24T08:33:58.873Z",
       "durationSec": 102.5,
@@ -100,16 +100,24 @@
     {
       "id": "6a8bf4e3858f542f7fdafd11",
       "channelService": "instagram",
-      "type": "post",
+      "type": "reel",
       "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
       "sentAt": "2026-08-24T08:33:30.234Z",
       "durationSec": 102.5,
-      "metrics": null
+      "metrics": {
+        "reactions": 13,
+        "comments": 5,
+        "engagementRate": 9.23,
+        "views": 285,
+        "shares": 0,
+        "saves": 0,
+        "reach": 195
+      }
     },
     {
       "id": "6a8bf4e3858f542f7fdafd12",
       "channelService": "linkedin",
-      "type": "post",
+      "type": "video",
       "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
       "sentAt": "2026-08-24T08:30:32.401Z",
       "durationSec": 102.5,
@@ -121,7 +129,7 @@
     {
       "id": "6a8bf4e3858f542f7fdafd10",
       "channelService": "facebook",
-      "type": "post",
+      "type": "video",
       "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
       "sentAt": "2026-08-24T08:30:26.695Z",
       "durationSec": 102.5,
@@ -137,7 +145,7 @@
     {
       "id": "6a8bf4e3858f542f7fdafd14",
       "channelService": "youtube",
-      "type": "post",
+      "type": "video",
       "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
       "sentAt": "2026-08-24T08:30:25.997Z",
       "durationSec": 102.5,
@@ -194,8 +202,8 @@
     {
       "id": "6a8bc5258a3964a76b5bd74d",
       "channelService": "tiktok",
-      "type": "post",
-      "text": "🌅 Day 47 of 47 | Find Your Ikigai 🌱 Your Ikigai sits at the intersection of what you love, what you're good at, what the world needs, and what you c",
+      "type": "video",
+      "text": "🌅 Day 47 of 47 | Find Your Ikigai 🌱 Your Ikigai sits at the intersection of what you love, what you’re good at, what the world needs, and what you can",
       "sentAt": "2026-01-19T06:59:34.000Z",
       "durationSec": 208.1,
       "metrics": {
@@ -210,8 +218,8 @@
     {
       "id": "6a8bc5258a3964a76b5bd751",
       "channelService": "tiktok",
-      "type": "post",
-      "text": "🤝 Day 46 of 47 | Give More Than You Take 🌱 The fastest way to a better life isn't chasing more for yourself. It's becoming someone who gives more to",
+      "type": "video",
+      "text": "🤝 Day 46 of 47 | Give More Than You Take 🌱 The fastest way to a better life isn’t chasing more for yourself. It’s becoming someone who gives more to o",
       "sentAt": "2026-01-17T08:50:49.000Z",
       "durationSec": 151.167,
       "metrics": {
@@ -226,8 +234,8 @@
     {
       "id": "6a8bc5258a3964a76b5bd755",
       "channelService": "tiktok",
-      "type": "post",
-      "text": "🎭 Day 45 of 47 | Remove The Masks 🌱 Most of your stress comes from wearing versions of yourself that were built to survive, not to thrive. The stron",
+      "type": "video",
+      "text": "🎭 Day 45 of 47 | Remove The Masks 🌱 Most of your stress comes from wearing versions of yourself that were built to survive, not to thrive. The strong ",
       "sentAt": "2026-01-17T07:17:33.000Z",
       "durationSec": 141.234,
       "metrics": {
@@ -242,8 +250,8 @@
     {
       "id": "6a8bc5258a3964a76b5bd79b",
       "channelService": "tiktok",
-      "type": "post",
-      "text": "🧠 Day 44 of 47 | L Plates For Life 🌱 No one ever fully figures life out. We're all learners. Always. Different chapters, same lesson: stay curious, ",
+      "type": "video",
+      "text": "🧠 Day 44 of 47 | L Plates For Life 🌱 No one ever fully figures life out. We’re all learners. Always. Different chapters, same lesson: stay curious, st",
       "sentAt": "2026-01-16T06:02:59.000Z",
       "durationSec": 128.167,
       "metrics": {
@@ -258,8 +266,8 @@
     {
       "id": "6a8bc5258a3964a76b5bd791",
       "channelService": "tiktok",
-      "type": "post",
-      "text": "🧱 Day 43 of 47 | Progress Over Perfection 🌱 Perfection is a trap. Progress is real. If you're waiting for the perfect time, the perfect plan, or the",
+      "type": "video",
+      "text": "🧱 Day 43 of 47 | Progress Over Perfection 🌱 Perfection is a trap. Progress is real. If you’re waiting for the perfect time, the perfect plan, or the p",
       "sentAt": "2026-01-15T06:57:17.000Z",
       "durationSec": 135.834,
       "metrics": {
@@ -274,8 +282,8 @@
     {
       "id": "6a8bc5258a3964a76b5bd797",
       "channelService": "tiktok",
-      "type": "post",
-      "text": "Day 42 of 47 ⏳ Delayed gratification 🧠 Most people choose what feels good now over what creates a better life later. Delayed gratification is the abi",
+      "type": "video",
+      "text": "Day 42 of 47 ⏳ Delayed gratification 🧠 Most people choose what feels good now over what creates a better life later. Delayed gratification is the abil",
       "sentAt": "2026-01-12T06:58:39.000Z",
       "durationSec": 96.317,
       "metrics": {
@@ -290,8 +298,8 @@
     {
       "id": "6a8bc5258a3964a76b5bd799",
       "channelService": "tiktok",
-      "type": "post",
-      "text": "Day 41 of 47 ⚡ Energy is everything 🔋 Your energy shapes your thoughts, your actions and the way you show up in the world. When your energy is high, ",
+      "type": "video",
+      "text": "Day 41 of 47 ⚡ Energy is everything 🔋 Your energy shapes your thoughts, your actions and the way you show up in the world. When your energy is high, l",
       "sentAt": "2026-01-11T07:33:40.000Z",
       "durationSec": 128.6,
       "metrics": {
