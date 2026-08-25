@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-25T02:03:04Z",
+  "lastUpdated": "2026-08-25T21:07:11Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -78,16 +78,67 @@
           "clicks": 0
         }
       }
+    },
+    {
+      "date": "2026-08-26",
+      "channels": {
+        "instagram": {
+          "postCount": 36,
+          "views": 9801,
+          "reach": 6684,
+          "reactions": 156,
+          "comments": 21,
+          "engagementRate": 4.31,
+          "shares": 10,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 1,
+          "views": 664,
+          "reach": 0,
+          "reactions": 12,
+          "comments": 0,
+          "engagementRate": 1.96,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 2,
+          "views": 0,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 3,
+          "views": 12,
+          "reach": 177,
+          "reactions": 14,
+          "comments": 3,
+          "engagementRate": 6.07,
+          "shares": 0,
+          "impressions": 280
+        },
+        "facebook": {
+          "postCount": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0.71,
+          "shares": 0,
+          "impressions": 141,
+          "clicks": 1
+        }
+      }
     }
   ],
   "posts": [
     {
-      "id": "6a8bf4e3858f542f7fdafd13",
+      "id": "6a8cd929cc914e392c03090a",
       "channelService": "tiktok",
       "type": "video",
-      "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
-      "sentAt": "2026-08-24T08:33:58.873Z",
-      "durationSec": 102.5,
+      "text": "Filmed this upside down by accident and honestly it fits, my whole week's flipped for my birthday. 24 hours only, 50% off your first month of online c",
+      "sentAt": "2026-08-25T08:03:17.875Z",
+      "durationSec": 75.866,
       "metrics": {
         "reactions": 0,
         "comments": 0,
@@ -98,20 +149,70 @@
       }
     },
     {
-      "id": "6a8bf4e3858f542f7fdafd11",
+      "id": "6a8cd929cc914e392c030909",
       "channelService": "instagram",
       "type": "reel",
+      "text": "Filmed this upside down by accident and honestly it fits, my whole week's flipped for my birthday. 24 hours only, 50% off your first month of online c",
+      "sentAt": "2026-08-25T08:03:17.746Z",
+      "durationSec": 75.866,
+      "metrics": null
+    },
+    {
+      "id": "6a8cd92acc914e392c03090b",
+      "channelService": "facebook",
+      "type": "video",
+      "text": "Filmed this upside down by accident and honestly it fits, my whole week's flipped for my birthday. 24 hours only, 50% off your first month of online c",
+      "sentAt": "2026-08-25T08:02:11.118Z",
+      "durationSec": 75.866,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "impressions": 0,
+        "shares": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "id": "6a8cd929cc914e392c030907",
+      "channelService": "linkedin",
+      "type": "video",
+      "text": "Filmed this upside down by accident and honestly it fits, my whole week's flipped for my birthday. 24 hours only, 50% off your first month of online c",
+      "sentAt": "2026-08-25T08:01:56.442Z",
+      "durationSec": 75.866,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0
+      }
+    },
+    {
+      "id": "6a8cd929cc914e392c030908",
+      "channelService": "youtube",
+      "type": "video",
+      "text": "Filmed this upside down by accident and honestly it fits, my whole week's flipped for my birthday. 24 hours only, 50% off your first month of online c",
+      "sentAt": "2026-08-25T08:01:36.471Z",
+      "durationSec": 75.866,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0
+      }
+    },
+    {
+      "id": "6a8bf4e3858f542f7fdafd13",
+      "channelService": "tiktok",
+      "type": "video",
       "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
-      "sentAt": "2026-08-24T08:33:30.234Z",
+      "sentAt": "2026-08-24T08:33:58.873Z",
       "durationSec": 102.5,
       "metrics": {
-        "reactions": 13,
-        "comments": 5,
-        "engagementRate": 9.23,
-        "views": 285,
-        "shares": 0,
-        "saves": 0,
-        "reach": 195
+        "reactions": 12,
+        "comments": 0,
+        "engagementRate": 1.96,
+        "views": 664,
+        "shares": 1,
+        "reach": 0
       }
     },
     {
@@ -122,8 +223,12 @@
       "sentAt": "2026-08-24T08:30:32.401Z",
       "durationSec": 102.5,
       "metrics": {
-        "reactions": 0,
-        "comments": 0
+        "reactions": 4,
+        "comments": 0,
+        "engagementRate": 16,
+        "impressions": 25,
+        "reach": 19,
+        "views": 12
       }
     },
     {
@@ -136,10 +241,10 @@
       "metrics": {
         "reactions": 0,
         "comments": 0,
-        "engagementRate": 0,
-        "impressions": 0,
+        "engagementRate": 0.84,
+        "impressions": 119,
         "shares": 0,
-        "clicks": 0
+        "clicks": 1
       }
     },
     {
@@ -152,8 +257,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 0,
-        "views": 0,
-        "engagementRate": 0
+        "engagementRate": 0,
+        "views": 0
       }
     },
     {
@@ -166,7 +271,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 0,
+        "impressions": 22,
         "shares": 0,
         "clicks": 0
       }
@@ -180,9 +285,9 @@
       "metrics": {
         "reactions": 9,
         "comments": 3,
-        "engagementRate": 7.45,
-        "impressions": 161,
-        "reach": 101
+        "engagementRate": 5.88,
+        "impressions": 204,
+        "reach": 129
       }
     },
     {
@@ -194,9 +299,9 @@
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 2.17,
-        "impressions": 46,
-        "reach": 26
+        "engagementRate": 1.96,
+        "impressions": 51,
+        "reach": 29
       }
     },
     {
@@ -245,70 +350,6 @@
         "views": 746,
         "shares": 1,
         "reach": 696
-      }
-    },
-    {
-      "id": "6a8bc5258a3964a76b5bd79b",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "🧠 Day 44 of 47 | L Plates For Life 🌱 No one ever fully figures life out. We’re all learners. Always. Different chapters, same lesson: stay curious, st",
-      "sentAt": "2026-01-16T06:02:59.000Z",
-      "durationSec": 128.167,
-      "metrics": {
-        "reactions": 1,
-        "comments": 0,
-        "engagementRate": 0.6,
-        "views": 168,
-        "shares": 0,
-        "reach": 155
-      }
-    },
-    {
-      "id": "6a8bc5258a3964a76b5bd791",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "🧱 Day 43 of 47 | Progress Over Perfection 🌱 Perfection is a trap. Progress is real. If you’re waiting for the perfect time, the perfect plan, or the p",
-      "sentAt": "2026-01-15T06:57:17.000Z",
-      "durationSec": 135.834,
-      "metrics": {
-        "reactions": 1,
-        "comments": 0,
-        "engagementRate": 0.84,
-        "views": 119,
-        "shares": 0,
-        "reach": 115
-      }
-    },
-    {
-      "id": "6a8bc5258a3964a76b5bd797",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "Day 42 of 47 ⏳ Delayed gratification 🧠 Most people choose what feels good now over what creates a better life later. Delayed gratification is the abil",
-      "sentAt": "2026-01-12T06:58:39.000Z",
-      "durationSec": 96.317,
-      "metrics": {
-        "reactions": 1,
-        "comments": 1,
-        "engagementRate": 1.83,
-        "views": 109,
-        "shares": 0,
-        "reach": 102
-      }
-    },
-    {
-      "id": "6a8bc5258a3964a76b5bd799",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "Day 41 of 47 ⚡ Energy is everything 🔋 Your energy shapes your thoughts, your actions and the way you show up in the world. When your energy is high, l",
-      "sentAt": "2026-01-11T07:33:40.000Z",
-      "durationSec": 128.6,
-      "metrics": {
-        "reactions": 2,
-        "comments": 0,
-        "engagementRate": 1.36,
-        "views": 147,
-        "shares": 0,
-        "reach": 136
       }
     }
   ]
