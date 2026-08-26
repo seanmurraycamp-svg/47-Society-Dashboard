@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-25T21:07:11Z",
+  "lastUpdated": "2026-08-26T21:07:03Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -129,6 +129,57 @@
           "clicks": 1
         }
       }
+    },
+    {
+      "date": "2026-08-27",
+      "channels": {
+        "instagram": {
+          "postCount": 40,
+          "views": 10612,
+          "reach": 7251,
+          "reactions": 169,
+          "comments": 22,
+          "engagementRate": 4.41,
+          "shares": 11,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 2,
+          "views": 784,
+          "reach": 0,
+          "reactions": 17,
+          "comments": 0,
+          "engagementRate": 2.3,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 2,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 21,
+          "reach": 205,
+          "reactions": 16,
+          "comments": 4,
+          "engagementRate": 6.13,
+          "shares": 0,
+          "impressions": 326
+        },
+        "facebook": {
+          "postCount": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0.63,
+          "shares": 0,
+          "impressions": 159,
+          "clicks": 1
+        }
+      }
     }
   ],
   "posts": [
@@ -140,10 +191,10 @@
       "sentAt": "2026-08-25T08:03:17.875Z",
       "durationSec": 75.866,
       "metrics": {
-        "reactions": 0,
+        "reactions": 5,
         "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "engagementRate": 4.9,
+        "views": 102,
         "shares": 0,
         "reach": 0
       }
@@ -155,7 +206,15 @@
       "text": "Filmed this upside down by accident and honestly it fits, my whole week's flipped for my birthday. 24 hours only, 50% off your first month of online c",
       "sentAt": "2026-08-25T08:03:17.746Z",
       "durationSec": 75.866,
-      "metrics": null
+      "metrics": {
+        "reactions": 12,
+        "comments": 1,
+        "engagementRate": 7.73,
+        "views": 301,
+        "shares": 1,
+        "saves": 0,
+        "reach": 181
+      }
     },
     {
       "id": "6a8cd92acc914e392c03090b",
@@ -168,7 +227,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 0,
+        "impressions": 9,
         "shares": 0,
         "clicks": 0
       }
@@ -181,8 +240,12 @@
       "sentAt": "2026-08-25T08:01:56.442Z",
       "durationSec": 75.866,
       "metrics": {
-        "reactions": 0,
-        "comments": 0
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 22.22,
+        "impressions": 9,
+        "reach": 6,
+        "views": 4
       }
     },
     {
@@ -209,8 +272,8 @@
       "metrics": {
         "reactions": 12,
         "comments": 0,
-        "engagementRate": 1.96,
-        "views": 664,
+        "engagementRate": 1.91,
+        "views": 682,
         "shares": 1,
         "reach": 0
       }
@@ -223,12 +286,12 @@
       "sentAt": "2026-08-24T08:30:32.401Z",
       "durationSec": 102.5,
       "metrics": {
-        "reactions": 4,
+        "reactions": 5,
         "comments": 0,
-        "engagementRate": 16,
-        "impressions": 25,
-        "reach": 19,
-        "views": 12
+        "engagementRate": 13.16,
+        "impressions": 38,
+        "reach": 25,
+        "views": 17
       }
     },
     {
@@ -241,8 +304,8 @@
       "metrics": {
         "reactions": 0,
         "comments": 0,
-        "engagementRate": 0.84,
-        "impressions": 119,
+        "engagementRate": 0.81,
+        "impressions": 123,
         "shares": 0,
         "clicks": 1
       }
@@ -271,7 +334,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 22,
+        "impressions": 27,
         "shares": 0,
         "clicks": 0
       }
@@ -285,9 +348,9 @@
       "metrics": {
         "reactions": 9,
         "comments": 3,
-        "engagementRate": 5.88,
-        "impressions": 204,
-        "reach": 129
+        "engagementRate": 5.26,
+        "impressions": 228,
+        "reach": 145
       }
     },
     {
