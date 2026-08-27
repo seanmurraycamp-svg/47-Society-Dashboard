@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-26T21:07:03Z",
+  "lastUpdated": "2026-08-27T21:04:52Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -180,6 +180,57 @@
           "clicks": 1
         }
       }
+    },
+    {
+      "date": "2026-08-28",
+      "channels": {
+        "instagram": {
+          "postCount": 46,
+          "views": 12093,
+          "reach": 8266,
+          "reactions": 173,
+          "comments": 22,
+          "engagementRate": 4.17,
+          "shares": 11,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 2,
+          "views": 798,
+          "reach": 683,
+          "reactions": 18,
+          "comments": 0,
+          "engagementRate": 2.38,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 2,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 33,
+          "reach": 237,
+          "reactions": 21,
+          "comments": 4,
+          "engagementRate": 6.65,
+          "shares": 0,
+          "impressions": 376
+        },
+        "facebook": {
+          "postCount": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0.62,
+          "shares": 0,
+          "impressions": 160,
+          "clicks": 1
+        }
+      }
     }
   ],
   "posts": [
@@ -191,12 +242,12 @@
       "sentAt": "2026-08-25T08:03:17.875Z",
       "durationSec": 75.866,
       "metrics": {
-        "reactions": 5,
+        "reactions": 6,
         "comments": 0,
-        "engagementRate": 4.9,
-        "views": 102,
+        "engagementRate": 5.66,
+        "views": 106,
         "shares": 0,
-        "reach": 0
+        "reach": 91
       }
     },
     {
@@ -207,13 +258,13 @@
       "sentAt": "2026-08-25T08:03:17.746Z",
       "durationSec": 75.866,
       "metrics": {
-        "reactions": 12,
+        "reactions": 15,
         "comments": 1,
-        "engagementRate": 7.73,
-        "views": 301,
+        "engagementRate": 7.46,
+        "views": 437,
         "shares": 1,
         "saves": 0,
-        "reach": 181
+        "reach": 228
       }
     },
     {
@@ -240,12 +291,12 @@
       "sentAt": "2026-08-25T08:01:56.442Z",
       "durationSec": 75.866,
       "metrics": {
-        "reactions": 1,
+        "reactions": 4,
         "comments": 1,
-        "engagementRate": 22.22,
-        "impressions": 9,
-        "reach": 6,
-        "views": 4
+        "engagementRate": 21.74,
+        "impressions": 23,
+        "reach": 15,
+        "views": 9
       }
     },
     {
@@ -266,16 +317,16 @@
       "id": "6a8bf4e3858f542f7fdafd13",
       "channelService": "tiktok",
       "type": "video",
-      "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
+      "text": "That 3 second window before you talk yourself out of it. That's the whole game. More at 47society.com.au/start #47Society #OnlineCoachingAU #Melbourne",
       "sentAt": "2026-08-24T08:33:58.873Z",
       "durationSec": 102.5,
       "metrics": {
         "reactions": 12,
         "comments": 0,
-        "engagementRate": 1.91,
-        "views": 682,
+        "engagementRate": 1.88,
+        "views": 692,
         "shares": 1,
-        "reach": 0
+        "reach": 592
       }
     },
     {
@@ -286,12 +337,12 @@
       "sentAt": "2026-08-24T08:30:32.401Z",
       "durationSec": 102.5,
       "metrics": {
-        "reactions": 5,
+        "reactions": 6,
         "comments": 0,
-        "engagementRate": 13.16,
-        "impressions": 38,
-        "reach": 25,
-        "views": 17
+        "engagementRate": 12,
+        "impressions": 50,
+        "reach": 32,
+        "views": 24
       }
     },
     {
@@ -305,7 +356,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0.81,
-        "impressions": 123,
+        "impressions": 124,
         "shares": 0,
         "clicks": 1
       }
@@ -321,7 +372,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 0
+        "views": 3
       }
     },
     {
@@ -346,11 +397,11 @@
       "text": "Something I've been building quietly with my mate best mate @Matt Eierweis is finally ready to talk about.\n\nWe spent our 20s doing it the bodybuilding",
       "sentAt": "2026-08-22T00:35:15.094Z",
       "metrics": {
-        "reactions": 9,
+        "reactions": 10,
         "comments": 3,
-        "engagementRate": 5.26,
-        "impressions": 228,
-        "reach": 145
+        "engagementRate": 5.18,
+        "impressions": 251,
+        "reach": 160
       }
     },
     {
@@ -362,9 +413,9 @@
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 1.96,
-        "impressions": 51,
-        "reach": 29
+        "engagementRate": 1.92,
+        "impressions": 52,
+        "reach": 30
       }
     },
     {
@@ -377,10 +428,10 @@
       "metrics": {
         "reactions": 2,
         "comments": 0,
-        "engagementRate": 1.63,
-        "views": 123,
+        "engagementRate": 1.6,
+        "views": 125,
         "shares": 0,
-        "reach": 117
+        "reach": 118
       }
     },
     {
@@ -393,8 +444,8 @@
       "metrics": {
         "reactions": 7,
         "comments": 2,
-        "engagementRate": 2.21,
-        "views": 408,
+        "engagementRate": 2.2,
+        "views": 409,
         "shares": 0,
         "reach": 385
       }
