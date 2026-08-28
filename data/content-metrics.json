@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-27T21:04:52Z",
+  "lastUpdated": "2026-08-28T21:08:04Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -231,6 +231,57 @@
           "clicks": 1
         }
       }
+    },
+    {
+      "date": "2026-08-29",
+      "channels": {
+        "instagram": {
+          "postCount": 53,
+          "views": 13219,
+          "reach": 9101,
+          "reactions": 173,
+          "comments": 22,
+          "engagementRate": 3.88,
+          "shares": 11,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 2,
+          "views": 799,
+          "reach": 713,
+          "reactions": 18,
+          "comments": 0,
+          "engagementRate": 2.38,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 2,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 35,
+          "reach": 249,
+          "reactions": 21,
+          "comments": 4,
+          "engagementRate": 6.33,
+          "shares": 0,
+          "impressions": 395
+        },
+        "facebook": {
+          "postCount": 3,
+          "reactions": 1,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "shares": 0,
+          "impressions": 163,
+          "clicks": 1
+        }
+      }
     }
   ],
   "posts": [
@@ -251,23 +302,6 @@
       }
     },
     {
-      "id": "6a8cd929cc914e392c030909",
-      "channelService": "instagram",
-      "type": "reel",
-      "text": "Filmed this upside down by accident and honestly it fits, my whole week's flipped for my birthday. 24 hours only, 50% off your first month of online c",
-      "sentAt": "2026-08-25T08:03:17.746Z",
-      "durationSec": 75.866,
-      "metrics": {
-        "reactions": 15,
-        "comments": 1,
-        "engagementRate": 7.46,
-        "views": 437,
-        "shares": 1,
-        "saves": 0,
-        "reach": 228
-      }
-    },
-    {
       "id": "6a8cd92acc914e392c03090b",
       "channelService": "facebook",
       "type": "video",
@@ -278,7 +312,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 9,
+        "impressions": 10,
         "shares": 0,
         "clicks": 0
       }
@@ -293,10 +327,10 @@
       "metrics": {
         "reactions": 4,
         "comments": 1,
-        "engagementRate": 21.74,
-        "impressions": 23,
-        "reach": 15,
-        "views": 9
+        "engagementRate": 17.86,
+        "impressions": 28,
+        "reach": 16,
+        "views": 10
       }
     },
     {
@@ -324,9 +358,9 @@
         "reactions": 12,
         "comments": 0,
         "engagementRate": 1.88,
-        "views": 692,
+        "views": 693,
         "shares": 1,
-        "reach": 592
+        "reach": 622
       }
     },
     {
@@ -339,10 +373,10 @@
       "metrics": {
         "reactions": 6,
         "comments": 0,
-        "engagementRate": 12,
-        "impressions": 50,
-        "reach": 32,
-        "views": 24
+        "engagementRate": 11.32,
+        "impressions": 53,
+        "reach": 35,
+        "views": 25
       }
     },
     {
@@ -353,10 +387,10 @@
       "sentAt": "2026-08-24T08:30:26.695Z",
       "durationSec": 102.5,
       "metrics": {
-        "reactions": 0,
+        "reactions": 1,
         "comments": 0,
-        "engagementRate": 0.81,
-        "impressions": 124,
+        "engagementRate": 1.59,
+        "impressions": 126,
         "shares": 0,
         "clicks": 1
       }
@@ -399,9 +433,9 @@
       "metrics": {
         "reactions": 10,
         "comments": 3,
-        "engagementRate": 5.18,
-        "impressions": 251,
-        "reach": 160
+        "engagementRate": 4.96,
+        "impressions": 262,
+        "reach": 168
       }
     },
     {
@@ -422,7 +456,7 @@
       "id": "6a8bc5258a3964a76b5bd74d",
       "channelService": "tiktok",
       "type": "video",
-      "text": "🌅 Day 47 of 47 | Find Your Ikigai 🌱 Your Ikigai sits at the intersection of what you love, what you’re good at, what the world needs, and what you can",
+      "text": "\ud83c\udf05 Day 47 of 47 | Find Your Ikigai \ud83c\udf31 Your Ikigai sits at the intersection of what you love, what you\u2019re good at, what the world needs, and what you can",
       "sentAt": "2026-01-19T06:59:34.000Z",
       "durationSec": 208.1,
       "metrics": {
@@ -438,7 +472,7 @@
       "id": "6a8bc5258a3964a76b5bd751",
       "channelService": "tiktok",
       "type": "video",
-      "text": "🤝 Day 46 of 47 | Give More Than You Take 🌱 The fastest way to a better life isn’t chasing more for yourself. It’s becoming someone who gives more to o",
+      "text": "\ud83e\udd1d Day 46 of 47 | Give More Than You Take \ud83c\udf31 The fastest way to a better life isn\u2019t chasing more for yourself. It\u2019s becoming someone who gives more to o",
       "sentAt": "2026-01-17T08:50:49.000Z",
       "durationSec": 151.167,
       "metrics": {
@@ -454,7 +488,7 @@
       "id": "6a8bc5258a3964a76b5bd755",
       "channelService": "tiktok",
       "type": "video",
-      "text": "🎭 Day 45 of 47 | Remove The Masks 🌱 Most of your stress comes from wearing versions of yourself that were built to survive, not to thrive. The strong ",
+      "text": "\ud83c\udfad Day 45 of 47 | Remove The Masks \ud83c\udf31 Most of your stress comes from wearing versions of yourself that were built to survive, not to thrive. The strong ",
       "sentAt": "2026-01-17T07:17:33.000Z",
       "durationSec": 141.234,
       "metrics": {
@@ -464,6 +498,22 @@
         "views": 746,
         "shares": 1,
         "reach": 696
+      }
+    },
+    {
+      "id": "6a8bc5258a3964a76b5bd79b",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "\ud83e\udde0 Day 44 of 47 | L Plates For Life \ud83c\udf31 No one ever fully figures life out. We\u2019re all learners. Always. Different chapters, same lesson: stay curious, st",
+      "sentAt": "2026-01-16T06:02:59.000Z",
+      "durationSec": 128.167,
+      "metrics": {
+        "reactions": 1,
+        "comments": 0,
+        "engagementRate": 0.6,
+        "views": 168,
+        "shares": 0,
+        "reach": 155
       }
     }
   ]
