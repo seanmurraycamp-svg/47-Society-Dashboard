@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-30T21:06:28Z",
+  "lastUpdated": "2026-08-31T21:07:15Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -384,6 +384,57 @@
           "clicks": 1
         }
       }
+    },
+    {
+      "date": "2026-09-01",
+      "channels": {
+        "instagram": {
+          "postCount": 77,
+          "views": 16772,
+          "reach": 11715,
+          "reactions": 175,
+          "comments": 23,
+          "engagementRate": 3.41,
+          "shares": 11,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 2,
+          "views": 810,
+          "reach": 732,
+          "reactions": 18,
+          "comments": 0,
+          "engagementRate": 2.35,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 2,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 41,
+          "reach": 272,
+          "reactions": 21,
+          "comments": 4,
+          "engagementRate": 5.8,
+          "shares": 0,
+          "impressions": 431
+        },
+        "facebook": {
+          "postCount": 3,
+          "reactions": 1,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "shares": 0,
+          "impressions": 163,
+          "clicks": 1
+        }
+      }
     }
   ],
   "posts": [
@@ -397,8 +448,8 @@
       "metrics": {
         "reactions": 6,
         "comments": 0,
-        "engagementRate": 5.66,
-        "views": 106,
+        "engagementRate": 5.61,
+        "views": 107,
         "shares": 0,
         "reach": 95
       }
@@ -429,10 +480,10 @@
       "metrics": {
         "reactions": 4,
         "comments": 1,
-        "engagementRate": 14.71,
-        "impressions": 34,
+        "engagementRate": 13.51,
+        "impressions": 37,
         "reach": 19,
-        "views": 13
+        "views": 15
       }
     },
     {
@@ -460,9 +511,9 @@
         "reactions": 12,
         "comments": 0,
         "engagementRate": 1.85,
-        "views": 701,
+        "views": 703,
         "shares": 1,
-        "reach": 632
+        "reach": 637
       }
     },
     {
@@ -475,9 +526,9 @@
       "metrics": {
         "reactions": 6,
         "comments": 0,
-        "engagementRate": 11.11,
-        "impressions": 54,
-        "reach": 36,
+        "engagementRate": 10.91,
+        "impressions": 55,
+        "reach": 37,
         "views": 26
       }
     },
@@ -535,9 +586,9 @@
       "metrics": {
         "reactions": 10,
         "comments": 3,
-        "engagementRate": 4.63,
-        "impressions": 281,
-        "reach": 183
+        "engagementRate": 4.59,
+        "impressions": 283,
+        "reach": 185
       }
     },
     {
@@ -558,7 +609,7 @@
       "id": "6a8bc5258a3964a76b5bd74d",
       "channelService": "tiktok",
       "type": "video",
-      "text": "\ud83c\udf05 Day 47 of 47 | Find Your Ikigai \ud83c\udf31 Your Ikigai sits at the intersection of what you love, what you\u2019re good at, what the world needs, and what you can",
+      "text": "🌅 Day 47 of 47 | Find Your Ikigai 🌱 Your Ikigai sits at the intersection of what you love, what you’re good at, what the world needs, and what you can",
       "sentAt": "2026-01-19T06:59:34.000Z",
       "durationSec": 208.1,
       "metrics": {
@@ -574,7 +625,7 @@
       "id": "6a8bc5258a3964a76b5bd751",
       "channelService": "tiktok",
       "type": "video",
-      "text": "\ud83e\udd1d Day 46 of 47 | Give More Than You Take \ud83c\udf31 The fastest way to a better life isn\u2019t chasing more for yourself. It\u2019s becoming someone who gives more to o",
+      "text": "🤝 Day 46 of 47 | Give More Than You Take 🌱 The fastest way to a better life isn’t chasing more for yourself. It’s becoming someone who gives more to o",
       "sentAt": "2026-01-17T08:50:49.000Z",
       "durationSec": 151.167,
       "metrics": {
@@ -583,14 +634,14 @@
         "engagementRate": 2.2,
         "views": 409,
         "shares": 0,
-        "reach": 385
+        "reach": 386
       }
     },
     {
       "id": "6a8bc5258a3964a76b5bd755",
       "channelService": "tiktok",
       "type": "video",
-      "text": "\ud83c\udfad Day 45 of 47 | Remove The Masks \ud83c\udf31 Most of your stress comes from wearing versions of yourself that were built to survive, not to thrive. The strong ",
+      "text": "🎭 Day 45 of 47 | Remove The Masks 🌱 Most of your stress comes from wearing versions of yourself that were built to survive, not to thrive. The strong ",
       "sentAt": "2026-01-17T07:17:33.000Z",
       "durationSec": 141.234,
       "metrics": {
@@ -606,7 +657,7 @@
       "id": "6a8bc5258a3964a76b5bd79b",
       "channelService": "tiktok",
       "type": "video",
-      "text": "\ud83e\udde0 Day 44 of 47 | L Plates For Life \ud83c\udf31 No one ever fully figures life out. We\u2019re all learners. Always. Different chapters, same lesson: stay curious, st",
+      "text": "🧠 Day 44 of 47 | L Plates For Life 🌱 No one ever fully figures life out. We’re all learners. Always. Different chapters, same lesson: stay curious, st",
       "sentAt": "2026-01-16T06:02:59.000Z",
       "durationSec": 128.167,
       "metrics": {
