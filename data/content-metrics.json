@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-31T21:07:15Z",
+  "lastUpdated": "2026-09-01T21:08:42Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -435,9 +435,139 @@
           "clicks": 1
         }
       }
+    },
+    {
+      "date": "2026-09-02",
+      "channels": {
+        "instagram": {
+          "postCount": 79,
+          "reactions": 180,
+          "comments": 24,
+          "engagementRate": 3.29,
+          "impressions": 0,
+          "views": 17660,
+          "shares": 11,
+          "saves": 4,
+          "reach": 12355
+        },
+        "tiktok": {
+          "postCount": 3,
+          "reactions": 19,
+          "comments": 1,
+          "engagementRate": 2.17,
+          "views": 967,
+          "shares": 1,
+          "reach": 735
+        },
+        "youtube": {
+          "postCount": 2,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 3
+        },
+        "linkedin": {
+          "postCount": 5,
+          "reactions": 29,
+          "comments": 5,
+          "engagementRate": 7.01,
+          "impressions": 485,
+          "shares": 0,
+          "reach": 308,
+          "views": 55
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.54,
+          "impressions": 195,
+          "shares": 0,
+          "clicks": 1
+        }
+      }
     }
   ],
   "posts": [
+    {
+      "id": "6a96542aaec406f471046f7f",
+      "channelService": "instagram",
+      "type": "reel",
+      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\n@oskastolz - Mark’s down 16kg. Father of 3. Still turning up. Sti",
+      "sentAt": "2026-09-01T08:03:00.429Z",
+      "durationSec": 19.1,
+      "metrics": {
+        "reactions": 5,
+        "comments": 1,
+        "engagementRate": 1.54,
+        "views": 480,
+        "shares": 0,
+        "saves": 0,
+        "reach": 389
+      }
+    },
+    {
+      "id": "6a96542aaec406f471046f7d",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
+      "sentAt": "2026-09-01T08:02:29.138Z",
+      "durationSec": 19.1,
+      "metrics": {
+        "reactions": 1,
+        "comments": 1,
+        "engagementRate": 1.27,
+        "views": 157,
+        "shares": 0,
+        "reach": 0
+      }
+    },
+    {
+      "id": "6a96542aaec406f471046f7e",
+      "channelService": "facebook",
+      "type": "video",
+      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
+      "sentAt": "2026-09-01T08:01:49.668Z",
+      "durationSec": 19.1,
+      "metrics": {
+        "reactions": 1,
+        "comments": 0,
+        "engagementRate": 3.85,
+        "impressions": 26,
+        "shares": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "id": "6a96542aaec406f471046f7b",
+      "channelService": "linkedin",
+      "type": "video",
+      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
+      "sentAt": "2026-09-01T08:01:31.143Z",
+      "durationSec": 19.1,
+      "metrics": {
+        "reactions": 8,
+        "comments": 1,
+        "engagementRate": 36,
+        "impressions": 25,
+        "reach": 18,
+        "views": 10
+      }
+    },
+    {
+      "id": "6a96542aaec406f471046f7c",
+      "channelService": "youtube",
+      "type": "video",
+      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
+      "sentAt": "2026-09-01T08:01:09.940Z",
+      "durationSec": 19.1,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0
+      }
+    },
     {
       "id": "6a8cd929cc914e392c03090a",
       "channelService": "tiktok",
@@ -451,7 +581,7 @@
         "engagementRate": 5.61,
         "views": 107,
         "shares": 0,
-        "reach": 95
+        "reach": 96
       }
     },
     {
@@ -465,7 +595,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 10,
+        "impressions": 12,
         "shares": 0,
         "clicks": 0
       }
@@ -480,10 +610,10 @@
       "metrics": {
         "reactions": 4,
         "comments": 1,
-        "engagementRate": 13.51,
-        "impressions": 37,
-        "reach": 19,
-        "views": 15
+        "engagementRate": 11.9,
+        "impressions": 42,
+        "reach": 22,
+        "views": 17
       }
     },
     {
@@ -513,7 +643,7 @@
         "engagementRate": 1.85,
         "views": 703,
         "shares": 1,
-        "reach": 637
+        "reach": 639
       }
     },
     {
@@ -526,10 +656,10 @@
       "metrics": {
         "reactions": 6,
         "comments": 0,
-        "engagementRate": 10.91,
-        "impressions": 55,
-        "reach": 37,
-        "views": 26
+        "engagementRate": 10.17,
+        "impressions": 59,
+        "reach": 39,
+        "views": 28
       }
     },
     {
@@ -542,8 +672,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 1.59,
-        "impressions": 126,
+        "engagementRate": 1.56,
+        "impressions": 128,
         "shares": 0,
         "clicks": 1
       }
@@ -572,7 +702,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 27,
+        "impressions": 29,
         "shares": 0,
         "clicks": 0
       }
@@ -586,87 +716,9 @@
       "metrics": {
         "reactions": 10,
         "comments": 3,
-        "engagementRate": 4.59,
-        "impressions": 283,
-        "reach": 185
-      }
-    },
-    {
-      "id": "6a8bdd9289a102c186d21b78",
-      "channelService": "linkedin",
-      "type": "post",
-      "text": "Something I've been sitting with for a while: my goal has always been to help as many people as I can. Properly help them, not just see them for an ho",
-      "sentAt": "2026-08-21T03:35:19.587Z",
-      "metrics": {
-        "reactions": 1,
-        "comments": 0,
-        "engagementRate": 1.79,
-        "impressions": 56,
-        "reach": 31
-      }
-    },
-    {
-      "id": "6a8bc5258a3964a76b5bd74d",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "🌅 Day 47 of 47 | Find Your Ikigai 🌱 Your Ikigai sits at the intersection of what you love, what you’re good at, what the world needs, and what you can",
-      "sentAt": "2026-01-19T06:59:34.000Z",
-      "durationSec": 208.1,
-      "metrics": {
-        "reactions": 2,
-        "comments": 0,
-        "engagementRate": 1.6,
-        "views": 125,
-        "shares": 0,
-        "reach": 118
-      }
-    },
-    {
-      "id": "6a8bc5258a3964a76b5bd751",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "🤝 Day 46 of 47 | Give More Than You Take 🌱 The fastest way to a better life isn’t chasing more for yourself. It’s becoming someone who gives more to o",
-      "sentAt": "2026-01-17T08:50:49.000Z",
-      "durationSec": 151.167,
-      "metrics": {
-        "reactions": 7,
-        "comments": 2,
-        "engagementRate": 2.2,
-        "views": 409,
-        "shares": 0,
-        "reach": 386
-      }
-    },
-    {
-      "id": "6a8bc5258a3964a76b5bd755",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "🎭 Day 45 of 47 | Remove The Masks 🌱 Most of your stress comes from wearing versions of yourself that were built to survive, not to thrive. The strong ",
-      "sentAt": "2026-01-17T07:17:33.000Z",
-      "durationSec": 141.234,
-      "metrics": {
-        "reactions": 19,
-        "comments": 6,
-        "engagementRate": 3.49,
-        "views": 746,
-        "shares": 1,
-        "reach": 696
-      }
-    },
-    {
-      "id": "6a8bc5258a3964a76b5bd79b",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "🧠 Day 44 of 47 | L Plates For Life 🌱 No one ever fully figures life out. We’re all learners. Always. Different chapters, same lesson: stay curious, st",
-      "sentAt": "2026-01-16T06:02:59.000Z",
-      "durationSec": 128.167,
-      "metrics": {
-        "reactions": 1,
-        "comments": 0,
-        "engagementRate": 0.6,
-        "views": 168,
-        "shares": 0,
-        "reach": 155
+        "engagementRate": 4.3,
+        "impressions": 302,
+        "reach": 197
       }
     }
   ]
