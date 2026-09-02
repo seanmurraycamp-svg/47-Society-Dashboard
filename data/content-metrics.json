@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-01T21:08:42Z",
+  "lastUpdated": "2026-09-02T21:05:31Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -486,6 +486,57 @@
           "clicks": 1
         }
       }
+    },
+    {
+      "date": "2026-09-03",
+      "channels": {
+        "instagram": {
+          "postCount": 80,
+          "views": 17853,
+          "reach": 12495,
+          "reactions": 180,
+          "comments": 24,
+          "engagementRate": 3.28,
+          "shares": 11,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 3,
+          "views": 1109,
+          "reach": 735,
+          "reactions": 19,
+          "comments": 1,
+          "engagementRate": 1.89,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 3,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 5,
+          "views": 69,
+          "reach": 341,
+          "reactions": 17,
+          "comments": 5,
+          "engagementRate": 4.21,
+          "shares": 0,
+          "impressions": 523
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.52,
+          "impressions": 198,
+          "shares": 0,
+          "clicks": 1
+        }
+      }
     }
   ],
   "posts": [
@@ -499,11 +550,11 @@
       "metrics": {
         "reactions": 5,
         "comments": 1,
-        "engagementRate": 1.54,
-        "views": 480,
+        "engagementRate": 1.45,
+        "views": 528,
         "shares": 0,
         "saves": 0,
-        "reach": 389
+        "reach": 414
       }
     },
     {
@@ -516,8 +567,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 1.27,
-        "views": 157,
+        "engagementRate": 0.67,
+        "views": 298,
         "shares": 0,
         "reach": 0
       }
@@ -532,8 +583,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 3.85,
-        "impressions": 26,
+        "engagementRate": 3.45,
+        "impressions": 29,
         "shares": 0,
         "clicks": 0
       }
@@ -546,12 +597,12 @@
       "sentAt": "2026-09-01T08:01:31.143Z",
       "durationSec": 19.1,
       "metrics": {
-        "reactions": 8,
+        "reactions": 2,
         "comments": 1,
-        "engagementRate": 36,
-        "impressions": 25,
-        "reach": 18,
-        "views": 10
+        "engagementRate": 5,
+        "impressions": 60,
+        "reach": 48,
+        "views": 22
       }
     },
     {
@@ -608,9 +659,9 @@
       "sentAt": "2026-08-25T08:01:56.442Z",
       "durationSec": 75.866,
       "metrics": {
-        "reactions": 4,
+        "reactions": 2,
         "comments": 1,
-        "engagementRate": 11.9,
+        "engagementRate": 7.14,
         "impressions": 42,
         "reach": 22,
         "views": 17
@@ -641,7 +692,7 @@
         "reactions": 12,
         "comments": 0,
         "engagementRate": 1.85,
-        "views": 703,
+        "views": 704,
         "shares": 1,
         "reach": 639
       }
@@ -654,12 +705,12 @@
       "sentAt": "2026-08-24T08:30:32.401Z",
       "durationSec": 102.5,
       "metrics": {
-        "reactions": 6,
+        "reactions": 4,
         "comments": 0,
-        "engagementRate": 10.17,
-        "impressions": 59,
-        "reach": 39,
-        "views": 28
+        "engagementRate": 6.56,
+        "impressions": 61,
+        "reach": 41,
+        "views": 30
       }
     },
     {
@@ -714,11 +765,11 @@
       "text": "Something I've been building quietly with my mate best mate @Matt Eierweis is finally ready to talk about.\n\nWe spent our 20s doing it the bodybuilding",
       "sentAt": "2026-08-22T00:35:15.094Z",
       "metrics": {
-        "reactions": 10,
+        "reactions": 8,
         "comments": 3,
-        "engagementRate": 4.3,
-        "impressions": 302,
-        "reach": 197
+        "engagementRate": 3.63,
+        "impressions": 303,
+        "reach": 198
       }
     }
   ]
