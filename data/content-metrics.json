@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-03T21:06:40Z",
+  "lastUpdated": "2026-09-04T21:06:45Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -587,6 +587,56 @@
           "clicks": 1
         }
       }
+    },
+    {
+      "date": "2026-09-05",
+      "channels": {
+        "instagram": {
+          "postCount": 83,
+          "views": 16987,
+          "reach": 12143,
+          "reactions": 145,
+          "comments": 24,
+          "engagementRate": 3.13,
+          "shares": 6,
+          "saves": 3
+        },
+        "tiktok": {
+          "postCount": 3,
+          "views": 1118,
+          "reach": 1013,
+          "reactions": 19,
+          "comments": 1,
+          "engagementRate": 1.88,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 3,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 5,
+          "views": 83,
+          "reach": 375,
+          "reactions": 17,
+          "comments": 4,
+          "engagementRate": 3.74,
+          "shares": 0,
+          "impressions": 562
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.49,
+          "impressions": 201,
+          "shares": 0,
+          "clicks": 1
+        }
+      }
     }
   ],
   "posts": [
@@ -596,44 +646,45 @@
       "type": "reel",
       "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\n@oskastolz - Mark’s down 16kg. Father of 3. Still turning up. Sti",
       "sentAt": "2026-09-01T08:03:00.429Z",
+      "durationSec": 19.1,
       "metrics": {
-        "reactions": 6,
+        "reactions": 7,
         "comments": 1,
-        "engagementRate": 1.66,
-        "views": 544,
+        "engagementRate": 1.88,
+        "views": 550,
         "shares": 0,
         "saves": 0,
-        "reach": 421
+        "reach": 426
       }
     },
     {
       "id": "6a96542aaec406f471046f7d",
       "channelService": "tiktok",
       "type": "video",
-      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
+      "text": "His wife Karsh did a spring clean. That’s 16kg of oversized clothes on the stairs. Mark’s down 16kg. Father of 3. Still turning up. Still training har",
       "sentAt": "2026-09-01T08:02:29.138Z",
       "durationSec": 19.1,
       "metrics": {
         "reactions": 1,
         "comments": 1,
         "engagementRate": 0.67,
-        "views": 299,
+        "views": 300,
         "shares": 0,
-        "reach": 205
+        "reach": 277
       }
     },
     {
       "id": "6a96542aaec406f471046f7e",
       "channelService": "facebook",
       "type": "video",
-      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
+      "text": "His wife Karsh did a spring clean. That’s 16kg of oversized clothes on the stairs. Mark’s down 16kg. Father of 3. Still turning up. Still training har",
       "sentAt": "2026-09-01T08:01:49.668Z",
       "durationSec": 19.1,
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 3.33,
-        "impressions": 30,
+        "engagementRate": 3.13,
+        "impressions": 32,
         "shares": 0,
         "clicks": 0
       }
@@ -647,11 +698,11 @@
       "durationSec": 19.1,
       "metrics": {
         "reactions": 2,
-        "comments": 1,
-        "engagementRate": 3.9,
-        "impressions": 77,
-        "reach": 61,
-        "views": 28
+        "comments": 0,
+        "engagementRate": 2.25,
+        "impressions": 89,
+        "reach": 73,
+        "views": 36
       }
     },
     {
@@ -678,8 +729,8 @@
       "metrics": {
         "reactions": 6,
         "comments": 0,
-        "engagementRate": 5.61,
-        "views": 107,
+        "engagementRate": 5.45,
+        "views": 110,
         "shares": 0,
         "reach": 96
       }
@@ -741,9 +792,9 @@
         "reactions": 12,
         "comments": 0,
         "engagementRate": 1.84,
-        "views": 705,
+        "views": 708,
         "shares": 1,
-        "reach": 639
+        "reach": 640
       }
     },
     {
@@ -816,9 +867,9 @@
       "metrics": {
         "reactions": 8,
         "comments": 3,
-        "engagementRate": 3.61,
-        "impressions": 305,
-        "reach": 200
+        "engagementRate": 3.51,
+        "impressions": 313,
+        "reach": 207
       }
     }
   ]
