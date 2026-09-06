@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-05T21:06:25Z",
+  "lastUpdated": "2026-09-06T21:06:47Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -687,6 +687,56 @@
           "clicks": 1
         }
       }
+    },
+    {
+      "date": "2026-09-07",
+      "channels": {
+        "instagram": {
+          "postCount": 84,
+          "views": 17189,
+          "reach": 12296,
+          "reactions": 145,
+          "comments": 24,
+          "engagementRate": 3.11,
+          "shares": 6,
+          "saves": 3
+        },
+        "tiktok": {
+          "postCount": 3,
+          "views": 1126,
+          "reach": 1017,
+          "reactions": 19,
+          "comments": 1,
+          "engagementRate": 1.87,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 3,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 5,
+          "views": 94,
+          "reach": 398,
+          "reactions": 17,
+          "comments": 4,
+          "engagementRate": 3.54,
+          "shares": 0,
+          "impressions": 593
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.49,
+          "impressions": 202,
+          "shares": 0,
+          "clicks": 1
+        }
+      }
     }
   ],
   "posts": [
@@ -700,11 +750,11 @@
       "metrics": {
         "reactions": 7,
         "comments": 1,
-        "engagementRate": 1.83,
-        "views": 563,
+        "engagementRate": 1.81,
+        "views": 570,
         "shares": 0,
         "saves": 0,
-        "reach": 438
+        "reach": 443
       }
     },
     {
@@ -718,7 +768,7 @@
         "reactions": 1,
         "comments": 1,
         "engagementRate": 0.66,
-        "views": 302,
+        "views": 304,
         "shares": 0,
         "reach": 278
       }
@@ -733,8 +783,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 3.13,
-        "impressions": 32,
+        "engagementRate": 3.03,
+        "impressions": 33,
         "shares": 0,
         "clicks": 0
       }
@@ -749,10 +799,10 @@
       "metrics": {
         "reactions": 2,
         "comments": 0,
-        "engagementRate": 2.13,
-        "impressions": 94,
-        "reach": 78,
-        "views": 38
+        "engagementRate": 1.89,
+        "impressions": 106,
+        "reach": 88,
+        "views": 44
       }
     },
     {
@@ -782,7 +832,7 @@
         "engagementRate": 5.41,
         "views": 111,
         "shares": 0,
-        "reach": 96
+        "reach": 97
       }
     },
     {
@@ -811,10 +861,10 @@
       "metrics": {
         "reactions": 2,
         "comments": 1,
-        "engagementRate": 6.98,
-        "impressions": 43,
-        "reach": 23,
-        "views": 17
+        "engagementRate": 6.82,
+        "impressions": 44,
+        "reach": 24,
+        "views": 18
       }
     },
     {
@@ -842,7 +892,7 @@
         "reactions": 12,
         "comments": 0,
         "engagementRate": 1.83,
-        "views": 710,
+        "views": 711,
         "shares": 1,
         "reach": 642
       }
@@ -857,10 +907,10 @@
       "metrics": {
         "reactions": 4,
         "comments": 0,
-        "engagementRate": 6.25,
-        "impressions": 64,
-        "reach": 42,
-        "views": 31
+        "engagementRate": 5.97,
+        "impressions": 67,
+        "reach": 43,
+        "views": 32
       }
     },
     {
@@ -917,9 +967,9 @@
       "metrics": {
         "reactions": 8,
         "comments": 3,
-        "engagementRate": 3.49,
-        "impressions": 315,
-        "reach": 209
+        "engagementRate": 3.46,
+        "impressions": 318,
+        "reach": 210
       }
     }
   ]
