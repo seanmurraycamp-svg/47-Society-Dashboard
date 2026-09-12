@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-11T21:05:02Z",
+  "lastUpdated": "2026-09-12T21:07:40Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -987,6 +987,56 @@
           "clicks": 3
         }
       }
+    },
+    {
+      "date": "2026-09-13",
+      "channels": {
+        "instagram": {
+          "postCount": 96,
+          "views": 19751,
+          "reach": 14538,
+          "reactions": 141,
+          "comments": 31,
+          "engagementRate": 2.93,
+          "shares": 6,
+          "saves": 1
+        },
+        "tiktok": {
+          "postCount": 5,
+          "views": 2456,
+          "reach": 2078,
+          "reactions": 74,
+          "comments": 7,
+          "engagementRate": 3.42,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 5,
+          "views": 24,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 7,
+          "views": 133,
+          "reach": 470,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.31,
+          "shares": 0,
+          "impressions": 694
+        },
+        "facebook": {
+          "postCount": 6,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.27,
+          "impressions": 472,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
     }
   ],
   "posts": [
@@ -999,11 +1049,11 @@
       "metrics": {
         "reactions": 22,
         "comments": 6,
-        "engagementRate": 2.32,
-        "views": 1577,
+        "engagementRate": 2.29,
+        "views": 1599,
         "shares": 1,
         "saves": 0,
-        "reach": 1251
+        "reach": 1266
       }
     },
     {
@@ -1014,12 +1064,12 @@
       "sentAt": "2026-09-08T08:04:34.999Z",
       "durationSec": 23.233,
       "metrics": {
-        "reactions": 49,
+        "reactions": 52,
         "comments": 6,
         "engagementRate": 5.64,
-        "views": 1011,
+        "views": 1063,
         "shares": 2,
-        "reach": 336
+        "reach": 827
       }
     },
     {
@@ -1090,7 +1140,7 @@
         "engagementRate": 1.15,
         "views": 261,
         "shares": 0,
-        "reach": 228
+        "reach": 230
       }
     },
     {
@@ -1103,9 +1153,9 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 13.33,
-        "impressions": 15,
-        "reach": 7,
+        "engagementRate": 12.5,
+        "impressions": 16,
+        "reach": 8,
         "views": 5
       }
     },
@@ -1181,10 +1231,10 @@
       "metrics": {
         "reactions": 2,
         "comments": 0,
-        "engagementRate": 1.22,
-        "impressions": 164,
-        "reach": 130,
-        "views": 71
+        "engagementRate": 1.2,
+        "impressions": 167,
+        "reach": 133,
+        "views": 72
       }
     },
     {
