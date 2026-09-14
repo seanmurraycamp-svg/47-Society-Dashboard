@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-13T21:04:54Z",
+  "lastUpdated": "2026-09-14T21:05:00Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -1087,9 +1087,75 @@
           "clicks": 3
         }
       }
+    },
+    {
+      "date": "2026-09-15",
+      "channels": {
+        "instagram": {
+          "postCount": 99,
+          "views": 20955,
+          "reach": 15415,
+          "reactions": 155,
+          "comments": 29,
+          "engagementRate": 2.95,
+          "shares": 6,
+          "saves": 1
+        },
+        "tiktok": {
+          "postCount": 5,
+          "views": 2466,
+          "reach": 2237,
+          "reactions": 75,
+          "comments": 7,
+          "engagementRate": 3.45,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 5,
+          "views": 24,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 7,
+          "views": 135,
+          "reach": 474,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.29,
+          "shares": 0,
+          "impressions": 699
+        },
+        "facebook": {
+          "postCount": 6,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.27,
+          "impressions": 472,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
     }
   ],
   "posts": [
+    {
+      "id": "6aa77ef144e32c5c53611c73",
+      "channelService": "instagram",
+      "type": "post",
+      "text": "Could not be more proud of my brother and The Carrum Cowboys winning the Grand Final today by 1 point! Elite!",
+      "sentAt": "2026-09-13T09:29:17.000Z",
+      "metrics": {
+        "reactions": 19,
+        "comments": 0,
+        "engagementRate": 4.01,
+        "views": 753,
+        "shares": 2,
+        "saves": 0,
+        "reach": 524
+      }
+    },
     {
       "id": "6a9f4d3275af2d968f0911c1",
       "channelService": "tiktok",
@@ -1103,7 +1169,7 @@
         "engagementRate": 5.63,
         "views": 1066,
         "shares": 2,
-        "reach": 971
+        "reach": 982
       }
     },
     {
@@ -1147,9 +1213,9 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 10,
-        "reach": 8,
-        "views": 5
+        "impressions": 11,
+        "reach": 9,
+        "views": 6
       }
     },
     {
@@ -1162,8 +1228,8 @@
       "metrics": {
         "reactions": 3,
         "comments": 0,
-        "engagementRate": 1.15,
-        "views": 261,
+        "engagementRate": 1.13,
+        "views": 265,
         "shares": 0,
         "reach": 230
       }
@@ -1178,9 +1244,9 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 12.5,
-        "impressions": 16,
-        "reach": 8,
+        "engagementRate": 11.11,
+        "impressions": 18,
+        "reach": 9,
         "views": 5
       }
     },
@@ -1218,7 +1284,7 @@
       "id": "6a96542aaec406f471046f7d",
       "channelService": "tiktok",
       "type": "video",
-      "text": "His wife Karsh did a spring clean. That's 16kg of oversized clothes on the stairs. Mark's down 16kg. Father of 3. Still turning up. Still training har",
+      "text": "His wife Karsh did a spring clean. That’s 16kg of oversized clothes on the stairs. Mark’s down 16kg. Father of 3. Still turning up. Still training har",
       "sentAt": "2026-09-01T08:02:29.138Z",
       "durationSec": 19.1,
       "metrics": {
@@ -1234,7 +1300,7 @@
       "id": "6a96542aaec406f471046f7e",
       "channelService": "facebook",
       "type": "video",
-      "text": "His wife Karsh did a spring clean.\n\nThat's 16kg of oversized clothes on the stairs.\n\nMark's down 16kg. Father of 3. Still turning up. Still training h",
+      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
       "sentAt": "2026-09-01T08:01:49.668Z",
       "durationSec": 19.1,
       "metrics": {
@@ -1250,23 +1316,23 @@
       "id": "6a96542aaec406f471046f7b",
       "channelService": "linkedin",
       "type": "video",
-      "text": "His wife Karsh did a spring clean.\n\nThat's 16kg of oversized clothes on the stairs.\n\nMark's down 16kg. Father of 3. Still turning up. Still training h",
+      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
       "sentAt": "2026-09-01T08:01:31.143Z",
       "durationSec": 19.1,
       "metrics": {
         "reactions": 2,
         "comments": 0,
-        "engagementRate": 1.2,
-        "impressions": 167,
-        "reach": 133,
-        "views": 72
+        "engagementRate": 1.18,
+        "impressions": 169,
+        "reach": 135,
+        "views": 73
       }
     },
     {
       "id": "6a96542aaec406f471046f7c",
       "channelService": "youtube",
       "type": "video",
-      "text": "His wife Karsh did a spring clean.\n\nThat's 16kg of oversized clothes on the stairs.\n\nMark's down 16kg. Father of 3. Still turning up. Still training h",
+      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
       "sentAt": "2026-09-01T08:01:09.940Z",
       "durationSec": 19.1,
       "metrics": {
@@ -1284,20 +1350,21 @@
       "sentAt": "2026-08-25T08:03:17.875Z",
       "durationSec": 75.866,
       "metrics": {
-        "reactions": 6,
+        "reactions": 7,
         "comments": 0,
-        "engagementRate": 5.31,
-        "views": 113,
+        "engagementRate": 6.14,
+        "views": 114,
         "shares": 0,
-        "reach": 97
+        "reach": 98
       }
     },
     {
       "id": "6a8cd92acc914e392c03090b",
       "channelService": "facebook",
-      "type": "post",
+      "type": "video",
       "text": "Filmed this upside down by accident and honestly it fits, my whole week's flipped for my birthday. 24 hours only, 50% off your first month of online c",
       "sentAt": "2026-08-25T08:02:11.118Z",
+      "durationSec": 75.866,
       "metrics": {
         "reactions": 0,
         "comments": 0,
@@ -1305,22 +1372,6 @@
         "impressions": 12,
         "shares": 0,
         "clicks": 0
-      }
-    },
-    {
-      "id": "6a8cd929cc914e392c030907",
-      "channelService": "linkedin",
-      "type": "video",
-      "text": "Filmed this upside down by accident and honestly it fits, my whole week's flipped for my birthday. 24 hours only, 50% off your first month of online c",
-      "sentAt": "2026-08-25T08:01:56.442Z",
-      "durationSec": 75.866,
-      "metrics": {
-        "reactions": 2,
-        "comments": 1,
-        "engagementRate": 6.67,
-        "impressions": 45,
-        "reach": 25,
-        "views": 18
       }
     }
   ]
