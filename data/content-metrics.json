@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-14T21:05:00Z",
+  "lastUpdated": "2026-09-15T21:07:15Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -1137,9 +1137,127 @@
           "clicks": 3
         }
       }
+    },
+    {
+      "date": "2026-09-16",
+      "channels": {
+        "instagram": {
+          "postCount": 100,
+          "views": 21103,
+          "reach": 15515,
+          "reactions": 159,
+          "comments": 29,
+          "engagementRate": 2.95,
+          "shares": 6,
+          "saves": 1
+        },
+        "tiktok": {
+          "postCount": 5,
+          "views": 2470,
+          "reach": 2243,
+          "reactions": 75,
+          "comments": 7,
+          "engagementRate": 3.44,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 6,
+          "views": 24,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 8,
+          "views": 137,
+          "reach": 481,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.28,
+          "shares": 0,
+          "impressions": 702
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.27,
+          "impressions": 472,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
     }
   ],
   "posts": [
+    {
+      "id": "6aa898c6f1955036560e4f94",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "sentAt": "2026-09-15T08:04:38.126Z",
+      "durationSec": 76.133,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "reach": 0
+      }
+    },
+    {
+      "id": "6aa898c5f1955036560e4f92",
+      "channelService": "linkedin",
+      "type": "video",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "sentAt": "2026-09-15T08:02:13.468Z",
+      "durationSec": 76.133,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "views": 2
+      }
+    },
+    {
+      "id": "6aa898c6f1955036560e4f95",
+      "channelService": "facebook",
+      "type": "video",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "sentAt": "2026-09-15T08:02:04.365Z",
+      "durationSec": 76.133,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "impressions": 0,
+        "shares": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "id": "6aa898c6f1955036560e4f93",
+      "channelService": "youtube",
+      "type": "video",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "sentAt": "2026-09-15T08:02:00.090Z",
+      "durationSec": 76.133,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0
+      }
+    },
+    {
+      "id": "6aa898c6f1955036560e4f96",
+      "channelService": "instagram",
+      "type": "reel",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "sentAt": "2026-09-15T08:01:52.332Z",
+      "durationSec": 76.133,
+      "metrics": null
+    },
     {
       "id": "6aa77ef144e32c5c53611c73",
       "channelService": "instagram",
@@ -1147,13 +1265,13 @@
       "text": "Could not be more proud of my brother and The Carrum Cowboys winning the Grand Final today by 1 point! Elite!",
       "sentAt": "2026-09-13T09:29:17.000Z",
       "metrics": {
-        "reactions": 19,
+        "reactions": 23,
         "comments": 0,
-        "engagementRate": 4.01,
-        "views": 753,
+        "engagementRate": 4.08,
+        "views": 876,
         "shares": 2,
         "saves": 0,
-        "reach": 524
+        "reach": 612
       }
     },
     {
@@ -1166,10 +1284,10 @@
       "metrics": {
         "reactions": 52,
         "comments": 6,
-        "engagementRate": 5.63,
-        "views": 1066,
+        "engagementRate": 5.62,
+        "views": 1068,
         "shares": 2,
-        "reach": 982
+        "reach": 984
       }
     },
     {
@@ -1222,16 +1340,16 @@
       "id": "6a9e054a82786ff4cb03f960",
       "channelService": "tiktok",
       "type": "video",
-      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you. It's called Ikigai",
+      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you.\n\nIt's called Ikiga",
       "sentAt": "2026-09-07T08:03:38.832Z",
       "durationSec": 84.166,
       "metrics": {
         "reactions": 3,
         "comments": 0,
         "engagementRate": 1.13,
-        "views": 265,
+        "views": 266,
         "shares": 0,
-        "reach": 230
+        "reach": 233
       }
     },
     {
@@ -1290,88 +1408,10 @@
       "metrics": {
         "reactions": 1,
         "comments": 1,
-        "engagementRate": 0.66,
-        "views": 305,
+        "engagementRate": 0.65,
+        "views": 306,
         "shares": 0,
         "reach": 281
-      }
-    },
-    {
-      "id": "6a96542aaec406f471046f7e",
-      "channelService": "facebook",
-      "type": "video",
-      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
-      "sentAt": "2026-09-01T08:01:49.668Z",
-      "durationSec": 19.1,
-      "metrics": {
-        "reactions": 1,
-        "comments": 0,
-        "engagementRate": 3.03,
-        "impressions": 33,
-        "shares": 0,
-        "clicks": 0
-      }
-    },
-    {
-      "id": "6a96542aaec406f471046f7b",
-      "channelService": "linkedin",
-      "type": "video",
-      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
-      "sentAt": "2026-09-01T08:01:31.143Z",
-      "durationSec": 19.1,
-      "metrics": {
-        "reactions": 2,
-        "comments": 0,
-        "engagementRate": 1.18,
-        "impressions": 169,
-        "reach": 135,
-        "views": 73
-      }
-    },
-    {
-      "id": "6a96542aaec406f471046f7c",
-      "channelService": "youtube",
-      "type": "video",
-      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
-      "sentAt": "2026-09-01T08:01:09.940Z",
-      "durationSec": 19.1,
-      "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 0
-      }
-    },
-    {
-      "id": "6a8cd929cc914e392c03090a",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "Filmed this upside down by accident and honestly it fits, my whole week's flipped for my birthday. 24 hours only, 50% off your first month of online c",
-      "sentAt": "2026-08-25T08:03:17.875Z",
-      "durationSec": 75.866,
-      "metrics": {
-        "reactions": 7,
-        "comments": 0,
-        "engagementRate": 6.14,
-        "views": 114,
-        "shares": 0,
-        "reach": 98
-      }
-    },
-    {
-      "id": "6a8cd92acc914e392c03090b",
-      "channelService": "facebook",
-      "type": "video",
-      "text": "Filmed this upside down by accident and honestly it fits, my whole week's flipped for my birthday. 24 hours only, 50% off your first month of online c",
-      "sentAt": "2026-08-25T08:02:11.118Z",
-      "durationSec": 75.866,
-      "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "impressions": 12,
-        "shares": 0,
-        "clicks": 0
       }
     }
   ]
