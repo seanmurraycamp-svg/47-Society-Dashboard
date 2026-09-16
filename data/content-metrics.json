@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-15T21:07:15Z",
+  "lastUpdated": "2026-09-16T21:06:20Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -1187,9 +1187,75 @@
           "clicks": 3
         }
       }
+    },
+    {
+      "date": "2026-09-17",
+      "channels": {
+        "instagram": {
+          "postCount": 101,
+          "views": 20955,
+          "reach": 15519,
+          "reactions": 146,
+          "comments": 27,
+          "engagementRate": 2.91,
+          "shares": 6,
+          "saves": 1
+        },
+        "tiktok": {
+          "postCount": 6,
+          "views": 2670,
+          "reach": 2247,
+          "reactions": 77,
+          "comments": 7,
+          "engagementRate": 3.26,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 6,
+          "views": 28,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 8,
+          "views": 141,
+          "reach": 488,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.18,
+          "shares": 0,
+          "impressions": 723
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.25,
+          "shares": 0,
+          "impressions": 481,
+          "clicks": 3
+        }
+      }
     }
   ],
   "posts": [
+    {
+      "id": "6aaa05f0fea1b492a1765adb",
+      "channelService": "instagram",
+      "type": "reel",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "sentAt": "2026-09-15T08:08:17.000Z",
+      "metrics": {
+        "reactions": 10,
+        "comments": 0,
+        "engagementRate": 5.59,
+        "views": 322,
+        "shares": 0,
+        "saves": 0,
+        "reach": 179
+      }
+    },
     {
       "id": "6aa898c6f1955036560e4f94",
       "channelService": "tiktok",
@@ -1198,10 +1264,10 @@
       "sentAt": "2026-09-15T08:04:38.126Z",
       "durationSec": 76.133,
       "metrics": {
-        "reactions": 0,
+        "reactions": 1,
         "comments": 0,
-        "engagementRate": 0,
-        "views": 0,
+        "engagementRate": 0.51,
+        "views": 198,
         "shares": 0,
         "reach": 0
       }
@@ -1216,7 +1282,10 @@
       "metrics": {
         "reactions": 0,
         "comments": 0,
-        "views": 2
+        "engagementRate": 0,
+        "impressions": 15,
+        "reach": 10,
+        "views": 6
       }
     },
     {
@@ -1230,7 +1299,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 0,
+        "impressions": 9,
         "shares": 0,
         "clicks": 0
       }
@@ -1246,7 +1315,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 0
+        "views": 4
       }
     },
     {
@@ -1265,13 +1334,13 @@
       "text": "Could not be more proud of my brother and The Carrum Cowboys winning the Grand Final today by 1 point! Elite!",
       "sentAt": "2026-09-13T09:29:17.000Z",
       "metrics": {
-        "reactions": 23,
+        "reactions": 22,
         "comments": 0,
-        "engagementRate": 4.08,
-        "views": 876,
+        "engagementRate": 3.9,
+        "views": 889,
         "shares": 2,
         "saves": 0,
-        "reach": 612
+        "reach": 616
       }
     },
     {
@@ -1282,12 +1351,12 @@
       "sentAt": "2026-09-08T08:04:34.999Z",
       "durationSec": 23.233,
       "metrics": {
-        "reactions": 52,
+        "reactions": 53,
         "comments": 6,
-        "engagementRate": 5.62,
-        "views": 1068,
+        "engagementRate": 5.7,
+        "views": 1070,
         "shares": 2,
-        "reach": 984
+        "reach": 986
       }
     },
     {
@@ -1396,22 +1465,6 @@
         "comments": 0,
         "engagementRate": 0,
         "views": 0
-      }
-    },
-    {
-      "id": "6a96542aaec406f471046f7d",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "His wife Karsh did a spring clean. That’s 16kg of oversized clothes on the stairs. Mark’s down 16kg. Father of 3. Still turning up. Still training har",
-      "sentAt": "2026-09-01T08:02:29.138Z",
-      "durationSec": 19.1,
-      "metrics": {
-        "reactions": 1,
-        "comments": 1,
-        "engagementRate": 0.65,
-        "views": 306,
-        "shares": 0,
-        "reach": 281
       }
     }
   ]
