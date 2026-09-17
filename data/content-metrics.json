@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-16T21:06:20Z",
+  "lastUpdated": "2026-09-17T21:07:57Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -1237,6 +1237,56 @@
           "clicks": 3
         }
       }
+    },
+    {
+      "date": "2026-09-18",
+      "channels": {
+        "instagram": {
+          "postCount": 102,
+          "views": 20732,
+          "reach": 15373,
+          "reactions": 133,
+          "comments": 23,
+          "engagementRate": 2.96,
+          "shares": 6,
+          "saves": 1
+        },
+        "tiktok": {
+          "postCount": 6,
+          "views": 2694,
+          "reach": 2390,
+          "reactions": 77,
+          "comments": 7,
+          "engagementRate": 3.23,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 6,
+          "views": 28,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 8,
+          "views": 143,
+          "reach": 490,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.17,
+          "shares": 0,
+          "impressions": 725
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.24,
+          "shares": 0,
+          "impressions": 482,
+          "clicks": 3
+        }
+      }
     }
   ],
   "posts": [
@@ -1244,62 +1294,62 @@
       "id": "6aaa05f0fea1b492a1765adb",
       "channelService": "instagram",
       "type": "reel",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
       "sentAt": "2026-09-15T08:08:17.000Z",
       "metrics": {
         "reactions": 10,
         "comments": 0,
-        "engagementRate": 5.59,
-        "views": 322,
+        "engagementRate": 4.29,
+        "views": 421,
         "shares": 0,
         "saves": 0,
-        "reach": 179
+        "reach": 233
       }
     },
     {
       "id": "6aa898c6f1955036560e4f94",
       "channelService": "tiktok",
       "type": "video",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "text": "12 weeks. That's it. That's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you ",
       "sentAt": "2026-09-15T08:04:38.126Z",
       "durationSec": 76.133,
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 0.51,
-        "views": 198,
+        "engagementRate": 0.46,
+        "views": 219,
         "shares": 0,
-        "reach": 0
+        "reach": 140
       }
     },
     {
       "id": "6aa898c5f1955036560e4f92",
       "channelService": "linkedin",
       "type": "video",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
       "sentAt": "2026-09-15T08:02:13.468Z",
       "durationSec": 76.133,
       "metrics": {
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 15,
-        "reach": 10,
-        "views": 6
+        "impressions": 17,
+        "reach": 12,
+        "views": 8
       }
     },
     {
       "id": "6aa898c6f1955036560e4f95",
       "channelService": "facebook",
       "type": "video",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
       "sentAt": "2026-09-15T08:02:04.365Z",
       "durationSec": 76.133,
       "metrics": {
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 9,
+        "impressions": 10,
         "shares": 0,
         "clicks": 0
       }
@@ -1308,7 +1358,7 @@
       "id": "6aa898c6f1955036560e4f93",
       "channelService": "youtube",
       "type": "video",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
       "sentAt": "2026-09-15T08:02:00.090Z",
       "durationSec": 76.133,
       "metrics": {
@@ -1322,7 +1372,7 @@
       "id": "6aa898c6f1955036560e4f96",
       "channelService": "instagram",
       "type": "reel",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
       "sentAt": "2026-09-15T08:01:52.332Z",
       "durationSec": 76.133,
       "metrics": null
@@ -1334,36 +1384,36 @@
       "text": "Could not be more proud of my brother and The Carrum Cowboys winning the Grand Final today by 1 point! Elite!",
       "sentAt": "2026-09-13T09:29:17.000Z",
       "metrics": {
-        "reactions": 22,
+        "reactions": 23,
         "comments": 0,
-        "engagementRate": 3.9,
-        "views": 889,
+        "engagementRate": 4.03,
+        "views": 898,
         "shares": 2,
         "saves": 0,
-        "reach": 616
+        "reach": 620
       }
     },
     {
       "id": "6a9f4d3275af2d968f0911c1",
       "channelService": "tiktok",
       "type": "video",
-      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. ☀️ Get outside, get moving, get your vitamin D in before it changes its mind ",
+      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. \u2600\ufe0f Get outside, get moving, get your vitamin D in before it changes its mind ",
       "sentAt": "2026-09-08T08:04:34.999Z",
       "durationSec": 23.233,
       "metrics": {
         "reactions": 53,
         "comments": 6,
-        "engagementRate": 5.7,
-        "views": 1070,
+        "engagementRate": 5.69,
+        "views": 1072,
         "shares": 2,
-        "reach": 986
+        "reach": 989
       }
     },
     {
       "id": "6a9f4d3375af2d968f0911c4",
       "channelService": "youtube",
       "type": "video",
-      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. ☀️ Get outside, get moving, get your vitamin D in before it changes its mind ",
+      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. \u2600\ufe0f Get outside, get moving, get your vitamin D in before it changes its mind ",
       "sentAt": "2026-09-08T08:02:16.830Z",
       "durationSec": 23.233,
       "metrics": {
@@ -1377,7 +1427,7 @@
       "id": "6a9f4d3275af2d968f0911c2",
       "channelService": "facebook",
       "type": "video",
-      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. ☀️ Get outside, get moving, get your vitamin D in before it changes its mind ",
+      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. \u2600\ufe0f Get outside, get moving, get your vitamin D in before it changes its mind ",
       "sentAt": "2026-09-08T08:01:48.278Z",
       "durationSec": 23.233,
       "metrics": {
@@ -1393,7 +1443,7 @@
       "id": "6a9f4d3375af2d968f0911c3",
       "channelService": "linkedin",
       "type": "video",
-      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. ☀️ Get outside, get moving, get your vitamin D in before it changes its mind ",
+      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. \u2600\ufe0f Get outside, get moving, get your vitamin D in before it changes its mind ",
       "sentAt": "2026-09-08T08:01:43.708Z",
       "durationSec": 23.233,
       "metrics": {
@@ -1409,14 +1459,14 @@
       "id": "6a9e054a82786ff4cb03f960",
       "channelService": "tiktok",
       "type": "video",
-      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you.\n\nIt's called Ikiga",
+      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you. It's called Ikigai",
       "sentAt": "2026-09-07T08:03:38.832Z",
       "durationSec": 84.166,
       "metrics": {
         "reactions": 3,
         "comments": 0,
-        "engagementRate": 1.13,
-        "views": 266,
+        "engagementRate": 1.12,
+        "views": 267,
         "shares": 0,
         "reach": 233
       }
