@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-18T21:04:24Z",
+  "lastUpdated": "2026-09-19T21:16:34Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -1337,6 +1337,56 @@
           "clicks": 3
         }
       }
+    },
+    {
+      "date": "2026-09-20",
+      "channels": {
+        "instagram": {
+          "postCount": 115,
+          "views": 22917,
+          "reach": 17313,
+          "reactions": 118,
+          "comments": 17,
+          "engagementRate": 2.84,
+          "shares": 6,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 6,
+          "reactions": 77,
+          "comments": 7,
+          "engagementRate": 3.21,
+          "views": 2708,
+          "shares": 3,
+          "reach": 2446
+        },
+        "youtube": {
+          "postCount": 6,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 28
+        },
+        "linkedin": {
+          "postCount": 8,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.14,
+          "impressions": 732,
+          "shares": 0,
+          "reach": 497,
+          "views": 147
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.24,
+          "impressions": 482,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
     }
   ],
   "posts": [
@@ -1350,8 +1400,8 @@
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 0.46,
-        "views": 219,
+        "engagementRate": 0.45,
+        "views": 223,
         "shares": 0,
         "reach": 194
       }
@@ -1367,9 +1417,9 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 18,
-        "reach": 13,
-        "views": 9
+        "impressions": 23,
+        "reach": 18,
+        "views": 12
       }
     },
     {
@@ -1412,10 +1462,10 @@
       "metrics": {
         "reactions": 53,
         "comments": 6,
-        "engagementRate": 5.68,
-        "views": 1073,
+        "engagementRate": 5.66,
+        "views": 1077,
         "shares": 2,
-        "reach": 990
+        "reach": 991
       }
     },
     {
@@ -1537,7 +1587,7 @@
         "reactions": 1,
         "comments": 1,
         "engagementRate": 0.65,
-        "views": 306,
+        "views": 307,
         "shares": 0,
         "reach": 282
       }
