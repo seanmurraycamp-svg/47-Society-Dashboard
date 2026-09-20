@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-19T21:16:34Z",
+  "lastUpdated": "2026-09-20T21:16:16Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -1387,6 +1387,56 @@
           "clicks": 3
         }
       }
+    },
+    {
+      "date": "2026-09-21",
+      "channels": {
+        "instagram": {
+          "postCount": 118,
+          "views": 23652,
+          "reach": 17847,
+          "reactions": 118,
+          "comments": 17,
+          "engagementRate": 2.84,
+          "shares": 6,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 6,
+          "views": 2724,
+          "reach": 2450,
+          "reactions": 77,
+          "comments": 7,
+          "engagementRate": 3.19,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 6,
+          "views": 28,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 7,
+          "views": 148,
+          "reach": 463,
+          "reactions": 17,
+          "comments": 5,
+          "engagementRate": 3.28,
+          "shares": 0,
+          "impressions": 671
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "shares": 0,
+          "impressions": 486,
+          "clicks": 3
+        }
+      }
     }
   ],
   "posts": [
@@ -1394,39 +1444,39 @@
       "id": "6aa898c6f1955036560e4f94",
       "channelService": "tiktok",
       "type": "video",
-      "text": "12 weeks. That's it. That's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you ",
+      "text": "12 weeks. That's it. That's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you ",
       "sentAt": "2026-09-15T08:04:38.126Z",
       "durationSec": 76.133,
       "metrics": {
         "reactions": 1,
         "comments": 0,
         "engagementRate": 0.45,
-        "views": 223,
+        "views": 224,
         "shares": 0,
-        "reach": 194
+        "reach": 196
       }
     },
     {
       "id": "6aa898c5f1955036560e4f92",
       "channelService": "linkedin",
       "type": "video",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
       "sentAt": "2026-09-15T08:02:13.468Z",
       "durationSec": 76.133,
       "metrics": {
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 23,
-        "reach": 18,
-        "views": 12
+        "impressions": 25,
+        "reach": 20,
+        "views": 13
       }
     },
     {
       "id": "6aa898c6f1955036560e4f95",
       "channelService": "facebook",
       "type": "video",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
       "sentAt": "2026-09-15T08:02:04.365Z",
       "durationSec": 76.133,
       "metrics": {
@@ -1439,10 +1489,10 @@
       }
     },
     {
-      "id": "6aa898c6f1955036560e4f93",
+      "id": "6aa898c5f1955036560e4f93",
       "channelService": "youtube",
       "type": "video",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas — and it's exactly how long it takes to actually become a different person if you",
+      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
       "sentAt": "2026-09-15T08:02:00.090Z",
       "durationSec": 76.133,
       "metrics": {
@@ -1456,14 +1506,14 @@
       "id": "6a9f4d3275af2d968f0911c1",
       "channelService": "tiktok",
       "type": "video",
-      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. ☀️ Get outside, get moving, get your vitamin D in before it changes its mind ",
+      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. \u2600\ufe0f Get outside, get moving, get your vitamin D in before it changes its mind ",
       "sentAt": "2026-09-08T08:04:34.999Z",
       "durationSec": 23.233,
       "metrics": {
         "reactions": 53,
         "comments": 6,
-        "engagementRate": 5.66,
-        "views": 1077,
+        "engagementRate": 5.61,
+        "views": 1088,
         "shares": 2,
         "reach": 991
       }
@@ -1472,7 +1522,7 @@
       "id": "6a9f4d3375af2d968f0911c4",
       "channelService": "youtube",
       "type": "video",
-      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. ☀️ Get outside, get moving, get your vitamin D in before it changes its mind ",
+      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. \u2600\ufe0f Get outside, get moving, get your vitamin D in before it changes its mind ",
       "sentAt": "2026-09-08T08:02:16.830Z",
       "durationSec": 23.233,
       "metrics": {
@@ -1486,7 +1536,7 @@
       "id": "6a9f4d3275af2d968f0911c2",
       "channelService": "facebook",
       "type": "video",
-      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. ☀️ Get outside, get moving, get your vitamin D in before it changes its mind ",
+      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. \u2600\ufe0f Get outside, get moving, get your vitamin D in before it changes its mind ",
       "sentAt": "2026-09-08T08:01:48.278Z",
       "durationSec": 23.233,
       "metrics": {
@@ -1502,7 +1552,7 @@
       "id": "6a9f4d3375af2d968f0911c3",
       "channelService": "linkedin",
       "type": "video",
-      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. ☀️ Get outside, get moving, get your vitamin D in before it changes its mind ",
+      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. \u2600\ufe0f Get outside, get moving, get your vitamin D in before it changes its mind ",
       "sentAt": "2026-09-08T08:01:43.708Z",
       "durationSec": 23.233,
       "metrics": {
@@ -1525,16 +1575,16 @@
         "reactions": 3,
         "comments": 0,
         "engagementRate": 1.12,
-        "views": 267,
+        "views": 268,
         "shares": 0,
-        "reach": 233
+        "reach": 234
       }
     },
     {
       "id": "6a9e054a82786ff4cb03f962",
       "channelService": "linkedin",
       "type": "video",
-      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you.\n\nIt's called Ikiga",
+      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you. It's called Ikigai",
       "sentAt": "2026-09-07T08:01:57.562Z",
       "durationSec": 84.166,
       "metrics": {
@@ -1550,7 +1600,7 @@
       "id": "6a9e054a82786ff4cb03f961",
       "channelService": "facebook",
       "type": "video",
-      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you.\n\nIt's called Ikiga",
+      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you. It's called Ikigai",
       "sentAt": "2026-09-07T08:01:47.474Z",
       "durationSec": 84.166,
       "metrics": {
@@ -1566,7 +1616,7 @@
       "id": "6a9e054a82786ff4cb03f963",
       "channelService": "youtube",
       "type": "video",
-      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you.\n\nIt's called Ikiga",
+      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you. It's called Ikigai",
       "sentAt": "2026-09-07T08:01:38.578Z",
       "durationSec": 84.166,
       "metrics": {
@@ -1580,14 +1630,14 @@
       "id": "6a96542aaec406f471046f7d",
       "channelService": "tiktok",
       "type": "video",
-      "text": "His wife Karsh did a spring clean. That’s 16kg of oversized clothes on the stairs. Mark’s down 16kg. Father of 3. Still turning up. Still training har",
+      "text": "His wife Karsh did a spring clean. That\u2019s 16kg of oversized clothes on the stairs. Mark\u2019s down 16kg. Father of 3. Still turning up. Still training har",
       "sentAt": "2026-09-01T08:02:29.138Z",
       "durationSec": 19.1,
       "metrics": {
         "reactions": 1,
         "comments": 1,
         "engagementRate": 0.65,
-        "views": 307,
+        "views": 309,
         "shares": 0,
         "reach": 282
       }
@@ -1596,7 +1646,7 @@
       "id": "6a96542aaec406f471046f7e",
       "channelService": "facebook",
       "type": "video",
-      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
+      "text": "His wife Karsh did a spring clean. That\u2019s 16kg of oversized clothes on the stairs. Mark\u2019s down 16kg. Father of 3. Still turning up. Still training har",
       "sentAt": "2026-09-01T08:01:49.668Z",
       "durationSec": 19.1,
       "metrics": {
@@ -1612,7 +1662,7 @@
       "id": "6a96542aaec406f471046f7b",
       "channelService": "linkedin",
       "type": "video",
-      "text": "His wife Karsh did a spring clean.\n\nThat’s 16kg of oversized clothes on the stairs.\n\nMark’s down 16kg. Father of 3. Still turning up. Still training h",
+      "text": "His wife Karsh did a spring clean. That\u2019s 16kg of oversized clothes on the stairs. Mark\u2019s down 16kg. Father of 3. Still turning up. Still training har",
       "sentAt": "2026-09-01T08:01:31.143Z",
       "durationSec": 19.1,
       "metrics": {
