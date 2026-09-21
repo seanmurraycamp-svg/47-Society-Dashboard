@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-20T21:16:16Z",
+  "lastUpdated": "2026-09-21T21:14:31Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -1437,188 +1437,162 @@
           "clicks": 3
         }
       }
+    },
+    {
+      "date": "2026-09-22",
+      "channels": {
+        "instagram": {
+          "postCount": 124,
+          "reactions": 132,
+          "comments": 21,
+          "engagementRate": 2.89,
+          "views": 24946,
+          "shares": 6,
+          "saves": 0,
+          "reach": 18762
+        },
+        "tiktok": {
+          "postCount": 9,
+          "reactions": 83,
+          "comments": 7,
+          "engagementRate": 3.29,
+          "views": 2824,
+          "shares": 3,
+          "reach": 2473
+        },
+        "youtube": {
+          "postCount": 6,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 28
+        },
+        "linkedin": {
+          "postCount": 6,
+          "reactions": 9,
+          "comments": 2,
+          "engagementRate": 3.15,
+          "impressions": 349,
+          "shares": 0,
+          "reach": 250,
+          "views": 152
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "impressions": 486,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
     }
   ],
   "posts": [
     {
-      "id": "6aa898c6f1955036560e4f94",
+      "id": "6ab0dd739eb9285e3bb6bc9f",
       "channelService": "tiktok",
       "type": "video",
-      "text": "12 weeks. That's it. That's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you ",
-      "sentAt": "2026-09-15T08:04:38.126Z",
-      "durationSec": 76.133,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:19:56.867Z",
+      "durationSec": 34.033,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0,
+        "shares": 0,
+        "reach": 0
+      }
+    },
+    {
+      "id": "6ab0e889f1a0ee482dc8a6ee",
+      "channelService": "instagram",
+      "type": "post",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:03:56.000Z",
+      "metrics": {
+        "reactions": 12,
+        "comments": 4,
+        "engagementRate": 5.54,
+        "views": 506,
+        "shares": 0,
+        "saves": 0,
+        "reach": 307
+      }
+    },
+    {
+      "id": "6ab0dd3f569dcac57ad0478c",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:01:56.059Z",
+      "durationSec": 34.033,
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 0.45,
-        "views": 224,
+        "engagementRate": 4.76,
+        "views": 21,
         "shares": 0,
-        "reach": 196
+        "reach": 0
       }
     },
     {
-      "id": "6aa898c5f1955036560e4f92",
-      "channelService": "linkedin",
-      "type": "video",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
-      "sentAt": "2026-09-15T08:02:13.468Z",
-      "durationSec": 76.133,
-      "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "impressions": 25,
-        "reach": 20,
-        "views": 13
-      }
-    },
-    {
-      "id": "6aa898c6f1955036560e4f95",
-      "channelService": "facebook",
-      "type": "video",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
-      "sentAt": "2026-09-15T08:02:04.365Z",
-      "durationSec": 76.133,
-      "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "impressions": 10,
-        "shares": 0,
-        "clicks": 0
-      }
-    },
-    {
-      "id": "6aa898c5f1955036560e4f93",
-      "channelService": "youtube",
-      "type": "video",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
-      "sentAt": "2026-09-15T08:02:00.090Z",
-      "durationSec": 76.133,
-      "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "views": 4
-      }
-    },
-    {
-      "id": "6a9f4d3275af2d968f0911c1",
+      "id": "6ab0dd27fa03aef9cecaa1c7",
       "channelService": "tiktok",
       "type": "video",
-      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. \u2600\ufe0f Get outside, get moving, get your vitamin D in before it changes its mind ",
-      "sentAt": "2026-09-08T08:04:34.999Z",
-      "durationSec": 23.233,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:01:52.599Z",
+      "durationSec": 34.033,
       "metrics": {
-        "reactions": 53,
-        "comments": 6,
-        "engagementRate": 5.61,
-        "views": 1088,
-        "shares": 2,
-        "reach": 991
+        "reactions": 2,
+        "comments": 0,
+        "engagementRate": 8,
+        "views": 25,
+        "shares": 0,
+        "reach": 0
       }
     },
     {
-      "id": "6a9f4d3375af2d968f0911c4",
-      "channelService": "youtube",
+      "id": "6ab0dcfb9eb9285e3bb6a2e2",
+      "channelService": "tiktok",
       "type": "video",
-      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. \u2600\ufe0f Get outside, get moving, get your vitamin D in before it changes its mind ",
-      "sentAt": "2026-09-08T08:02:16.830Z",
-      "durationSec": 23.233,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:01:02.387Z",
+      "durationSec": 34.033,
       "metrics": {
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 21
+        "views": 0,
+        "shares": 0,
+        "reach": 0
       }
     },
     {
-      "id": "6a9f4d3275af2d968f0911c2",
-      "channelService": "facebook",
+      "id": "6ab0dd615bd909bc97a6031e",
+      "channelService": "tiktok",
       "type": "video",
-      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. \u2600\ufe0f Get outside, get moving, get your vitamin D in before it changes its mind ",
-      "sentAt": "2026-09-08T08:01:48.278Z",
-      "durationSec": 23.233,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:57.788Z",
+      "durationSec": 34.033,
       "metrics": {
         "reactions": 1,
         "comments": 0,
-        "engagementRate": 1.24,
-        "impressions": 241,
+        "engagementRate": 4.17,
+        "views": 24,
         "shares": 0,
-        "clicks": 2
+        "reach": 0
       }
     },
     {
-      "id": "6a9f4d3375af2d968f0911c3",
-      "channelService": "linkedin",
-      "type": "video",
-      "text": "POV: you live in Melbourne and treat sunshine like a limited time offer. \u2600\ufe0f Get outside, get moving, get your vitamin D in before it changes its mind ",
-      "sentAt": "2026-09-08T08:01:43.708Z",
-      "durationSec": 23.233,
-      "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "impressions": 11,
-        "reach": 9,
-        "views": 6
-      }
-    },
-    {
-      "id": "6a9e054a82786ff4cb03f960",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you. It's called Ikigai",
-      "sentAt": "2026-09-07T08:03:38.832Z",
-      "durationSec": 84.166,
-      "metrics": {
-        "reactions": 3,
-        "comments": 0,
-        "engagementRate": 1.12,
-        "views": 268,
-        "shares": 0,
-        "reach": 234
-      }
-    },
-    {
-      "id": "6a9e054a82786ff4cb03f962",
-      "channelService": "linkedin",
-      "type": "video",
-      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you. It's called Ikigai",
-      "sentAt": "2026-09-07T08:01:57.562Z",
-      "durationSec": 84.166,
-      "metrics": {
-        "reactions": 1,
-        "comments": 1,
-        "engagementRate": 11.11,
-        "impressions": 18,
-        "reach": 9,
-        "views": 5
-      }
-    },
-    {
-      "id": "6a9e054a82786ff4cb03f961",
-      "channelService": "facebook",
-      "type": "video",
-      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you. It's called Ikigai",
-      "sentAt": "2026-09-07T08:01:47.474Z",
-      "durationSec": 84.166,
-      "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "impressions": 29,
-        "shares": 0,
-        "clicks": 0
-      }
-    },
-    {
-      "id": "6a9e054a82786ff4cb03f963",
+      "id": "6ab0dd4083c5144288880c55",
       "channelService": "youtube",
       "type": "video",
-      "text": "There's a Japanese word for the space between what you love, what you're good at, what the world needs, and what actually pays you. It's called Ikigai",
-      "sentAt": "2026-09-07T08:01:38.578Z",
-      "durationSec": 84.166,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:27.546Z",
+      "durationSec": 34.033,
       "metrics": {
         "reactions": 0,
         "comments": 0,
@@ -1627,52 +1601,96 @@
       }
     },
     {
-      "id": "6a96542aaec406f471046f7d",
-      "channelService": "tiktok",
+      "id": "6ab0dd7491b18072e0427178",
+      "channelService": "youtube",
       "type": "video",
-      "text": "His wife Karsh did a spring clean. That\u2019s 16kg of oversized clothes on the stairs. Mark\u2019s down 16kg. Father of 3. Still turning up. Still training har",
-      "sentAt": "2026-09-01T08:02:29.138Z",
-      "durationSec": 19.1,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:26.585Z",
+      "durationSec": 34.033,
       "metrics": {
-        "reactions": 1,
-        "comments": 1,
-        "engagementRate": 0.65,
-        "views": 309,
-        "shares": 0,
-        "reach": 282
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0
       }
     },
     {
-      "id": "6a96542aaec406f471046f7e",
-      "channelService": "facebook",
+      "id": "6ab0dcfc636d96adb7db3669",
+      "channelService": "youtube",
       "type": "video",
-      "text": "His wife Karsh did a spring clean. That\u2019s 16kg of oversized clothes on the stairs. Mark\u2019s down 16kg. Father of 3. Still turning up. Still training har",
-      "sentAt": "2026-09-01T08:01:49.668Z",
-      "durationSec": 19.1,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:22.673Z",
+      "durationSec": 34.033,
       "metrics": {
-        "reactions": 1,
+        "reactions": 0,
         "comments": 0,
-        "engagementRate": 3.03,
-        "impressions": 33,
-        "shares": 0,
-        "clicks": 0
+        "engagementRate": 0,
+        "views": 0
       }
     },
     {
-      "id": "6a96542aaec406f471046f7b",
-      "channelService": "linkedin",
+      "id": "6ab0dd28fa03aef9cecaa209",
+      "channelService": "youtube",
       "type": "video",
-      "text": "His wife Karsh did a spring clean. That\u2019s 16kg of oversized clothes on the stairs. Mark\u2019s down 16kg. Father of 3. Still turning up. Still training har",
-      "sentAt": "2026-09-01T08:01:31.143Z",
-      "durationSec": 19.1,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:17.405Z",
+      "durationSec": 34.033,
       "metrics": {
-        "reactions": 2,
+        "reactions": 0,
         "comments": 0,
-        "engagementRate": 1.17,
-        "impressions": 171,
-        "reach": 136,
-        "views": 73
+        "engagementRate": 0,
+        "views": 0
       }
+    },
+    {
+      "id": "6ab0dd262dfd870cfa99cc66",
+      "channelService": "instagram",
+      "type": "reel",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:12.063Z",
+      "durationSec": 34.033,
+      "metrics": null
+    },
+    {
+      "id": "6ab0dd629eb9285e3bb6b8cb",
+      "channelService": "youtube",
+      "type": "video",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:10.987Z",
+      "durationSec": 34.033,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "views": 0
+      }
+    },
+    {
+      "id": "6ab0dcfa636d96adb7db35c8",
+      "channelService": "instagram",
+      "type": "reel",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:10.547Z",
+      "durationSec": 34.033,
+      "metrics": null
+    },
+    {
+      "id": "6ab0dd3e91b18072e04265a3",
+      "channelService": "instagram",
+      "type": "reel",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:09.762Z",
+      "durationSec": 34.033,
+      "metrics": null
+    },
+    {
+      "id": "6ab0dd60fa03aef9cecaae92",
+      "channelService": "instagram",
+      "type": "reel",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:08.670Z",
+      "durationSec": 34.033,
+      "metrics": null
     }
   ]
 }
