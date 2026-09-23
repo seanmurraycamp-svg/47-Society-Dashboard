@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-22T21:14:24Z",
+  "lastUpdated": "2026-09-23T21:14:34Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -1537,6 +1537,56 @@
           "clicks": 3
         }
       }
+    },
+    {
+      "date": "2026-09-24",
+      "channels": {
+        "instagram": {
+          "postCount": 109,
+          "views": 23224,
+          "reach": 17327,
+          "reactions": 118,
+          "comments": 16,
+          "engagementRate": 2.78,
+          "shares": 6,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 8,
+          "views": 3583,
+          "reach": 1824,
+          "reactions": 162,
+          "comments": 10,
+          "engagementRate": 4.86,
+          "shares": 2
+        },
+        "youtube": {
+          "postCount": 10,
+          "views": 26,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 5,
+          "views": 122,
+          "reach": 206,
+          "reactions": 5,
+          "comments": 2,
+          "engagementRate": 2.49,
+          "shares": 0,
+          "impressions": 281
+        },
+        "facebook": {
+          "postCount": 5,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "shares": 0,
+          "impressions": 325,
+          "clicks": 2
+        }
+      }
     }
   ],
   "posts": [
@@ -1565,11 +1615,11 @@
       "metrics": {
         "reactions": 14,
         "comments": 4,
-        "engagementRate": 5.18,
-        "views": 609,
+        "engagementRate": 5.09,
+        "views": 624,
         "shares": 0,
         "saves": 0,
-        "reach": 367
+        "reach": 373
       }
     },
     {
@@ -1580,10 +1630,10 @@
       "sentAt": "2026-09-21T08:01:56.059Z",
       "durationSec": 34.033,
       "metrics": {
-        "reactions": 6,
-        "comments": 0,
-        "engagementRate": 3.49,
-        "views": 172,
+        "reactions": 32,
+        "comments": 1,
+        "engagementRate": 7.16,
+        "views": 461,
         "shares": 0,
         "reach": 0
       }
@@ -1596,10 +1646,10 @@
       "sentAt": "2026-09-21T08:01:52.599Z",
       "durationSec": 34.033,
       "metrics": {
-        "reactions": 47,
+        "reactions": 60,
         "comments": 2,
-        "engagementRate": 9.19,
-        "views": 533,
+        "engagementRate": 9.2,
+        "views": 674,
         "shares": 0,
         "reach": 0
       }
@@ -1628,10 +1678,10 @@
       "sentAt": "2026-09-21T08:00:57.788Z",
       "durationSec": 34.033,
       "metrics": {
-        "reactions": 2,
+        "reactions": 3,
         "comments": 0,
-        "engagementRate": 1.16,
-        "views": 172,
+        "engagementRate": 0.73,
+        "views": 413,
         "shares": 0,
         "reach": 0
       }
@@ -1647,7 +1697,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 0
+        "views": 1
       }
     },
     {
