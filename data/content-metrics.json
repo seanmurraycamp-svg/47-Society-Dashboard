@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-23T21:14:34Z",
+  "lastUpdated": "2026-09-24T21:17:24Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -1587,6 +1587,56 @@
           "clicks": 2
         }
       }
+    },
+    {
+      "date": "2026-09-25",
+      "channels": {
+        "instagram": {
+          "postCount": 93,
+          "views": 20395,
+          "reach": 15405,
+          "reactions": 104,
+          "comments": 14,
+          "engagementRate": 2.6,
+          "shares": 5,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 7,
+          "views": 3483,
+          "reach": 2556,
+          "reactions": 156,
+          "comments": 10,
+          "engagementRate": 4.82,
+          "shares": 2
+        },
+        "youtube": {
+          "postCount": 9,
+          "views": 27,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 105,
+          "reach": 182,
+          "reactions": 3,
+          "comments": 1,
+          "engagementRate": 1.69,
+          "shares": 0,
+          "impressions": 237
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.28,
+          "shares": 0,
+          "impressions": 313,
+          "clicks": 2
+        }
+      }
     }
   ],
   "posts": [
@@ -1613,13 +1663,13 @@
       "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
       "sentAt": "2026-09-21T08:03:56.000Z",
       "metrics": {
-        "reactions": 14,
+        "reactions": 15,
         "comments": 4,
-        "engagementRate": 5.09,
-        "views": 624,
+        "engagementRate": 5.29,
+        "views": 630,
         "shares": 0,
         "saves": 0,
-        "reach": 373
+        "reach": 378
       }
     },
     {
@@ -1632,10 +1682,10 @@
       "metrics": {
         "reactions": 32,
         "comments": 1,
-        "engagementRate": 7.16,
-        "views": 461,
+        "engagementRate": 7.11,
+        "views": 464,
         "shares": 0,
-        "reach": 0
+        "reach": 147
       }
     },
     {
@@ -1646,12 +1696,12 @@
       "sentAt": "2026-09-21T08:01:52.599Z",
       "durationSec": 34.033,
       "metrics": {
-        "reactions": 60,
+        "reactions": 61,
         "comments": 2,
-        "engagementRate": 9.2,
-        "views": 674,
+        "engagementRate": 9.25,
+        "views": 681,
         "shares": 0,
-        "reach": 0
+        "reach": 498
       }
     },
     {
@@ -1680,10 +1730,10 @@
       "metrics": {
         "reactions": 3,
         "comments": 0,
-        "engagementRate": 0.73,
-        "views": 413,
+        "engagementRate": 0.72,
+        "views": 415,
         "shares": 0,
-        "reach": 0
+        "reach": 159
       }
     },
     {
@@ -1739,7 +1789,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 0
+        "views": 1
       }
     },
     {
