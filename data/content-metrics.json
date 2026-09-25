@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-24T21:17:24Z",
+  "lastUpdated": "2026-09-25T21:15:06Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -1637,6 +1637,56 @@
           "clicks": 2
         }
       }
+    },
+    {
+      "date": "2026-09-26",
+      "channels": {
+        "instagram": {
+          "postCount": 95,
+          "views": 20781,
+          "reach": 15724,
+          "reactions": 103,
+          "comments": 14,
+          "engagementRate": 2.62,
+          "shares": 5,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 7,
+          "views": 3504,
+          "reach": 3220,
+          "reactions": 158,
+          "comments": 10,
+          "engagementRate": 4.85,
+          "shares": 2
+        },
+        "youtube": {
+          "postCount": 9,
+          "views": 27,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 105,
+          "reach": 182,
+          "reactions": 3,
+          "comments": 1,
+          "engagementRate": 1.69,
+          "shares": 0,
+          "impressions": 237
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.28,
+          "shares": 0,
+          "impressions": 313,
+          "clicks": 2
+        }
+      }
     }
   ],
   "posts": [
@@ -1665,11 +1715,11 @@
       "metrics": {
         "reactions": 15,
         "comments": 4,
-        "engagementRate": 5.29,
-        "views": 630,
+        "engagementRate": 5.13,
+        "views": 648,
         "shares": 0,
         "saves": 0,
-        "reach": 378
+        "reach": 390
       }
     },
     {
@@ -1680,12 +1730,12 @@
       "sentAt": "2026-09-21T08:01:56.059Z",
       "durationSec": 34.033,
       "metrics": {
-        "reactions": 32,
+        "reactions": 33,
         "comments": 1,
-        "engagementRate": 7.11,
-        "views": 464,
+        "engagementRate": 7.2,
+        "views": 472,
         "shares": 0,
-        "reach": 147
+        "reach": 427
       }
     },
     {
@@ -1696,12 +1746,12 @@
       "sentAt": "2026-09-21T08:01:52.599Z",
       "durationSec": 34.033,
       "metrics": {
-        "reactions": 61,
+        "reactions": 62,
         "comments": 2,
-        "engagementRate": 9.25,
-        "views": 681,
+        "engagementRate": 9.3,
+        "views": 688,
         "shares": 0,
-        "reach": 498
+        "reach": 642
       }
     },
     {
@@ -1731,9 +1781,9 @@
         "reactions": 3,
         "comments": 0,
         "engagementRate": 0.72,
-        "views": 415,
+        "views": 418,
         "shares": 0,
-        "reach": 159
+        "reach": 394
       }
     },
     {
@@ -1747,7 +1797,7 @@
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "views": 1
+        "views": 0
       }
     },
     {
@@ -1793,15 +1843,6 @@
       }
     },
     {
-      "id": "6ab0dd262dfd870cfa99cc66",
-      "channelService": "instagram",
-      "type": "reel",
-      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
-      "sentAt": "2026-09-21T08:00:12.063Z",
-      "durationSec": 34.033,
-      "metrics": null
-    },
-    {
       "id": "6ab0dd629eb9285e3bb6b8cb",
       "channelService": "youtube",
       "type": "video",
@@ -1814,15 +1855,6 @@
         "engagementRate": 0,
         "views": 0
       }
-    },
-    {
-      "id": "6ab0dcfa636d96adb7db35c8",
-      "channelService": "instagram",
-      "type": "reel",
-      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
-      "sentAt": "2026-09-21T08:00:10.547Z",
-      "durationSec": 34.033,
-      "metrics": null
     },
     {
       "id": "6ab0dd3e91b18072e04265a3",
@@ -1841,6 +1873,31 @@
       "sentAt": "2026-09-21T08:00:08.670Z",
       "durationSec": 34.033,
       "metrics": null
+    },
+    {
+      "id": "6ab0dd722dfd870cfa99dd52",
+      "channelService": "instagram",
+      "type": "reel",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:06.361Z",
+      "durationSec": 34.033,
+      "metrics": null
+    },
+    {
+      "id": "6aa898c6f1955036560e4f94",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "12 weeks. That's it. That's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you ",
+      "sentAt": "2026-09-15T08:04:38.126Z",
+      "durationSec": 76.133,
+      "metrics": {
+        "reactions": 1,
+        "comments": 0,
+        "engagementRate": 0.43,
+        "views": 232,
+        "shares": 0,
+        "reach": 205
+      }
     }
   ]
 }
