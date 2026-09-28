@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-09-27T21:17:10Z",
+  "lastUpdated": "2026-09-28T21:15:23Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -1787,9 +1787,138 @@
           "clicks": 2
         }
       }
+    },
+    {
+      "date": "2026-09-29",
+      "channels": {
+        "instagram": {
+          "postCount": 88,
+          "reactions": 110,
+          "comments": 19,
+          "engagementRate": 2.83,
+          "views": 19169,
+          "shares": 5,
+          "saves": 0,
+          "reach": 14542
+        },
+        "tiktok": {
+          "postCount": 8,
+          "reactions": 163,
+          "comments": 10,
+          "engagementRate": 4.72,
+          "views": 3706,
+          "shares": 2,
+          "reach": 3234
+        },
+        "youtube": {
+          "postCount": 10,
+          "reactions": 1,
+          "comments": 0,
+          "engagementRate": 2.94,
+          "views": 34
+        },
+        "linkedin": {
+          "postCount": 5,
+          "reactions": 3,
+          "comments": 1,
+          "engagementRate": 1.67,
+          "impressions": 240,
+          "shares": 0,
+          "reach": 185,
+          "views": 107
+        },
+        "facebook": {
+          "postCount": 5,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.16,
+          "impressions": 346,
+          "shares": 0,
+          "clicks": 2
+        }
+      }
     }
   ],
   "posts": [
+    {
+      "id": "6ab9fe442d11f7eef2bedda0",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "Anxious AND tired? Check your coffee ☕\n\nTired → coffee → wired & anxious → crash → another coffee. I've broken this cycle before… and fallen straight ",
+      "sentAt": "2026-09-28T08:02:17.406Z",
+      "durationSec": 41.239,
+      "metrics": {
+        "reactions": 5,
+        "comments": 0,
+        "engagementRate": 2.69,
+        "views": 186,
+        "shares": 0,
+        "reach": 0
+      }
+    },
+    {
+      "id": "6ab9fe44753c479b4ff0cc75",
+      "channelService": "instagram",
+      "type": "reel",
+      "text": "Anxious AND tired? Check your coffee ☕\n\nTired → coffee → wired & anxious → crash → another coffee. I've broken this cycle before… and fallen straight ",
+      "sentAt": "2026-09-28T08:02:15.537Z",
+      "durationSec": 41.239,
+      "metrics": {
+        "reactions": 7,
+        "comments": 5,
+        "engagementRate": 3.31,
+        "views": 495,
+        "shares": 0,
+        "saves": 0,
+        "reach": 362
+      }
+    },
+    {
+      "id": "6ab9fe46d371a9a8b1e0de5f",
+      "channelService": "linkedin",
+      "type": "video",
+      "text": "Anxious AND tired? Check your coffee ☕\n\nTired → coffee → wired & anxious → crash → another coffee. I've broken this cycle before… and fallen straight ",
+      "sentAt": "2026-09-28T08:00:44.485Z",
+      "durationSec": 41.239,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "impressions": 2,
+        "reach": 2,
+        "views": 1
+      }
+    },
+    {
+      "id": "6ab9fe47877bfb1930528e90",
+      "channelService": "facebook",
+      "type": "video",
+      "text": "Anxious AND tired? Check your coffee ☕\n\nTired → coffee → wired & anxious → crash → another coffee. I've broken this cycle before… and fallen straight ",
+      "sentAt": "2026-09-28T08:00:41.250Z",
+      "durationSec": 41.239,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "impressions": 33,
+        "shares": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "id": "6ab9fe45123ffaff5ce7151d",
+      "channelService": "youtube",
+      "type": "video",
+      "text": "Anxious AND tired? Check your coffee ☕\n\nTired → coffee → wired & anxious → crash → another coffee. I've broken this cycle before… and fallen straight ",
+      "sentAt": "2026-09-28T08:00:37.798Z",
+      "durationSec": 41.239,
+      "metrics": {
+        "reactions": 1,
+        "comments": 0,
+        "engagementRate": 14.29,
+        "views": 7
+      }
+    },
     {
       "id": "6ab0dd739eb9285e3bb6bc9f",
       "channelService": "tiktok",
@@ -1807,22 +1936,6 @@
       }
     },
     {
-      "id": "6ab0e889f1a0ee482dc8a6ee",
-      "channelService": "instagram",
-      "type": "post",
-      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
-      "sentAt": "2026-09-21T08:03:56.000Z",
-      "metrics": {
-        "reactions": 15,
-        "comments": 4,
-        "engagementRate": 4.91,
-        "views": 677,
-        "shares": 0,
-        "saves": 0,
-        "reach": 407
-      }
-    },
-    {
       "id": "6ab0dd3f569dcac57ad0478c",
       "channelService": "tiktok",
       "type": "video",
@@ -1832,8 +1945,8 @@
       "metrics": {
         "reactions": 33,
         "comments": 1,
-        "engagementRate": 7.14,
-        "views": 476,
+        "engagementRate": 7.1,
+        "views": 479,
         "shares": 0,
         "reach": 431
       }
@@ -1851,7 +1964,7 @@
         "engagementRate": 9.22,
         "views": 694,
         "shares": 0,
-        "reach": 647
+        "reach": 650
       }
     },
     {
@@ -1954,63 +2067,6 @@
         "comments": 0,
         "engagementRate": 0,
         "views": 0
-      }
-    },
-    {
-      "id": "6ab0dd722dfd870cfa99dd52",
-      "channelService": "instagram",
-      "type": "reel",
-      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
-      "sentAt": "2026-09-21T08:00:06.361Z",
-      "durationSec": 34.033,
-      "metrics": null
-    },
-    {
-      "id": "6aa898c6f1955036560e4f94",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "12 weeks. That's it. That's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you ",
-      "sentAt": "2026-09-15T08:04:38.126Z",
-      "durationSec": 76.133,
-      "metrics": {
-        "reactions": 1,
-        "comments": 0,
-        "engagementRate": 0.43,
-        "views": 234,
-        "shares": 0,
-        "reach": 205
-      }
-    },
-    {
-      "id": "6aa898c5f1955036560e4f92",
-      "channelService": "linkedin",
-      "type": "video",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
-      "sentAt": "2026-09-15T08:02:13.468Z",
-      "durationSec": 76.133,
-      "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "impressions": 36,
-        "reach": 27,
-        "views": 20
-      }
-    },
-    {
-      "id": "6aa898c6f1955036560e4f95",
-      "channelService": "facebook",
-      "type": "video",
-      "text": "12 weeks. That's it.\n\nThat's the gap between right now and Christmas \u2014 and it's exactly how long it takes to actually become a different person if you",
-      "sentAt": "2026-09-15T08:02:04.365Z",
-      "durationSec": 76.133,
-      "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "engagementRate": 0,
-        "impressions": 10,
-        "shares": 0,
-        "clicks": 0
       }
     }
   ]
