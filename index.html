@@ -586,7 +586,7 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
       </div>
       <div class="table-scroll">
         <table>
-          <thead><tr><th>Item</th><th class="num">Full Cost</th><th class="num">Charged to 47 Society</th><th>Notes</th><th></th></tr></thead>
+          <thead><tr><th>Item</th><th class="num">Monthly Cost</th><th>Notes</th><th></th></tr></thead>
           <tbody id="expensesTableBody"></tbody>
           <tfoot><tr class="tfoot-row" id="expensesTotalRow"></tr></tfoot>
         </table>
@@ -598,9 +598,8 @@ td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;}
       <form id="expenseForm" class="form-grid">
         <input type="hidden" id="expenseId">
         <div class="field"><label>Item name</label><input type="text" id="expenseName" required placeholder="e.g. Go High Level"></div>
-        <div class="field"><label>Full Monthly Cost ($)</label><input type="number" step="0.01" min="0" id="expenseFull" required></div>
-        <div class="field"><label>Charged to 47 Society ($)</label><input type="number" step="0.01" min="0" id="expenseCharged" required></div>
-        <div class="field"><label>Notes</label><input type="text" id="expenseNotes" placeholder="e.g. split with Loose Human"></div>
+        <div class="field"><label>Monthly Cost ($)</label><input type="number" step="0.01" min="0" id="expenseAmount" required></div>
+        <div class="field"><label>Notes</label><input type="text" id="expenseNotes" placeholder="optional"></div>
         <div class="field"><button type="submit" class="btn btn-primary" style="width:100%;">Save expense</button></div>
       </form>
     </div>
@@ -739,14 +738,14 @@ function defaultState(){
       { id: 'c9', name: 'Maureen Pound',      type: 'In-Person', serviceType: 'Personal Training', amount: 360, method: 'Bank Transfer', active: true }
     ],
     expenses: [
-      { id: 'e1', name: 'Go High Level', full: 140, charged: 70, notes: '$70 of $140 is claimable through Loose Human' },
-      { id: 'e2', name: 'Notion',        full: 40,  charged: 40, notes: 'Not currently in use' },
-      { id: 'e3', name: 'Trainerize',    full: 35,  charged: 35, notes: '' },
-      { id: 'e4', name: 'Claude AI',     full: 30,  charged: 30, notes: '' },
-      { id: 'e5', name: 'Capcut',        full: 30,  charged: 30, notes: '' },
-      { id: 'e6', name: 'ChatGPT',       full: 30,  charged: 30, notes: '' },
-      { id: 'e7', name: 'Google',        full: 26,  charged: 26, notes: '' },
-      { id: 'e8', name: 'Canva',         full: 20,  charged: 20, notes: '' }
+      { id: 'e1', name: 'Go High Level', amount: 140, notes: '' },
+      { id: 'e2', name: 'Notion',        amount: 40,  notes: 'Not currently in use' },
+      { id: 'e3', name: 'Trainerize',    amount: 35,  notes: '' },
+      { id: 'e4', name: 'Claude AI',     amount: 30,  notes: '' },
+      { id: 'e5', name: 'Capcut',        amount: 30,  notes: '' },
+      { id: 'e6', name: 'ChatGPT',       amount: 30,  notes: '' },
+      { id: 'e7', name: 'Google',        amount: 26,  notes: '' },
+      { id: 'e8', name: 'Canva',         amount: 20,  notes: '' }
     ],
     payments: [],
     casualClients: [],
@@ -784,6 +783,11 @@ function loadState(){
       if(!p.serviceType) p.serviceType = p.category === 'Online' ? 'Online Coaching' : 'Personal Training';
       delete p.rent;
       delete p.sessionLength;
+    });
+    parsed.expenses.forEach(function(e){
+      if(e.amount === undefined) e.amount = (e.charged !== undefined ? e.charged : e.full) || 0;
+      delete e.full;
+      delete e.charged;
     });
     return parsed;
   }catch(e){
@@ -889,7 +893,7 @@ function escapeHtml(s){
    COMPUTED: expenses total, month aggregates
    ============================================================ */
 function totalExpenses(){
-  var subs = state.expenses.reduce(function(sum, e){ return sum + (Number(e.charged)||0); }, 0);
+  var subs = state.expenses.reduce(function(sum, e){ return sum + (Number(e.amount)||0); }, 0);
   return { subs: subs, total: subs };
 }
 
@@ -1491,23 +1495,21 @@ document.getElementById('paymentsMonthFilter').addEventListener('change', render
 function renderExpenses(){
   var tbody = document.getElementById('expensesTableBody');
   tbody.innerHTML = '';
-  var totalFull = 0, totalCharged = 0;
-  state.expenses.forEach(function(ex){
-    totalFull += Number(ex.full)||0;
-    totalCharged += Number(ex.charged)||0;
+  var totalAmount = 0;
+  var sorted = state.expenses.slice().sort(function(a,b){ return (Number(b.amount)||0) - (Number(a.amount)||0); });
+  sorted.forEach(function(ex){
+    totalAmount += Number(ex.amount)||0;
     var tr = document.createElement('tr');
     tr.innerHTML =
       '<td>' + escapeHtml(ex.name) + '</td>' +
-      '<td class="num">' + money(ex.full) + '</td>' +
-      '<td class="num">' + money(ex.charged) + '</td>' +
+      '<td class="num">' + money(ex.amount) + '</td>' +
       '<td class="muted">' + escapeHtml(ex.notes || '') + '</td>' +
       '<td><button class="icon-btn" data-edit-expense="' + ex.id + '">Edit</button>' +
       '<button class="icon-btn del" data-del-expense="' + ex.id + '">Delete</button></td>';
     tbody.appendChild(tr);
   });
   document.getElementById('expensesTotalRow').innerHTML =
-    '<td>Total</td><td class="num">' + money(totalFull) + '</td>' +
-    '<td class="num">' + money(totalCharged) + '</td><td></td><td></td>';
+    '<td>Total</td><td class="num">' + money(totalAmount) + '</td><td></td><td></td>';
 
   tbody.querySelectorAll('[data-edit-expense]').forEach(function(b){
     b.addEventListener('click', function(){ editExpense(b.dataset.editExpense); });
@@ -1611,8 +1613,7 @@ function editExpense(id){
   if(!ex) return;
   document.getElementById('expenseId').value = ex.id;
   document.getElementById('expenseName').value = ex.name;
-  document.getElementById('expenseFull').value = ex.full;
-  document.getElementById('expenseCharged').value = ex.charged;
+  document.getElementById('expenseAmount').value = ex.amount;
   document.getElementById('expenseNotes').value = ex.notes || '';
   document.querySelector('.tab-btn[data-tab="expenses"]').click();
   document.getElementById('expenseForm').scrollIntoView({behavior:'smooth', block:'center'});
@@ -1633,8 +1634,7 @@ document.getElementById('expenseForm').addEventListener('submit', function(e){
   var id = document.getElementById('expenseId').value;
   var data = {
     name: document.getElementById('expenseName').value.trim(),
-    full: parseFloat(document.getElementById('expenseFull').value) || 0,
-    charged: parseFloat(document.getElementById('expenseCharged').value) || 0,
+    amount: parseFloat(document.getElementById('expenseAmount').value) || 0,
     notes: document.getElementById('expenseNotes').value.trim()
   };
   if(!data.name) return;
