@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-08-25T02:03:04Z",
+  "lastUpdated": "2026-09-28T21:15:23Z",
   "channels": [
     {
       "id": "6a8bb274ccaf649a6704aa8f",
@@ -78,16 +78,1854 @@
           "clicks": 0
         }
       }
+    },
+    {
+      "date": "2026-08-26",
+      "channels": {
+        "instagram": {
+          "postCount": 36,
+          "views": 9801,
+          "reach": 6684,
+          "reactions": 156,
+          "comments": 21,
+          "engagementRate": 4.31,
+          "shares": 10,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 1,
+          "views": 664,
+          "reach": 0,
+          "reactions": 12,
+          "comments": 0,
+          "engagementRate": 1.96,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 2,
+          "views": 0,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 3,
+          "views": 12,
+          "reach": 177,
+          "reactions": 14,
+          "comments": 3,
+          "engagementRate": 6.07,
+          "shares": 0,
+          "impressions": 280
+        },
+        "facebook": {
+          "postCount": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0.71,
+          "shares": 0,
+          "impressions": 141,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-08-27",
+      "channels": {
+        "instagram": {
+          "postCount": 40,
+          "views": 10612,
+          "reach": 7251,
+          "reactions": 169,
+          "comments": 22,
+          "engagementRate": 4.41,
+          "shares": 11,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 2,
+          "views": 784,
+          "reach": 0,
+          "reactions": 17,
+          "comments": 0,
+          "engagementRate": 2.3,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 2,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 21,
+          "reach": 205,
+          "reactions": 16,
+          "comments": 4,
+          "engagementRate": 6.13,
+          "shares": 0,
+          "impressions": 326
+        },
+        "facebook": {
+          "postCount": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0.63,
+          "shares": 0,
+          "impressions": 159,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-08-28",
+      "channels": {
+        "instagram": {
+          "postCount": 46,
+          "views": 12093,
+          "reach": 8266,
+          "reactions": 173,
+          "comments": 22,
+          "engagementRate": 4.17,
+          "shares": 11,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 2,
+          "views": 798,
+          "reach": 683,
+          "reactions": 18,
+          "comments": 0,
+          "engagementRate": 2.38,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 2,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 33,
+          "reach": 237,
+          "reactions": 21,
+          "comments": 4,
+          "engagementRate": 6.65,
+          "shares": 0,
+          "impressions": 376
+        },
+        "facebook": {
+          "postCount": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0.62,
+          "shares": 0,
+          "impressions": 160,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-08-29",
+      "channels": {
+        "instagram": {
+          "postCount": 53,
+          "views": 13219,
+          "reach": 9101,
+          "reactions": 173,
+          "comments": 22,
+          "engagementRate": 3.88,
+          "shares": 11,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 2,
+          "views": 799,
+          "reach": 713,
+          "reactions": 18,
+          "comments": 0,
+          "engagementRate": 2.38,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 2,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 35,
+          "reach": 249,
+          "reactions": 21,
+          "comments": 4,
+          "engagementRate": 6.33,
+          "shares": 0,
+          "impressions": 395
+        },
+        "facebook": {
+          "postCount": 3,
+          "reactions": 1,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "shares": 0,
+          "impressions": 163,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-08-30",
+      "channels": {
+        "instagram": {
+          "postCount": 55,
+          "views": 14355,
+          "reach": 9812,
+          "reactions": 173,
+          "comments": 23,
+          "engagementRate": 3.74,
+          "shares": 11,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 2,
+          "views": 803,
+          "reach": 724,
+          "reactions": 18,
+          "comments": 0,
+          "engagementRate": 2.37,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 2,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 38,
+          "reach": 264,
+          "reactions": 21,
+          "comments": 4,
+          "engagementRate": 6.01,
+          "shares": 0,
+          "impressions": 416
+        },
+        "facebook": {
+          "postCount": 3,
+          "reactions": 1,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "shares": 0,
+          "impressions": 163,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-08-31",
+      "channels": {
+        "instagram": {
+          "postCount": 61,
+          "views": 15255,
+          "reach": 10529,
+          "reactions": 173,
+          "comments": 23,
+          "engagementRate": 3.63,
+          "shares": 11,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 2,
+          "views": 807,
+          "reach": 727,
+          "reactions": 18,
+          "comments": 0,
+          "engagementRate": 2.35,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 2,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 39,
+          "reach": 269,
+          "reactions": 21,
+          "comments": 4,
+          "engagementRate": 5.88,
+          "shares": 0,
+          "impressions": 425
+        },
+        "facebook": {
+          "postCount": 3,
+          "reactions": 1,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "shares": 0,
+          "impressions": 163,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-09-01",
+      "channels": {
+        "instagram": {
+          "postCount": 77,
+          "views": 16772,
+          "reach": 11715,
+          "reactions": 175,
+          "comments": 23,
+          "engagementRate": 3.41,
+          "shares": 11,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 2,
+          "views": 810,
+          "reach": 732,
+          "reactions": 18,
+          "comments": 0,
+          "engagementRate": 2.35,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 2,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 41,
+          "reach": 272,
+          "reactions": 21,
+          "comments": 4,
+          "engagementRate": 5.8,
+          "shares": 0,
+          "impressions": 431
+        },
+        "facebook": {
+          "postCount": 3,
+          "reactions": 1,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "shares": 0,
+          "impressions": 163,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-09-02",
+      "channels": {
+        "instagram": {
+          "postCount": 79,
+          "reactions": 180,
+          "comments": 24,
+          "engagementRate": 3.29,
+          "impressions": 0,
+          "views": 17660,
+          "shares": 11,
+          "saves": 4,
+          "reach": 12355
+        },
+        "tiktok": {
+          "postCount": 3,
+          "reactions": 19,
+          "comments": 1,
+          "engagementRate": 2.17,
+          "views": 967,
+          "shares": 1,
+          "reach": 735
+        },
+        "youtube": {
+          "postCount": 2,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 3
+        },
+        "linkedin": {
+          "postCount": 5,
+          "reactions": 29,
+          "comments": 5,
+          "engagementRate": 7.01,
+          "impressions": 485,
+          "shares": 0,
+          "reach": 308,
+          "views": 55
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.54,
+          "impressions": 195,
+          "shares": 0,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-09-03",
+      "channels": {
+        "instagram": {
+          "postCount": 80,
+          "views": 17853,
+          "reach": 12495,
+          "reactions": 180,
+          "comments": 24,
+          "engagementRate": 3.28,
+          "shares": 11,
+          "saves": 4,
+          "impressions": 0
+        },
+        "tiktok": {
+          "postCount": 3,
+          "views": 1109,
+          "reach": 735,
+          "reactions": 19,
+          "comments": 1,
+          "engagementRate": 1.89,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 3,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 5,
+          "views": 69,
+          "reach": 341,
+          "reactions": 17,
+          "comments": 5,
+          "engagementRate": 4.21,
+          "shares": 0,
+          "impressions": 523
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.52,
+          "impressions": 198,
+          "shares": 0,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-09-04",
+      "channels": {
+        "instagram": {
+          "postCount": 81,
+          "views": 16763,
+          "reach": 11945,
+          "reactions": 144,
+          "comments": 24,
+          "engagementRate": 3.14,
+          "shares": 6,
+          "saves": 3
+        },
+        "tiktok": {
+          "postCount": 3,
+          "views": 1111,
+          "reach": 940,
+          "reactions": 19,
+          "comments": 1,
+          "engagementRate": 1.89,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 3,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 5,
+          "views": 75,
+          "reach": 356,
+          "reactions": 17,
+          "comments": 5,
+          "engagementRate": 4.06,
+          "shares": 0,
+          "impressions": 542
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.51,
+          "impressions": 199,
+          "shares": 0,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-09-05",
+      "channels": {
+        "instagram": {
+          "postCount": 83,
+          "views": 16987,
+          "reach": 12143,
+          "reactions": 145,
+          "comments": 24,
+          "engagementRate": 3.13,
+          "shares": 6,
+          "saves": 3
+        },
+        "tiktok": {
+          "postCount": 3,
+          "views": 1118,
+          "reach": 1013,
+          "reactions": 19,
+          "comments": 1,
+          "engagementRate": 1.88,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 3,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 5,
+          "views": 83,
+          "reach": 375,
+          "reactions": 17,
+          "comments": 4,
+          "engagementRate": 3.74,
+          "shares": 0,
+          "impressions": 562
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.49,
+          "impressions": 201,
+          "shares": 0,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-09-06",
+      "channels": {
+        "instagram": {
+          "postCount": 83,
+          "views": 17054,
+          "reach": 12186,
+          "reactions": 145,
+          "comments": 24,
+          "engagementRate": 3.12,
+          "shares": 6,
+          "saves": 3
+        },
+        "tiktok": {
+          "postCount": 3,
+          "views": 1123,
+          "reach": 1016,
+          "reactions": 19,
+          "comments": 1,
+          "engagementRate": 1.87,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 3,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 5,
+          "views": 86,
+          "reach": 385,
+          "reactions": 17,
+          "comments": 4,
+          "engagementRate": 3.66,
+          "shares": 0,
+          "impressions": 574
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.49,
+          "impressions": 201,
+          "shares": 0,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-09-07",
+      "channels": {
+        "instagram": {
+          "postCount": 84,
+          "views": 17189,
+          "reach": 12296,
+          "reactions": 145,
+          "comments": 24,
+          "engagementRate": 3.11,
+          "shares": 6,
+          "saves": 3
+        },
+        "tiktok": {
+          "postCount": 3,
+          "views": 1126,
+          "reach": 1017,
+          "reactions": 19,
+          "comments": 1,
+          "engagementRate": 1.87,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 3,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 5,
+          "views": 94,
+          "reach": 398,
+          "reactions": 17,
+          "comments": 4,
+          "engagementRate": 3.54,
+          "shares": 0,
+          "impressions": 593
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.49,
+          "impressions": 202,
+          "shares": 0,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-09-08",
+      "channels": {
+        "instagram": {
+          "postCount": 87,
+          "views": 17916,
+          "reach": 12713,
+          "reactions": 159,
+          "comments": 25,
+          "engagementRate": 3.17,
+          "shares": 8,
+          "saves": 3
+        },
+        "tiktok": {
+          "postCount": 4,
+          "views": 1209,
+          "reach": 1019,
+          "reactions": 21,
+          "comments": 1,
+          "engagementRate": 1.9,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 4,
+          "views": 3,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 6,
+          "views": 107,
+          "reach": 421,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.69,
+          "shares": 0,
+          "impressions": 623
+        },
+        "facebook": {
+          "postCount": 5,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.33,
+          "impressions": 226,
+          "shares": 0,
+          "clicks": 1
+        }
+      }
+    },
+    {
+      "date": "2026-09-09",
+      "channels": {
+        "instagram": {
+          "postCount": 91,
+          "views": 19609,
+          "reach": 14202,
+          "reactions": 182,
+          "comments": 28,
+          "engagementRate": 3.06,
+          "shares": 9,
+          "saves": 3
+        },
+        "tiktok": {
+          "postCount": 5,
+          "views": 1459,
+          "reach": 1021,
+          "reactions": 24,
+          "comments": 1,
+          "engagementRate": 1.78,
+          "shares": 1
+        },
+        "youtube": {
+          "postCount": 5,
+          "views": 5,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 7,
+          "views": 125,
+          "reach": 445,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.46,
+          "shares": 0,
+          "impressions": 664
+        },
+        "facebook": {
+          "postCount": 6,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.1,
+          "impressions": 455,
+          "shares": 0,
+          "clicks": 2
+        }
+      }
+    },
+    {
+      "date": "2026-09-10",
+      "channels": {
+        "instagram": {
+          "postCount": 91,
+          "views": 19268,
+          "reach": 14025,
+          "reactions": 159,
+          "comments": 33,
+          "engagementRate": 3.07,
+          "shares": 6,
+          "saves": 2
+        },
+        "tiktok": {
+          "postCount": 5,
+          "views": 2145,
+          "reach": 1136,
+          "reactions": 61,
+          "comments": 3,
+          "engagementRate": 3.12,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 5,
+          "views": 9,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 7,
+          "views": 131,
+          "reach": 456,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.4,
+          "shares": 0,
+          "impressions": 676
+        },
+        "facebook": {
+          "postCount": 6,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.27,
+          "impressions": 471,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-11",
+      "channels": {
+        "instagram": {
+          "postCount": 91,
+          "views": 18802,
+          "reach": 13780,
+          "reactions": 141,
+          "comments": 31,
+          "engagementRate": 3,
+          "shares": 6,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 5,
+          "views": 2280,
+          "reach": 1585,
+          "reactions": 63,
+          "comments": 7,
+          "engagementRate": 3.2,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 5,
+          "views": 19,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 7,
+          "views": 131,
+          "reach": 463,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.35,
+          "shares": 0,
+          "impressions": 686
+        },
+        "facebook": {
+          "postCount": 6,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.27,
+          "impressions": 471,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-12",
+      "channels": {
+        "instagram": {
+          "postCount": 96,
+          "views": 19617,
+          "reach": 14437,
+          "reactions": 141,
+          "comments": 31,
+          "engagementRate": 2.94,
+          "shares": 6,
+          "saves": 1
+        },
+        "tiktok": {
+          "postCount": 5,
+          "views": 2402,
+          "reach": 1585,
+          "reactions": 71,
+          "comments": 7,
+          "engagementRate": 3.37,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 5,
+          "views": 24,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 7,
+          "views": 132,
+          "reach": 467,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.33,
+          "shares": 0,
+          "impressions": 691
+        },
+        "facebook": {
+          "postCount": 6,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.27,
+          "impressions": 472,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-13",
+      "channels": {
+        "instagram": {
+          "postCount": 96,
+          "views": 19751,
+          "reach": 14538,
+          "reactions": 141,
+          "comments": 31,
+          "engagementRate": 2.93,
+          "shares": 6,
+          "saves": 1
+        },
+        "tiktok": {
+          "postCount": 5,
+          "views": 2456,
+          "reach": 2078,
+          "reactions": 74,
+          "comments": 7,
+          "engagementRate": 3.42,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 5,
+          "views": 24,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 7,
+          "views": 133,
+          "reach": 470,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.31,
+          "shares": 0,
+          "impressions": 694
+        },
+        "facebook": {
+          "postCount": 6,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.27,
+          "impressions": 472,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-14",
+      "channels": {
+        "instagram": {
+          "postCount": 98,
+          "views": 19697,
+          "reach": 14510,
+          "reactions": 136,
+          "comments": 29,
+          "engagementRate": 2.96,
+          "shares": 4,
+          "saves": 1
+        },
+        "tiktok": {
+          "postCount": 5,
+          "views": 2461,
+          "reach": 2224,
+          "reactions": 74,
+          "comments": 7,
+          "engagementRate": 3.41,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 5,
+          "views": 24,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 7,
+          "views": 133,
+          "reach": 470,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.31,
+          "shares": 0,
+          "impressions": 694
+        },
+        "facebook": {
+          "postCount": 6,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.27,
+          "impressions": 472,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-15",
+      "channels": {
+        "instagram": {
+          "postCount": 99,
+          "views": 20955,
+          "reach": 15415,
+          "reactions": 155,
+          "comments": 29,
+          "engagementRate": 2.95,
+          "shares": 6,
+          "saves": 1
+        },
+        "tiktok": {
+          "postCount": 5,
+          "views": 2466,
+          "reach": 2237,
+          "reactions": 75,
+          "comments": 7,
+          "engagementRate": 3.45,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 5,
+          "views": 24,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 7,
+          "views": 135,
+          "reach": 474,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.29,
+          "shares": 0,
+          "impressions": 699
+        },
+        "facebook": {
+          "postCount": 6,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.27,
+          "impressions": 472,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-16",
+      "channels": {
+        "instagram": {
+          "postCount": 100,
+          "views": 21103,
+          "reach": 15515,
+          "reactions": 159,
+          "comments": 29,
+          "engagementRate": 2.95,
+          "shares": 6,
+          "saves": 1
+        },
+        "tiktok": {
+          "postCount": 5,
+          "views": 2470,
+          "reach": 2243,
+          "reactions": 75,
+          "comments": 7,
+          "engagementRate": 3.44,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 6,
+          "views": 24,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 8,
+          "views": 137,
+          "reach": 481,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.28,
+          "shares": 0,
+          "impressions": 702
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.27,
+          "impressions": 472,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-17",
+      "channels": {
+        "instagram": {
+          "postCount": 101,
+          "views": 20955,
+          "reach": 15519,
+          "reactions": 146,
+          "comments": 27,
+          "engagementRate": 2.91,
+          "shares": 6,
+          "saves": 1
+        },
+        "tiktok": {
+          "postCount": 6,
+          "views": 2670,
+          "reach": 2247,
+          "reactions": 77,
+          "comments": 7,
+          "engagementRate": 3.26,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 6,
+          "views": 28,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 8,
+          "views": 141,
+          "reach": 488,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.18,
+          "shares": 0,
+          "impressions": 723
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.25,
+          "shares": 0,
+          "impressions": 481,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-18",
+      "channels": {
+        "instagram": {
+          "postCount": 102,
+          "views": 20732,
+          "reach": 15373,
+          "reactions": 133,
+          "comments": 23,
+          "engagementRate": 2.96,
+          "shares": 6,
+          "saves": 1
+        },
+        "tiktok": {
+          "postCount": 6,
+          "views": 2694,
+          "reach": 2390,
+          "reactions": 77,
+          "comments": 7,
+          "engagementRate": 3.23,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 6,
+          "views": 28,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 8,
+          "views": 143,
+          "reach": 490,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.17,
+          "shares": 0,
+          "impressions": 725
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.24,
+          "shares": 0,
+          "impressions": 482,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-19",
+      "channels": {
+        "instagram": {
+          "postCount": 109,
+          "views": 21501,
+          "reach": 16236,
+          "reactions": 118,
+          "comments": 17,
+          "engagementRate": 2.86,
+          "shares": 6,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 6,
+          "views": 2697,
+          "reach": 2445,
+          "reactions": 77,
+          "comments": 7,
+          "engagementRate": 3.23,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 6,
+          "views": 28,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 8,
+          "views": 144,
+          "reach": 492,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.16,
+          "shares": 0,
+          "impressions": 727
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.24,
+          "shares": 0,
+          "impressions": 482,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-20",
+      "channels": {
+        "instagram": {
+          "postCount": 115,
+          "views": 22917,
+          "reach": 17313,
+          "reactions": 118,
+          "comments": 17,
+          "engagementRate": 2.84,
+          "shares": 6,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 6,
+          "reactions": 77,
+          "comments": 7,
+          "engagementRate": 3.21,
+          "views": 2708,
+          "shares": 3,
+          "reach": 2446
+        },
+        "youtube": {
+          "postCount": 6,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 28
+        },
+        "linkedin": {
+          "postCount": 8,
+          "reactions": 18,
+          "comments": 5,
+          "engagementRate": 3.14,
+          "impressions": 732,
+          "shares": 0,
+          "reach": 497,
+          "views": 147
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.24,
+          "impressions": 482,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-21",
+      "channels": {
+        "instagram": {
+          "postCount": 118,
+          "views": 23652,
+          "reach": 17847,
+          "reactions": 118,
+          "comments": 17,
+          "engagementRate": 2.84,
+          "shares": 6,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 6,
+          "views": 2724,
+          "reach": 2450,
+          "reactions": 77,
+          "comments": 7,
+          "engagementRate": 3.19,
+          "shares": 3
+        },
+        "youtube": {
+          "postCount": 6,
+          "views": 28,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 7,
+          "views": 148,
+          "reach": 463,
+          "reactions": 17,
+          "comments": 5,
+          "engagementRate": 3.28,
+          "shares": 0,
+          "impressions": 671
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "shares": 0,
+          "impressions": 486,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-22",
+      "channels": {
+        "instagram": {
+          "postCount": 124,
+          "reactions": 132,
+          "comments": 21,
+          "engagementRate": 2.89,
+          "views": 24946,
+          "shares": 6,
+          "saves": 0,
+          "reach": 18762
+        },
+        "tiktok": {
+          "postCount": 9,
+          "reactions": 83,
+          "comments": 7,
+          "engagementRate": 3.29,
+          "views": 2824,
+          "shares": 3,
+          "reach": 2473
+        },
+        "youtube": {
+          "postCount": 6,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 28
+        },
+        "linkedin": {
+          "postCount": 6,
+          "reactions": 9,
+          "comments": 2,
+          "engagementRate": 3.15,
+          "impressions": 349,
+          "shares": 0,
+          "reach": 250,
+          "views": 152
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "impressions": 486,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-23",
+      "channels": {
+        "instagram": {
+          "postCount": 120,
+          "views": 24457,
+          "reach": 18333,
+          "reactions": 134,
+          "comments": 21,
+          "engagementRate": 2.84,
+          "shares": 6,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 9,
+          "reactions": 134,
+          "comments": 9,
+          "engagementRate": 4.02,
+          "views": 3632,
+          "shares": 3,
+          "reach": 2473
+        },
+        "youtube": {
+          "postCount": 11,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 29
+        },
+        "linkedin": {
+          "postCount": 6,
+          "reactions": 9,
+          "comments": 2,
+          "engagementRate": 3.15,
+          "impressions": 349,
+          "shares": 0,
+          "reach": 250,
+          "views": 146
+        },
+        "facebook": {
+          "postCount": 7,
+          "reactions": 3,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "impressions": 486,
+          "shares": 0,
+          "clicks": 3
+        }
+      }
+    },
+    {
+      "date": "2026-09-24",
+      "channels": {
+        "instagram": {
+          "postCount": 109,
+          "views": 23224,
+          "reach": 17327,
+          "reactions": 118,
+          "comments": 16,
+          "engagementRate": 2.78,
+          "shares": 6,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 8,
+          "views": 3583,
+          "reach": 1824,
+          "reactions": 162,
+          "comments": 10,
+          "engagementRate": 4.86,
+          "shares": 2
+        },
+        "youtube": {
+          "postCount": 10,
+          "views": 26,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 5,
+          "views": 122,
+          "reach": 206,
+          "reactions": 5,
+          "comments": 2,
+          "engagementRate": 2.49,
+          "shares": 0,
+          "impressions": 281
+        },
+        "facebook": {
+          "postCount": 5,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.23,
+          "shares": 0,
+          "impressions": 325,
+          "clicks": 2
+        }
+      }
+    },
+    {
+      "date": "2026-09-25",
+      "channels": {
+        "instagram": {
+          "postCount": 93,
+          "views": 20395,
+          "reach": 15405,
+          "reactions": 104,
+          "comments": 14,
+          "engagementRate": 2.6,
+          "shares": 5,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 7,
+          "views": 3483,
+          "reach": 2556,
+          "reactions": 156,
+          "comments": 10,
+          "engagementRate": 4.82,
+          "shares": 2
+        },
+        "youtube": {
+          "postCount": 9,
+          "views": 27,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 105,
+          "reach": 182,
+          "reactions": 3,
+          "comments": 1,
+          "engagementRate": 1.69,
+          "shares": 0,
+          "impressions": 237
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.28,
+          "shares": 0,
+          "impressions": 313,
+          "clicks": 2
+        }
+      }
+    },
+    {
+      "date": "2026-09-26",
+      "channels": {
+        "instagram": {
+          "postCount": 95,
+          "views": 20781,
+          "reach": 15724,
+          "reactions": 103,
+          "comments": 14,
+          "engagementRate": 2.62,
+          "shares": 5,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 7,
+          "views": 3504,
+          "reach": 3220,
+          "reactions": 158,
+          "comments": 10,
+          "engagementRate": 4.85,
+          "shares": 2
+        },
+        "youtube": {
+          "postCount": 9,
+          "views": 27,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 105,
+          "reach": 182,
+          "reactions": 3,
+          "comments": 1,
+          "engagementRate": 1.69,
+          "shares": 0,
+          "impressions": 237
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.28,
+          "shares": 0,
+          "impressions": 313,
+          "clicks": 2
+        }
+      }
+    },
+    {
+      "date": "2026-09-27",
+      "channels": {
+        "instagram": {
+          "postCount": 89,
+          "views": 19602,
+          "reach": 14850,
+          "reactions": 102,
+          "comments": 14,
+          "engagementRate": 2.63,
+          "shares": 5,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 7,
+          "views": 3513,
+          "reach": 3220,
+          "reactions": 158,
+          "comments": 10,
+          "engagementRate": 4.84,
+          "shares": 2
+        },
+        "youtube": {
+          "postCount": 9,
+          "views": 27,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0
+        },
+        "linkedin": {
+          "postCount": 4,
+          "views": 106,
+          "reach": 183,
+          "reactions": 3,
+          "comments": 1,
+          "engagementRate": 1.68,
+          "shares": 0,
+          "impressions": 238
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.28,
+          "shares": 0,
+          "impressions": 313,
+          "clicks": 2
+        }
+      }
+    },
+    {
+      "date": "2026-09-28",
+      "channels": {
+        "instagram": {
+          "postCount": 84,
+          "views": 18608,
+          "reach": 14098,
+          "reactions": 102,
+          "comments": 14,
+          "engagementRate": 2.75,
+          "shares": 5,
+          "saves": 0
+        },
+        "tiktok": {
+          "postCount": 7,
+          "views": 3517,
+          "reach": 3230,
+          "reactions": 158,
+          "comments": 10,
+          "engagementRate": 4.83,
+          "shares": 2
+        },
+        "youtube": {
+          "postCount": 9,
+          "reactions": 0,
+          "comments": 0,
+          "engagementRate": 0,
+          "views": 27
+        },
+        "linkedin": {
+          "postCount": 4,
+          "reactions": 3,
+          "comments": 1,
+          "engagementRate": 1.68,
+          "impressions": 238,
+          "shares": 0,
+          "reach": 183,
+          "views": 106
+        },
+        "facebook": {
+          "postCount": 4,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.28,
+          "impressions": 313,
+          "shares": 0,
+          "clicks": 2
+        }
+      }
+    },
+    {
+      "date": "2026-09-29",
+      "channels": {
+        "instagram": {
+          "postCount": 88,
+          "reactions": 110,
+          "comments": 19,
+          "engagementRate": 2.83,
+          "views": 19169,
+          "shares": 5,
+          "saves": 0,
+          "reach": 14542
+        },
+        "tiktok": {
+          "postCount": 8,
+          "reactions": 163,
+          "comments": 10,
+          "engagementRate": 4.72,
+          "views": 3706,
+          "shares": 2,
+          "reach": 3234
+        },
+        "youtube": {
+          "postCount": 10,
+          "reactions": 1,
+          "comments": 0,
+          "engagementRate": 2.94,
+          "views": 34
+        },
+        "linkedin": {
+          "postCount": 5,
+          "reactions": 3,
+          "comments": 1,
+          "engagementRate": 1.67,
+          "impressions": 240,
+          "shares": 0,
+          "reach": 185,
+          "views": 107
+        },
+        "facebook": {
+          "postCount": 5,
+          "reactions": 2,
+          "comments": 0,
+          "engagementRate": 1.16,
+          "impressions": 346,
+          "shares": 0,
+          "clicks": 2
+        }
+      }
     }
   ],
   "posts": [
     {
-      "id": "6a8bf4e3858f542f7fdafd13",
+      "id": "6ab9fe442d11f7eef2bedda0",
       "channelService": "tiktok",
       "type": "video",
-      "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
-      "sentAt": "2026-08-24T08:33:58.873Z",
-      "durationSec": 102.5,
+      "text": "Anxious AND tired? Check your coffee ☕\n\nTired → coffee → wired & anxious → crash → another coffee. I've broken this cycle before… and fallen straight ",
+      "sentAt": "2026-09-28T08:02:17.406Z",
+      "durationSec": 41.239,
+      "metrics": {
+        "reactions": 5,
+        "comments": 0,
+        "engagementRate": 2.69,
+        "views": 186,
+        "shares": 0,
+        "reach": 0
+      }
+    },
+    {
+      "id": "6ab9fe44753c479b4ff0cc75",
+      "channelService": "instagram",
+      "type": "reel",
+      "text": "Anxious AND tired? Check your coffee ☕\n\nTired → coffee → wired & anxious → crash → another coffee. I've broken this cycle before… and fallen straight ",
+      "sentAt": "2026-09-28T08:02:15.537Z",
+      "durationSec": 41.239,
+      "metrics": {
+        "reactions": 7,
+        "comments": 5,
+        "engagementRate": 3.31,
+        "views": 495,
+        "shares": 0,
+        "saves": 0,
+        "reach": 362
+      }
+    },
+    {
+      "id": "6ab9fe46d371a9a8b1e0de5f",
+      "channelService": "linkedin",
+      "type": "video",
+      "text": "Anxious AND tired? Check your coffee ☕\n\nTired → coffee → wired & anxious → crash → another coffee. I've broken this cycle before… and fallen straight ",
+      "sentAt": "2026-09-28T08:00:44.485Z",
+      "durationSec": 41.239,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "impressions": 2,
+        "reach": 2,
+        "views": 1
+      }
+    },
+    {
+      "id": "6ab9fe47877bfb1930528e90",
+      "channelService": "facebook",
+      "type": "video",
+      "text": "Anxious AND tired? Check your coffee ☕\n\nTired → coffee → wired & anxious → crash → another coffee. I've broken this cycle before… and fallen straight ",
+      "sentAt": "2026-09-28T08:00:41.250Z",
+      "durationSec": 41.239,
+      "metrics": {
+        "reactions": 0,
+        "comments": 0,
+        "engagementRate": 0,
+        "impressions": 33,
+        "shares": 0,
+        "clicks": 0
+      }
+    },
+    {
+      "id": "6ab9fe45123ffaff5ce7151d",
+      "channelService": "youtube",
+      "type": "video",
+      "text": "Anxious AND tired? Check your coffee ☕\n\nTired → coffee → wired & anxious → crash → another coffee. I've broken this cycle before… and fallen straight ",
+      "sentAt": "2026-09-28T08:00:37.798Z",
+      "durationSec": 41.239,
+      "metrics": {
+        "reactions": 1,
+        "comments": 0,
+        "engagementRate": 14.29,
+        "views": 7
+      }
+    },
+    {
+      "id": "6ab0dd739eb9285e3bb6bc9f",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:19:56.867Z",
+      "durationSec": 34.033,
       "metrics": {
         "reactions": 0,
         "comments": 0,
@@ -98,217 +1936,137 @@
       }
     },
     {
-      "id": "6a8bf4e3858f542f7fdafd11",
-      "channelService": "instagram",
-      "type": "reel",
-      "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
-      "sentAt": "2026-08-24T08:33:30.234Z",
-      "durationSec": 102.5,
+      "id": "6ab0dd3f569dcac57ad0478c",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:01:56.059Z",
+      "durationSec": 34.033,
       "metrics": {
-        "reactions": 13,
-        "comments": 5,
-        "engagementRate": 9.23,
-        "views": 285,
+        "reactions": 33,
+        "comments": 1,
+        "engagementRate": 7.1,
+        "views": 479,
         "shares": 0,
-        "saves": 0,
-        "reach": 195
+        "reach": 431
       }
     },
     {
-      "id": "6a8bf4e3858f542f7fdafd12",
-      "channelService": "linkedin",
+      "id": "6ab0dd27fa03aef9cecaa1c7",
+      "channelService": "tiktok",
       "type": "video",
-      "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
-      "sentAt": "2026-08-24T08:30:32.401Z",
-      "durationSec": 102.5,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:01:52.599Z",
+      "durationSec": 34.033,
       "metrics": {
-        "reactions": 0,
-        "comments": 0
+        "reactions": 62,
+        "comments": 2,
+        "engagementRate": 9.22,
+        "views": 694,
+        "shares": 0,
+        "reach": 650
       }
     },
     {
-      "id": "6a8bf4e3858f542f7fdafd10",
-      "channelService": "facebook",
+      "id": "6ab0dcfb9eb9285e3bb6a2e2",
+      "channelService": "tiktok",
       "type": "video",
-      "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
-      "sentAt": "2026-08-24T08:30:26.695Z",
-      "durationSec": 102.5,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:01:02.387Z",
+      "durationSec": 34.033,
       "metrics": {
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 0,
+        "views": 0,
         "shares": 0,
-        "clicks": 0
+        "reach": 0
       }
     },
     {
-      "id": "6a8bf4e3858f542f7fdafd14",
+      "id": "6ab0dd615bd909bc97a6031e",
+      "channelService": "tiktok",
+      "type": "video",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:57.788Z",
+      "durationSec": 34.033,
+      "metrics": {
+        "reactions": 3,
+        "comments": 0,
+        "engagementRate": 0.72,
+        "views": 418,
+        "shares": 0,
+        "reach": 395
+      }
+    },
+    {
+      "id": "6ab0dd4083c5144288880c55",
       "channelService": "youtube",
       "type": "video",
-      "text": "That 3 second window before you talk yourself out of it. That's the whole game.\n\nMore at 47society.com.au/start\n\n#47Society #OnlineCoachingAU #Melbour",
-      "sentAt": "2026-08-24T08:30:25.997Z",
-      "durationSec": 102.5,
-      "metrics": {
-        "reactions": 0,
-        "comments": 0,
-        "views": 0,
-        "engagementRate": 0
-      }
-    },
-    {
-      "id": "6a8bb7ead62e2934f26019bc",
-      "channelService": "facebook",
-      "type": "post",
-      "text": "",
-      "sentAt": "2026-08-24T03:14:58.000Z",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:27.546Z",
+      "durationSec": 34.033,
       "metrics": {
         "reactions": 0,
         "comments": 0,
         "engagementRate": 0,
-        "impressions": 0,
-        "shares": 0,
-        "clicks": 0
+        "views": 1
       }
     },
     {
-      "id": "6a8bdd9289a102c186d21b7a",
-      "channelService": "linkedin",
-      "type": "post",
-      "text": "Something I've been building quietly with my mate best mate @Matt Eierweis is finally ready to talk about.\n\nWe spent our 20s doing it the bodybuilding",
-      "sentAt": "2026-08-22T00:35:15.094Z",
+      "id": "6ab0dd7491b18072e0427178",
+      "channelService": "youtube",
+      "type": "video",
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:26.585Z",
+      "durationSec": 34.033,
       "metrics": {
-        "reactions": 9,
-        "comments": 3,
-        "engagementRate": 7.45,
-        "impressions": 161,
-        "reach": 101
-      }
-    },
-    {
-      "id": "6a8bdd9289a102c186d21b78",
-      "channelService": "linkedin",
-      "type": "post",
-      "text": "Something I've been sitting with for a while: my goal has always been to help as many people as I can. Properly help them, not just see them for an ho",
-      "sentAt": "2026-08-21T03:35:19.587Z",
-      "metrics": {
-        "reactions": 1,
+        "reactions": 0,
         "comments": 0,
-        "engagementRate": 2.17,
-        "impressions": 46,
-        "reach": 26
+        "engagementRate": 0,
+        "views": 0
       }
     },
     {
-      "id": "6a8bc5258a3964a76b5bd74d",
-      "channelService": "tiktok",
+      "id": "6ab0dcfc636d96adb7db3669",
+      "channelService": "youtube",
       "type": "video",
-      "text": "🌅 Day 47 of 47 | Find Your Ikigai 🌱 Your Ikigai sits at the intersection of what you love, what you’re good at, what the world needs, and what you can",
-      "sentAt": "2026-01-19T06:59:34.000Z",
-      "durationSec": 208.1,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:22.673Z",
+      "durationSec": 34.033,
       "metrics": {
-        "reactions": 2,
+        "reactions": 0,
         "comments": 0,
-        "engagementRate": 1.63,
-        "views": 123,
-        "shares": 0,
-        "reach": 117
+        "engagementRate": 0,
+        "views": 0
       }
     },
     {
-      "id": "6a8bc5258a3964a76b5bd751",
-      "channelService": "tiktok",
+      "id": "6ab0dd28fa03aef9cecaa209",
+      "channelService": "youtube",
       "type": "video",
-      "text": "🤝 Day 46 of 47 | Give More Than You Take 🌱 The fastest way to a better life isn’t chasing more for yourself. It’s becoming someone who gives more to o",
-      "sentAt": "2026-01-17T08:50:49.000Z",
-      "durationSec": 151.167,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:17.405Z",
+      "durationSec": 34.033,
       "metrics": {
-        "reactions": 7,
-        "comments": 2,
-        "engagementRate": 2.21,
-        "views": 408,
-        "shares": 0,
-        "reach": 385
-      }
-    },
-    {
-      "id": "6a8bc5258a3964a76b5bd755",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "🎭 Day 45 of 47 | Remove The Masks 🌱 Most of your stress comes from wearing versions of yourself that were built to survive, not to thrive. The strong ",
-      "sentAt": "2026-01-17T07:17:33.000Z",
-      "durationSec": 141.234,
-      "metrics": {
-        "reactions": 19,
-        "comments": 6,
-        "engagementRate": 3.49,
-        "views": 746,
-        "shares": 1,
-        "reach": 696
-      }
-    },
-    {
-      "id": "6a8bc5258a3964a76b5bd79b",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "🧠 Day 44 of 47 | L Plates For Life 🌱 No one ever fully figures life out. We’re all learners. Always. Different chapters, same lesson: stay curious, st",
-      "sentAt": "2026-01-16T06:02:59.000Z",
-      "durationSec": 128.167,
-      "metrics": {
-        "reactions": 1,
+        "reactions": 0,
         "comments": 0,
-        "engagementRate": 0.6,
-        "views": 168,
-        "shares": 0,
-        "reach": 155
+        "engagementRate": 0,
+        "views": 1
       }
     },
     {
-      "id": "6a8bc5258a3964a76b5bd791",
-      "channelService": "tiktok",
+      "id": "6ab0dd629eb9285e3bb6b8cb",
+      "channelService": "youtube",
       "type": "video",
-      "text": "🧱 Day 43 of 47 | Progress Over Perfection 🌱 Perfection is a trap. Progress is real. If you’re waiting for the perfect time, the perfect plan, or the p",
-      "sentAt": "2026-01-15T06:57:17.000Z",
-      "durationSec": 135.834,
+      "text": "5km, sunlight, grounding, pushups. Costs nothing, takes 30mins, and it's the best part of my day. Most people try to fix their energy with coffee. Try",
+      "sentAt": "2026-09-21T08:00:10.987Z",
+      "durationSec": 34.033,
       "metrics": {
-        "reactions": 1,
+        "reactions": 0,
         "comments": 0,
-        "engagementRate": 0.84,
-        "views": 119,
-        "shares": 0,
-        "reach": 115
-      }
-    },
-    {
-      "id": "6a8bc5258a3964a76b5bd797",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "Day 42 of 47 ⏳ Delayed gratification 🧠 Most people choose what feels good now over what creates a better life later. Delayed gratification is the abil",
-      "sentAt": "2026-01-12T06:58:39.000Z",
-      "durationSec": 96.317,
-      "metrics": {
-        "reactions": 1,
-        "comments": 1,
-        "engagementRate": 1.83,
-        "views": 109,
-        "shares": 0,
-        "reach": 102
-      }
-    },
-    {
-      "id": "6a8bc5258a3964a76b5bd799",
-      "channelService": "tiktok",
-      "type": "video",
-      "text": "Day 41 of 47 ⚡ Energy is everything 🔋 Your energy shapes your thoughts, your actions and the way you show up in the world. When your energy is high, l",
-      "sentAt": "2026-01-11T07:33:40.000Z",
-      "durationSec": 128.6,
-      "metrics": {
-        "reactions": 2,
-        "comments": 0,
-        "engagementRate": 1.36,
-        "views": 147,
-        "shares": 0,
-        "reach": 136
+        "engagementRate": 0,
+        "views": 0
       }
     }
   ]
